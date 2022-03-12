@@ -1,8 +1,6 @@
-package com.dutainze.algs.array;
+package com.dutainze.algs.leetcode.array;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * <a href="https://leetcode.com/problems/build-array-from-permutation/">1920. Build Array from Permutation</a>
