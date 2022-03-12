@@ -1,5 +1,9 @@
 package com.dutainze.algs.array;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * <a href="https://leetcode.com/problems/build-array-from-permutation/">1920. Build Array from Permutation</a>
  *
@@ -41,11 +45,13 @@ package com.dutainze.algs.array;
 public class N_1920_BuildArrayFromPermutation {
 
     public int[] buildArray(int[] nums) {
-        int[] result = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            result[i] = nums[nums[i]];
+        int mask = 1023;
+        for(int i = 0; i < nums.length; i++) {
+            nums[i] |= (nums[nums[i]] & mask) << 10;
         }
-        return result;
+        for(int i = 0; i < nums.length; i++)
+            nums[i] = nums[i] >> 10;
+        return nums;
     }
 
     public int[] buildArray_V1(int[] nums) {
@@ -54,5 +60,9 @@ public class N_1920_BuildArrayFromPermutation {
             result[i] = nums[nums[i]];
         }
         return result;
+    }
+
+    public int[] buildArray_V2(int[] nums) {
+        return Arrays.stream(nums).map(n -> nums[n]).toArray();
     }
 }

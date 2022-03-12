@@ -2,6 +2,7 @@ package com.dutainze.algs.array;
 
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -19,7 +20,7 @@ class N_1920_BuildArrayFromPermutationTest {
 
         int[] actual = solution.buildArray(nums);
 
-        Assertions.assertArrayEquals(actual, expected);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -29,6 +30,16 @@ class N_1920_BuildArrayFromPermutationTest {
 
         int[] actual = solution.buildArray_V1(nums);
 
-        Assertions.assertArrayEquals(actual, expected);
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void buildArray_V2() {
+        int[] nums = {0, 2, 1, 5, 3, 4};
+        int[] expected = {0, 1, 2, 4, 5, 3};
+
+        int[] actual = solution.buildArray_V2(nums);
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 }
