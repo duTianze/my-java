@@ -3,12 +3,11 @@ package com.dutainze.algs.array;
 /**
  * <a href="https://leetcode.com/problems/build-array-from-permutation/">1920. Build Array from Permutation</a>
  *
- * <br/>
+ * <br/> <font size=6>Easy</font>
  * <pre>
  * Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
  *
- * A zero-based permutation nums is an array of distinct integers
- * from 0 to nums.length - 1 (inclusive).
+ * A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
  *
  * Example 1:
  *
@@ -28,15 +27,13 @@ package com.dutainze.algs.array;
  *     = [nums[5], nums[0], nums[1], nums[2], nums[3], nums[4]]
  *     = [4,5,0,1,2,3]
  *
- *
  * Constraints:
  *
- * 1 <= nums.length <= 1000
- * 0 <= nums[i] < nums.length
- * The elements in nums are distinct.
+ *     1 <= nums.length <= 1000
+ *     0 <= nums[i] < nums.length
+ *     The elements in nums are distinct.
  *
  * Follow-up: Can you solve it without using an extra space (i.e., O(1) memory)?
- *
  *</pre>
  * @author dutianze
  * @date 2022/3/12
@@ -44,7 +41,18 @@ package com.dutainze.algs.array;
 public class N_1920_BuildArrayFromPermutation {
 
     public int[] buildArray(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = nums[nums[i]];
+        }
+        return result;
+    }
 
-        return nums;
+    public int[] buildArray_V1(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = nums[nums[i]];
+        }
+        return result;
     }
 }

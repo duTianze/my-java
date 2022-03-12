@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  */
 class N_1920_BuildArrayFromPermutationTest {
 
-    private N_1920_BuildArrayFromPermutation solution = new N_1920_BuildArrayFromPermutation();
+    private final N_1920_BuildArrayFromPermutation solution = new N_1920_BuildArrayFromPermutation();
 
     @Test
     void buildArrayTest() {
@@ -18,6 +18,16 @@ class N_1920_BuildArrayFromPermutationTest {
         int[] expected = {0, 1, 2, 4, 5, 3};
 
         int[] actual = solution.buildArray(nums);
+
+        Assertions.assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    void buildArray_V1() {
+        int[] nums = {0, 2, 1, 5, 3, 4};
+        int[] expected = {0, 1, 2, 4, 5, 3};
+
+        int[] actual = solution.buildArray_V1(nums);
 
         Assertions.assertArrayEquals(actual, expected);
     }
