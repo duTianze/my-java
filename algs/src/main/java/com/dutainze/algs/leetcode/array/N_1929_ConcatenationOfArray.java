@@ -39,6 +39,6 @@ package com.dutainze.algs.leetcode.array;
 public class N_1929_ConcatenationOfArray {
 
     public int[] getConcatenation(int[] nums) {
-        return new int[]{1, 2};
+        return new int[]{1, 2, 3};
     }
 }
