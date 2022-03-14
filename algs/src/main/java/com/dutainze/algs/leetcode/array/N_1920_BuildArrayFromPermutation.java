@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 /**
  * <a href="https://leetcode.com/problems/build-array-from-permutation/">1920. Build Array from Permutation</a>
- *
- * <br/> <font size=6>Easy</font>
+ * <br/>
+ * <h2>Easy</h2>
  * <pre>
  * Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
  *
