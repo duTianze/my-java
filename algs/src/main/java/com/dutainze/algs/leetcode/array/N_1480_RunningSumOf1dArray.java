@@ -2,7 +2,6 @@ package com.dutainze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/running-sum-of-1d-array/">1480. Running Sum of 1d Array</a>
- * <br/>
  * <h2>Easy</h2>
  * <pre>
  * Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
