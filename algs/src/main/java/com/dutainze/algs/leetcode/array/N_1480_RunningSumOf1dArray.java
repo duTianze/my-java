@@ -30,12 +30,16 @@ package com.dutainze.algs.leetcode.array;
  *     1 <= nums.length <= 1000
  *     -10^6 <= nums[i] <= 10^6
  * </pre>
+ *
  * @author dutianze
  * @date 2022/3/15
  */
 public class N_1480_RunningSumOf1dArray {
 
-    public int maximumWealth(int[][] accounts) {
-        return 1;
+    public int[] runningSum(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            nums[i] = nums[i - 1] + nums[i];
+        }
+        return nums;
     }
 }

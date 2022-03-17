@@ -13,8 +13,8 @@ class N_1929_ConcatenationOfArrayTest {
 
     @Test
     void getConcatenation() {
-        int[] nums = {1,2,1};
-        int[] expected = {1,2,1,1,2,1};
+        int[] nums = {1, 2, 1};
+        int[] expected = {1, 2, 1, 1, 2, 1};
 
         int[] actual = solution.getConcatenation(nums);
         Assertions.assertArrayEquals(expected, actual);

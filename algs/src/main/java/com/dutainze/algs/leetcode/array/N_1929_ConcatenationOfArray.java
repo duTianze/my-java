@@ -1,7 +1,5 @@
 package com.dutainze.algs.leetcode.array;
 
-import java.util.Arrays;
-
 /**
  * <a href="https://leetcode.com/problems/concatenation-of-array/">1929. Concatenation of Array</a>
  * <h2>Easy</h2>
@@ -34,6 +32,7 @@ import java.util.Arrays;
  *     1 <= n <= 1000
  *     1 <= nums[i] <= 1000
  * </pre>
+ *
  * @author dutianze
  * @date 2022/3/14
  */

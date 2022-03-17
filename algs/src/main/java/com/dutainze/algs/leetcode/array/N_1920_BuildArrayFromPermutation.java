@@ -35,7 +35,8 @@ import java.util.Arrays;
  *     The elements in nums are distinct.
  *
  * Follow-up: Can you solve it without using an extra space (i.e., O(1) memory)?
- *</pre>
+ * </pre>
+ *
  * @author dutianze
  * @date 2022/3/12
  */
@@ -43,11 +44,10 @@ public class N_1920_BuildArrayFromPermutation {
 
     public int[] buildArray(int[] nums) {
         int mask = 1023;
-        for(int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             nums[i] |= (nums[nums[i]] & mask) << 10;
         }
-        for(int i = 0; i < nums.length; i++)
-            nums[i] = nums[i] >> 10;
+        for (int i = 0; i < nums.length; i++) {nums[i] = nums[i] >> 10;}
         return nums;
     }
 

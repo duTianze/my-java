@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class N_2011_FinalValueOfVariableAfterPerformingOperationsTest {
 
-    private final N_2011_FinalValueOfVariableAfterPerformingOperations solution = new N_2011_FinalValueOfVariableAfterPerformingOperations();
+    private final N_2011_FinalValueOfVariableAfterPerformingOperations solution =
+            new N_2011_FinalValueOfVariableAfterPerformingOperations();
 
     @Test
     void finalValueAfterOperations() {
-        String[] operations = {"--X","X++","X++"};
+        String[] operations = {"--X", "X++", "X++"};
         int expect = 1;
 
         int actual = solution.finalValueAfterOperations(operations);
