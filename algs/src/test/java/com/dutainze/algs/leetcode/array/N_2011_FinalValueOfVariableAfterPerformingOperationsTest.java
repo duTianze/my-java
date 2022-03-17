@@ -17,9 +17,9 @@ class N_2011_FinalValueOfVariableAfterPerformingOperationsTest {
     @Test
     void finalValueAfterOperations() {
         String[] operations = {"--X", "X++", "X++"};
-        int expect = 1;
+        int expected = 1;
 
         int actual = solution.finalValueAfterOperations(operations);
-        Assertions.assertEquals(expect, actual);
+        Assertions.assertEquals(expected, actual);
     }
 }

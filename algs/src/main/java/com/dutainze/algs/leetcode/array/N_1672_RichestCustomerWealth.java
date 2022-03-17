@@ -44,4 +44,16 @@ package com.dutainze.algs.leetcode.array;
  * @date 2022/3/16
  */
 public class N_1672_RichestCustomerWealth {
+
+    public int maximumWealth(int[][] accounts) {
+        int maxWealth = 0;
+        for (int[] account : accounts) {
+            int wealth = 0;
+            for (int i : account) {
+                wealth += i;
+            }
+            maxWealth = Math.max(maxWealth, wealth);
+        }
+        return maxWealth;
+    }
 }
