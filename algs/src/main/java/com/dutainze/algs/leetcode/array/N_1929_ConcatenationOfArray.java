@@ -1,5 +1,7 @@
 package com.dutainze.algs.leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * <a href="https://leetcode.com/problems/concatenation-of-array/">1929. Concatenation of Array</a>
  * <h2>Easy</h2>
@@ -38,6 +40,10 @@ package com.dutainze.algs.leetcode.array;
 public class N_1929_ConcatenationOfArray {
 
     public int[] getConcatenation(int[] nums) {
-        return new int[]{1, 2, 3};
+        int[] result = new int[nums.length * 2];
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = result[i + nums.length] = nums[i];
+        }
+        return result;
     }
 }
