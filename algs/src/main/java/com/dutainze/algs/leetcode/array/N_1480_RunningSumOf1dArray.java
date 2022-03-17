@@ -36,6 +36,6 @@ package com.dutainze.algs.leetcode.array;
 public class N_1480_RunningSumOf1dArray {
 
     public int maximumWealth(int[][] accounts) {
-        return new int[][];
+        return 1;
     }
 }
