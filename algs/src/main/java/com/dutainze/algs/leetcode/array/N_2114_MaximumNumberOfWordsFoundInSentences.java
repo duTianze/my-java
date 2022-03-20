@@ -1,5 +1,7 @@
 package com.dutainze.algs.leetcode.array;
 
+import java.util.stream.Stream;
+
 /**
  * <a href="https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/">2114. Maximum Number of Words Found in Sentences</a>
  * <h2>Easy</h2>
@@ -41,6 +43,13 @@ package com.dutainze.algs.leetcode.array;
 public class N_2114_MaximumNumberOfWordsFoundInSentences {
 
     public int mostWordsFound(String[] sentences) {
-
+        int max = 0;
+        for (String sentence : sentences) {
+            int length = sentence.split(" ").length;
+            if (length > max) {
+                max = length;
+            }
+        }
+        return max;
     }
 }
