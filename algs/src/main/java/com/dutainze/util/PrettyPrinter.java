@@ -1,6 +1,8 @@
 package com.dutainze.util;
 
+import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 /**
@@ -17,11 +19,11 @@ public class PrettyPrinter {
     private final PrintStream out;
     private final String asNull;
 
-    public PrettyPrinter(PrintStream out) {
+    public PrettyPrinter(OutputStream out) {
         this(out, DEFAULT_AS_NULL);
     }
 
-    public PrettyPrinter(PrintStream out, String asNull) {
+    public PrettyPrinter(OutputStream out, String asNull) {
         if ( out == null ) {
             throw new IllegalArgumentException("No print stream provided");
         }
@@ -33,11 +35,13 @@ public class PrettyPrinter {
     }
 
     public void print(int[][] table) {
-//        String[] stringsArray = Stream.of(table).map(String::valueOf).toArray(String[]::new);
-//        this.print(stringsArray);
+        String[][] toArray = Arrays.stream(table)
+                                   .map(a -> Arrays.stream(a).mapToObj(Integer::toString).toArray(String[]::new))
+                                   .toArray(String[][]::new);
+        this.printStringArray(toArray);
     }
 
-    public void print(String[][] table) {
+    public void printStringArray(String[][] table) {
         if ( table == null ) {
             throw new IllegalArgumentException("No tabular data provided");
         }

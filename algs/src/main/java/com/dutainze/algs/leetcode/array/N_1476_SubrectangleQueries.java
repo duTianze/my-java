@@ -2,6 +2,8 @@ package com.dutainze.algs.leetcode.array;
 
 import com.dutainze.util.PrettyPrinter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 
 /**
@@ -30,7 +32,9 @@ public class N_1476_SubrectangleQueries {
 
     @Override
     public String toString() {
-        PrettyPrinter prettyPrinter = new PrettyPrinter(System.out);
-        return prettyPrinter.print(rectangle);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrettyPrinter prettyPrinter = new PrettyPrinter(outputStream);
+        prettyPrinter.print(rectangle);
+        return outputStream.toString();
     }
 }
