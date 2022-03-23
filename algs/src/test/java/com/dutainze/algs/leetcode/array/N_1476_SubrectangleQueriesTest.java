@@ -19,7 +19,7 @@ class N_1476_SubrectangleQueriesTest {
         int actual = n_1476_subrectangleQueries.getValue(1, 2);
         Assertions.assertEquals(actual, 2);
 
-        n_1476_subrectangleQueries.updateSubrectangle(0, 0, 1, 1, 7);
+        n_1476_subrectangleQueries.updateSubrectangle(0, 0, 2, 1, 7);
         System.out.println(n_1476_subrectangleQueries);
     }
 }

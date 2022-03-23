@@ -3,8 +3,6 @@ package com.dutainze.algs.leetcode.array;
 import com.dutainze.util.PrettyPrinter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Arrays;
 
 /**
  * @author dutianze

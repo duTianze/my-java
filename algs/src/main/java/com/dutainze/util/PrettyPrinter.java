@@ -1,9 +1,8 @@
 package com.dutainze.util;
 
 import java.io.OutputStream;
-import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 /**
  * @author dutianze
@@ -16,7 +15,7 @@ public class PrettyPrinter {
 
     private static final String DEFAULT_AS_NULL = "(NULL)";
 
-    private final PrintStream out;
+    private final OutputStream out;
     private final String asNull;
 
     public PrettyPrinter(OutputStream out) {
@@ -24,10 +23,10 @@ public class PrettyPrinter {
     }
 
     public PrettyPrinter(OutputStream out, String asNull) {
-        if ( out == null ) {
+        if (out == null) {
             throw new IllegalArgumentException("No print stream provided");
         }
-        if ( asNull == null ) {
+        if (asNull == null) {
             throw new IllegalArgumentException("No NULL-value placeholder provided");
         }
         this.out = out;
@@ -42,10 +41,10 @@ public class PrettyPrinter {
     }
 
     public void printStringArray(String[][] table) {
-        if ( table == null ) {
+        if (table == null) {
             throw new IllegalArgumentException("No tabular data provided");
         }
-        if ( table.length == 0 ) {
+        if (table.length == 0) {
             return;
         }
         final int[] widths = new int[getMaxColumns(table)];
@@ -55,11 +54,11 @@ public class PrettyPrinter {
 
     private void printPreparedTable(String[][] table, int[] widths, String horizontalBorder) {
         final int lineLength = horizontalBorder.length();
-        out.println(horizontalBorder);
-        for ( final String[] row : table ) {
-            if ( row != null ) {
-                out.println(getRow(row, widths, lineLength));
-                out.println(horizontalBorder);
+        this.println(horizontalBorder);
+        for (final String[] row : table) {
+            if (row != null) {
+                this.println(getRow(row, widths, lineLength));
+                this.println(horizontalBorder);
             }
         }
     }
@@ -67,7 +66,7 @@ public class PrettyPrinter {
     private String getRow(String[] row, int[] widths, int lineLength) {
         final StringBuilder builder = new StringBuilder(lineLength).append(VERTICAL_BORDER);
         final int maxWidths = widths.length;
-        for ( int i = 0; i < maxWidths; i++ ) {
+        for (int i = 0; i < maxWidths; i++) {
             builder.append(padRight(getCellValue(safeGet(row, i, null)), widths[i])).append(VERTICAL_BORDER);
         }
         return builder.toString();
@@ -76,7 +75,7 @@ public class PrettyPrinter {
     private String getHorizontalBorder(int[] widths) {
         final StringBuilder builder = new StringBuilder(256);
         builder.append(BORDER_KNOT);
-        for ( final int w : widths ) {
+        for (final int w : widths) {
             builder.append(String.valueOf(HORIZONTAL_BORDER).repeat(Math.max(0, w)));
             builder.append(BORDER_KNOT);
         }
@@ -85,8 +84,8 @@ public class PrettyPrinter {
 
     private int getMaxColumns(String[][] rows) {
         int max = 0;
-        for ( final String[] row : rows ) {
-            if ( row != null && row.length > max ) {
+        for (final String[] row : rows) {
+            if (row != null && row.length > max) {
                 max = row.length;
             }
         }
@@ -94,12 +93,12 @@ public class PrettyPrinter {
     }
 
     private void adjustColumnWidths(String[][] rows, int[] widths) {
-        for ( final String[] row : rows ) {
-            if ( row != null ) {
-                for ( int c = 0; c < widths.length; c++ ) {
+        for (final String[] row : rows) {
+            if (row != null) {
+                for (int c = 0; c < widths.length; c++) {
                     final String cv = getCellValue(safeGet(row, c, asNull));
                     final int l = cv.length();
-                    if ( widths[c] < l ) {
+                    if (widths[c] < l) {
                         widths[c] = l;
                     }
                 }
@@ -117,5 +116,14 @@ public class PrettyPrinter {
 
     private String getCellValue(Object value) {
         return value == null ? asNull : value.toString();
+    }
+
+    private void println(String s) {
+        try {
+            out.write(s.getBytes(StandardCharsets.UTF_8));
+            out.write(System.lineSeparator().getBytes(StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
