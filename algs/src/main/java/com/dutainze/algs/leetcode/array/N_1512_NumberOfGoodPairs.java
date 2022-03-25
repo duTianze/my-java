@@ -1,5 +1,10 @@
 package com.dutainze.algs.leetcode.array;
 
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <a href="https://leetcode.com/problems/number-of-good-pairs/">1512. Number of Good Pairs</a>
  * <h2>Easy</h2>
@@ -34,5 +39,29 @@ package com.dutainze.algs.leetcode.array;
  * @author dutianze
  * @date 2022/3/25
  */
+@Service
 public class N_1512_NumberOfGoodPairs {
+
+    public int numIdenticalPairs(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public int numIdenticalPairsBetter(int[] nums) {
+        Map<Integer, Integer> hallMap = new HashMap<>();
+        int ans = 0;
+        for (int friend : nums) {
+            Integer friendCount = hallMap.getOrDefault(friend, 0);
+            ans = ans + friendCount;
+            hallMap.put(friend, friendCount + 1);
+        }
+        return ans;
+    }
 }
