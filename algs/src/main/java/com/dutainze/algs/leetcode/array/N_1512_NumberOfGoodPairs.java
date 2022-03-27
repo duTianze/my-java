@@ -1,5 +1,6 @@
 package com.dutainze.algs.leetcode.array;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ import java.util.Map;
  * @author dutianze
  * @date 2022/3/25
  */
-@Service
+@Component
 public class N_1512_NumberOfGoodPairs {
 
     public int numIdenticalPairs(int[] nums) {

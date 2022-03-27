@@ -1,5 +1,11 @@
 package com.dutainze.algs.leetcode.array;
 
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * <a href="https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/">1431. Kids With the Greatest Number of Candies</a>
  * <h2>Easy</h2>
@@ -40,8 +46,17 @@ package com.dutainze.algs.leetcode.array;
  *     1 <= candies[i] <= 100
  *     1 <= extraCandies <= 50
  * </pre>
+ *
  * @author dutianze
  * @date 2022/3/27
  */
+@Component
 public class N_1431_KidsWithTheGreatestNumberOfCandies {
+
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int max = Arrays.stream(candies).max().orElse(0);
+        return Arrays.stream(candies)
+                     .mapToObj(candy -> (candy + extraCandies) >= max)
+                     .collect(Collectors.toList());
+    }
 }
