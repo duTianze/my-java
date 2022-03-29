@@ -48,6 +48,19 @@ import org.springframework.stereotype.Component;
 public class N_1828_QueriesOnNumberOfPointsInsideACircle {
 
     public int[] countPoints(int[][] points, int[][] queries) {
-
+        int sizeQuery = queries.length;
+        int[] ret = new int[sizeQuery];
+        for (int i = 0; i < sizeQuery; i++) {
+            int x = queries[i][0];
+            int y = queries[i][1];
+            int tempCount = 0;
+            for (int[] point : points) {
+                if ((point[0] - x) * (point[0] - x) + (point[1] - y) * (point[1] - y) <= queries[i][2] * queries[i][2]) {
+                    tempCount++;
+                }
+            }
+            ret[i] = tempCount;
+        }
+        return ret;
     }
 }
