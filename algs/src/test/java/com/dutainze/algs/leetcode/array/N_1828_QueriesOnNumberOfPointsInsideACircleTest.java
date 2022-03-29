@@ -1,6 +1,7 @@
 package com.dutainze.algs.leetcode.array;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,8 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class N_1828_QueriesOnNumberOfPointsInsideACircleTest {
 
+    @Autowired
+    private N_1828_QueriesOnNumberOfPointsInsideACircle solution;
+
     @Test
     void countPoints() {
-
+        solution.countPoints()
     }
 }
