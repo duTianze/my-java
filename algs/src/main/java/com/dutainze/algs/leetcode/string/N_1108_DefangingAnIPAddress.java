@@ -1,5 +1,8 @@
 package com.dutainze.algs.leetcode.string;
 
+import java.util.stream.Collector;
+import java.util.stream.Stream;
+
 /**
  * <a href="https://leetcode.com/problems/defanging-an-ip-address/">1108. Defanging an IP Address</a>
  * <h2>Easy</h2>
@@ -30,18 +33,28 @@ public class N_1108_DefangingAnIPAddress {
 
     public String defangIPaddr(String address) {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < address.length(); i++) {
-            char c = address.charAt(i);
-            if (c == '.') {
-                builder.append("[.]");
-            } else {
-                builder.append(c);
-            }
+        for (char c : address.toCharArray()) {
+            builder.append(c == '.' ? "[.]" : c);
         }
         return builder.toString();
     }
 
     public String defangIPaddrSimple(String address) {
         return address.replaceAll("\\.", "[.]");
+    }
+
+    public String defangIPaddrStream(String address) {
+        return address.chars()
+                      .mapToObj(e -> (char) e)
+                      .flatMap(e -> {
+                          if (e.equals('.')) {
+                              return Stream.of('[', ".", "]");
+                          }
+                          return Stream.of(e);
+                      })
+                      .collect(Collector.of(StringBuilder::new,
+                                            StringBuilder::append,
+                                            StringBuilder::append,
+                                            StringBuilder::toString));
     }
 }

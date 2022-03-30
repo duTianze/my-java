@@ -18,8 +18,10 @@ class N_1108_DefangingAnIPAddressTest {
 
         String result = solution.defangIPaddr(address);
         String resultSimple = solution.defangIPaddrSimple(address);
+        String resultStream = solution.defangIPaddrStream(address);
 
         Assertions.assertThat(result).isEqualTo(excepted);
         Assertions.assertThat(resultSimple).isEqualTo(excepted);
+        Assertions.assertThat(resultStream).isEqualTo(excepted);
     }
 }
