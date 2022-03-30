@@ -3,8 +3,6 @@ package com.dutainze.algs.leetcode.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author dutianze
  * @date 2022/3/18

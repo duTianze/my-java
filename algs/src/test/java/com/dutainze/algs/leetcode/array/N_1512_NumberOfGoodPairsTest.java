@@ -3,17 +3,15 @@ package com.dutainze.algs.leetcode.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author dutianze
  * @date 2022/3/25
  */
-@SpringBootTest
 class N_1512_NumberOfGoodPairsTest {
 
     @Autowired
-    private N_1512_NumberOfGoodPairs solution;
+    private final N_1512_NumberOfGoodPairs solution = new N_1512_NumberOfGoodPairs();
 
     @Test
     void numIdenticalPairs() {

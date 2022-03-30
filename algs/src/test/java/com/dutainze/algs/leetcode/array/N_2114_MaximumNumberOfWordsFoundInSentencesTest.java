@@ -3,15 +3,14 @@ package com.dutainze.algs.leetcode.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author dutianze
  * @date 2022/3/20
  */
 class N_2114_MaximumNumberOfWordsFoundInSentencesTest {
 
-    private final N_2114_MaximumNumberOfWordsFoundInSentences solution = new N_2114_MaximumNumberOfWordsFoundInSentences();
+    private final N_2114_MaximumNumberOfWordsFoundInSentences solution =
+            new N_2114_MaximumNumberOfWordsFoundInSentences();
 
     @Test
     void mostWordsFound() {
