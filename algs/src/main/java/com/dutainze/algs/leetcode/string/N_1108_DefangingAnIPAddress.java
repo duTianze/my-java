@@ -27,4 +27,21 @@ package com.dutainze.algs.leetcode.string;
  * @date 2022/3/31
  */
 public class N_1108_DefangingAnIPAddress {
+
+    public String defangIPaddr(String address) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < address.length(); i++) {
+            char c = address.charAt(i);
+            if (c == '.') {
+                builder.append("[.]");
+            } else {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+    }
+
+    public String defangIPaddrSimple(String address) {
+        return address.replaceAll("\\.", "[.]");
+    }
 }
