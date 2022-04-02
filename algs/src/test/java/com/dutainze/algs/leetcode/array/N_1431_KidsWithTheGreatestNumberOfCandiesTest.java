@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
  */
 class N_1431_KidsWithTheGreatestNumberOfCandiesTest {
 
-    private N_1431_KidsWithTheGreatestNumberOfCandies solution = new N_1431_KidsWithTheGreatestNumberOfCandies();
+    private final N_1431_KidsWithTheGreatestNumberOfCandies solution =
+            new N_1431_KidsWithTheGreatestNumberOfCandies();
 
     @Test
     void kidsWithCandies() {

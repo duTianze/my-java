@@ -1,7 +1,5 @@
 package com.dutainze.algs.leetcode.array;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +48,6 @@ import java.util.stream.Collectors;
  * @author dutianze
  * @date 2022/3/27
  */
-@Component
 public class N_1431_KidsWithTheGreatestNumberOfCandies {
 
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {

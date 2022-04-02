@@ -1,7 +1,5 @@
 package com.dutainze.algs.leetcode.array;
 
-import java.util.stream.Stream;
-
 /**
  * <a href="https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/">2114. Maximum Number of Words Found in Sentences</a>
  * <h2>Easy</h2>
@@ -37,6 +35,7 @@ import java.util.stream.Stream;
  *     sentences[i] does not have leading or trailing spaces.
  *     All the words in sentences[i] are separated by a single space.
  * </pre>
+ *
  * @author dutianze
  * @date 2022/3/19
  */

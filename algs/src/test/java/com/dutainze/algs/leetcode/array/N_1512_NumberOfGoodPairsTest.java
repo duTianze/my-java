@@ -2,7 +2,6 @@ package com.dutainze.algs.leetcode.array;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author dutianze
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 class N_1512_NumberOfGoodPairsTest {
 
-    @Autowired
     private final N_1512_NumberOfGoodPairs solution = new N_1512_NumberOfGoodPairs();
 
     @Test

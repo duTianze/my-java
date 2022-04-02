@@ -1,7 +1,5 @@
 package com.dutainze.algs.leetcode.array;
 
-import org.springframework.stereotype.Component;
-
 /**
  * <a href="https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/">1828. Queries on Number of Points Inside a Circle</a>
  * <h2>Medium</h2>
@@ -44,7 +42,6 @@ import org.springframework.stereotype.Component;
  * @author dutianze
  * @date 2022/3/28
  */
-@Component
 public class N_1828_QueriesOnNumberOfPointsInsideACircle {
 
     public int[] countPoints(int[][] points, int[][] queries) {
@@ -55,7 +52,8 @@ public class N_1828_QueriesOnNumberOfPointsInsideACircle {
             int y = queries[i][1];
             int tempCount = 0;
             for (int[] point : points) {
-                if ((point[0] - x) * (point[0] - x) + (point[1] - y) * (point[1] - y) <= queries[i][2] * queries[i][2]) {
+                if ((point[0] - x) * (point[0] - x) + (point[1] - y) * (point[1] - y) <=
+                    queries[i][2] * queries[i][2]) {
                     tempCount++;
                 }
             }
