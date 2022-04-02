@@ -37,6 +37,6 @@ package com.dutainze.algs.leetcode.string;
 public class N_1689_PartitioningIntoMinimumNumberOfDeciBinaryNumbers {
 
     public int minPartitions(String n) {
-        return n.chars().max().getAsInt() - '0';
+        return n.chars().max().orElse(0) - '0';
     }
 }
