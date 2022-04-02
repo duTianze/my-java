@@ -19,6 +19,6 @@ class N_1689_PartitioningIntoMinimumNumberOfDeciBinaryNumbersTest {
 
         int result = solution.minPartitions(n);
 
-        Assertions.assertEquals(3, result);
+        Assertions.assertEquals(expected, result);
     }
 }
