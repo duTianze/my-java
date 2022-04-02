@@ -5,4 +5,8 @@ package com.dutainze.algs.leetcode.string;
  * @date 2022/4/2
  */
 public class N_1689_PartitioningIntoMinimumNumberOfDeciBinaryNumbers {
+
+    public int minPartitions(String n) {
+
+    }
 }
