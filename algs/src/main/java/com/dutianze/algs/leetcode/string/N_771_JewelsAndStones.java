@@ -1,5 +1,8 @@
 package com.dutianze.algs.leetcode.string;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * <a href="https://leetcode.com/problems/jewels-and-stones/">771. Jewels and Stones</a>
  * <h2>Easy</h2>
@@ -24,8 +27,22 @@ package com.dutianze.algs.leetcode.string;
  *     jewels and stones consist of only English letters.
  *     All the characters of jewels are unique.
  * </pre>
+ *
  * @author dutianze
  * @date 2022/4/3
  */
 public class N_771_JewelsAndStones {
+
+    public int numJewelsInStones(String jewels, String stones) {
+        int count = 0;
+        Set<Character> jewelsSet = jewels.chars()
+                                         .mapToObj(c -> (char) c)
+                                         .collect(Collectors.toSet());
+        for (char c : stones.toCharArray()) {
+            if (jewelsSet.contains(c)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
