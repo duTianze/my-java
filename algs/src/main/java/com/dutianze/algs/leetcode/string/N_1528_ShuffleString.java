@@ -1,5 +1,7 @@
 package com.dutianze.algs.leetcode.string;
 
+import java.util.Arrays;
+
 /**
  * <a href="https://leetcode.com/problems/shuffle-string/">1528. Shuffle String</a>
  * <h2>Easy</h2>
@@ -36,9 +38,10 @@ public class N_1528_ShuffleString {
 
     public String restoreString(String s, int[] indices) {
         char[] chars = s.toCharArray();
-        StringBuilder content = new StringBuilder();
-        for (int index : indices) {
-            char c = chars[index];
+        char[] result = new char[chars.length];
+        for (int i = 0; i < indices.length; i++) {
+            result[indices[i]] = chars[i];
         }
+        return new String(result);
     }
 }
