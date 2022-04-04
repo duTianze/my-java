@@ -33,4 +33,8 @@ package com.dutianze.algs.leetcode.string;
  * @date 2022/4/4
  */
 public class N_1528_ShuffleString {
+
+    public String restoreString(String s, int[] indices) {
+
+    }
 }
