@@ -35,6 +35,10 @@ package com.dutianze.algs.leetcode.string;
 public class N_1528_ShuffleString {
 
     public String restoreString(String s, int[] indices) {
-
+        char[] chars = s.toCharArray();
+        StringBuilder content = new StringBuilder();
+        for (int index : indices) {
+            char c = chars[index];
+        }
     }
 }
