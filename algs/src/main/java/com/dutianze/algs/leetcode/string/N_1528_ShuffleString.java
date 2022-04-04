@@ -1,7 +1,5 @@
 package com.dutianze.algs.leetcode.string;
 
-import java.util.Arrays;
-
 /**
  * <a href="https://leetcode.com/problems/shuffle-string/">1528. Shuffle String</a>
  * <h2>Easy</h2>
