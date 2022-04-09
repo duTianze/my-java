@@ -75,3 +75,18 @@ SQLite is capable of creating in-memory databases that are very fast to work wit
 2. [https://www.sqlite.org/features.html](https://www.sqlite.org/features.html) – SQLite features
 3. [https://www.sqlite.org/copyright.html](https://www.sqlite.org/copyright.html) – SQLite license
 4. [https://www.sqlite.org/docs.html](https://www.sqlite.org/docs.html) – SQLite documentation
+
+## Download SQLite tools
+
+To download SQLite, you open the [download page](https://www.sqlite.org/download.html) of the SQlite official website.
+
+### official
+1. First, go to the [https://www.sqlite.org](https://www.sqlite.org/) website.
+2. Second, open the download page [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html)
+
+SQLite provides various tools for working across platforms e.g., Windows, Linux, and Mac. You need to select an
+appropriate version to download.
+
+### homebrew
+
+
