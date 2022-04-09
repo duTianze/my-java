@@ -1,11 +1,7 @@
 # SQLite
 
-[SQLite](http://www.sqlite.org/) - A completely embedded, full-featured relational database in a few 100k that you can
+[SQLite](http://www.sqlite.org) - A completely embedded, full-featured relational database in a few 100k that you can
 include right into your project.
-
-## tutorial
-
-https://www.sqlitetutorial.net/
 
 ## What is SQLite
 
@@ -69,21 +65,14 @@ features like joining tables in different databases or copying data between data
 
 SQLite is capable of creating in-memory databases that are very fast to work with.
 
-## References
-
-1. [https://www.sqlite.org](https://www.sqlite.org/) – SQLite homepage
-2. [https://www.sqlite.org/features.html](https://www.sqlite.org/features.html) – SQLite features
-3. [https://www.sqlite.org/copyright.html](https://www.sqlite.org/copyright.html) – SQLite license
-4. [https://www.sqlite.org/docs.html](https://www.sqlite.org/docs.html) – SQLite documentation
-
 ## Download SQLite tools
 
 To download SQLite, you open the [download page](https://www.sqlite.org/download.html) of the SQlite official website.
 
 ### official
 
-1. First, go to the [https://www.sqlite.org](https://www.sqlite.org/) website.
-2. Second, open the download page [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html)
+1. go to the [https://www.sqlite.org](https://www.sqlite.org/) website.
+2. open the download page [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html)
 
 SQLite provides various tools for working across platforms e.g., Windows, Linux, and Mac. You need to select an
 appropriate version to download.
@@ -125,7 +114,7 @@ sqlite> .quit
 
 ## Install SQLite GUI tool
 
-The sqlite3 shell is excellent…
+The sqlite3 shell is excellent
 
 However, sometimes, you may want to work with the SQLite databases using an intuitive GUI tool.
 
@@ -143,6 +132,7 @@ There are many GUI tools for managing SQLite databases available ranging from fr
 ### Introduction to chinook SQLite sample database
 
 The following database diagram illustrates the chinook database tables and their relationships.
+
 ![](.README_images/04ea3b1a.png)
 
 ### Chinook sample database tables
@@ -180,3 +170,184 @@ albums          employees       invoices        playlists
 artists         genres          media_types     tracks        
 customers       invoice_items   playlist_track
 ```
+
+## SQLite Commands
+
+### Connect to an SQLite database
+
+To start the sqlite3, you type the sqlite3 as follows:
+
+```shell
+ » sqlite3                                                                                                                     
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> 
+```
+
+By default, an SQLite session uses the in-memory database, therefore, all changes will be gone when the session ends.
+
+To open a database file, you use the `.open FILENAME` command. The following statement opens the `chinook.db` database:
+
+```shell
+sqlite> .open chinook.db
+```
+
+If you want to open a specific database file when you connect to the SQlite database, you use the following command:
+
+```shell
+ » sqlite3 chinook.db                                                                                                         127 ↵ dutianze@bogon
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+sqlite> 
+```
+
+If you start a session with a database name that does not exist, the sqlite3 tool will create the database file.
+
+```shell
+sqlite3 test.db
+```
+
+### Show all available commands and their purposes
+
+To show all available commands and their purpose, you use the `.help` command as follows:
+
+### Show databases in the current database connection
+
+To show all databases in the current connection, you use the `.databases` command. The `.databases` command displays at
+least one database with the name: `main`.
+
+To add an additional database in the current connection, you use the statement ATTACH DATABASE. The following statement
+adds the chinook database to the current connection.
+
+```shell
+sqlite> ATTACH DATABASE "chinook.db" AS chinook;
+```
+
+Now if you run the .database command again, the sqlite3 returns two databases: main and chinook.
+
+### Exit sqlite3 tool
+
+To exit the sqlite3 program, you use the `.exit` command. .
+
+### Show tables in a database
+
+To display all the tables in the current database, you use the `.tables` command. The following commands open a new
+database connection to the chinook database and display the tables in the database.
+
+```shell
+sqlite> .tables
+albums          employees       invoices        playlists     
+artists         genres          media_types     tracks        
+customers       invoice_items   playlist_track
+```
+
+If you want to find tables based on a specific pattern, you use the .table pattern command. The sqlite3 uses the LIKE
+operator for pattern matching.
+
+For example, the following statement returns the table that ends with the string es.
+
+```shell
+sqlite> .table '%es'
+employees    genres       invoices     media_types
+```
+
+### Show the structure of a table
+
+To display the structure of a table, you use the `.schema TABLE` command. The TABLE argument could be a pattern. If you
+omit it, the .schema command will show the structures of all the tables.
+
+```shell
+sqlite> .schema albums
+CREATE TABLE IF NOT EXISTS "albums"
+(
+    [AlbumId] INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    [Title] NVARCHAR(160)  NOT NULL,
+    [ArtistId] INTEGER  NOT NULL,
+    FOREIGN KEY ([ArtistId]) REFERENCES "artists" ([ArtistId]) 
+                ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+CREATE INDEX [IFK_AlbumArtistId] ON "albums" ([ArtistId]);
+```
+
+To show the schema and the content of the sqlite_stat tables, you use the `.fullschema` command.
+
+### Show indexes
+
+To show all indexes of the current database, you use the `.indexes` command as follows:
+
+```shell
+sqlite> .index
+IFK_AlbumArtistId                  IFK_PlaylistTrackTrackId         
+IFK_CustomerSupportRepId           IFK_TrackAlbumId                 
+IFK_EmployeeReportsTo              IFK_TrackGenreId                 
+IFK_InvoiceCustomerId              IFK_TrackMediaTypeId             
+IFK_InvoiceLineInvoiceId           sqlite_autoindex_playlist_track_1
+IFK_InvoiceLineTrackId
+```
+
+To show the indexes of a specific table, you use the `.indexes TABLE` command. For example, to show indexes of
+the `albums` table, you use the following command:
+
+```shell
+sqlite> .index albums
+IFK_AlbumArtistId
+```
+
+To show indexes of the tables whose names end with `es`, you use a pattern of
+the [LIKE](https://www.sqlitetutorial.net/sqlite-like/) operator.
+
+```shell
+sqlite> .indexes %es
+IFK_EmployeeReportsTo  IFK_InvoiceCustomerId
+```
+
+### Save the result of a query into a file
+
+To save the result of a query into a file, you use the `.output FILENAME` command. Once you issue the `.output` command,
+all the results of the subsequent queries will be saved to the file that you specified in the `FILENAME` argument. If
+you want to save the result of the next single query only to the file, you issue the `.once FILENAME` command.
+
+To display the result of the query to the standard `output` again, you issue the `.output` command without arguments.
+
+The following commands select the `title` from the `albums` table and write the result to the `albums.txt` file.
+
+### Execute SQL statements from a file
+
+Suppose we have a file named `commands.txt` with the following content:
+
+```shell
+SELECT albumid, title
+FROM albums
+ORDER BY title
+LIMIT 10;
+```
+
+To execute the SQL statements in the `commands.txt` file, you use the `.read FILENAME` command as follows:
+
+```shell
+sqlite> .mode column
+sqlite> .header on
+sqlite> .read c:/sqlite/commands.txt
+AlbumId     Title
+----------  ----------------------
+156         ...And Justice For All
+257         20th Century Masters -
+296         A Copland Celebration,
+94          A Matter of Life and D
+95          A Real Dead One
+96          A Real Live One
+285         A Soprano Inspired
+139         A TempestadeTempestade
+203         A-Sides
+160         Ace Of Spades
+```
+
+## References
+
+1. [https://www.sqlite.org](https://www.sqlite.org/) – SQLite homepage
+2. [https://www.sqlite.org/features.html](https://www.sqlite.org/features.html) – SQLite features
+3. [https://www.sqlite.org/copyright.html](https://www.sqlite.org/copyright.html) – SQLite license
+4. [https://www.sqlite.org/docs.html](https://www.sqlite.org/docs.html) – SQLite documentation
+5. [https://www.sqlitetutorial.net](https://www.sqlitetutorial.net)
