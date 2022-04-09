@@ -81,6 +81,7 @@ SQLite is capable of creating in-memory databases that are very fast to work wit
 To download SQLite, you open the [download page](https://www.sqlite.org/download.html) of the SQlite official website.
 
 ### official
+
 1. First, go to the [https://www.sqlite.org](https://www.sqlite.org/) website.
 2. Second, open the download page [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html)
 
@@ -89,4 +90,54 @@ appropriate version to download.
 
 ### homebrew
 
+```shell
+ brew install sqlite
+```
 
+## Run SQLite tools
+
+1. type `sqlite3` and press enter, you should see the following output:
+
+```shell
+» sqlite3 
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+```
+
+2. type the `.help` command from the sqlite> prompt to see all available commands in sqlite3.
+
+```shell
+sqlite> .help
+.auth ON|OFF             Show authorizer callbacks
+.backup ?DB? FILE        Backup DB (default "main") to FILE
+.bail on|off             Stop after hitting an error.  Default OFF
+.binary on|off           Turn binary output on or off.  Default OFF
+.cd DIRECTORY            Change the working directory to DIRECTORY
+```
+
+3. to quit the sqlite>, you use `.quit` command as follows:
+
+```shell
+sqlite> .quit
+```
+
+## Install SQLite GUI tool
+
+The sqlite3 shell is excellent…
+
+However, sometimes, you may want to work with the SQLite databases using an intuitive GUI tool.
+
+There are many GUI tools for managing SQLite databases available ranging from freeware to commercial licenses.
+
+- [DBeaver](https://dbeaver.io/) is a free multi-platform database tool. It supports all popular major relational
+  database systems MySQL, PostgreSQL, Oracle, DB2, SQL Server, Sybase.. including SQLite.
+
+```shell
+ brew install --cask dbeaver-community 
+```
+
+## SQLite Sample Database
+
+![](.README_images/04ea3b1a.png)
