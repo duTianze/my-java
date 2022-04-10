@@ -128,3 +128,66 @@ The following example uses the NULLS LAST option to place NULLs after other valu
 
 If you scroll down the output, you will see that NULLs are placed at the end of the result set:
 ![](.statements_images/28d8de4c.png)
+
+# DISTINCT
+
+The `DISTINCT` clause allows you to remove the duplicate rows in the result set.
+
+SQLite considers NULL values as duplicates. If you use theDISTINCT clause with a column that has NULL values, SQLite
+will keep one row of a NULL value.
+
+```shell
+SELECT DISTINCT	select_list
+FROM table;
+```
+
+## SELECT DISTINCT on one column
+
+Suppose you want to know the cities where the customers locate, you can use the SELECT statement to get data from the
+city column of the customers table as follows:
+
+```shell
+SELECT city
+FROM customers
+ORDER BY city;
+```
+
+![](.statements_images/0f56e283.png)
+It returns 59 rows. There are few duplicate rows such as Berlin London, and Mountain View To remove these duplicate
+rows, you use the DISTINCT clause as follows:
+
+```shell
+SELECT
+	DISTINCT city
+FROM
+	customers
+ORDER BY
+	city;
+```
+
+![](.statements_images/3ed526a8.png)
+
+## SELECT DISTINCT on multiple columns
+
+The following statement finds cities and countries of all customers.
+
+![](.statements_images/f9b1dfa0.png)
+
+The result set contains duplicate city and country e.g., Sao Paulo in Brazil as shown in the screenshot above.
+
+To remove duplicate the city and country, you apply the DISTINCT clause to both city and country columns as shown in the
+following query:
+
+```shell
+SELECT
+	DISTINCT 
+	city,
+	country
+FROM
+	customers
+ORDER BY
+	country;
+```
+
+![](.statements_images/42551dc4.png)
+
