@@ -1,0 +1,130 @@
+# SELECT
+
+## Simple uses of SELECT statement
+
+```shell
+SELECT
+	1 + 13;
+
+SELECT
+	10 / 5,
+	2 * 4 ;
+```
+
+### Querying data from a table using the SELECT statement
+
+```shell
+SELECT DISTINCT column_list
+FROM table_list
+  JOIN table ON join_condition
+WHERE row_filter
+ORDER BY column
+LIMIT count OFFSET offset
+GROUP BY column
+HAVING group_filter;
+```
+
+### Select basic
+
+```shell
+# get part columns from table
+SELECT
+	trackid,
+	name,
+	composer,
+	unitprice
+FROM
+	tracks;
+## get all columns from table
+```
+
+# Order By
+
+```shell
+SELECT
+   select_list
+FROM
+   table
+ORDER BY
+    column_1 ASC,
+    column_2 DESC;
+```
+
+## sort the result set based on AlbumId column in ascending order
+
+```shell
+SELECT
+	name,
+	milliseconds, 
+	albumid
+FROM
+	tracks
+ORDER BY
+	albumid ASC;
+# default is ASC
+```
+
+![](.statements_images/2c8837c1.png)
+
+## sort the sorted result (by AlbumId) above by the Milliseconds column in descending order
+
+```shell
+SELECT
+	name,
+	milliseconds, 
+	albumid
+FROM
+	tracks
+ORDER BY
+	albumid ASC;
+```
+
+![](.statements_images/d2d47838.png)
+
+## SQLite ORDER BY with the column position
+
+the following statement sorts the tracks by both albumid (3rd column) and milliseconds (2nd column) in ascending order.
+
+```shell
+SELECT
+	name,
+	milliseconds, 
+	albumid
+FROM
+	tracks
+ORDER BY
+	 3,2;
+```
+
+![](.statements_images/76c7b1ca.png)
+
+## Sorting NULLs
+
+When it comes to sorting, SQLite considers NULL to be `smaller` than any other value.
+
+SQLite 3.30.0 added the `NULLS FIRST` and `NULLS LAST` options to the `ORDER BY` clause. The `NULLS FIRST` option
+specifies that the NULLs will appear at the beginning of the result set while the `NULLS LAST` option place NULLs at the
+end of the result set.
+
+The following example uses the ORDER BY clause to sort tracks by composers:
+
+First, you see that NULLs appear at the beginning of the result set because SQLite treats them as the lowest values.
+When you scroll down the result, you will see other values:
+
+```shell
+SELECT
+	TrackId,
+	Name,
+	Composer
+FROM
+	tracks
+ORDER BY
+	Composer ;
+```
+
+![](.statements_images/b4e0bc89.png)
+
+The following example uses the NULLS LAST option to place NULLs after other values:
+
+If you scroll down the output, you will see that NULLs are placed at the end of the result set:
+![](.statements_images/28d8de4c.png)

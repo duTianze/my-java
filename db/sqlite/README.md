@@ -1,3 +1,33 @@
+- [Getting started with SQLite](#getting-started-with-sqlite)
+  - [What is SQLite](#what-is-sqlite)
+    - [Serverless](#serverless)
+    - [Self-Contained](#self-contained)
+    - [Zero-configuration](#zero-configuration)
+    - [Transactional](#transactional)
+  - [SQLite distinctive features](#sqlite-distinctive-features)
+  - [Download SQLite tools](#download-sqlite-tools)
+    - [official](#official)
+    - [homebrew](#homebrew)
+  - [Run SQLite tools](#run-sqlite-tools)
+  - [Install SQLite GUI tool](#install-sqlite-gui-tool)
+  - [SQLite Sample Database](#sqlite-sample-database)
+    - [Introduction to chinook SQLite sample database](#introduction-to-chinook-sqlite-sample-database)
+    - [Chinook sample database tables](#chinook-sample-database-tables)
+  - [How to connect to SQLite sample database](#how-to-connect-to-sqlite-sample-database)
+  - [SQLite Commands](#sqlite-commands)
+    - [Connect to an SQLite database](#connect-to-an-sqlite-database)
+    - [Show all available commands and their purposes](#show-all-available-commands-and-their-purposes)
+    - [Show databases in the current database connection](#show-databases-in-the-current-database-connection)
+    - [Exit sqlite3 tool](#exit-sqlite3-tool)
+    - [Show tables in a database](#show-tables-in-a-database)
+    - [Show the structure of a table](#show-the-structure-of-a-table)
+    - [Show indexes](#show-indexes)
+    - [Save the result of a query into a file](#save-the-result-of-a-query-into-a-file)
+    - [Execute SQL statements from a file](#execute-sql-statements-from-a-file)
+  - [References](#references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Getting started with SQLite
 
 [SQLite](http://www.sqlite.org) - A completely embedded, full-featured relational database in a few 100k that you can
