@@ -301,3 +301,107 @@ FROM
 WHERE
 	mediatypeid IN (2, 3);
 ```
+
+# LIMIT
+
+The LIMIT clause is an optional part of the SELECT statement. You use the LIMIT clause to constrain the number of rows
+returned by the query.
+
+```shell
+SELECT
+	column_list
+FROM
+	table
+LIMIT row_count;
+```
+
+get the first 10 rows in the tracks table, you use the following statement:
+
+```shell
+SELECT
+	trackId,
+	name
+FROM
+	tracks
+LIMIT 10;
+```
+
+If you want to get the first 10 rows starting from the 10th row of the result set, you use `OFFSET` keyword as the
+following:
+
+```shell
+SELECT
+	column_list
+FROM
+	table
+LIMIT row_count OFFSET offset;
+
+```
+
+## OFFSET
+
+shorthand syntax of the LIMIT OFFSET clause:
+
+```shell
+
+SELECT
+	column_list
+FROM
+	table
+LIMIT offset, row_count;
+```
+
+get 10 rows starting from the 11th row in the tracks table
+
+```shell
+SELECT
+	trackId,
+	name
+FROM
+	tracks
+LIMIT 10 OFFSET 10;
+```
+
+## LIMIT and ORDER BY
+
+You should always use the `LIMIT` clause with the  `ORDER BY` clause. Because you want to get a number of rows in a
+specified order, not in an unspecified order.
+
+```shell
+SELECT
+   column_list
+FROM
+   table
+ORDER BY column_1
+LIMIT row_count;
+```
+
+get the top 10 biggest tracks by size, you use the following query:
+
+```shell
+SELECT
+	trackid,
+	name,
+	bytes
+FROM
+	tracks
+ORDER BY
+	bytes DESC
+LIMIT 10;
+```
+
+## Getting the nth highest and the lowest value
+
+The following statement returns the second-longest track in the tracks table.
+
+```shell
+SELECT
+	trackid,
+	name,
+	milliseconds
+FROM
+	tracks
+ORDER BY
+	milliseconds DESC
+LIMIT 1 OFFSET 1;
+```
