@@ -476,8 +476,12 @@ ORDER BY
     InvoiceDate;    
 ```
 
+# IN
+The SQLite `IN` operator determines whether a value matches any value in a list or a subquery. The syntax of the `IN` operator is as follows:
 
-
+```shell
+expression [NOT] IN (value_list|subquery);
+```
 
 
 
