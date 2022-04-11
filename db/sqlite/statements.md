@@ -405,3 +405,84 @@ ORDER BY
 	milliseconds DESC
 LIMIT 1 OFFSET 1;
 ```
+
+# BETWEEN
+
+The `BETWEEN` operator is a logical operator that tests whether a value is in range of values. If the value is in the
+specified range, the `BETWEEN` operator returns true. The `BETWEEN` operator can be used in the `WHERE` clause of
+the `SELECT`, `DELETE`, `UPDATE`, and `REPLACE` statements.
+
+```shell
+test_expression BETWEEN low_expression AND high_expression
+
+test_expression >= low_expression AND test_expression <= high_expression
+```
+
+To negate the result of the `BETWEEN` operator, you use the `NOT BETWEEN` operator as follows:
+
+```shell
+test_expression NOT BETWEEN low_expression AND high_expression
+
+test_expression < low_expression OR test_expression > high_expression
+```
+## BETWEEN numeric values
+
+The following statement finds invoices whose total is between 14.96 and 18.86:
+
+```shell
+SELECT
+	InvoiceId,
+	BillingAddress,
+	Total
+FROM
+	invoices
+WHERE
+	Total BETWEEN 14.91 and 18.86
+ORDER BY
+	Total;
+```
+## NOT BETWEEN numeric values
+
+To find the invoices whose total are not between 1 and 20, you use the NOT BETWEEN operator as shown in the following query:
+
+```shell
+SELECT
+    InvoiceId,
+    BillingAddress,
+    Total
+FROM
+    invoices
+WHERE
+    Total NOT BETWEEN 1 and 20
+ORDER BY
+    Total;    
+```
+
+## BETWEEN dates
+
+The following example finds invoices whose invoice dates are from `January 1 2010` and `January 31 2010`:
+
+```shell
+SELECT
+    InvoiceId,
+    BillingAddress,
+    InvoiceDate,
+    Total
+FROM
+    invoices
+WHERE
+    InvoiceDate BETWEEN '2010-01-01' AND '2010-01-31'
+ORDER BY
+    InvoiceDate;    
+```
+
+
+
+
+
+
+
+
+
+
+
