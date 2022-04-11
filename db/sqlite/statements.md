@@ -483,7 +483,20 @@ The SQLite `IN` operator determines whether a value matches any value in a list 
 expression [NOT] IN (value_list|subquery);
 ```
 
+The following statement uses the `IN` operator to query the tracks whose media type id is 1 or 2.
 
+```shell
+SELECT
+	TrackId,
+	Name,
+	Mediatypeid
+FROM
+	Tracks
+WHERE
+	MediaTypeId IN (1, 2)
+ORDER BY
+	Name ASC;
+```
 
 
 
