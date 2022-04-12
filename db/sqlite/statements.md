@@ -481,6 +481,8 @@ ORDER BY
 
 # IN
 
+## IN
+
 The SQLite `IN` operator determines whether a value matches any value in a list or a subquery. The syntax of the `IN`
 operator is as follows:
 
@@ -523,8 +525,20 @@ WHERE
 	);
 ```
 
+## NOT IN
 
+The following statement returns a list of tracks whose genre id is not in a list of (1,2,3).
 
+```shell
+SELECT
+	trackid,
+	name,
+	genreid
+FROM
+	tracks
+WHERE
+	genreid NOT IN (1, 2,3);
+```
 
 
 
