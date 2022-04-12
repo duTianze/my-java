@@ -498,6 +498,23 @@ ORDER BY
 	Name ASC;
 ```
 
+This query uses the OR operator instead of the IN operator to return the same result set as the above query:
+
+```shell
+SELECT
+	TrackId,
+	Name,
+	MediaTypeId
+FROM
+	Tracks
+WHERE
+	MediaTypeId = 1 OR MediaTypeId = 2
+ORDER BY
+	Name ASC;
+```
+
+
+
 
 
 
