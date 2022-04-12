@@ -425,6 +425,7 @@ test_expression NOT BETWEEN low_expression AND high_expression
 
 test_expression < low_expression OR test_expression > high_expression
 ```
+
 ## BETWEEN numeric values
 
 The following statement finds invoices whose total is between 14.96 and 18.86:
@@ -441,9 +442,11 @@ WHERE
 ORDER BY
 	Total;
 ```
+
 ## NOT BETWEEN numeric values
 
-To find the invoices whose total are not between 1 and 20, you use the NOT BETWEEN operator as shown in the following query:
+To find the invoices whose total are not between 1 and 20, you use the NOT BETWEEN operator as shown in the following
+query:
 
 ```shell
 SELECT
@@ -477,7 +480,9 @@ ORDER BY
 ```
 
 # IN
-The SQLite `IN` operator determines whether a value matches any value in a list or a subquery. The syntax of the `IN` operator is as follows:
+
+The SQLite `IN` operator determines whether a value matches any value in a list or a subquery. The syntax of the `IN`
+operator is as follows:
 
 ```shell
 expression [NOT] IN (value_list|subquery);
@@ -498,19 +503,24 @@ ORDER BY
 	Name ASC;
 ```
 
-This query uses the OR operator instead of the IN operator to return the same result set as the above query:
+To get the tracks that belong to the artist id 12, you can combine the IN operator with a subquery as follows:
 
 ```shell
 SELECT
-	TrackId,
-	Name,
-	MediaTypeId
+	TrackId, 
+	Name, 
+	AlbumId
 FROM
 	Tracks
 WHERE
-	MediaTypeId = 1 OR MediaTypeId = 2
-ORDER BY
-	Name ASC;
+	AlbumId IN (
+		SELECT
+			AlbumId
+		FROM
+			Albums
+		WHERE
+			ArtistId = 12
+	);
 ```
 
 
