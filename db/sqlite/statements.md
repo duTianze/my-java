@@ -542,5 +542,13 @@ WHERE
 
 # LIKE
 
+```shell
+SELECT
+	column_list
+FROM
+	table_name
+WHERE
+	column_1 LIKE pattern;
+```
 
 
