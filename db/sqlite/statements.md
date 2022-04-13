@@ -540,7 +540,7 @@ WHERE
 	genreid NOT IN (1, 2,3);
 ```
 
-
+# LIKE
 
 
 
