@@ -551,4 +551,32 @@ WHERE
 	column_1 LIKE pattern;
 ```
 
+SQLite provides two wildcards for constructing patterns. They are percent sign `%` and underscore `_` :
+
+1. The percent sign `%` wildcard matches any sequence of zero or more characters.
+2. The underscore `_` wildcard matches any single character.
+
+## LIKE
+
+find the tracks whose names start with the Wild literal string, you use the percent sign % wildcard at the end of the
+pattern.
+
+```shell
+SELECT
+	trackid,
+	name	
+FROM
+	tracks
+WHERE
+	name LIKE 'Wild%'
+```
+
+## ESCAPE
+
+```shell
+SELECT c 
+FROM t 
+WHERE c LIKE '%10\%%' ESCAPE '\';
+```
+
 
