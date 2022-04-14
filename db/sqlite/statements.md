@@ -675,4 +675,32 @@ WHERE
 
 # IS NULL
 
+## The following statement attempts to find tracks whose composers are NULL:
 
+```shell
+SELECT
+    Name, 
+    Composer
+FROM
+    tracks
+WHERE
+    Composer = NULL;
+```
+
+It returns an empty row without issuing any additional message.
+
+This is because the expression `Composer = NULL` always evaluates to false:
+
+## To find all tracks whose composers are unknown, you use the IS NULL operator as shown in the following query:
+
+```shell
+SELECT
+    Name, 
+    Composer
+FROM
+    tracks
+WHERE
+    Composer IS NULL
+ORDER BY 
+    Name; 
+```
