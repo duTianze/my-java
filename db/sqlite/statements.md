@@ -1,3 +1,53 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [SELECT](#select)
+  - [Simple uses of SELECT statement](#simple-uses-of-select-statement)
+    - [Querying data from a table using the SELECT statement](#querying-data-from-a-table-using-the-select-statement)
+    - [Select basic](#select-basic)
+- [Order By](#order-by)
+  - [sort the result set based on AlbumId column in ascending order](#sort-the-result-set-based-on-albumid-column-in-ascending-order)
+  - [sort the sorted result (by AlbumId) above by the Milliseconds column in descending order](#sort-the-sorted-result-by-albumid-above-by-the-milliseconds-column-in-descending-order)
+  - [SQLite ORDER BY with the column position](#sqlite-order-by-with-the-column-position)
+  - [Sorting NULLs](#sorting-nulls)
+- [DISTINCT](#distinct)
+  - [SELECT DISTINCT on one column](#select-distinct-on-one-column)
+  - [SELECT DISTINCT on multiple columns](#select-distinct-on-multiple-columns)
+- [WHERE](#where)
+  - [comparison operator](#comparison-operator)
+  - [logical operators](#logical-operators)
+  - [LIKE operator](#like-operator)
+  - [IN operator](#in-operator)
+- [LIMIT](#limit)
+  - [OFFSET](#offset)
+  - [LIMIT and ORDER BY](#limit-and-order-by)
+  - [Getting the nth highest and the lowest value](#getting-the-nth-highest-and-the-lowest-value)
+- [BETWEEN](#between)
+  - [BETWEEN numeric values](#between-numeric-values)
+  - [NOT BETWEEN numeric values](#not-between-numeric-values)
+  - [BETWEEN dates](#between-dates)
+- [IN](#in)
+  - [IN](#in-1)
+  - [NOT IN](#not-in)
+- [LIKE](#like)
+  - [LIKE](#like-1)
+  - [ESCAPE](#escape)
+- [GLOB](#glob)
+  - [The following statement finds tracks whose names start with the string Man. The pattern Man* matches any string that starts with Man.](#the-following-statement-finds-tracks-whose-names-start-with-the-string-man-the-pattern-man-matches-any-string-that-starts-with-man)
+  - [The following statement gets the tracks whose names end with Man. The pattern *Man matches any string that ends with Man.](#the-following-statement-gets-the-tracks-whose-names-end-with-man-the-pattern-man-matches-any-string-that-ends-with-man)
+  - [The following query finds the tracks whose names start with any single character (?), followed by the string ere and then any number of character (*).](#the-following-query-finds-the-tracks-whose-names-start-with-any-single-character--followed-by-the-string-ere-and-then-any-number-of-character-)
+  - [To find the tracks whose names contain numbers, you can use the list wildcard [0-9] as follows:](#to-find-the-tracks-whose-names-contain-numbers-you-can-use-the-list-wildcard-0-9-as-follows)
+  - [Or to find the tracks whose name does not contain any number, you place the character ^ at the beginning of the list:](#or-to-find-the-tracks-whose-name-does-not-contain-any-number-you-place-the-character-%5E-at-the-beginning-of-the-list)
+  - [The following statement finds the tracks whose names end with a number.](#the-following-statement-finds-the-tracks-whose-names-end-with-a-number)
+- [IS NULL](#is-null)
+  - [The following statement attempts to find tracks whose composers are NULL:](#the-following-statement-attempts-to-find-tracks-whose-composers-are-null)
+  - [To find all tracks whose composers are unknown, you use the IS NULL operator as shown in the following query:](#to-find-all-tracks-whose-composers-are-unknown-you-use-the-is-null-operator-as-shown-in-the-following-query)
+  - [IS NOT NULL](#is-not-null)
+  - [The following example finds tracks whose composers are not NULL:](#the-following-example-finds-tracks-whose-composers-are-not-null)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # SELECT
 
 ## Simple uses of SELECT statement
@@ -703,4 +753,20 @@ WHERE
     Composer IS NULL
 ORDER BY 
     Name; 
+```
+
+## IS NOT NULL
+
+## The following example finds tracks whose composers are not NULL:
+
+```shell
+SELECT
+    Name, 
+    Composer
+FROM
+    tracks
+WHERE
+    Composer IS NOT NULL
+ORDER BY 
+    Name;  
 ```
