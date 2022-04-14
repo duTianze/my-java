@@ -601,6 +601,78 @@ The `[a-zA-Z0-9]` pattern matches any single alphanumeric character, both lowerc
 Besides, you can use the character `^` at the beginning of the list to match any character except for any character in
 the list. For example, the `[^0-9]` pattern matches any single character except a numeric character.
 
+## The following statement finds tracks whose names start with the string Man. The pattern Man* matches any string that starts with Man.
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB 'Man*';
+```
+
+## The following statement gets the tracks whose names end with Man. The pattern *Man matches any string that ends with Man.
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB '*Man';
+```
+
+## The following query finds the tracks whose names start with any single character (?), followed by the string ere and then any number of character (*).
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB '?ere*';
+```
+
+## To find the tracks whose names contain numbers, you can use the list wildcard [0-9] as follows:
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB '*[1-9]*';
+```
+
+## Or to find the tracks whose name does not contain any number, you place the character ^ at the beginning of the list:
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB '*[^1-9]*';
+```
+
+## The following statement finds the tracks whose names end with a number.
+
+```shell
+SELECT
+	trackid,
+	name
+FROM
+	tracks
+WHERE
+	name GLOB '*[1-9]';
+```
+
 # IS NULL
 
 
