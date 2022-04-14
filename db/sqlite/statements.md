@@ -579,4 +579,7 @@ FROM t
 WHERE c LIKE '%10\%%' ESCAPE '\';
 ```
 
+# GLOB
+
+
 
