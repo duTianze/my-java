@@ -2,18 +2,16 @@ package com.dutianze.springsqlite.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author dutianze
  * @date 2022/4/18
  */
-@Entity
 @Data
-public class Albumsx {
+@Entity
+@Table(name = "albums")
+public class Albums {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

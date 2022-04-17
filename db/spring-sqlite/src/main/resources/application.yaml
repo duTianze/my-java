@@ -1,1 +1,11 @@
-
+spring:
+  jpa:
+    database-platform: com.dutianze.springsqlite.configuration.SQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: com.dutianze.springsqlite.configuration.CapitalizeNamingStrategy
+  datasource:
+    url: jdbc:sqlite:data/chinook.db
+    driver-class-name: org.sqlite.JDBC
