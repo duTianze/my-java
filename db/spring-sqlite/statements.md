@@ -114,7 +114,7 @@ ORDER BY
 # default is ASC
 ```
 
-![](.statements_images/2c8837c1.png)
+![](./data/.statements_images/2c8837c1.png)
 
 ## sort the sorted result (by AlbumId) above by the Milliseconds column in descending order
 
@@ -129,7 +129,7 @@ ORDER BY
 	albumid ASC;
 ```
 
-![](.statements_images/d2d47838.png)
+![](./data/.statements_images/d2d47838.png)
 
 ## SQLite ORDER BY with the column position
 
@@ -146,7 +146,7 @@ ORDER BY
 	 3,2;
 ```
 
-![](.statements_images/76c7b1ca.png)
+![](./data/.statements_images/76c7b1ca.png)
 
 ## Sorting NULLs
 
@@ -172,12 +172,12 @@ ORDER BY
 	Composer ;
 ```
 
-![](.statements_images/b4e0bc89.png)
+![](./data/.statements_images/b4e0bc89.png)
 
 The following example uses the NULLS LAST option to place NULLs after other values:
 
 If you scroll down the output, you will see that NULLs are placed at the end of the result set:
-![](.statements_images/28d8de4c.png)
+![](./data/.statements_images/28d8de4c.png)
 
 # DISTINCT
 
@@ -202,7 +202,7 @@ FROM customers
 ORDER BY city;
 ```
 
-![](.statements_images/0f56e283.png)
+![](./data/.statements_images/0f56e283.png)
 It returns 59 rows. There are few duplicate rows such as Berlin London, and Mountain View To remove these duplicate
 rows, you use the DISTINCT clause as follows:
 
@@ -215,13 +215,13 @@ ORDER BY
 	city;
 ```
 
-![](.statements_images/3ed526a8.png)
+![](./data/.statements_images/3ed526a8.png)
 
 ## SELECT DISTINCT on multiple columns
 
 The following statement finds cities and countries of all customers.
 
-![](.statements_images/f9b1dfa0.png)
+![](./data/.statements_images/f9b1dfa0.png)
 
 The result set contains duplicate city and country e.g., Sao Paulo in Brazil as shown in the screenshot above.
 
@@ -239,7 +239,7 @@ ORDER BY
 	country;
 ```
 
-![](.statements_images/42551dc4.png)
+![](./data/.statements_images/42551dc4.png)
 
 # WHERE
 

@@ -48,7 +48,7 @@ architecture.
 
 The following diagram illustrates the RDBMS client/server architecture:
 
-![](.README_images/ac1086b0.png)
+![](./data/.README_images/ac1086b0.png)
 
 SQLite does NOT work this way.
 
@@ -59,7 +59,7 @@ database read and write directly from the database files stored on disk.
 
 The following diagram illustrates the SQLite server-less architecture:
 
-![](.README_images/f578185b.png)
+![](./data/.README_images/f578185b.png)
 
 ### Self-Contained
 
@@ -163,7 +163,7 @@ There are many GUI tools for managing SQLite databases available ranging from fr
 
 The following database diagram illustrates the chinook database tables and their relationships.
 
-![](.README_images/04ea3b1a.png)
+![](./data/.README_images/04ea3b1a.png)
 
 ### Chinook sample database tables
 
