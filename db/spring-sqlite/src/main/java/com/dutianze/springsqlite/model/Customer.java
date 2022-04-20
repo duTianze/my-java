@@ -11,11 +11,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "customers")
-public class Customers {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int customerId;
+    public Integer customerId;
 
     public String firstName;
 
@@ -39,5 +39,5 @@ public class Customers {
 
     public String email;
 
-    public int supportRepId;
+    public Integer supportRepId;
 }

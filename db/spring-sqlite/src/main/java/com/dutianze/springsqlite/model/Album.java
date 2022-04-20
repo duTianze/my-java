@@ -6,16 +6,18 @@ import javax.persistence.*;
 
 /**
  * @author dutianze
- * @date 2022/4/19
+ * @date 2022/4/18
  */
 @Data
 @Entity
-@Table(name = "artists")
-public class Artists {
+@Table(name = "albums")
+public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer artistId;
+    private Integer albumId;
 
-    private String name;
+    private String title;
+
+    private Integer artistId;
 }

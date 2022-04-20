@@ -10,12 +10,12 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "employee")
+@Table(name = "employees")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int employeeId;
+    public Integer employeeId;
 
     public String lastName;
 
@@ -23,7 +23,7 @@ public class Employee {
 
     public String title;
 
-    public int reportsTo;
+    public Integer reportsTo;
 
     public String birthDate;
 

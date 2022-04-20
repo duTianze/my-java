@@ -8,6 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * @author dutianze
  * @date 2022/4/20
  */
-@RepositoryRestResource(collectionResourceRel = "employeex", path = "employee")
+@RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Integer> {
 }
