@@ -10,11 +10,11 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "media_types")
-public class MediaTypes {
+@Table(name = "playlists")
+public class Playlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer mediaTypeId;
+    private Integer playlistId;
     private String name;
 }
