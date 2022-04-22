@@ -100,7 +100,6 @@ public class TransferServiceImpl implements TransferService {
     }
 
 }
-复制代码
 ```
 
 我们可以看到，一段业务代码里经常包含了参数校验、数据读取存储、业务计算、调用外部服务、发送消息等多种逻辑。在这个案例里虽然是写在了同一个方法里，在真实代码中经常会被拆分成多个子方法，但实际效果是一样的，而在我们日常的工作中，绝大部分代码都或多或少的接近于此类结构。在Martin Fowler的 P of EAA书中，这种很常见的代码样式被叫做Transaction Script（事务脚本）。虽然这种类似于脚本的写法在功能上没有什么问题，但是长久来看，他有以下几个很大的问题：可维护性差、可扩展性差、可测试性差。
@@ -206,7 +205,6 @@ public class Account {
         // 转入
     }
 }
-复制代码
 ```
 
 和AccountRepository及MyBatis实现类：
@@ -257,7 +255,6 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
 }
-复制代码
 ```
 
 Account实体类和AccountDO数据类的对比如下：
@@ -308,7 +305,6 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
         BigDecimal forex = yahooForexService.getExchangeRate(source.getValue(), target.getValue());
         return new ExchangeRate(forex, source, target);
     }
-复制代码
 ```
 
 **防腐层（ACL）**
@@ -376,7 +372,6 @@ public class AuditMessageProducerImpl implements AuditMessageProducer {
         return SendResult.success();
     }
 }
-复制代码
 ```
 
 具体的分析和2.2类似，在此略过。
@@ -401,7 +396,6 @@ BigDecimal sourceAmount = targetAmount.divide(exchangeRate, RoundingMode.DOWN);
 
 ExchangeRate exchangeRate = exchangeRateService.getExchangeRate(sourceAccount.getCurrency(), targetMoney.getCurrency());
 Money sourceMoney = exchangeRate.exchangeTo(targetMoney);
-复制代码
 ```
 
 **用Entity封装单对象的有状态的行为，包括业务校验**
@@ -441,7 +435,6 @@ public class Account {
         this.available = this.available.subtract(money);
     }
 }
-复制代码
 ```
 
 原有的业务代码则可以简化为：
@@ -449,7 +442,6 @@ public class Account {
 ```
 sourceAccount.deposit(sourceMoney);
 targetAccount.withdraw(targetMoney);
-复制代码
 ```
 
 **用Domain Service封装多对象逻辑**
@@ -473,14 +465,12 @@ public class AccountTransferServiceImpl implements AccountTransferService {
         targetAccount.withdraw(targetMoney);
     }
 }
-复制代码
 ```
 
 而原始代码则简化为一行：
 
 ```
 accountTransferService.transfer(sourceAccount, targetAccount, targetMoney, exchangeRate);
-复制代码
 ```
 
 ![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/6/28/172fa037a0f4e506~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
@@ -521,7 +511,6 @@ public class TransferServiceImplNew implements TransferService {
         return Result.success(true);
     }
 }
-复制代码
 ```
 
 可以看出来，经过重构后的代码有以下几个特征：
