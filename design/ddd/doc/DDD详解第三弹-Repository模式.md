@@ -1,3 +1,23 @@
+- [为什么要用 Repository](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-repository)
+  - [实体模型 vs. 贫血模型](#%E5%AE%9E%E4%BD%93%E6%A8%A1%E5%9E%8B-vs-%E8%B4%AB%E8%A1%80%E6%A8%A1%E5%9E%8B)
+  - [Repository的价值](#repository%E7%9A%84%E4%BB%B7%E5%80%BC)
+- [模型对象代码规范](#%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+  - [对象类型](#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B)
+  - [模型对象之间的关系](#%E6%A8%A1%E5%9E%8B%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB)
+  - [模型所在模块和转化器](#%E6%A8%A1%E5%9E%8B%E6%89%80%E5%9C%A8%E6%A8%A1%E5%9D%97%E5%92%8C%E8%BD%AC%E5%8C%96%E5%99%A8)
+  - [模型规范总结](#%E6%A8%A1%E5%9E%8B%E8%A7%84%E8%8C%83%E6%80%BB%E7%BB%93)
+- [Repository代码规范](#repository%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+  - [接口规范](#%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83)
+  - [Repository基础实现](#repository%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0)
+  - [Repository复杂实现](#repository%E5%A4%8D%E6%9D%82%E5%AE%9E%E7%8E%B0)
+  - [Change-Tracking 变更追踪](#change-tracking-%E5%8F%98%E6%9B%B4%E8%BF%BD%E8%B8%AA)
+  - [其他注意事项](#%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)
+- [Repository迁移路径](#repository%E8%BF%81%E7%A7%BB%E8%B7%AF%E5%BE%84)
+- [写在后面](#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2)
+- [参考](#%E5%8F%82%E8%80%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DDD详解第三弹-Repository模式
 
 写在前面： 这篇文章和《阿里技术专家详解DDD系列 第二弹 - 应用架构》隔了比较久，一方面是工作比较忙，另一方面是在讲Repository之前其实应该先讲Entity（实体）、Aggregate Root（聚合根）、Bounded

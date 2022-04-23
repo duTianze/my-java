@@ -1,3 +1,32 @@
+- [前言](#%E5%89%8D%E8%A8%80)
+- [Domain Primitive](#domain-primitive)
+  - [案例分析](#%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90)
+  - [问题3 - 业务代码的清晰度](#%E9%97%AE%E9%A2%983---%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E6%B8%85%E6%99%B0%E5%BA%A6)
+  - [问题4 - 可测试性](#%E9%97%AE%E9%A2%984---%E5%8F%AF%E6%B5%8B%E8%AF%95%E6%80%A7)
+- [解决方案](#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
+  - [评估1 - 接口的清晰度](#%E8%AF%84%E4%BC%B01---%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%B8%85%E6%99%B0%E5%BA%A6)
+  - [评估2 - 数据验证和错误处理](#%E8%AF%84%E4%BC%B02---%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81%E5%92%8C%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86)
+  - [评估3 - 业务代码的清晰度](#%E8%AF%84%E4%BC%B03---%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81%E7%9A%84%E6%B8%85%E6%99%B0%E5%BA%A6)
+  - [评估4 - 可测试性](#%E8%AF%84%E4%BC%B04---%E5%8F%AF%E6%B5%8B%E8%AF%95%E6%80%A7)
+  - [评估总结](#%E8%AF%84%E4%BC%B0%E6%80%BB%E7%BB%93)
+- [进阶使用](#%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8)
+  - [案例1 - 转账](#%E6%A1%88%E4%BE%8B1---%E8%BD%AC%E8%B4%A6)
+  - [案例2 - 跨境转账](#%E6%A1%88%E4%BE%8B2---%E8%B7%A8%E5%A2%83%E8%BD%AC%E8%B4%A6)
+- [讨论和总结](#%E8%AE%A8%E8%AE%BA%E5%92%8C%E6%80%BB%E7%BB%93)
+  - [Domain Primitive 的定义](#domain-primitive-%E7%9A%84%E5%AE%9A%E4%B9%89)
+  - [使用 Domain Primitive 的三原则](#%E4%BD%BF%E7%94%A8-domain-primitive-%E7%9A%84%E4%B8%89%E5%8E%9F%E5%88%99)
+  - [Domain Primitive 和 DDD 里 Value Object 的区别](#domain-primitive-%E5%92%8C-ddd-%E9%87%8C-value-object-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Domain Primitive 和 Data Transfer Object (DTO) 的区别](#domain-primitive-%E5%92%8C-data-transfer-object-dto-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [什么情况下应该用 Domain Primitive](#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E8%AF%A5%E7%94%A8-domain-primitive)
+- [实战 - 老应用重构的流程](#%E5%AE%9E%E6%88%98---%E8%80%81%E5%BA%94%E7%94%A8%E9%87%8D%E6%9E%84%E7%9A%84%E6%B5%81%E7%A8%8B)
+  - [第一步 - 创建 Domain Primitive，收集所有 DP 行为](#%E7%AC%AC%E4%B8%80%E6%AD%A5---%E5%88%9B%E5%BB%BA-domain-primitive%E6%94%B6%E9%9B%86%E6%89%80%E6%9C%89-dp-%E8%A1%8C%E4%B8%BA)
+  - [第二步 - 替换数据校验和无状态逻辑](#%E7%AC%AC%E4%BA%8C%E6%AD%A5---%E6%9B%BF%E6%8D%A2%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%E9%80%BB%E8%BE%91)
+  - [第三步 - 创建新接口](#%E7%AC%AC%E4%B8%89%E6%AD%A5---%E5%88%9B%E5%BB%BA%E6%96%B0%E6%8E%A5%E5%8F%A3)
+  - [第四步 - 修改外部调用](#%E7%AC%AC%E5%9B%9B%E6%AD%A5---%E4%BF%AE%E6%94%B9%E5%A4%96%E9%83%A8%E8%B0%83%E7%94%A8)
+- [参考](#%E5%8F%82%E8%80%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DDD详解第一弹-DomainPrimitive.md
 
 导读：对于一个架构师来说，在软件开发中如何降低系统复杂度是一个永恒的挑战，无论是 94 年 GoF 的 Design Patterns ， 99 年的 Martin Fowler 的 Refactoring ， 02 年的 P of EAA ，还是 03 年的 Enterprise Integration Patterns ，都是通过一系列的设计模式或范例来降低一些常见的复杂度。但是问题在于，这些书的理念是通过技术手段解决技术问题，但并没有从根本上解决业务的问题。所以 03 年 Eric Evans 的 Domain Driven Design 一书，以及后续 Vaughn Vernon 的 Implementing DDD ， Uncle Bob 的 Clean Architecture 等书，真正的从业务的角度出发，为全世界绝大部分做纯业务的开发提供了一整套的架构思路。
