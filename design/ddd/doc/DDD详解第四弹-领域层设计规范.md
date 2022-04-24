@@ -1,7 +1,9 @@
 # DDD详解第四弹-领域层设计规范
 
-在一个DDD架构设计中，领域层的设计合理性会直接影响整个架构的代码结构以及应用层、基础设施层的设计。但是领域层设计又是有挑战的任务，特别是在一个业务逻辑相对复杂应用中，每一个业务规则是应该放在Entity、ValueObject 还是
-DomainService是值得用心思考的，既要避免未来的扩展性差，又要确保不会过度设计导致复杂性。今天我用一个相对轻松易懂的领域做一个案例演示，但在实际业务应用中，无论是交易、营销还是互动，都可以用类似的逻辑来实现。
+在一个DDD架构设计中，领域层的设计合理性会直接影响整个架构的代码结构以及应用层、基础设施层的设计。
+但是领域层设计又是有挑战的任务，特别是在一个业务逻辑相对复杂应用中，每一个业务规则是应该放在Entity、ValueObject 还是
+DomainService是值得用心思考的，既要避免未来的扩展性差，又要确保不会过度设计导致复杂性。
+今天我用一个相对轻松易懂的领域做一个案例演示，但在实际业务应用中，无论是交易、营销还是互动，都可以用类似的逻辑来实现。
 
 # 初探龙与魔法的世界架构
 
@@ -52,7 +54,6 @@ public abstract class Weapon {
 }
 public Sword extends Weapon {}
 public Staff extends Weapon {}
-复制代码
 ```
 
 而实现规则代码如下：
@@ -90,7 +91,6 @@ public class Dragon extends Monster {
         // else no damage, 龙免疫力规则
     }
 }
-复制代码
 ```
 
 然后跑几个单测：
@@ -162,7 +162,6 @@ public class BattleTest {
         assertThat(orc.getHealth()).isEqualTo(100 - 10);
     }
 }
-复制代码
 ```
 
 以上代码和单测都比较简单，不做多余的解释了。
@@ -197,7 +196,6 @@ public void testEquip() {
 
     assertThat(fighter.getWeapon()).isInstanceOf(Staff.class); // 错误了
 }
-复制代码
 ```
 
 在最后，虽然代码感觉是setWeapon(Staff)，但实际上只修改了父类的变量，并没有修改子类的变量，所以实际不生效，也不抛异常，但结果是错的。
@@ -222,7 +220,6 @@ public void testCastEquip() {
     Staff staff = new Staff("Staff", 10);
     player.setWeapon(staff); // 编译不过，但从API层面上应该开放可用
 }
-复制代码
 ```
 
 最后，如果规则增加一条：
@@ -233,7 +230,8 @@ BOOM，之前写的强类型代码都废了，需要重构。
 
 **对象继承导致代码强依赖父类逻辑，违反开闭原则Open-Closed Principle（OCP）**
 
-开闭原则（OCP）规定“对象应该对于扩展开放，对于修改封闭“，继承虽然可以通过子类扩展新的行为，但因为子类可能直接依赖父类的实现，导致一个变更可能会影响所有对象。在这个例子里，如果增加任意一种类型的玩家、怪物或武器，或增加一种规则，都有可能需要修改从父类到子类的所有方法。
+开闭原则（OCP）规定“对象应该对于扩展开放，对于修改封闭“，继承虽然可以通过子类扩展新的行为，但因为子类可能直接依赖父类的实现，导致一个变更可能会影响所有对象。
+在这个例子里，如果增加任意一种类型的玩家、怪物或武器，或增加一种规则，都有可能需要修改从父类到子类的所有方法。
 
 比如，如果要增加一个武器类型：狙击枪，能够无视所有防御一击必杀，需要修改的代码包括：
 
@@ -261,16 +259,20 @@ public class Dragon extends Monster {
         // 老的逻辑省略
     }
 }
-复制代码
 ```
 
-在一个复杂的软件中为什么会建议“尽量”不要违背OCP？最核心的原因就是一个现有逻辑的变更可能会影响一些原有的代码，导致一些无法预见的影响。这个风险只能通过完整的单元测试覆盖来保障，但在实际开发中很难保障单测的覆盖率。OCP的原则能尽可能的规避这种风险，当新的行为只能通过新的字段/方法来实现时，老代码的行为自然不会变。
+在一个复杂的软件中为什么会建议“尽量”不要违背OCP？最核心的原因就是一个现有逻辑的变更可能会影响一些原有的代码，导致一些无法预见的影响。
+这个风险只能通过完整的单元测试覆盖来保障，但在实际开发中很难保障单测的覆盖率。
+OCP的原则能尽可能的规避这种风险，当新的行为只能通过新的字段/方法来实现时，老代码的行为自然不会变。
 
-继承虽然能Open for extension，但很难做到Closed for modification。所以今天解决OCP的主要方法是通过Composition-over-inheritance，即通过组合来做到扩展性，而不是通过继承。
+继承虽然能Open for extension，但很难做到Closed for modification。
+所以今天解决OCP的主要方法是通过Composition-over-inheritance，即通过组合来做到扩展性，而不是通过继承。
 
 **Player.attack(monster) 还是 Monster.receiveDamage(Weapon, Player)？**
 
-在这个例子里，其实业务规则的逻辑到底应该写在哪里是有异议的：当我们去看一个对象和另一个对象之间的交互时，到底是Player去攻击Monster，还是Monster被Player攻击？目前的代码主要将逻辑写在Monster的类中，主要考虑是Monster会受伤降低Health，但如果是Player拿着一把双刃剑会同时伤害自己呢？是不是发现写在Monster类里也有问题？代码写在哪里的原则是什么？
+在这个例子里，其实业务规则的逻辑到底应该写在哪里是有异议的：当我们去看一个对象和另一个对象之间的交互时，到底是Player去攻击Monster，还是Monster被Player攻击？
+目前的代码主要将逻辑写在Monster的类中，主要考虑是Monster会受伤降低Health，但如果是Player拿着一把双刃剑会同时伤害自己呢？
+是不是发现写在Monster类里也有问题？代码写在哪里的原则是什么？
 
 **多对象行为类似，导致代码重复**
 
@@ -292,7 +294,6 @@ public abstract class Monster {
         // logic
     }
 }
-复制代码
 ```
 
 一个可能的解法是有个通用的父类：
@@ -308,14 +309,15 @@ public abstract class Movable {
 
 public abstract class Player extends Movable;
 public abstract class Monster extends Movable;
-复制代码
 ```
 
-但如果再增加一个跳跃能力Jumpable呢？一个跑步能力Runnable呢？如果Player可以Move和Jump，Monster可以Move和Run，怎么处理继承关系？要知道Java（以及绝大部分语言）是不支持多父类继承的，所以只能通过重复代码来实现。
+但如果再增加一个跳跃能力Jumpable呢？一个跑步能力Runnable呢？如果Player可以Move和Jump，Monster可以Move和Run，怎么处理继承关系？
+要知道Java（以及绝大部分语言）是不支持多父类继承的，所以只能通过重复代码来实现。
 
 **问题总结**
 
-在这个案例里虽然从直觉来看OOP的逻辑很简单，但如果你的业务比较复杂，未来会有大量的业务规则变更时，简单的OOP代码会在后期变成复杂的一团浆糊，逻辑分散在各地，缺少全局视角，各种规则的叠加会触发bug。有没有感觉似曾相识？对的，电商体系里的优惠、交易等链路经常会碰到类似的坑。而这类问题的核心本质在于：
+在这个案例里虽然从直觉来看OOP的逻辑很简单，但如果你的业务比较复杂，未来会有大量的业务规则变更时，简单的OOP代码会在后期变成复杂的一团浆糊，
+逻辑分散在各地，缺少全局视角，各种规则的叠加会触发bug。有没有感觉似曾相识？对的，电商体系里的优惠、交易等链路经常会碰到类似的坑。而这类问题的核心本质在于：
 
 - 业务规则的归属到底是对象的“行为”还是独立的”规则对象“？
 
@@ -329,15 +331,18 @@ public abstract class Monster extends Movable;
 
 ## ECS介绍
 
-ECS架构模式是其实是一个很老的游戏架构设计，最早应该能追溯到《地牢围攻》的组件化设计，但最近因为Unity的加入而开始变得流行（比如《守望先锋》就是用的ECS）。要很快的理解ECS架构的价值，我们需要理解一个游戏代码的核心问题：
+ECS架构模式是其实是一个很老的游戏架构设计，最早应该能追溯到《地牢围攻》的组件化设计，但最近因为Unity的加入而开始变得流行（比如《守望先锋》就是用的ECS）。
+要很快的理解ECS架构的价值，我们需要理解一个游戏代码的核心问题：
 
--
-性能：游戏必须要实现一个高的渲染率（60FPS），也就是说整个游戏世界需要在1/60s（大概16ms）内完整更新一次（包括物理引擎、游戏状态、渲染、AI等）。而在一个游戏中，通常有大量的（万级、十万级）游戏对象需要更新状态，除了渲染可以依赖GPU之外，其他的逻辑都需要由CPU完成，甚至绝大部分只能由单线程完成，导致绝大部分时间复杂场景下CPU（主要是内存到CPU的带宽）会成为瓶颈。在CPU单核速度几乎不再增加的时代，如何能让CPU处理的效率提升，是提升游戏性能的核心。
+- 性能：游戏必须要实现一个高的渲染率（60FPS），也就是说整个游戏世界需要在1/60s（大概16ms）内完整更新一次（包括物理引擎、游戏状态、渲染、AI等）。
+而在一个游戏中，通常有大量的（万级、十万级）游戏对象需要更新状态，除了渲染可以依赖GPU之外，其他的逻辑都需要由CPU完成，甚至绝大部分只能由单线程完成，
+导致绝大部分时间复杂场景下CPU（主要是内存到CPU的带宽）会成为瓶颈。在CPU单核速度几乎不再增加的时代，如何能让CPU处理的效率提升，是提升游戏性能的核心。
 
 - 代码组织：如同第一章讲的案例一样，当我们用传统OOP的模式进行游戏开发时，很容易就会陷入代码组织上的问题，最终导致代码难以阅读，维护和优化。
 
--
-可扩展性：这个跟上一条类似，但更多的是游戏的特性导致：需要快速更新，加入新的元素。一个游戏的架构需要能通过低代码、甚至0代码的方式增加游戏元素，从而通过快速更新而留住用户。如果每次变更都需要开发新的代码，测试，然后让用户重新下载客户端，可想而知这种游戏很难在现在的竞争环境下活下来。
+- 可扩展性：这个跟上一条类似，但更多的是游戏的特性导致：需要快速更新，加入新的元素。
+一个游戏的架构需要能通过低代码、甚至0代码的方式增加游戏元素，从而通过快速更新而留住用户。
+如果每次变更都需要开发新的代码，测试，然后让用户重新下载客户端，可想而知这种游戏很难在现在的竞争环境下活下来。
 
 而ECS架构能很好的解决上面的几个问题，ECS架构主要分为：
 
@@ -345,8 +350,8 @@ ECS架构模式是其实是一个很老的游戏架构设计，最早应该能�
 
 - Component：是真正的数据，ECS架构把一个个的实体对象拆分为更加细化的组件，比如位置、素材、状态等，也就是说一个Entity实际上只是一个Bag of Components。
 
--
-System（或者ComponentSystem，组件系统）：是真正的行为，一个游戏里可以有很多个不同的组件系统，每个组件系统都只负责一件事，可以依次处理大量的相同组件，而不需要去理解具体的Entity。所以一个ComponentSystem理论上可以有更加高效的组件处理效率，甚至可以实现并行处理，从而提升CPU利用率。
+- System（或者ComponentSystem，组件系统）：是真正的行为，一个游戏里可以有很多个不同的组件系统，每个组件系统都只负责一件事，
+可以依次处理大量的相同组件，而不需要去理解具体的Entity。所以一个ComponentSystem理论上可以有更加高效的组件处理效率，甚至可以实现并行处理，从而提升CPU利用率。
 
 ECS的一些核心性能优化包括将同类型组件放在同一个Array中，然后Entity仅保留到各自组件的pointer，这样能更好的利用CPU的缓存，减少数据的加载成本，以及SIMD的优化等。
 
@@ -354,7 +359,7 @@ ECS的一些核心性能优化包括将同类型组件放在同一个Array中，
 
 ```
 public class Entity {
-  public Vector position; // 此处Vector是一个Component, 指向的是MovementSystem.list里的一个
+  public Vector position; // 此处Vector是一个Component, 指向的是MovementSystem.list里的一个元素
 }
 
 public class MovementSystem {
@@ -377,7 +382,6 @@ public void test() {
   system.update(0.1);
   assertTrue(entity.position.x == 0.1);
 }
-复制代码
 ```
 
 由于本文不是讲解ECS架构的，感兴趣的同学可以搜索Entity-Component-System或者看看Unity的ECS文档等。
@@ -388,20 +392,33 @@ public void test() {
 
 **组件化**
 
-在软件系统里，我们通常将复杂的大系统拆分为独立的组件，来降低复杂度。比如网页里通过前端组件化降低重复开发成本，微服务架构通过服务和数据库的拆分降低服务复杂度和系统影响面等。但是ECS架构把这个走到了极致，即每个对象内部都实现了组件化。通过将一个游戏对象的数据和行为拆分为多个组件和组件系统，能实现组件的高度复用性，降低重复开发成本。
+在软件系统里，我们通常将复杂的大系统拆分为独立的组件，来降低复杂度。
+比如网页里通过前端组件化降低重复开发成本，微服务架构通过服务和数据库的拆分降低服务复杂度和系统影响面等。
+但是ECS架构把这个走到了极致，即每个对象内部都实现了组件化。
+通过将一个游戏对象的数据和行为拆分为多个组件和组件系统，能实现组件的高度复用性，降低重复开发成本。
 
 **行为抽离**
 
-这个在游戏系统里有个比较明显的优势。如果按照OOP的方式，一个游戏对象里可能会包括移动代码、战斗代码、渲染代码、AI代码等，如果都放在一个类里会很长，且很难去维护。通过将通用逻辑抽离出来为单独的System类，可以明显提升代码的可读性。另一个好处则是抽离了一些和对象代码无关的依赖，比如上文的delta，这个delta如果是放在Entity的update方法，则需要作为入参注入，而放在System里则可以统一管理。在第一章的有个问题，到底是应该Player.attack(
-monster) 还是 Monster.receiveDamage(Weapon, Player)。在ECS里这个问题就变的很简单，放在CombatSystem里就可以了。
+这个在游戏系统里有个比较明显的优势。如果按照OOP的方式，一个游戏对象里可能会包括移动代码、战斗代码、渲染代码、AI代码等，
+如果都放在一个类里会很长，且很难去维护。通过将通用逻辑抽离出来为单独的System类，可以明显提升代码的可读性。
+另一个好处则是抽离了一些和对象代码无关的依赖，比如上文的delta，这个delta如果是放在Entity的update方法，则需要作为入参注入，而放在System里则可以统一管理。
+在第一章的有个问题，到底是应该Player.attack(monster) 还是 Monster.receiveDamage(Weapon, Player)。在ECS里这个问题就变的很简单，放在CombatSystem里就可以了。
 
 **数据驱动**
 
-即一个对象的行为不是写死的而是通过其参数决定，通过参数的动态修改，就可以快速改变一个对象的具体行为。在ECS的游戏架构里，通过给Entity注册相应的Component，以及改变Component的具体参数的组合，就可以改变一个对象的行为和玩法，比如创建一个水壶+爆炸属性就变成了“爆炸水壶”、给一个自行车加上风魔法就变成了飞车等。在有些Rougelike游戏中，可能有超过1万件不同类型、不同功能的物品，如果这些不同功能的物品都去单独写代码，可能永远都写不完，但是通过数据驱动+组件化架构，所有物品的配置最终就是一张表，修改也极其简单。这个也是组合胜于继承原则的一次体现。
+即一个对象的行为不是写死的而是通过其参数决定，通过参数的动态修改，就可以快速改变一个对象的具体行为。
+在ECS的游戏架构里，通过给Entity注册相应的Component，以及改变Component的具体参数的组合，就可以改变一个对象的行为和玩法，
+比如创建一个水壶+爆炸属性就变成了“爆炸水壶”、给一个自行车加上风魔法就变成了飞车等。
+在有些Rougelike游戏中，可能有超过1万件不同类型、不同功能的物品，如果这些不同功能的物品都去单独写代码，可能永远都写不完，
+但是通过数据驱动+组件化架构，所有物品的配置最终就是一张表，修改也极其简单。这个也是组合胜于继承原则的一次体现。
 
 ## ECS的缺陷
 
-虽然ECS在游戏界已经开始崭露头角，我发现ECS架构目前还没有在哪个大型商业应用中被使用过。原因可能很多，包括ECS比较新大家还不了解、缺少商业成熟可用的框架、程序员们还不够能适应从写逻辑脚本到写组件的思维转变等，但我认为其最大的一个问题是ECS为了提升性能，强调了数据/状态（State）和行为（Behaivor）分离，并且为了降低GC成本，直接操作数据，走到了一个极端。而在商业应用中，数据的正确性、一致性和健壮性应该是最高的优先级，而性能只是锦上添花的东西，所以ECS很难在商业场景里带来特别大的好处。但这不代表我们不能借鉴一些ECS的突破性思维，包括组件化、跨对象行为的抽离、以及数据驱动模式，而这些在DDD里也能很好的用起来。
+虽然ECS在游戏界已经开始崭露头角，我发现ECS架构目前还没有在哪个大型商业应用中被使用过。
+原因可能很多，包括ECS比较新大家还不了解、缺少商业成熟可用的框架、程序员们还不够能适应从写逻辑脚本到写组件的思维转变等，
+但我认为其最大的一个问题是ECS为了提升性能，强调了数据/状态（State）和行为（Behaivor）分离， 并且为了降低GC成本，直接操作数据，走到了一个极端。
+而在商业应用中，数据的正确性、一致性和健壮性应该是最高的优先级，而性能只是锦上添花的东西，所以ECS很难在商业场景里带来特别大的好处。
+但这不代表我们不能借鉴一些ECS的突破性思维，包括组件化、跨对象行为的抽离、以及数据驱动模式，而这些在DDD里也能很好的用起来。
 
 # 基于DDD架构的一种解法
 
@@ -411,7 +428,9 @@ monster) 还是 Monster.receiveDamage(Weapon, Player)。在ECS里这个问题就
 
 **实体类**
 
-在DDD里，实体类包含ID和内部状态，在这个案例里实体类包含Player、Monster和Weapon。Weapon被设计成实体类是因为两把同名的Weapon应该可以同时存在，所以必须要有ID来区分，同时未来也可以预期Weapon会包含一些状态，比如升级、临时的buff、耐久等。
+在DDD里，实体类包含ID和内部状态，在这个案例里实体类包含Player、Monster和Weapon。
+Weapon被设计成实体类是因为两把同名的Weapon应该可以同时存在，所以必须要有ID来区分，
+同时未来也可以预期Weapon会包含一些状态，比如升级、临时的buff、耐久等。
 
 ```
 public class Player implements Movable {
@@ -438,7 +457,6 @@ public class Weapon {
     private int damage;
     private int damageType; // 0 - physical, 1 - fire, 2 - ice
 }
-复制代码
 ```
 
 在这个简单的案例里，我们可以利用enum的PlayerClass、MonsterClass来代替继承关系，后续也可以利用Type Object设计模式来做到数据驱动。
@@ -447,7 +465,8 @@ Note 1: 因为 Weapon 是实体类，但是Weapon能独立存在，Player不是�
 
 **值对象的组件化**
 
-在前面的ECS架构里，有个MovementSystem的概念是可以复用的，虽然不应该直接去操作Component或者继承通用的父类，但是可以通过接口的方式对领域对象做组件化处理：
+在前面的ECS架构里，有个MovementSystem的概念是可以复用的，虽然不应该直接去操作Component或者继承通用的父类，
+但是可以通过接口的方式对领域对象做组件化处理：
 
 ```
 public interface Movable {
@@ -495,7 +514,6 @@ public class Vector {
     long x;
     long y;
 }
-复制代码
 ```
 
 注意两点：
@@ -512,10 +530,9 @@ public class Vector {
 public interface EquipmentService {
     boolean canEquip(Player player, Weapon weapon);
 }
-复制代码
 ```
 
-在DDD里，一个Entity不应该直接参考另一个Entity或服务，也就是说以下的代码是错误的：
+在DDD里，一个Entity不应该直接引入另一个Entity或服务，也就是说以下的代码是错误的：
 
 ```
 public class Player {
@@ -526,7 +543,6 @@ public class Player {
        // ...
     }
 }
-复制代码
 ```
 
 这里的问题是Entity只能保留自己的状态（或非聚合根的对象）。任何其他的对象，无论是否通过依赖注入的方式弄进来，都会破坏Entity的Invariance，并且还难以单测。
@@ -544,7 +560,6 @@ public class Player {
         }
     }
 }
-复制代码
 ```
 
 在这里，无论是Weapon还是EquipmentService都是通过方法参数传入，确保不会污染Player的自有状态。
@@ -603,15 +618,15 @@ public class FighterEquipmentPolicy implements EquipmentPolicy {
 }
 
 // 其他策略省略，见源码
-复制代码
 ```
 
 这样设计的最大好处是未来的规则增加只需要添加新的Policy类，而不需要去改变原有的类。
 
 ## 攻击行为
 
-在上文中曾经有提起过，到底应该是Player.attack(Monster)还是Monster.receiveDamage(Weapon, Player)
-？在DDD里，因为这个行为可能会影响到Player、Monster和Weapon，所以属于跨实体的业务逻辑。在这种情况下需要通过一个第三方的领域服务（Domain Service）来完成。
+在上文中曾经有提起过，到底应该是Player.attack(Monster)还是Monster.receiveDamage(Weapon, Player)？
+在DDD里，因为这个行为可能会影响到Player、Monster和Weapon，所以属于跨实体的业务逻辑。
+在这种情况下需要通过一个第三方的领域服务（Domain Service）来完成。
 
 ```
 public interface CombatService {
@@ -632,7 +647,6 @@ public class CombatServiceImpl implements CombatService {
         // 省略掉Player和Weapon可能受到的影响
     }
 }
-复制代码
 ```
 
 同样的在这个案例里，可以通过Strategy设计模式来解决damage的计算问题：
@@ -672,10 +686,11 @@ public class DragoonPolicy implements DamagePolicy {
                 monster.getMonsterClass() == MonsterClass.Dragon;
     }
 }
-复制代码
 ```
 
-特别需要注意的是这里的CombatService领域服务和3.2的EquipmentService领域服务，虽然都是领域服务，但实质上有很大的差异。上文的EquipmentService更多的是提供只读策略，且只会影响单个对象，所以可以在Player.equip方法上通过参数注入。但是CombatService有可能会影响多个对象，所以不能直接通过参数注入的方式调用。
+特别需要注意的是这里的CombatService领域服务和3.2的EquipmentService领域服务，虽然都是领域服务，但实质上有很大的差异。
+上文的EquipmentService更多的是提供只读策略，且只会影响单个对象，所以可以在Player.equip方法上通过参数注入。
+但是CombatService有可能会影响多个对象，所以不能直接通过参数注入的方式调用。
 
 ## 单元测试
 
@@ -714,7 +729,6 @@ public void testFighterOrc() {
     // Then
     assertThat(orc.getHealth()).isEqualTo(Health.of(100 - 10 / 2));
 }
-复制代码
 ```
 
 具体的代码比较简单，解释省略
@@ -751,7 +765,6 @@ public class MovementSystem {
         }
     }
 }
-复制代码
 ```
 
 单测：
@@ -779,7 +792,6 @@ public void testMovement() {
     assertThat(fighter.getPosition().getX()).isEqualTo(2 + 1);
     assertThat(orc.getPosition().getX()).isEqualTo(10 - 1);
 }
-复制代码
 ```
 
 在这里MovementSystem就是一个相对独立的Domain Service，通过对Movable的组件化，实现了类似代码的集中化、以及一些通用依赖/配置的中心化（如X、Y边界等）。
@@ -820,7 +832,6 @@ public void test() {
     account.setAmount(100L);
     TransferService.transfer(account); // 报错了，因为Account缺少必要的AccountNumber
 }
-复制代码
 ```
 
 如果缺少一个强校验的constructor，就无法保障创建的实体的一致性。所以需要增加一个强校验的constructor：
@@ -839,7 +850,6 @@ public class Account {
 public void test() {
     Account account = new Account("123", 100L); // 确保对象的有效性
 }
-复制代码
 ```
 
 使用Factory模式来降低调用方复杂度
@@ -853,7 +863,6 @@ public class WeaponFactory {
         return weapon;
     }
 }
-复制代码
 ```
 
 通过传入一个已经存在的Prototype，可以快速的创建新的实体。还有一些其他的如Builder等设计模式就不一一指出了。
@@ -885,7 +894,6 @@ public class Order {
         this.shipping = new Shipping(trackingNumber);
     }
 }
-复制代码
 ```
 
 【建议】在有些简单场景里，有时候确实可以比较随意的设置一个值而不会导致不一致性，也建议将方法名重新写为比较“行为化”的命名，会增强其语意。比如setPosition(x, y)可以叫做moveTo(x, y)
@@ -940,7 +948,6 @@ Primitive文章。
 Player.equip(Weapon, EquipmentService) {
     EquipmentService.canEquip(this, Weapon);
 }
-复制代码
 ```
 
 为什么这种情况下不能先调用领域服务，再调用实体对象的方法，从而减少实体对领域服务的入参型依赖呢？比如，下面这个方法是错误的：
@@ -950,7 +957,6 @@ boolean canEquip = EquipmentService.canEquip(Player, Weapon);
 if (canEquip) {
     Player.equip(Weapon); // ❌，这种方法不可行，因为这个方法有不一致的可能性
 }
-复制代码
 ```
 
 其错误的主要原因是缺少了领域服务入参会导致方法有可能产生不一致的情况。
@@ -967,7 +973,6 @@ public class Player {
         CombatService.performAttack(this, Monster); // ❌，不要这么写，会导致副作用
     }
 }
-复制代码
 ```
 
 而我们真实调用应该直接调用CombatService的方法：
@@ -977,7 +982,6 @@ public void test() {
     //...
     combatService.performAttack(mage, orc);
 }
-复制代码
 ```
 
 这个原则也映射了4.1.5 的原则，即Player.attack会直接影响到Monster，但这个调用Monster又没有感知。
@@ -1016,7 +1020,6 @@ public class CombatService {
         }
     }
 }
-复制代码
 ```
 
 但是这样写的问题是：很快CombatService的代码就会变得很复杂，比如我们再加一个副作用：
@@ -1038,7 +1041,6 @@ public class CombatService {
         }
     }
 }
-复制代码
 ```
 
 如果再加上“升级后奖励XXX”呢？“更新XXX排行”呢？依此类推，后续这种代码将无法维护。所以我们需要介绍一下领域层最后一个概念：领域事件（Domain Event）。
@@ -1104,7 +1106,6 @@ public class EventBus {
         }
     }
 }
-复制代码
 ```
 
 调用方式：
@@ -1135,7 +1136,6 @@ public void test() {
     player.receiveExp(100);
     assertThat(player.getLevel()).equals(2);
 }
-复制代码
 ```
 
 ## 目前领域事件的缺陷和展望
@@ -1170,7 +1170,6 @@ public void test() {
 
     assertThat(player.getLevel()).equals(2);
 }
-复制代码
 ```
 
 但是能看出来这种解法不但会侵入实体本身，同时也需要比较啰嗦的显性在调用方dispatch事件，也不是一个好的解决方案。
