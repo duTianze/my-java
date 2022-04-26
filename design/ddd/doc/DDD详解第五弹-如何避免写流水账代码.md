@@ -1,3 +1,40 @@
+- [DDD 详解第五弹-如何避免写流水账代码](#ddd-%E8%AF%A6%E8%A7%A3%E7%AC%AC%E4%BA%94%E5%BC%B9-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%86%99%E6%B5%81%E6%B0%B4%E8%B4%A6%E4%BB%A3%E7%A0%81)
+- [案例简介](#%E6%A1%88%E4%BE%8B%E7%AE%80%E4%BB%8B)
+- [Interface 接口层](#interface-%E6%8E%A5%E5%8F%A3%E5%B1%82)
+  - [接口层的组成](#%E6%8E%A5%E5%8F%A3%E5%B1%82%E7%9A%84%E7%BB%84%E6%88%90)
+  - [返回值和异常处理规范，Result vs Exception](#%E8%BF%94%E5%9B%9E%E5%80%BC%E5%92%8C%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E8%A7%84%E8%8C%83result-vs-exception)
+  - [接口层的接口的数量和业务间的隔离](#%E6%8E%A5%E5%8F%A3%E5%B1%82%E7%9A%84%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%95%B0%E9%87%8F%E5%92%8C%E4%B8%9A%E5%8A%A1%E9%97%B4%E7%9A%84%E9%9A%94%E7%A6%BB)
+- [Application 层](#application-%E5%B1%82)
+  - [Application 层的组成部分](#application-%E5%B1%82%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86)
+  - [Command、Query、Event 对象](#commandqueryevent-%E5%AF%B9%E8%B1%A1)
+    - [为什么要用 CQE 对象？](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-cqe-%E5%AF%B9%E8%B1%A1)
+    - [CQE 的规范：](#cqe-%E7%9A%84%E8%A7%84%E8%8C%83)
+    - [CQE vs DTO](#cqe-vs-dto)
+    - [CQE 的校验](#cqe-%E7%9A%84%E6%A0%A1%E9%AA%8C)
+    - [避免复用 CQE](#%E9%81%BF%E5%85%8D%E5%A4%8D%E7%94%A8-cqe)
+  - [ApplicationService](#applicationservice)
+    - [Application Service 是业务流程的封装，不处理业务逻辑](#application-service-%E6%98%AF%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E7%9A%84%E5%B0%81%E8%A3%85%E4%B8%8D%E5%A4%84%E7%90%86%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91)
+    - [常用的 ApplicationService“套路”](#%E5%B8%B8%E7%94%A8%E7%9A%84-applicationservice%E5%A5%97%E8%B7%AF)
+  - [DTO Assembler](#dto-assembler)
+  - [Result vs Exception](#result-vs-exception)
+  - [简单讲一下 Anti-Corruption Layer 防腐层](#%E7%AE%80%E5%8D%95%E8%AE%B2%E4%B8%80%E4%B8%8B-anti-corruption-layer-%E9%98%B2%E8%85%90%E5%B1%82)
+- [Orchestration vs Choreography](#orchestration-vs-choreography)
+  - [模式简介](#%E6%A8%A1%E5%BC%8F%E7%AE%80%E4%BB%8B)
+  - [案例](#%E6%A1%88%E4%BE%8B)
+  - [模式的区别和选择](#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E9%80%89%E6%8B%A9)
+    - [所以在日常业务中当你碰到一个需求时，该如何选择是用 Orchestration 还是 Choreography？](#%E6%89%80%E4%BB%A5%E5%9C%A8%E6%97%A5%E5%B8%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%BD%93%E4%BD%A0%E7%A2%B0%E5%88%B0%E4%B8%80%E4%B8%AA%E9%9C%80%E6%B1%82%E6%97%B6%E8%AF%A5%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E6%98%AF%E7%94%A8-orchestration-%E8%BF%98%E6%98%AF-choreography)
+  - [哪个模式更好？](#%E5%93%AA%E4%B8%AA%E6%A8%A1%E5%BC%8F%E6%9B%B4%E5%A5%BD)
+  - [跟 DDD 分层架构的关系](#%E8%B7%9F-ddd-%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E7%9A%84%E5%85%B3%E7%B3%BB)
+- [总结](#%E6%80%BB%E7%BB%93)
+    - [Interface 层：](#interface-%E5%B1%82)
+    - [Application 层：](#application-%E5%B1%82)
+    - [部分 Infra 层：](#%E9%83%A8%E5%88%86-infra-%E5%B1%82)
+    - [业务流程设计模式：](#%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+  - [前瞻预告](#%E5%89%8D%E7%9E%BB%E9%A2%84%E5%91%8A)
+- [参考](#%E5%8F%82%E8%80%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DDD 详解第五弹-如何避免写流水账代码
 
 在过去一年里我们团队做了大量的老系统重构和迁移，其中有大量的代码属于流水账代码，通常能看到是开发在对外的 API 接口里直接写业务逻辑代码，
@@ -436,7 +473,7 @@ ApplicationService 负责了业务流程的编排，是将原有业务流水账�
 
 参考一个简易的交易流程：
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b301c12ea70648d3b6db089e32f026d8~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/ac5d8471.png)
 
 在这个案例里可以看出来，交易这个领域一共有 5 个用例：下单、支付成功、支付失败关单、物流信息更新、关闭订单。这 5 个用例可以用 5 个 Command/Event 对象代替，也就是对应了 5 个方法。
 
@@ -805,11 +842,11 @@ Orchestration）是我们通常熟悉的用法，Choreography 是最近出现了
 
 Orchestration：通常出现在脑海里的是一个交响乐团（Orchestra，注意这两个词的相似性），如下图。交响乐团的核心是一个唯一的指挥家 Conductor，在一个交响乐中，所有的音乐家必须听从 Conductor 的指挥做操作，不可以独自发挥。所以在 Orchestration 模式中，所有的流程都是由一个节点或服务触发的。我们常见的业务流程代码，包括调用外部服务，就是 Orchestration，由我们的服务统一触发。
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7fe247fdf05d4f1abf439968b339f38f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/7898720f.png)
 
 Choreography：通常会出现在脑海的场景是一个舞剧（来自于希腊文的舞蹈，Choros），如下图。其中每个不同的舞蹈家都在做自己的事，但是没有一个中心化的指挥。通过协作配合，每个人做好自己的事，整个舞蹈可以展现出一个完整的、和谐的画面。所以在 Choreography 模式中，每个服务都是独立的个体，可能会响应外部的一些事件，但整个系统是一个整体。
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bc800ed042d6429bb587c3ff7d7d9ccd~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/1a7cf353.png)
 
 ## 案例
 
@@ -879,13 +916,13 @@ Choreography
 
 1. 明确依赖的方向：
 
-![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dde334ee210456aafd3aeec02080ee6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/59977e43.png)
 
 在代码中的依赖是比较明确的：如果你是下游，上游对你无感知，则只能走事件驱动；如果上游必须要对你有感知，则可以走指令驱动。反过来，如果你是上游，需要对下游强依赖，则是指令驱动；如果下游是谁无所谓，则可以走事件驱动。
 
 2. 找出业务中的“负责人”：
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1e2f82ab680a414dbcba712e3a6d01eb~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/6aa70c59.png)
 
 第二种方法是根据业务场景找出其中的“负责人”。比如，如果业务需要通知卖家，下单系统的单一职责不应该为消息通知负责，但订单管理系统需要根据订单状态的推进主动触发消息，所以是这个功能的负责人。
 在一个复杂业务流程里，通常两个模式都要有，但也很容易设计错误。如果出现依赖关系很奇怪，或者代码里调用链路/负责人梳理不清楚的情况，可以尝试转换一下模式，可能会好很多。
