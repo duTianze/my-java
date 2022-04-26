@@ -293,13 +293,14 @@ Application 层的几个核心类：
 - Command、Query、Event 对象：作为 ApplicationService 的入参
 - 返回的 DTO：作为 ApplicationService 的出参
 
-Application 层最核心的对象是 ApplicationService，它的核心功能是承接“业务流程“。但是在讲 ApplicationService 的规范之前，必须要先重点的讲几个特殊类型的对象，即 Command、Query 和 Event。
+Application 层最核心的对象是 ApplicationService，它的核心功能是承接“业务流程“。
+但是在讲 ApplicationService 的规范之前，必须要先重点的讲几个特殊类型的对象，即 Command、Query 和 Event。
 
 ## Command、Query、Event 对象
 
 从本质上来看，这几种对象都是 Value Object，但是从语义上来看有比较大的差异：
 
-- Command 指令：指调用方明确想让系统操作的指令，其预期是对一个系统有影响，也就是写操作。通常来讲指令需要有一个明确的返回值（如同步的操作结果，或异步的指令已经被接受）。
+- Command 指令：指调用方明确想让系统操作的指令，其预期是对一个系统有影响，也就是写操作。 通常来讲指令需要有一个明确的返回值（如同步的操作结果，或异步的指令已经被接受）。
 - Query 查询：指调用方明确想查询的东西，包括查询参数、过滤、分页等条件，其预期是对一个系统的数据完全不影响的，也就是只读操作。
 - Event 事件：指一件已经发生过的既有事实，需要系统根据这个事实作出改变或者响应的，通常事件处理都会有一定的写操作。
   事件处理器不会有返回值。这里需要注意一下的是，Application 层的 Event 概念和 Domain 层的 DomainEvent 是类似的概念，但不一定是同一回事，
@@ -397,8 +398,9 @@ if (itemId <= 0 || quantity <= 0 || quantity >= 1000) {
 }
 ```
 
-这种代码在日常非常常见，但其最大的问题就是大量的非业务代码混杂在业务代码中，很明显的违背了单一职责原则。但因为当时入参仅仅是简单的 int，所以这个逻辑只能出现在服务里。现在当入参改为了 CQE 之后，我们可以利用 java 标准 JSR303 或 JSR380 的 Bean
-Validation 来前置这个校验逻辑。
+这种代码在日常非常常见，但其最大的问题就是大量的非业务代码混杂在业务代码中，很明显的违背了单一职责原则。
+但因为当时入参仅仅是简单的 int，所以这个逻辑只能出现在服务里。
+现在当入参改为了 CQE 之后，我们可以利用 java 标准 JSR303 或 JSR380 的 Bean Validation 来前置这个校验逻辑。
 
 > 规范：CQE 对象的校验应该前置，避免在 ApplicationService 里做参数的校验。可以通过 JSR303/380 和 Spring Validation 来实现
 
@@ -438,7 +440,9 @@ public class CheckoutCommand {
 > 规范：针对于不同语意的指令，要避免 CQE 对象的复用
 
 ❌
-反例：一个常见的场景是“Create 创建”和“Update 更新”，一般来说这两种类型的对象唯一的区别是一个 ID，创建没有 ID，而更新则有。所以经常能看见有的同学用同一个对象来作为两个方法的入参，唯一区别是 ID 是否赋值。这个是错误的用法，因为这两个操作的语意完全不一样，他们的校验条件可能也完全不一样，所以不应该复用同一个对象。正确的做法是产出两个对象：
+反例：一个常见的场景是“Create 创建”和“Update 更新”，一般来说这两种类型的对象唯一的区别是一个 ID，创建没有 ID，而更新则有。
+所以经常能看见有的同学用同一个对象来作为两个方法的入参，唯一区别是 ID 是否赋值。
+这个是错误的用法，因为这两个操作的语意完全不一样，他们的校验条件可能也完全不一样，所以不应该复用同一个对象。正确的做法是产出两个对象：
 
 ```
 public interface CheckoutService {
@@ -475,12 +479,14 @@ ApplicationService 负责了业务流程的编排，是将原有业务流水账�
 
 ![](.DDD详解第五弹-如何避免写流水账代码_images/ac5d8471.png)
 
-在这个案例里可以看出来，交易这个领域一共有 5 个用例：下单、支付成功、支付失败关单、物流信息更新、关闭订单。这 5 个用例可以用 5 个 Command/Event 对象代替，也就是对应了 5 个方法。
+在这个案例里可以看出来，交易这个领域一共有 5 个用例：下单、支付成功、支付失败关单、物流信息更新、关闭订单。
+这 5 个用例可以用 5 个 Command/Event 对象代替，也就是对应了 5 个方法。
 
 我见过 3 种 ApplicationService 的组织形态：
 
-1. 一个 ApplicationService 类是一个完整的业务流程，其中每个方法负责处理一个 Use
-   Case。这种的好处是可以完整的收敛整个业务逻辑，从接口类即可对业务逻辑有一定的掌握，适合相对简单的业务流程。坏处就是对于复杂的业务流程会导致一个类的方法过多，有可能代码量过大。这种类型的具体案例如：
+1. 一个 ApplicationService 类是一个完整的业务流程，其中每个方法负责处理一个 Use Case。
+这种的好处是可以完整的收敛整个业务逻辑，从接口类即可对业务逻辑有一定的掌握，适合相对简单的业务流程。
+坏处就是对于复杂的业务流程会导致一个类的方法过多，有可能代码量过大。这种类型的具体案例如：
 
 ```
 public interface CheckoutService {
@@ -530,7 +536,8 @@ public class CheckoutServiceImpl implements CheckoutService {
 }
 ```
 
-3. 比较激进一点，通过 CommandBus、EventBus，直接将指令或事件抛给对应的 Handler，EventBus 比较常见。具体案例代码如下，通过消息队列收到 MQ 消息后，生成 Event，然后由 EventBus 做路由到对应的 Handler：
+3. 比较激进一点，通过 CommandBus、EventBus，直接将指令或事件抛给对应的 Handler，EventBus 比较常见。
+具体案例代码如下，通过消息队列收到 MQ 消息后，生成 Event，然后由 EventBus 做路由到对应的 Handler：
 
 ```
 // Application层
@@ -561,17 +568,19 @@ public class OrderMessageListener implements MessageListenerOrderly {
 }
 ```
 
-⚠️
-不建议：这种做法可以实现 Interface 层和某个具体的 ApplicationService 或 Handler 的完全静态解藕，在运行时动态 dispatch，做的比较好的框架如 AxonFramework。虽然看起来很便利，但是根据我们自己业务的实践和踩坑发现，当代码中的 CQE 对象越来越多，handler 越来越复杂时，运行时的 dispatch 缺乏了静态代码间的关联关系，导致代码很难读懂，特别是当你需要 trace 一个复杂调用链路时，因为 dispatch 是运行时的，很难摸清楚具体调用到的对象。所以我们虽然曾经有过这种尝试，但现在已经不建议这么做了。
+⚠️ 不建议：这种做法可以实现 Interface 层和某个具体的 ApplicationService 或 Handler 的完全静态解藕， 在运行时动态 dispatch，做的比较好的框架如 AxonFramework。
+虽然看起来很便利，但是根据我们自己业务的实践和踩坑发现，当代码中的 CQE 对象越来越多，handler 越来越复杂时，运行时的 dispatch 缺乏了静态代码间的关联关系，导致代码很难读懂，
+特别是当你需要 trace 一个复杂调用链路时，因为 dispatch 是运行时的，很难摸清楚具体调用到的对象。所以我们虽然曾经有过这种尝试，但现在已经不建议这么做了。
 
 ### Application Service 是业务流程的封装，不处理业务逻辑
 
-虽然之前曾经无数次重复 ApplicationService 只负责业务流程串联，不负责业务逻辑，但如何判断一段代码到底是业务流程还是逻辑呢？ 举个之前的例子，最初的代码重构后： 判断是否业务流程的几个点：
+虽然之前曾经无数次重复 ApplicationService 只负责业务流程串联，不负责业务逻辑，但如何判断一段代码到底是业务流程还是逻辑呢？ 
+举个之前的例子，最初的代码重构后： 判断是否业务流程的几个点：
 
 1. 不要有 if/else 分支逻辑：也就是说代码的 Cyclomatic Complexity（循环复杂度）应该尽量等于 1
 
-通常有分支逻辑的，都代表一些业务判断，应该将逻辑封装到 DomainService 或者 Entity 里。但这不代表完全不能有 if 逻辑，比如，在这段代码里： boolean withholdSuccess =
-inventoryService.withhold(cmd.getItemId(), cmd.getQuantity()); if (!withholdSuccess) { throw new
+通常有分支逻辑的，都代表一些业务判断，应该将逻辑封装到 DomainService 或者 Entity 里。
+但这不代表完全不能有 if 逻辑，比如，在这段代码里： boolean withholdSuccess = inventoryService.withhold(cmd.getItemId(), cmd.getQuantity()); if (!withholdSuccess) { throw new
 IllegalArgumentException("Inventory not enough"); } 虽然 CC > 1，但是仅仅代表了中断条件，具体的业务逻辑处理并没有受影响。可以把它看作为 Precondition。
 
 ```
@@ -653,7 +662,8 @@ OrderDTO dto = orderDtoAssembler.orderToDTO(savedOrder);
 
 ### 常用的 ApplicationService“套路”
 
-我们可以看出来，ApplicationService 的代码通常有类似的结构：AppService 通常不做任何决策（Precondition 除外），仅仅是把所有决策交给 DomainService 或 Entity，把跟外部交互的交给 Infrastructure 接口，如 Repository 或防腐层。
+我们可以看出来，ApplicationService 的代码通常有类似的结构：AppService 通常不做任何决策（Precondition 除外），
+仅仅是把所有决策交给 DomainService 或 Entity，把跟外部交互的交给 Infrastructure 接口，如 Repository 或防腐层。
 
 一般的“套路”如下：
 
@@ -675,10 +685,12 @@ OrderDTO dto = orderDtoAssembler.orderToDTO(savedOrder);
 2. 降低规则依赖：Entity 里面通常会包含业务规则，如果 ApplicationService 返回 Entity，则会导致调用方直接依赖业务规则。如果内部规则变更可能直接影响到外部。
 3. 通过 DTO 组合降低成本：Entity 是有限的，DTO 可以是多个 Entity、VO 的自由组合，一次性封装成复杂 DTO，或者有选择的抽取部分参数封装成 DTO 可以降低对外的成本。
 
-因为我们操作的对象是 Entity，但是输出的对象是 DTO，这里就需要一个专属类型的对象叫 DTO Assembler。DTO Assembler 的唯一职责是将一个或多个 Entity/VO，转化为 DTO。注意：DTO
-Assembler 通常不建议有反操作，也就是不会从 DTO 到 Entity，因为通常一个 DTO 转化为 Entity 时是无法保证 Entity 的准确性的。
+因为我们操作的对象是 Entity，但是输出的对象是 DTO，这里就需要一个专属类型的对象叫 DTO Assembler。
+DTO Assembler 的唯一职责是将一个或多个 Entity/VO，转化为 DTO。注意：DTO Assembler 通常不建议有反操作，
+也就是不会从 DTO 到 Entity，因为通常一个 DTO 转化为 Entity 时是无法保证 Entity 的准确性的。
 
-通常，Entity 转 DTO 是有成本的，无论是代码量还是运行时的操作。手写转换代码容易出错，为了节省代码量用 Reflection 会造成极大的性能损耗。所以这里我还是不遗余力的推荐 MapStruct 这个库。MapStruct 通过静态编译时代码生成，通过写接口和配置注解就可以生成对应的代码，且因为生成的代码是直接赋值，其性能损耗基本可以忽略不计。
+通常，Entity 转 DTO 是有成本的，无论是代码量还是运行时的操作。手写转换代码容易出错，为了节省代码量用 Reflection 会造成极大的性能损耗。
+所以这里我还是不遗余力的推荐 MapStruct 这个库。MapStruct 通过静态编译时代码生成，通过写接口和配置注解就可以生成对应的代码，且因为生成的代码是直接赋值，其性能损耗基本可以忽略不计。
 
 通过 MapStruct，代码即可简化为：
 
@@ -714,7 +726,9 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 > Application 层只返回 DTO，可以直接抛异常，不用统一处理。所有调用到的服务也都可以直接抛异常，除非需要特殊处理，否则不需要刻意捕捉异常
 
-异常的好处是能明确的知道错误的来源，堆栈等，在 Interface 层统一捕捉异常是为了避免异常堆栈信息泄漏到 API 之外，但是在 Application 层，异常机制仍然是信息量最大，代码结构最清晰的方法，避免了 Result 的一些常见且繁杂的 Result.isSuccess 判断。所以在 Application 层、Domain 层，以及 Infrastructure 层，遇到错误直接抛异常是最合理的方法。
+异常的好处是能明确的知道错误的来源，堆栈等，在 Interface 层统一捕捉异常是为了避免异常堆栈信息泄漏到 API 之外，
+但是在 Application 层，异常机制仍然是信息量最大，代码结构最清晰的方法，避免了 Result 的一些常见且繁杂的 Result.isSuccess 判断。
+所以在 Application 层、Domain 层，以及 Infrastructure 层，遇到错误直接抛异常是最合理的方法。
 
 ## 简单讲一下 Anti-Corruption Layer 防腐层
 
@@ -727,7 +741,10 @@ ItemDO item = itemService.getItem(cmd.getItemId());
 boolean withholdSuccess = inventoryService.withhold(cmd.getItemId(), cmd.getQuantity());
 ```
 
-会发现我们的 ApplicationService 会强依赖 ItemService、InventoryService 以及 ItemDO 这个对象。如果任何一个服务的方法变更，或者 ItemDO 字段变更，都会有可能影响到 ApplicationService 的代码。也就是说，我们自己的代码会因为强依赖了外部系统的变化而变更，这个在复杂系统中应该是尽量避免的。那么如何做到对外部系统的隔离呢？需要加入 ACL 防腐层。
+会发现我们的 ApplicationService 会强依赖 ItemService、InventoryService 以及 ItemDO 这个对象。
+如果任何一个服务的方法变更，或者 ItemDO 字段变更，都会有可能影响到 ApplicationService 的代码。
+也就是说，我们自己的代码会因为强依赖了外部系统的变化而变更，这个在复杂系统中应该是尽量避免的。
+那么如何做到对外部系统的隔离呢？需要加入 ACL 防腐层。
 
 ACL 防腐层的简单原理如下：
 
@@ -826,25 +843,35 @@ public class CheckoutServiceImpl implements CheckoutService {
 }
 ```
 
-很显然，这么做的好处是 ApplicationService 的代码已经完全不再直接依赖外部的类和方法，而是依赖了我们自己内部定义的值类和接口。如果未来外部服务有任何的变更，需要修改的是 Facade 类和数据转化逻辑，而不需要修改 ApplicationService 的逻辑。
+很显然，这么做的好处是 ApplicationService 的代码已经完全不再直接依赖外部的类和方法，而是依赖了我们自己内部定义的值类和接口。
+如果未来外部服务有任何的变更，需要修改的是 Facade 类和数据转化逻辑，而不需要修改 ApplicationService 的逻辑。
 
-Repository 可以认为是一种特殊的 ACL，屏蔽了具体数据操作的细节，即使底层数据库结构变更，数据库类型变更，或者加入其他的持久化方式，Repository 的接口保持稳定，ApplicationService 就能保持不变。
+Repository 可以认为是一种特殊的 ACL，屏蔽了具体数据操作的细节，
+即使底层数据库结构变更，数据库类型变更，或者加入其他的持久化方式，Repository 的接口保持稳定，ApplicationService 就能保持不变。
 
 在一些理论框架里 ACL Facade 也被叫做 Gateway，含义是一样的。
 
 # Orchestration vs Choreography
 
-在本文最后想聊一下复杂业务流程的设计规范。在复杂的业务流程里，我们通常面临两种模式：Orchestration 和
-Choreography。很无奈，这两个英文单词的百度翻译/谷歌翻译，都是“编排”，但实际上这两种模式是完全不一样的设计模式。Orchestration 的编排（比如 SOA/微服务的服务编排 Service
-Orchestration）是我们通常熟悉的用法，Choreography 是最近出现了事件驱动架构 EDA 才慢慢流行起来。网上可能会有其他的翻译，比如编制、编舞、协作等，但感觉都没有真正的把英文单词的意思表达出来，所以为了避免误解，在下文我尽量还是用英文原词。如果谁有更好的翻译方法欢迎联系我。
+在本文最后想聊一下复杂业务流程的设计规范。在复杂的业务流程里，我们通常面临两种模式：Orchestration 和 Choreography。
+很无奈，这两个英文单词的百度翻译/谷歌翻译，都是“编排”，但实际上这两种模式是完全不一样的设计模式。
+Orchestration 的编排（比如 SOA/微服务的服务编排 Service Orchestration）是我们通常熟悉的用法，
+Choreography 是最近出现了事件驱动架构 EDA 才慢慢流行起来。
+网上可能会有其他的翻译，比如编制、编舞、协作等，但感觉都没有真正的把英文单词的意思表达出来，所以为了避免误解，在下文我尽量还是用英文原词。
+如果谁有更好的翻译方法欢迎联系我。
 
 ## 模式简介
 
-Orchestration：通常出现在脑海里的是一个交响乐团（Orchestra，注意这两个词的相似性），如下图。交响乐团的核心是一个唯一的指挥家 Conductor，在一个交响乐中，所有的音乐家必须听从 Conductor 的指挥做操作，不可以独自发挥。所以在 Orchestration 模式中，所有的流程都是由一个节点或服务触发的。我们常见的业务流程代码，包括调用外部服务，就是 Orchestration，由我们的服务统一触发。
+Orchestration：通常出现在脑海里的是一个交响乐团（Orchestra，注意这两个词的相似性），如下图。
+交响乐团的核心是一个唯一的指挥家 Conductor，在一个交响乐中，所有的音乐家必须听从 Conductor 的指挥做操作，不可以独自发挥。
+所以在 Orchestration 模式中，所有的流程都是由一个节点或服务触发的。我们常见的业务流程代码，包括调用外部服务，就是 Orchestration，由我们的服务统一触发。
 
 ![](.DDD详解第五弹-如何避免写流水账代码_images/7898720f.png)
 
-Choreography：通常会出现在脑海的场景是一个舞剧（来自于希腊文的舞蹈，Choros），如下图。其中每个不同的舞蹈家都在做自己的事，但是没有一个中心化的指挥。通过协作配合，每个人做好自己的事，整个舞蹈可以展现出一个完整的、和谐的画面。所以在 Choreography 模式中，每个服务都是独立的个体，可能会响应外部的一些事件，但整个系统是一个整体。
+Choreography：通常会出现在脑海的场景是一个舞剧（来自于希腊文的舞蹈，Choros），如下图。
+其中每个不同的舞蹈家都在做自己的事，但是没有一个中心化的指挥。
+通过协作配合，每个人做好自己的事，整个舞蹈可以展现出一个完整的、和谐的画面。
+所以在 Choreography 模式中，每个服务都是独立的个体，可能会响应外部的一些事件，但整个系统是一个整体。
 
 ![](.DDD详解第五弹-如何避免写流水账代码_images/1a7cf353.png)
 
@@ -861,7 +888,8 @@ Choreography：通常会出现在脑海的场景是一个舞剧（来自于希�
 从代码依赖关系来看：
 
 - Orchestration：涉及到一个服务调用到另外的服务，对于调用方来说，是强依赖的服务提供方。
-- Choreography：每一个服务只是做好自己的事，然后通过事件触发其他的服务，服务之间没有直接调用上的依赖。但要注意的是下游还是会依赖上游的代码（比如事件类），所以可以认为是下游对上游有依赖。
+- Choreography：每一个服务只是做好自己的事，然后通过事件触发其他的服务，服务之间没有直接调用上的依赖。
+但要注意的是下游还是会依赖上游的代码（比如事件类），所以可以认为是下游对上游有依赖。
 
 从代码灵活性来看：
 
@@ -887,7 +915,10 @@ Choreography：通常会出现在脑海的场景是一个舞剧（来自于希�
 | 灵活性   | 较差                    | 较高                                                 |
 | 业务职责 | 上游为业务负责          | 无全局责任人                                         |
 
-另外需要重点明确的：“指令驱动”和“事件驱动”的区别不是“同步”和“异步”。指令可以是同步调用，也可以是异步消息触发（但异步指令不是事件）；反过来事件可以是异步消息，但也完全可以是进程内的同步调用。所以指令驱动和事件驱动差异的本质不在于调用方式，而是一件事情是否“已经”发生。
+另外需要重点明确的：“指令驱动”和“事件驱动”的区别不是“同步”和“异步”。
+指令可以是同步调用，也可以是异步消息触发（但异步指令不是事件）；
+反过来事件可以是异步消息，但也完全可以是进程内的同步调用。
+所以指令驱动和事件驱动差异的本质不在于调用方式，而是一件事情是否“已经”发生。
 
 ### 所以在日常业务中当你碰到一个需求时，该如何选择是用 Orchestration 还是 Choreography？
 
@@ -897,34 +928,44 @@ Choreography：通常会出现在脑海的场景是一个舞剧（来自于希�
 
 ![](.DDD详解第五弹-如何避免写流水账代码_images/59977e43.png)
 
-在代码中的依赖是比较明确的：如果你是下游，上游对你无感知，则只能走事件驱动；如果上游必须要对你有感知，则可以走指令驱动。反过来，如果你是上游，需要对下游强依赖，则是指令驱动；如果下游是谁无所谓，则可以走事件驱动。
+在代码中的依赖是比较明确的：如果你是下游，上游对你无感知，则只能走事件驱动；
+如果上游必须要对你有感知，则可以走指令驱动。
+反过来，如果你是上游，需要对下游强依赖，则是指令驱动；如果下游是谁无所谓，则可以走事件驱动。
 
 2. 找出业务中的“负责人”：
 
 ![](.DDD详解第五弹-如何避免写流水账代码_images/6aa70c59.png)
 
-第二种方法是根据业务场景找出其中的“负责人”。比如，如果业务需要通知卖家，下单系统的单一职责不应该为消息通知负责，但订单管理系统需要根据订单状态的推进主动触发消息，所以是这个功能的负责人。
-在一个复杂业务流程里，通常两个模式都要有，但也很容易设计错误。如果出现依赖关系很奇怪，或者代码里调用链路/负责人梳理不清楚的情况，可以尝试转换一下模式，可能会好很多。
+第二种方法是根据业务场景找出其中的“负责人”。
+比如，如果业务需要通知卖家，下单系统的单一职责不应该为消息通知负责，但订单管理系统需要根据订单状态的推进主动触发消息， 所以是这个功能的负责人。
+在一个复杂业务流程里，通常两个模式都要有，但也很容易设计错误。
+如果出现依赖关系很奇怪，或者代码里调用链路/负责人梳理不清楚的情况，可以尝试转换一下模式，可能会好很多。
 
 ## 哪个模式更好？
 
 很显然，没有最好的模式，只有最合适自己业务场景的模式。
 
 ❌ 反例：最近几年比较流行的 Event-Driven
-Architecture（EDA）事件驱动架构，以及 Reactive-Programming 响应式编程（比如 RxJava），虽然有很多创新，但在一定程度上是“当你有把锤子，所有问题都是钉子”的典型案例。他们对一些基于事件的、流处理的问题有奇效，但如果拿这些框架硬套指令驱动的业务，就会感到代码极其“不协调”，认知成本提高。所以在日常选型中，还是要先根据业务场景梳理出来是哪些流程中的部分是 Orchestration，哪些是 Choreography，然后再选择相对应的框架。
+Architecture（EDA）事件驱动架构，以及 Reactive-Programming 响应式编程（比如 RxJava），
+虽然有很多创新，但在一定程度上是“当你有把锤子，所有问题都是钉子”的典型案例。
+他们对一些基于事件的、流处理的问题有奇效，但如果拿这些框架硬套指令驱动的业务，就会感到代码极其“不协调”，认知成本提高。
+所以在日常选型中，还是要先根据业务场景梳理出来是哪些流程中的部分是 Orchestration，哪些是 Choreography，然后再选择相对应的框架。
 
 ## 跟 DDD 分层架构的关系
 
 最后，讲了这么多 O vs C，跟 DDD 有啥关系？很简单：
 
-- O&C 其实是 Interface 层的关注点，Orchestration = 对外的 API，而 Choreography = 消息或事件。当你决策了 O 还是 C 之后，需要在 interface 层承接这些“驱动力”。
+- O&C 其实是 Interface 层的关注点，Orchestration = 对外的 API，而 Choreography = 消息或事件。 当你决策了 O 还是 C 之后，需要在 interface 层承接这些“驱动力”。
 - 无论 O&C 如何设计，Application 层都“无感知”，因为 ApplicationService 天生就可以处理 Command、Query 和 Event，至于这些对象怎么来，是 Interface 层的决策。
 
-所以，虽然 Orchestration 和 Choreography 是两种完全不同的业务设计模式，但最终落到 Application 层的代码应该是一致的，这也是为什么 Application 层是“用例”而不是“接口”，是相对稳定的存在。
+所以，虽然 Orchestration 和 Choreography 是两种完全不同的业务设计模式，但最终落到 Application 层的代码应该是一致的，
+这也是为什么 Application 层是“用例”而不是“接口”，是相对稳定的存在。
 
 # 总结
 
-只要是做业务的，一定会需要写业务流程和服务编排，但不代表这种代码一定质量差。通过 DDD 的分层架构里的 Interface 层和 Application 层的合理拆分，代码可以变得优雅、灵活，能更快的响应业务但同时又能更好的沉淀。本文主要介绍了一些代码的设计规范，帮助大家掌握一定的技巧。
+只要是做业务的，一定会需要写业务流程和服务编排，但不代表这种代码一定质量差。
+通过 DDD 的分层架构里的 Interface 层和 Application 层的合理拆分，代码可以变得优雅、灵活，能更快的响应业务但同时又能更好的沉淀。
+本文主要介绍了一些代码的设计规范，帮助大家掌握一定的技巧。
 
 ### Interface 层：
 
@@ -952,11 +993,14 @@ Architecture（EDA）事件驱动架构，以及 Reactive-Programming 响应式�
 
 ## 前瞻预告
 
-- CQRS 是 Application 层的一种设计模式，是基于 Command 和 Query 分离的一种设计理念，从最简单的对象分离，到目前最复杂的 Event-Sourcing。这个 topic 有很多需要深入的点，也经常可以被用到，特别是结合复杂的 Aggregate。后面单独会拉出来讲，标题暂定为《CQRS 的 7 层境界》
-- 在当今复杂的微服务开发环境下，依赖外部团队开发的服务是不可避免的，但强耦合带来的成本（无论是变更、代码依赖、甚至 Maven
-  Jar 包间接依赖）是一个复杂系统长期不可忽视的点。ACL 防腐层是一种隔离理念，将外部耦合去除，让内部代码更加纯粹。ACL 防腐层可以有很多种，Repository 是一种特殊的面相数据持久化的 ACL，K8S-sidecar-istio
-  可以说是一种网络层的 ACL，但在 Java/Spring 里可以有比 Istio 更高效、更通用的方法，待后文介绍。
-- 当你开始用起来 DDD 时，会发现很多代码模式都非常类似，比如主子订单就是总分模式、类目体系的 CPV 模式也可以用到一些活动上，ECS 模式可以在互动业务上发挥作用等等。后面会尝试总结出一些通用的领域设计模式，他们的设计思路、可以解决的问题类型、以及实践落地的方法。
+- CQRS 是 Application 层的一种设计模式，是基于 Command 和 Query 分离的一种设计理念，
+从最简单的对象分离，到目前最复杂的 Event-Sourcing。这个 topic 有很多需要深入的点，也经常可以被用到，特别是结合复杂的 Aggregate。
+后面单独会拉出来讲，标题暂定为《CQRS 的 7 层境界》
+- 在当今复杂的微服务开发环境下，依赖外部团队开发的服务是不可避免的，但强耦合带来的成本（无论是变更、代码依赖、甚至 Maven Jar 包间接依赖）是一个复杂系统长期不可忽视的点。
+ACL 防腐层是一种隔离理念，将外部耦合去除，让内部代码更加纯粹。ACL 防腐层可以有很多种，Repository 是一种特殊的面相数据持久化的 ACL，K8S-sidecar-istio 可以说是一种网络层的 ACL，
+但在 Java/Spring 里可以有比 Istio 更高效、更通用的方法，待后文介绍。
+- 当你开始用起来 DDD 时，会发现很多代码模式都非常类似，比如主子订单就是总分模式、类目体系的 CPV 模式也可以用到一些活动上，ECS 模式可以在互动业务上发挥作用等等。
+后面会尝试总结出一些通用的领域设计模式，他们的设计思路、可以解决的问题类型、以及实践落地的方法。
 
 # 参考
 
