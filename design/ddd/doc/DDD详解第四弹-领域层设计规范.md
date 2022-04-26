@@ -1,3 +1,31 @@
+- [DDD详解第四弹-领域层设计规范](#ddd%E8%AF%A6%E8%A7%A3%E7%AC%AC%E5%9B%9B%E5%BC%B9-%E9%A2%86%E5%9F%9F%E5%B1%82%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83)
+- [初探龙与魔法的世界架构](#%E5%88%9D%E6%8E%A2%E9%BE%99%E4%B8%8E%E9%AD%94%E6%B3%95%E7%9A%84%E4%B8%96%E7%95%8C%E6%9E%B6%E6%9E%84)
+  - [背景和规则](#%E8%83%8C%E6%99%AF%E5%92%8C%E8%A7%84%E5%88%99)
+  - [OOP实现](#oop%E5%AE%9E%E7%8E%B0)
+  - [分析OOP代码的设计缺陷](#%E5%88%86%E6%9E%90oop%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%BC%BA%E9%99%B7)
+- [Entity-Component-System（ECS）架构简介](#entity-component-systemecs%E6%9E%B6%E6%9E%84%E7%AE%80%E4%BB%8B)
+  - [ECS介绍](#ecs%E4%BB%8B%E7%BB%8D)
+  - [ECS架构分析](#ecs%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90)
+  - [ECS的缺陷](#ecs%E7%9A%84%E7%BC%BA%E9%99%B7)
+- [基于DDD架构的一种解法](#%E5%9F%BA%E4%BA%8Eddd%E6%9E%B6%E6%9E%84%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%A3%E6%B3%95)
+  - [领域对象](#%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%B1%A1)
+  - [装备行为](#%E8%A3%85%E5%A4%87%E8%A1%8C%E4%B8%BA)
+  - [攻击行为](#%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA)
+  - [单元测试](#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95)
+  - [移动系统](#%E7%A7%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F)
+- [DDD领域层的一些设计规范](#ddd%E9%A2%86%E5%9F%9F%E5%B1%82%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83)
+  - [实体类（Entity）](#%E5%AE%9E%E4%BD%93%E7%B1%BBentity)
+  - [领域服务（Domain Service）](#%E9%A2%86%E5%9F%9F%E6%9C%8D%E5%8A%A1domain-service)
+  - [策略对象（Domain Policy）](#%E7%AD%96%E7%95%A5%E5%AF%B9%E8%B1%A1domain-policy)
+- [加餐 - 副作用的处理方法 - 领域事件](#%E5%8A%A0%E9%A4%90---%E5%89%AF%E4%BD%9C%E7%94%A8%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95---%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6)
+  - [领域事件介绍](#%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6%E4%BB%8B%E7%BB%8D)
+  - [领域事件实现](#%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6%E5%AE%9E%E7%8E%B0)
+  - [目前领域事件的缺陷和展望](#%E7%9B%AE%E5%89%8D%E9%A2%86%E5%9F%9F%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BC%BA%E9%99%B7%E5%92%8C%E5%B1%95%E6%9C%9B)
+- [总结](#%E6%80%BB%E7%BB%93)
+- [参考](#%E5%8F%82%E8%80%83)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DDD详解第四弹-领域层设计规范
 
 在一个DDD架构设计中，领域层的设计合理性会直接影响整个架构的代码结构以及应用层、基础设施层的设计。
