@@ -700,11 +700,11 @@ ACL 防腐层的简单原理如下：
 
 无防腐层的情况：
 
-![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ac65ccd537d142e49ecce3bd19fb031f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/fe29a08a.png)
 
 有防腐层的情况：
 
-![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0d770f5ae33f4a34856786f1101ed655~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp)
+![](.DDD详解第五弹-如何避免写流水账代码_images/00f5823c.png)
 
 具体简单实现，假设所有外部依赖都命名为 ExternalXXXService：
 
