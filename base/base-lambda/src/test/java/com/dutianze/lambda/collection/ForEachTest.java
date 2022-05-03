@@ -15,7 +15,7 @@ class ForEachTest {
     private final ForEach forEach = new ForEach();
 
     @Test
-    void justFor() {
+    void forEach() {
         List<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
 
         forEach.justFor(list);
