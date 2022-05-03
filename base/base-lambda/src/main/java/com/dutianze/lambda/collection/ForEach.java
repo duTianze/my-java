@@ -7,7 +7,7 @@ import java.util.function.Consumer;
  * @author dutianze
  * @date 2022/5/3
  */
-public class ForEachExample {
+public class ForEach {
 
     public void justFor(List<String> list) {
         for (String s : list) {

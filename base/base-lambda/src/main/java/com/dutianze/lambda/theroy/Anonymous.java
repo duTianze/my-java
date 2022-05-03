@@ -1,13 +1,13 @@
 package com.dutianze.lambda.theroy;
 
 /**
- * 1. javac AnonymousExample.java
- * 2. javap -c AnonymousExample.class
+ * 1. javac Anonymous.java
+ * 2. javap -c Anonymous.class
  *
  * @author dutianze
  * @date 2022/5/1
  */
-public class AnonymousExample {
+public class Anonymous {
 
     public static void main(String[] args) {
         new Thread(new Runnable() {

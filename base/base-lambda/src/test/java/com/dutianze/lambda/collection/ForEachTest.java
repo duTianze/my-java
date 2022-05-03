@@ -10,16 +10,16 @@ import java.util.List;
  * @author dutianze
  * @date 2022/5/3
  */
-class ForEachExampleTest {
+class ForEachTest {
 
-    private final ForEachExample forEachExample = new ForEachExample();
+    private final ForEach forEach = new ForEach();
 
     @Test
     void justFor() {
         List<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
 
-        forEachExample.justFor(list);
-        forEachExample.anonymous(list);
-        forEachExample.lambda(list);
+        forEach.justFor(list);
+        forEach.anonymous(list);
+        forEach.lambda(list);
     }
 }
