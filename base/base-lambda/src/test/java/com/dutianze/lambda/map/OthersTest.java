@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,6 +62,22 @@ class OthersTest {
 
         // replace absent map failing
         Assertions.assertNull(map.replace(11, "one one"));
+    }
 
+    @Test
+    void name() {
+    }
+
+    @Test
+    void merge() {
+        Map<String, List<String>> map = new HashMap<>();
+        map.put("key1", new ArrayList<>(List.of("AAA")));
+        // key1が存在すれば"CCC"をListに追加、存在しなければ"BBB"という要素を持ったListを追加
+        map.merge("key1", new ArrayList<>(List.of("BBB")),
+                  (v1, v2) -> {
+                      v1.add("CCC");
+                      return v1;
+                  });
+        Assertions.assertTrue(map.get("key1").contains("CCC"));
     }
 }
