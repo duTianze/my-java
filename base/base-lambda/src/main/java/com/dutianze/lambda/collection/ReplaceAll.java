@@ -9,7 +9,7 @@ import java.util.function.UnaryOperator;
  */
 public class ReplaceAll {
 
-    public List<String> justFor(List<String> list) {
+    public List<String> forLoop(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i);
             if (s.length() > 3) {

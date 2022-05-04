@@ -10,7 +10,7 @@ import java.util.function.Predicate;
  */
 public class RemoveIf {
 
-    public List<String> justFor(List<String> list) {
+    public List<String> forLoop(List<String> list) {
         for (String s : list) {
             if (s.length() > 3) {
                 list.remove(s);

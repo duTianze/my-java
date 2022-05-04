@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * print element that length greater than 3
+ *
  * @author dutianze
  * @date 2022/5/3
  */
@@ -18,7 +20,7 @@ class ForEachTest {
     void forEach() {
         List<String> list = new ArrayList<>(Arrays.asList("I", "love", "you", "too"));
 
-        forEach.justFor(list);
+        forEach.forLoop(list);
         forEach.anonymous(list);
         forEach.lambda(list);
     }

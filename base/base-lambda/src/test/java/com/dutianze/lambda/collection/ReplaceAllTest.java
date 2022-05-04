@@ -26,8 +26,8 @@ class ReplaceAllTest {
     }
 
     @Test
-    void justFor() {
-        Assertions.assertEquals(expected, replaceAll.justFor(list));
+    void forLoop() {
+        Assertions.assertEquals(expected, replaceAll.forLoop(list));
     }
 
     @Test

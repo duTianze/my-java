@@ -27,8 +27,8 @@ class RemoveIfTest {
     }
 
     @Test
-    void justFor() {
-        Assertions.assertThrowsExactly(ConcurrentModificationException.class, () -> removeIf.justFor(list));
+    void forLoop() {
+        Assertions.assertThrowsExactly(ConcurrentModificationException.class, () -> removeIf.forLoop(list));
     }
 
     @Test

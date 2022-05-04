@@ -9,7 +9,7 @@ import java.util.function.Consumer;
  */
 public class ForEach {
 
-    public void justFor(List<String> list) {
+    public void forLoop(List<String> list) {
         for (String s : list) {
             if (s.length() > 3) {
                 System.out.println(s);
