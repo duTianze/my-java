@@ -13,6 +13,9 @@ public class ListNode {
     public Integer val;
     public ListNode next;
 
+    public ListNode() {
+    }
+
     public ListNode(Integer val) {
         this.val = val;
     }
@@ -25,6 +28,19 @@ public class ListNode {
                          curr.next = pre;
                          return curr;
                      });
+    }
+
+    public static ListNode with(Integer[] nums) {
+        ListNode curr = new ListNode();
+        ListNode head = curr;
+        for (int i = 0; i < nums.length; i++) {
+            curr.val = nums[i];
+            if (i < nums.length - 1) {
+                curr.next = new ListNode();
+            }
+            curr = curr.next;
+        }
+        return head;
     }
 
     @Override
