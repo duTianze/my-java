@@ -23,9 +23,21 @@ public class N_206_ReverseLinkedList {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode last = reverseList(head.next);
+        ListNode reverseHead = reverseList(head.next);
         head.next.next = head;
         head.next = null;
-        return last;
+        return reverseHead;
     }
+
+    public ListNode reverseListLoop(ListNode head) {
+        ListNode pre = null, cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
 }

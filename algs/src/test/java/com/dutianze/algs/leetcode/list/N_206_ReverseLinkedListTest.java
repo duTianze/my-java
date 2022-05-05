@@ -1,8 +1,7 @@
 package com.dutianze.algs.leetcode.list;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author dutianze
@@ -14,11 +13,21 @@ class N_206_ReverseLinkedListTest {
 
     @Test
     void reverseList() {
-        Integer[] resource = {1, 2, 3, 4, 5};
-        ListNode listNode = new ListNode(resource);
+        ListNode resource = ListNode.of(new Integer[]{1, 2, 3, 4, 5});
+        ListNode expected = ListNode.of(new Integer[]{5, 4, 3, 2, 1});
 
-        ListNode reverseList = solution.reverseList(listNode);
+        ListNode result = solution.reverseList(resource);
 
-        System.out.println(reverseList);
+        Assertions.assertEquals(expected.toString(), result.toString());
+    }
+
+    @Test
+    void reverseListLoop() {
+        ListNode resource = ListNode.of(new Integer[]{1, 2, 3, 4, 5});
+        ListNode expected = ListNode.of(new Integer[]{5, 4, 3, 2, 1});
+
+        ListNode result = solution.reverseListLoop(resource);
+
+        Assertions.assertEquals(expected.toString(), result.toString());
     }
 }

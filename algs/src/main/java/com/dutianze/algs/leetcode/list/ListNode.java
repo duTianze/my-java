@@ -1,30 +1,30 @@
 package com.dutianze.algs.leetcode.list;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.Arrays;
+
 /**
  * @author dutianze
  * @date 2021/1/3
  */
 public class ListNode {
+
     public Integer val;
     public ListNode next;
 
-    public ListNode() {
-    }
-
-    public ListNode(Integer val, ListNode next) {
+    public ListNode(Integer val) {
         this.val = val;
-        this.next = next;
     }
 
-    public ListNode(Integer[] nums) {
-        ListNode curr = this;
-        for (int i = 0; i < nums.length; i++) {
-            curr.val = nums[i];
-            if (i < nums.length - 1) {
-                curr.next = new ListNode();
-            }
-            curr = curr.next;
-        }
+    public static ListNode of(Integer[] nums) {
+        ArrayUtils.reverse(nums);
+        return Arrays.stream(nums)
+                     .map(ListNode::new)
+                     .reduce(null, (pre, curr) -> {
+                         curr.next = pre;
+                         return curr;
+                     });
     }
 
     @Override
