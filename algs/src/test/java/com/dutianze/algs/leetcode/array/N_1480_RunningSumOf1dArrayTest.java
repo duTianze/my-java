@@ -17,6 +17,7 @@ class N_1480_RunningSumOf1dArrayTest {
         int[] expected = {1, 3, 6, 10};
 
         int[] actual = solution.runningSum(nums);
+
         Assertions.assertArrayEquals(expected, actual);
     }
 }

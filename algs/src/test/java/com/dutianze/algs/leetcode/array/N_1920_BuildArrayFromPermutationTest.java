@@ -25,6 +25,7 @@ class N_1920_BuildArrayFromPermutationTest {
         int[] expected = {0, 1, 2, 4, 5, 3};
 
         int[] actual = ReflectionTestUtils.invokeMethod(solution, method, (Object) nums);
+
         Assertions.assertArrayEquals(expected, actual);
     }
 

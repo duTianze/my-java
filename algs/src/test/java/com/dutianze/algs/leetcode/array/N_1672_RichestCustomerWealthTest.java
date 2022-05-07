@@ -17,6 +17,7 @@ class N_1672_RichestCustomerWealthTest {
         int expect = 10;
 
         int actual = solution.maximumWealth(accounts);
+
         Assertions.assertEquals(expect, actual);
     }
 }
