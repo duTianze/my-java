@@ -1,5 +1,8 @@
 package com.dutianze.algs.leetcode.array;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a>
  * <h2>Easy</h2>
@@ -43,6 +46,15 @@ package com.dutianze.algs.leetcode.array;
 public class N_1_TwoSum {
 
     public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> valueMapIndex = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int remaining = target - nums[i];
+            Integer remainingIndex = valueMapIndex.get(remaining);
+            if (remainingIndex != null) {
+                return new int[]{i, remainingIndex};
+            }
+            valueMapIndex.put(nums[i], i);
+        }
         return new int[]{};
     }
 }
