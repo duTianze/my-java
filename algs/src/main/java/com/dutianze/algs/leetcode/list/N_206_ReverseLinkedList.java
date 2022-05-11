@@ -23,10 +23,10 @@ public class N_206_ReverseLinkedList {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode reverseHead = reverseList(head.next);
+        ListNode last = reverseList(head.next);
         head.next.next = head;
         head.next = null;
-        return reverseHead;
+        return last;
     }
 
     public ListNode reverseListLoop(ListNode head) {
