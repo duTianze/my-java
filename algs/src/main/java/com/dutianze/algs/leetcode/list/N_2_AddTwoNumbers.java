@@ -22,12 +22,29 @@ package com.dutianze.algs.leetcode.list;
  *     0 <= Node.val <= 9
  *     It is guaranteed that the list represents a number that does not have leading zeros.
  * </pre>
+ *
  * @author dutianze
  * @date 2022/5/12
  */
 public class N_2_AddTwoNumbers {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null || carry != 0) {
+            if (p != null) {
+                carry += p.val;
+                p = p.next;
+            }
+            if (q != null) {
+                carry += q.val;
+                q = q.next;
+            }
+            curr.next = new ListNode(carry % 10);
+            carry /= 10;
+            curr = curr.next;
+        }
+        return dummyHead.next;
     }
 }
