@@ -25,6 +25,7 @@ package com.dutianze.algs.leetcode.math;
  *     num1 and num2 consist of digits only.
  *     Both num1 and num2 do not contain any leading zero, except the number 0 itself.
  * </pre>
+ *
  * @author dutianze
  * @date 2022/5/17
  */
@@ -34,8 +35,8 @@ public class N_43_MultiplyStrings {
         int m = num1.length(), n = num2.length();
         int[] pos = new int[m + n];
 
-        for(int i = m - 1; i >= 0; i--) {
-            for(int j = n - 1; j >= 0; j--) {
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
                 int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
                 int p1 = i + j, p2 = i + j + 1;
                 int sum = mul + pos[p2];
@@ -46,8 +47,8 @@ public class N_43_MultiplyStrings {
         }
 
         StringBuilder sb = new StringBuilder();
-        for(int p : pos) {
-            if(!(sb.length() == 0 && p == 0)) {
+        for (int p : pos) {
+            if (!(sb.length() == 0 && p == 0)) {
                 sb.append(p);
             }
         }
