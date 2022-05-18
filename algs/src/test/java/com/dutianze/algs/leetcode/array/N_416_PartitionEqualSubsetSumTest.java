@@ -16,4 +16,10 @@ class N_416_PartitionEqualSubsetSumTest {
         boolean canPartition = solution.canPartition(new int[]{1, 5, 11, 5});
         Assertions.assertTrue(canPartition);
     }
+
+    @Test
+    void canPartitionCompress() {
+        boolean canPartition = solution.canPartitionCompress(new int[]{1, 5, 11, 5});
+        Assertions.assertTrue(canPartition);
+    }
 }

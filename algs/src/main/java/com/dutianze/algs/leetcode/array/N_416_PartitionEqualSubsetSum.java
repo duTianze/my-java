@@ -1,5 +1,7 @@
 package com.dutianze.algs.leetcode.array;
 
+import java.util.stream.IntStream;
+
 /**
  * <a href="https://leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a>
  * <h2>Medium</h2>
@@ -31,10 +33,7 @@ package com.dutianze.algs.leetcode.array;
 public class N_416_PartitionEqualSubsetSum {
 
     public boolean canPartition(int[] nums) {
-        int sum = 0;
-        for (int num : nums) {
-            sum += num;
-        }
+        int sum = IntStream.of(nums).sum();
         if (sum % 2 != 0) {
             return false;
         }
@@ -60,5 +59,25 @@ public class N_416_PartitionEqualSubsetSum {
             }
         }
         return dp[n][sum];
+    }
+
+    public boolean canPartitionCompress(int[] nums) {
+        int sum = IntStream.of(nums).sum();
+        if (sum % 2 != 0) {
+            return false;
+        }
+        sum = sum / 2;
+        boolean[] dp = new boolean[sum + 1];
+        dp[0] = true;
+        for (int num : nums) {
+            // j 从右到左: 假设第一排算完, 第二排开始算，第二排依赖第一排数据，只能从右到左才能在计算第二排时不影响所需的第一排数据
+            for (int j = sum; j >= 0; j--) {
+                if (j >= num) {
+                    // 二维 -> 一维, 本层的dp[j] = 上一层的dp[j] || 上一层的dp[j - num]
+                    dp[j] = dp[j] || dp[j - num];
+                }
+            }
+        }
+        return dp[sum];
     }
 }
