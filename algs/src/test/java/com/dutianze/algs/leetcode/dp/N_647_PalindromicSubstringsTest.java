@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.string;
+package com.dutianze.algs.leetcode.dp;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

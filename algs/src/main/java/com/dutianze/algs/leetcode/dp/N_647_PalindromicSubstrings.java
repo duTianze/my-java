@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.string;
+package com.dutianze.algs.leetcode.dp;
 
 /**
  * <a href="https://leetcode.com/problems/palindromic-substrings/">647. Palindromic Substrings</a>
