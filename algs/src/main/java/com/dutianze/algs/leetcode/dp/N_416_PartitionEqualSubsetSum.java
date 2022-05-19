@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.array;
+package com.dutianze.algs.leetcode.dp;
 
 import java.util.stream.IntStream;
 

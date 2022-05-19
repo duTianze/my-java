@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.array;
+package com.dutianze.algs.leetcode.dp;
 
 /**
  * <a href="https://leetcode.com/problems/coin-change-2/">518. Coin Change 2</a>
