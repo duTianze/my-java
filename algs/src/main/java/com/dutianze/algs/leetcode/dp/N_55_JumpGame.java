@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.array;
+package com.dutianze.algs.leetcode.dp;
 
 /**
  * <a href="https://leetcode.com/problems/jump-game/">55. Jump Game</a>
