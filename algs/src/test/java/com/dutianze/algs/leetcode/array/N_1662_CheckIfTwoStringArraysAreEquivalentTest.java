@@ -16,4 +16,10 @@ class N_1662_CheckIfTwoStringArraysAreEquivalentTest {
         boolean arrayStringsAreEqual = solution.arrayStringsAreEqual(new String[]{"a", "cb"}, new String[]{"ab", "c"});
         Assertions.assertFalse(arrayStringsAreEqual);
     }
+
+    @Test
+    void arrayStringsAreEqual2() {
+        boolean arrayStringsAreEqual = solution.arrayStringsAreEqual2(new String[]{"a", "cb"}, new String[]{"ab", "c"});
+        Assertions.assertFalse(arrayStringsAreEqual);
+    }
 }
