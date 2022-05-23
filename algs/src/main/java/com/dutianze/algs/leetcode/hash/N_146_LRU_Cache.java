@@ -57,20 +57,21 @@ public class N_146_LRU_Cache {
     }
 
     public int get(int key) {
-        if (!cache.containsKey(key)) {
+        Integer val = cache.get(key);
+        if (val == null) {
             return -1;
         }
-        // 将 key 变为最近使用
-        makeRecently(key);
-        return cache.get(key);
+        makeRecently(key, val);
+        return val;
     }
 
     public void put(int key, int value) {
-        if (cache.containsKey(key)) {
+        Integer val = cache.get(key);
+        if (val != null) {
             // 修改 key 的值
             cache.put(key, value);
             // 将 key 变为最近使用
-            makeRecently(key);
+            makeRecently(key, val);
             return;
         }
 
@@ -83,9 +84,7 @@ public class N_146_LRU_Cache {
         cache.put(key, value);
     }
 
-    private void makeRecently(int key) {
-        int val = cache.get(key);
-        // 删除 key，重新插入到队尾
+    private void makeRecently(int key, Integer val) {
         cache.remove(key);
         cache.put(key, val);
     }
