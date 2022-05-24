@@ -6,7 +6,7 @@ import java.util.HashMap;
  * @author dutianze
  * @date 2022/5/23
  */
-public class N_146_LRU_Cache_2 {
+public class N_146_LRU_Cache_DoubleList {
 
     // key -> Node(key, val)
     private final HashMap<Integer, Node> map;
@@ -14,7 +14,7 @@ public class N_146_LRU_Cache_2 {
     private final DoubleList cache;
     private final int cap;
 
-    public N_146_LRU_Cache_2(int capacity) {
+    public N_146_LRU_Cache_DoubleList(int capacity) {
         this.cap = capacity;
         this.map = new HashMap<>();
         this.cache = new DoubleList();
