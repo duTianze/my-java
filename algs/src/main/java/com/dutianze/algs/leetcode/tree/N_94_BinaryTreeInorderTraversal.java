@@ -2,6 +2,7 @@ package com.dutianze.algs.leetcode.tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * <a href="https://leetcode.com/problems/binary-tree-inorder-traversal/">94. Binary Tree Inorder Traversal</a>
@@ -52,5 +53,22 @@ public class N_94_BinaryTreeInorderTraversal {
         inorderTraversal(curr.left, result);
         result.add(curr.val);
         inorderTraversal(curr.right, result);
+    }
+
+
+    public List<Integer> inorderTraversalIterative(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.empty()) {
+            while (cur != null) {
+                stack.add(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            list.add(cur.val);
+            cur = cur.right;
+        }
+        return list;
     }
 }

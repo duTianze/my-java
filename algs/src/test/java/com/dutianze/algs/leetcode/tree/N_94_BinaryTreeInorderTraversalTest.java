@@ -16,9 +16,18 @@ class N_94_BinaryTreeInorderTraversalTest {
     @Test
     void inorderTraversal() {
         TreeNode treeNode = TreeNode.createTree(1, null, 2, null, null, 3);
-        treeNode.print();
 
         List<Integer> result = solution.inorderTraversal(treeNode);
+
+        Assertions.assertEquals(List.of(1, 3, 2), result);
+    }
+
+    @Test
+    void inorderTraversalIterative() {
+        TreeNode treeNode = TreeNode.createTree(1, null, 2, null, null, 3);
+
+        List<Integer> result = solution.inorderTraversalIterative(treeNode);
+
         Assertions.assertEquals(List.of(1, 3, 2), result);
     }
 }
