@@ -15,7 +15,7 @@ class N_94_BinaryTreeInorderTraversalTest {
 
     @Test
     void inorderTraversal() {
-        TreeNode treeNode = TreeNode.createTree(1, null, 2, null, null, 3);
+        TreeNode treeNode = new TreeNode(1, null, 2, 3);
 
         List<Integer> result = solution.inorderTraversal(treeNode);
 
@@ -24,7 +24,7 @@ class N_94_BinaryTreeInorderTraversalTest {
 
     @Test
     void inorderTraversalIterative() {
-        TreeNode treeNode = TreeNode.createTree(1, null, 2, null, null, 3);
+        TreeNode treeNode = new TreeNode(1, null, 2, 3);
 
         List<Integer> result = solution.inorderTraversalIterative(treeNode);
 

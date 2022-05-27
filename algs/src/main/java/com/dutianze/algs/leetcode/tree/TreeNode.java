@@ -23,16 +23,41 @@ public class TreeNode {
         this.right = right;
     }
 
+    public TreeNode(Integer... values) {
+        Queue<Integer> queue = Arrays.stream(values).collect(Collectors.toCollection(LinkedList::new));
+        this.val = queue.poll();
+        Queue<TreeNode> preLevel = new LinkedList<>();
+        preLevel.offer(this);
+        while (!preLevel.isEmpty()) {
+            int size = preLevel.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = preLevel.poll();
+                if (cur == null) {
+                    continue;
+                }
+                Integer leftValue = queue.poll();
+                Integer rightValue = queue.poll();
+                if (leftValue != null) {
+                    TreeNode left = new TreeNode(leftValue);
+                    cur.left = left;
+                    preLevel.offer(left);
+                }
+                if (rightValue != null) {
+                    TreeNode right = new TreeNode(rightValue);
+                    cur.right = right;
+                    preLevel.offer(right);
+                }
+            }
+        }
+    }
 
     public TreeNode getLeft() {
         return this.left;
     }
 
-
     public TreeNode getRight() {
         return this.right;
     }
-
 
     public String getText() {
         return String.valueOf(this.val);
@@ -66,20 +91,15 @@ public class TreeNode {
      */
     public void print() {
         List<List<String>> lines = new ArrayList<>();
-
         List<TreeNode> level = new ArrayList<>();
         List<TreeNode> next = new ArrayList<>();
 
         level.add(this);
         int nn = 1;
-
         int widest = 0;
-
         while (nn != 0) {
             List<String> line = new ArrayList<>();
-
             nn = 0;
-
             for (TreeNode n : level) {
                 if (n == null) {
                     line.add(null);
@@ -98,17 +118,13 @@ public class TreeNode {
                     if (n.getRight() != null) {nn++;}
                 }
             }
-
             if (widest % 2 == 1) {widest++;}
-
             lines.add(line);
-
             List<TreeNode> tmp = level;
             level = next;
             next = tmp;
             next.clear();
         }
-
         int percipience = lines.get(lines.size() - 1).size() * (widest + 4);
         for (int i = 0; i < lines.size(); i++) {
             List<String> line = lines.get(i);
@@ -116,7 +132,6 @@ public class TreeNode {
 
             if (i > 0) {
                 for (int j = 0; j < line.size(); j++) {
-
                     // split node
                     char c = ' ';
                     if (j % 2 == 1) {
@@ -127,14 +142,12 @@ public class TreeNode {
                         }
                     }
                     System.out.print(c);
-
                     // lines and spaces
                     if (line.get(j) == null) {
                         for (int k = 0; k < percipience - 1; k++) {
                             System.out.print(" ");
                         }
                     } else {
-
                         for (int k = 0; k < hpw; k++) {
                             System.out.print(j % 2 == 0 ? " " : "─");
                         }
@@ -146,15 +159,12 @@ public class TreeNode {
                 }
                 System.out.println();
             }
-
             // print line of numbers
             for (String f : line) {
-
                 if (f == null) {f = "";}
                 float a = percipience / 2f - f.length() / 2f;
                 int gap1 = (int) Math.ceil(a);
                 int gap2 = (int) Math.floor(a);
-
                 // a number
                 for (int k = 0; k < gap1; k++) {
                     System.out.print(" ");
@@ -165,7 +175,6 @@ public class TreeNode {
                 }
             }
             System.out.println();
-
             percipience /= 2;
         }
     }
