@@ -1,7 +1,11 @@
 package com.dutianze.algs.leetcode.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <a>145. Binary Tree Postorder Traversal</a>
+ * <h2>Easy</h2>
  * <pre>
  * Given the root of a binary tree, return the postorder traversal of its nodes' values.
  *
@@ -31,4 +35,19 @@ package com.dutianze.algs.leetcode.tree;
  * @date 2022/5/28
  */
 public class N_145_BinaryTreePostorderTraversal {
+
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        postorderTraversal(root, result);
+        return result;
+    }
+
+    private void postorderTraversal(TreeNode curr, List<Integer> result) {
+        if (curr == null) {
+            return;
+        }
+        postorderTraversal(curr.left, result);
+        postorderTraversal(curr.right, result);
+        result.add(curr.val);
+    }
 }
