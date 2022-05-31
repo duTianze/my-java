@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  * @date 2022/5/25
  */
 public class TreeNode {
-    public Integer val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
     public TreeNode next;
@@ -25,6 +25,9 @@ public class TreeNode {
 
     public TreeNode(Integer... values) {
         Queue<Integer> queue = Arrays.stream(values).collect(Collectors.toCollection(LinkedList::new));
+        if (queue.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         this.val = queue.poll();
         Queue<TreeNode> preLevel = new LinkedList<>();
         preLevel.offer(this);
