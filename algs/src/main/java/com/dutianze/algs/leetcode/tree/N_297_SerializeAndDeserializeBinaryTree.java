@@ -49,7 +49,7 @@ public class N_297_SerializeAndDeserializeBinaryTree {
         return sb.toString();
     }
 
-    void serialize(TreeNode root, StringBuilder sb) {
+    private void serialize(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append(NULL).append(SEP);
             return;
@@ -69,7 +69,7 @@ public class N_297_SerializeAndDeserializeBinaryTree {
         return deserialize(nodes);
     }
 
-    TreeNode deserialize(LinkedList<String> nodes) {
+    private TreeNode deserialize(LinkedList<String> nodes) {
         if (nodes.isEmpty()) {
             return null;
         }
