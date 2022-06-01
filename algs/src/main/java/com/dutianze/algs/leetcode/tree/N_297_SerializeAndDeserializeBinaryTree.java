@@ -1,5 +1,7 @@
 package com.dutianze.algs.leetcode.tree;
 
+import java.util.LinkedList;
+
 /**
  * <a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/">297. Serialize and Deserialize Binary Tree</a>
  * <h2>Hard</h2>
@@ -37,13 +39,47 @@ package com.dutianze.algs.leetcode.tree;
  */
 public class N_297_SerializeAndDeserializeBinaryTree {
 
+    private static final String SEP = ",";
+    private static final String NULL = "#";
+
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        serialize(root, sb);
+        return sb.toString();
+    }
 
+    void serialize(TreeNode root, StringBuilder sb) {
+        if (root == null) {
+            sb.append(NULL).append(SEP);
+            return;
+        }
+        sb.append(root.val).append(SEP);
+
+        serialize(root.left, sb);
+        serialize(root.right, sb);
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
+        LinkedList<String> nodes = new LinkedList<>();
+        for (String s : data.split(SEP)) {
+            nodes.addLast(s);
+        }
+        return deserialize(nodes);
+    }
 
+    TreeNode deserialize(LinkedList<String> nodes) {
+        if (nodes.isEmpty()) {
+            return null;
+        }
+        String first = nodes.removeFirst();
+        if (first.equals(NULL)) {
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.parseInt(first));
+        root.left = deserialize(nodes);
+        root.right = deserialize(nodes);
+        return root;
     }
 }
