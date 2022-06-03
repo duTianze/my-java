@@ -1,5 +1,7 @@
 package com.dutianze.algs.leetcode.tree;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -68,31 +70,9 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        return "TreeNode{" +
-               "val=" + val +
-               ", left=" + left +
-               ", right=" + right +
-               '}';
-    }
+        StringWriter out = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(out);
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
-        TreeNode treeNode = (TreeNode) o;
-        return Objects.equals(val, treeNode.val) && Objects.equals(left, treeNode.left) &&
-               Objects.equals(right, treeNode.right);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(val, left, right);
-    }
-
-    /**
-     * Print a tree
-     */
-    public void print() {
         List<List<String>> lines = new ArrayList<>();
         List<TreeNode> level = new ArrayList<>();
         List<TreeNode> next = new ArrayList<>();
@@ -144,23 +124,23 @@ public class TreeNode {
                             if (line.get(j) != null) {c = '└';}
                         }
                     }
-                    System.out.print(c);
+                    printWriter.print(c);
                     // lines and spaces
                     if (line.get(j) == null) {
                         for (int k = 0; k < percipience - 1; k++) {
-                            System.out.print(" ");
+                            printWriter.print(" ");
                         }
                     } else {
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? " " : "─");
+                            printWriter.print(j % 2 == 0 ? " " : "─");
                         }
-                        System.out.print(j % 2 == 0 ? "┌" : "┐");
+                        printWriter.print(j % 2 == 0 ? "┌" : "┐");
                         for (int k = 0; k < hpw; k++) {
-                            System.out.print(j % 2 == 0 ? "─" : " ");
+                            printWriter.print(j % 2 == 0 ? "─" : " ");
                         }
                     }
                 }
-                System.out.println();
+                printWriter.println();
             }
             // print line of numbers
             for (String f : line) {
@@ -170,16 +150,31 @@ public class TreeNode {
                 int gap2 = (int) Math.floor(a);
                 // a number
                 for (int k = 0; k < gap1; k++) {
-                    System.out.print(" ");
+                    printWriter.print(" ");
                 }
-                System.out.print(f);
+                printWriter.print(f);
                 for (int k = 0; k < gap2; k++) {
-                    System.out.print(" ");
+                    printWriter.print(" ");
                 }
             }
-            System.out.println();
+            printWriter.println();
             percipience /= 2;
         }
+        return out.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
+        TreeNode treeNode = (TreeNode) o;
+        return Objects.equals(val, treeNode.val) && Objects.equals(left, treeNode.left) &&
+               Objects.equals(right, treeNode.right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, left, right);
     }
 
     public List<Integer> levelTraversal() {
@@ -236,5 +231,26 @@ public class TreeNode {
         // tree(index).right = 2 * index + 2
         tree.right = createTree(values, index * 2 + 2);
         return tree;
+    }
+
+    public TreeNode findByVal(int val) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(this);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < queue.size(); i++) {
+                TreeNode poll = queue.poll();
+                if (poll.val == val) {
+                    return poll;
+                }
+                if (poll.left != null) {
+                    queue.offer(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.offer(poll.right);
+                }
+            }
+        }
+        return null;
     }
 }
