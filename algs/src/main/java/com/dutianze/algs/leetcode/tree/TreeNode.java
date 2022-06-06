@@ -198,41 +198,6 @@ public class TreeNode {
         levelOrderTraversal(curr.right, result, height + 1);
     }
 
-    public static List<Integer> extractValues(TreeNode n) {
-        List<Integer> result = new ArrayList<>();
-        if (n.getLeft() != null) {
-            result.addAll(extractValues(n.getLeft()));
-        }
-        if (n.getRight() != null) {
-            result.addAll(extractValues(n.getRight()));
-        }
-        result.add(n.val);
-        return result;
-    }
-
-    public static TreeNode createTree(Integer... values) {
-        if (values == null || values.length == 0) {
-            return null;
-        }
-        return createTree(Arrays.stream(values).toList(), 0);
-    }
-
-    private static TreeNode createTree(List<Integer> values, int index) {
-        if (index >= values.size()) {
-            return null;
-        }
-        Integer value = values.get(index);
-        if (value == null) {
-            return null;
-        }
-        TreeNode tree = new TreeNode(value);
-        // tree(index).left = 2 * index + 1
-        tree.left = createTree(values, index * 2 + 1);
-        // tree(index).right = 2 * index + 2
-        tree.right = createTree(values, index * 2 + 2);
-        return tree;
-    }
-
     public TreeNode findByVal(int val) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(this);
