@@ -52,6 +52,5 @@ class N_1476_SubrectangleQueriesTest {
 
         int actual5 = n_1476_subrectangleQueries.getValueHistory(0, 2);
         Assertions.assertEquals(actual5, 5);
-
     }
 }
