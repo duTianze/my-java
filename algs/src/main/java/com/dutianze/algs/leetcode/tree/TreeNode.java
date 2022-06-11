@@ -203,8 +203,11 @@ public class TreeNode {
         queue.offer(this);
         while (!queue.isEmpty()) {
             int size = queue.size();
-            for (int i = 0; i < queue.size(); i++) {
+            for (int i = 0; i < size; i++) {
                 TreeNode poll = queue.poll();
+                if (poll == null) {
+                    throw new RuntimeException();
+                }
                 if (poll.val == val) {
                     return poll;
                 }
