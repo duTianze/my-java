@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class ListNode {
 
-    public Integer val;
+    public int val;
     public ListNode next;
 
     public ListNode() {
@@ -30,7 +30,7 @@ public class ListNode {
                      });
     }
 
-    public static ListNode with(Integer[] nums) {
+    public static ListNode with(int... nums) {
         ListNode curr = new ListNode();
         ListNode head = curr;
         for (int i = 0; i < nums.length; i++) {

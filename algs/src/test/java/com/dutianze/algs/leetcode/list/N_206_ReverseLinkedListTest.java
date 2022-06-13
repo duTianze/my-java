@@ -34,7 +34,7 @@ class N_206_ReverseLinkedListTest {
     @Test
     void generateListNote() {
         ListNode of = ListNode.of(new Integer[]{1, 2, 3, 4, 5});
-        ListNode with = ListNode.with(new Integer[]{1, 2, 3, 4, 5});
+        ListNode with = ListNode.with(1, 2, 3, 4, 5);
 
         Assertions.assertEquals(of.toString(), with.toString());
     }

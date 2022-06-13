@@ -13,9 +13,9 @@ class N_92_ReverseLinkedListIITest {
 
     @Test
     void reverseBetween() {
-        ListNode resource = ListNode.with(new Integer[]{1, 2, 3, 4, 5});
+        ListNode resource = ListNode.with(1, 2, 3, 4, 5);
         int left = 2, right = 4;
-        ListNode expected = ListNode.with(new Integer[]{1, 4, 3, 2, 5});
+        ListNode expected = ListNode.with(1, 4, 3, 2, 5);
 
         ListNode result = solution.reverseBetween(resource, left, right);
 
@@ -24,9 +24,9 @@ class N_92_ReverseLinkedListIITest {
 
     @Test
     void reverseBetweenLoop() {
-        ListNode resource = ListNode.with(new Integer[]{1, 2, 3, 4, 5});
+        ListNode resource = ListNode.with(1, 2, 3, 4, 5);
         int left = 2, right = 4;
-        ListNode expected = ListNode.with(new Integer[]{1, 4, 3, 2, 5});
+        ListNode expected = ListNode.with(1, 4, 3, 2, 5);
 
         ListNode result = solution.reverseBetweenLoop(resource, left, right);
 

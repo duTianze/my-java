@@ -13,9 +13,9 @@ class N_2_AddTwoNumbersTest {
 
     @Test
     void addTwoNumbers() {
-        ListNode l1 = ListNode.with(new Integer[]{2, 4, 3});
-        ListNode l2 = ListNode.with(new Integer[]{5, 6, 4});
-        ListNode expected = ListNode.with(new Integer[]{7, 0, 8});
+        ListNode l1 = ListNode.with(2, 4, 3);
+        ListNode l2 = ListNode.with(5, 6, 4);
+        ListNode expected = ListNode.with(7, 0, 8);
 
         ListNode result = solution.addTwoNumbers(l1, l2);
 

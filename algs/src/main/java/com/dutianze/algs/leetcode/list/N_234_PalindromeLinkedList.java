@@ -33,7 +33,7 @@ public class N_234_PalindromeLinkedList {
         ListNode right = reverse(slow);
 
         while (right != null) {
-            if (!left.val.equals(right.val)) {
+            if (!(left.val == right.val)) {
                 return false;
             }
             left = left.next;

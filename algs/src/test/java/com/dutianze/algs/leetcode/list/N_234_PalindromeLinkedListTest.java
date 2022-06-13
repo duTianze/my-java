@@ -13,7 +13,7 @@ class N_234_PalindromeLinkedListTest {
 
     @Test
     void isPalindrome() {
-        ListNode resource = ListNode.with(new Integer[]{1, 2, 2, 1});
+        ListNode resource = ListNode.with(1, 2, 2, 1);
 
         boolean result = solution.isPalindrome(resource);
 
