@@ -43,9 +43,7 @@ public class N_938_RangeSumOfBST {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode cur = queue.poll();
-                if (cur == null) {
-                    throw new RuntimeException();
-                }
+                assert cur != null;
                 if (cur.val >= low && cur.val <= high) {
                     sum += cur.val;
                 }
@@ -58,5 +56,18 @@ public class N_938_RangeSumOfBST {
             }
         }
         return sum;
+    }
+
+    public int rangeSumBSTRecursion(TreeNode root, int low, int high) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.val > high) {
+            return rangeSumBSTRecursion(root.left, low, high);
+        }
+        if (root.val < low) {
+            return rangeSumBSTRecursion(root.right, low, high);
+        }
+        return root.val + rangeSumBSTRecursion(root.left, low, high) + rangeSumBSTRecursion(root.right, low, high);
     }
 }
