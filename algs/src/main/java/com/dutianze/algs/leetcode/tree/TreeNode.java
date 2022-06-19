@@ -205,9 +205,7 @@ public class TreeNode {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode poll = queue.poll();
-                if (poll == null) {
-                    throw new RuntimeException();
-                }
+                assert poll != null;
                 if (poll.val == val) {
                     return poll;
                 }

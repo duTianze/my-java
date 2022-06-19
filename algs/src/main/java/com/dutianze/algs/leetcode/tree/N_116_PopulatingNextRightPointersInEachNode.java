@@ -81,12 +81,10 @@ public class N_116_PopulatingNextRightPointersInEachNode {
             TreeNode pre = null;
             for (int i = 0; i < size; i++) {
                 TreeNode cur = queue.poll();
-                if (cur == null) {
-                    throw new RuntimeException();
-                }
                 if (pre != null) {
                     pre.next = cur;
                 }
+                assert cur != null;
                 if (cur.left != null) {
                     queue.offer(cur.left);
                 }
