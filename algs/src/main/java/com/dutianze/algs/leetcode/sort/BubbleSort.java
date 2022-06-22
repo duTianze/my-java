@@ -20,10 +20,4 @@ public class BubbleSort implements Sort {
         }
         return array;
     }
-
-    private void swap(int[] a, int i, int j) {
-        int swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
-    }
 }

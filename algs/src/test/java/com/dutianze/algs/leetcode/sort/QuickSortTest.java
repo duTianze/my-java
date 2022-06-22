@@ -7,11 +7,11 @@ import java.util.Arrays;
 
 /**
  * @author dutianze
- * @date 2022/6/21
+ * @date 2022/6/22
  */
-class BubbleSortTest {
+class QuickSortTest {
 
-    private final Sort sort = new BubbleSort();
+    private final QuickSort sort = new QuickSort();
 
     @Test
     void sort() {
