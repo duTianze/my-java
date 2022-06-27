@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.sort;
+package com.dutianze.algs.sort;
 
 import java.util.Arrays;
 

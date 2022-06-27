@@ -1,4 +1,4 @@
-package com.dutianze.algs.leetcode.sort;
+package com.dutianze.algs.sort;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,11 +7,11 @@ import java.util.Arrays;
 
 /**
  * @author dutianze
- * @date 2022/6/26
+ * @date 2022/6/25
  */
-class MergeSortTest {
+class ShellSortTest {
 
-    private final MergeSort sort = new MergeSort();
+    private final ShellSort sort = new ShellSort();
 
     @Test
     void sort() {
