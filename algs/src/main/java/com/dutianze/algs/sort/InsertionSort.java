@@ -6,15 +6,14 @@ package com.dutianze.algs.sort;
  */
 public class InsertionSort implements Sort {
     @Override
-    public int[] sort(int[] array) {
-        if (array == null) {
-            return null;
+    public void sort(int[] arr) {
+        if (isEmpty(arr)) {
+            return;
         }
-        for (int i = 1; i < array.length; i++) {
-            for (int j = i; j > 0 && array[j] < array[j - 1]; j--) {
-                swap(array, j - 1, j);
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
+                swap(arr, j - 1, j);
             }
         }
-        return array;
     }
 }

@@ -7,7 +7,7 @@ package com.dutianze.algs.sort;
 public class ShellSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
+    public void sort(int[] array) {
         int len = array.length;
         int temp, gap = len / 2;
         while (gap > 0) {
@@ -22,6 +22,5 @@ public class ShellSort implements Sort {
             }
             gap /= 2;
         }
-        return array;
     }
 }

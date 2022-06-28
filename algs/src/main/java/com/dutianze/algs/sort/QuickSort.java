@@ -7,9 +7,8 @@ package com.dutianze.algs.sort;
 public class QuickSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
+    public void sort(int[] array) {
         quickSort(array, 0, array.length - 1);
-        return array;
     }
 
     private void quickSort(int[] array, int left, int right) {

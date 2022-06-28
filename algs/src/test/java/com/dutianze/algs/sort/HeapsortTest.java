@@ -19,8 +19,8 @@ class HeapsortTest {
         int[] expected = Arrays.copyOf(array, array.length);
         Arrays.sort(expected);
 
-        int[] sorted = sort.sort(array);
+        sort.sort(array);
 
-        Assertions.assertArrayEquals(expected, sorted);
+        Assertions.assertArrayEquals(expected, array);
     }
 }

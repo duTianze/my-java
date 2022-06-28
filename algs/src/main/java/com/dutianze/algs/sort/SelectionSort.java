@@ -7,9 +7,9 @@ package com.dutianze.algs.sort;
 public class SelectionSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
-        if (array == null) {
-            return null;
+    public void sort(int[] array) {
+        if (isEmpty(array)) {
+            return;
         }
         final int N = array.length;
         for (int i = 0; i < N; i++) {
@@ -21,6 +21,5 @@ public class SelectionSort implements Sort {
             }
             swap(array, i, swapIndex);
         }
-        return array;
     }
 }

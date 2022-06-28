@@ -9,13 +9,20 @@ import java.util.Arrays;
 public class MergeSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
-        int n = array.length;
-        if (n <= 1) {return array;}
+    public void sort(int[] arr) {
+        if (isEmpty(arr)) {
+            return;
+        }
+        arr = mergeSort(arr);
+    }
+
+    public int[] mergeSort(int[] arr) {
+        int n = arr.length;
+        if (n <= 1) {return arr;}
 
         // Split array into two parts and recursively sort them
-        int[] left = sort(Arrays.copyOfRange(array, 0, n / 2));
-        int[] right = sort(Arrays.copyOfRange(array, n / 2, n));
+        int[] left = mergeSort(Arrays.copyOfRange(arr, 0, n / 2));
+        int[] right = mergeSort(Arrays.copyOfRange(arr, n / 2, n));
 
         // Combine the two arrays into one larger array
         return merge(left, right);

@@ -7,17 +7,20 @@ package com.dutianze.algs.sort;
 public class BubbleSort implements Sort {
 
     @Override
-    public int[] sort(int[] array) {
-        if (array.length == 0) {
-            return array;
+    public void sort(int[] arr) {
+        if (isEmpty(arr)) {
+            return;
         }
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - 1 - i; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j, j + 1);
-                }
+        for (int n = arr.length; n >= 1; n--) {
+            bubble(arr, n);
+        }
+    }
+
+    private void bubble(int[] arr, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                swap(arr, i, i + 1);
             }
         }
-        return array;
     }
 }
