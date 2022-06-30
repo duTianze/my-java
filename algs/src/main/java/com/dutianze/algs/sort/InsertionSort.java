@@ -25,5 +25,4 @@ public class InsertionSort implements Sort {
         }
         arr[i] = k;
     }
-
 }
