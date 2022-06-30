@@ -7,19 +7,25 @@ package com.dutianze.algs.sort;
 public class SelectionSort implements Sort {
 
     @Override
-    public void sort(int[] array) {
-        if (isEmpty(array)) {
+    public void sort(int[] arr) {
+        if (isEmpty(arr)) {
             return;
         }
-        final int N = array.length;
-        for (int i = 0; i < N; i++) {
-            int swapIndex = i;
-            for (int j = i + 1; j < N; j++) {
-                if (array[j] < array[swapIndex]) {
-                    swapIndex = j;
-                }
-            }
-            swap(array, i, swapIndex);
+        int n = arr.length;
+        while (n > 1) {
+            int maxPos = findMaxPos(arr, n);
+            swap(arr, maxPos, n - 1);
+            n--;
         }
+    }
+
+    private int findMaxPos(int[] arr, int n) {
+        int pos = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > arr[pos]) {
+                pos = i;
+            }
+        }
+        return pos;
     }
 }
