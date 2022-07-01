@@ -26,6 +26,7 @@
 		<module>base-lambda</module>
 		<module>base-web</module>
 		<module>base-start</module>
+		<module>base-netty</module>
 	</modules>
 
 	<!-- 属性说明 -->
