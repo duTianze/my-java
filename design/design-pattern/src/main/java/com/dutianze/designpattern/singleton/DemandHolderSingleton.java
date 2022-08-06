@@ -4,12 +4,12 @@ package com.dutianze.designpattern.singleton;
  * @author dutianze
  * @date 2022/6/30
  */
-public class InnerClassSingleton {
+public class DemandHolderSingleton {
 
     /**
      * Private constructor.
      */
-    private InnerClassSingleton() {
+    private DemandHolderSingleton() {
     }
 
     /**
@@ -17,7 +17,7 @@ public class InnerClassSingleton {
      *
      * @return Singleton instance
      */
-    public static InnerClassSingleton getInstance() {
+    public static DemandHolderSingleton getInstance() {
         return HelperHolder.INSTANCE;
     }
 
@@ -25,6 +25,6 @@ public class InnerClassSingleton {
      * Provides the lazy-loaded Singleton instance.
      */
     private static class HelperHolder {
-        private static final InnerClassSingleton INSTANCE = new InnerClassSingleton();
+        private static final DemandHolderSingleton INSTANCE = new DemandHolderSingleton();
     }
 }

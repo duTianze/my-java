@@ -4,25 +4,25 @@ package com.dutianze.designpattern.singleton;
  * @author dutianze
  * @date 2022/6/30
  */
-public class EagerlyInitSingleton {
+public class EarlyInitSingleton {
 
     /**
      * Private constructor so nobody can instantiate the class.
      */
-    private EagerlyInitSingleton() {
+    private EarlyInitSingleton() {
     }
 
     /**
      * Static to class instance of the class.
      */
-    private static final EagerlyInitSingleton INSTANCE = new EagerlyInitSingleton();
+    private static final EarlyInitSingleton INSTANCE = new EarlyInitSingleton();
 
     /**
      * To be called by user to obtain instance of the class.
      *
      * @return instance of the singleton.
      */
-    public static EagerlyInitSingleton getInstance() {
+    public static EarlyInitSingleton getInstance() {
         return INSTANCE;
     }
 }
