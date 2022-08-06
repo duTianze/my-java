@@ -14,11 +14,11 @@ public enum EnumSingleton {
         this.info = info;
     }
 
-    public EnumSingleton getInstance() {
-        return INSTANCE;
-    }
-
     public String getInfo() {
         return info;
+    }
+
+    public static EnumSingleton getInstance() {
+        return INSTANCE;
     }
 }

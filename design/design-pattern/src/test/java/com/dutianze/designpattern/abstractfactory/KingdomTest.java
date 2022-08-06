@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.abstractfactory.fatory;
+package com.dutianze.designpattern.abstractfactory;
 
-import com.dutianze.designpattern.abstractfactory.kingdom.Castle;
+import com.dutianze.designpattern.abstractfactory.fatory.KingdomFactory;
 import com.dutianze.designpattern.abstractfactory.kingdom.King;
 import com.dutianze.designpattern.abstractfactory.kingdom.Kingdom;
 import com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfKing;
