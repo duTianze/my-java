@@ -8,6 +8,7 @@ import com.dutianze.designpattern.abstractfactory.kingdom.King;
 import com.dutianze.designpattern.abstractfactory.kingdom.Kingdom;
 
 /**
+ * <h2 id="known-uses">Known uses</h2>
  * <ul>
  * <li><a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html">javax.xml.parsers.DocumentBuilderFactory</a></li>
  * <li><a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--">javax.xml.transform.TransformerFactory</a></li>
