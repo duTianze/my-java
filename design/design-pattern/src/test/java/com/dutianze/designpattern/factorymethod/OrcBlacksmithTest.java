@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.factorymethod.factory;
+package com.dutianze.designpattern.factorymethod;
 
 import com.dutianze.designpattern.factorymethod.factory.impl.ElfBlacksmith;
 import com.dutianze.designpattern.factorymethod.factory.impl.OrcBlacksmith;
