@@ -1,0 +1,39 @@
+@startuml
+class com.dutianze.designpattern.factorymethod.weapon.impl.ElfWeapon {
+- WeaponType weaponType
++ String toString()
+}
+class com.dutianze.designpattern.factorymethod.factory.impl.OrcBlacksmith {
+- {static} Map<WeaponType,OrcWeapon> ORCARSENAL
++ Weapon manufactureWeapon(WeaponType)
++ String toString()
+}
+interface com.dutianze.designpattern.factorymethod.weapon.Weapon {
+~ WeaponType getWeaponType()
+}
+interface com.dutianze.designpattern.factorymethod.factory.Blacksmith {
+~ Weapon manufactureWeapon(WeaponType)
+}
+enum com.dutianze.designpattern.factorymethod.weapon.WeaponType {
++  SHORT_SWORD
++  SPEAR
++  AXE
++  UNDEFINED
+- String title
+}
+class com.dutianze.designpattern.factorymethod.weapon.impl.OrcWeapon {
+- WeaponType weaponType
++ String toString()
+}
+class com.dutianze.designpattern.factorymethod.factory.impl.ElfBlacksmith {
+- {static} Map<WeaponType,ElfWeapon> ELFARSENAL
++ Weapon manufactureWeapon(WeaponType)
++ String toString()
+}
+
+
+com.dutianze.designpattern.factorymethod.weapon.Weapon <|.. com.dutianze.designpattern.factorymethod.weapon.impl.ElfWeapon
+com.dutianze.designpattern.factorymethod.factory.Blacksmith <|.. com.dutianze.designpattern.factorymethod.factory.impl.OrcBlacksmith
+com.dutianze.designpattern.factorymethod.weapon.Weapon <|.. com.dutianze.designpattern.factorymethod.weapon.impl.OrcWeapon
+com.dutianze.designpattern.factorymethod.factory.Blacksmith <|.. com.dutianze.designpattern.factorymethod.factory.impl.ElfBlacksmith
+@enduml
