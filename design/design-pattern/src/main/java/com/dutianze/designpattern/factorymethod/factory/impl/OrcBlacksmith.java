@@ -22,7 +22,6 @@ public class OrcBlacksmith implements Blacksmith {
         Arrays.stream(WeaponType.values()).forEach(type -> ORCARSENAL.put(type, new OrcWeapon(type)));
     }
 
-
     @Override
     public Weapon manufactureWeapon(WeaponType weaponType) {
         return ORCARSENAL.get(weaponType);
