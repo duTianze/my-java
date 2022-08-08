@@ -1,0 +1,66 @@
+@startuml
+enum com.dutianze.designpattern.builder.Armor {
++  CLOTHES
++  LEATHER
++  CHAIN_MAIL
++  PLATE_MAIL
+- String title
++ String toString()
+}
+enum com.dutianze.designpattern.builder.Profession {
++  WARRIOR
++  THIEF
++  MAGE
++  PRIEST
++ String toString()
+}
+enum com.dutianze.designpattern.builder.HairType {
++  BALD
++  SHORT
++  CURLY
++  LONG_STRAIGHT
++  LONG_CURLY
+- String title
++ String toString()
+}
+class com.dutianze.designpattern.builder.Hero {
+- Profession profession
+- String name
+- HairType hairType
+- HairColor hairColor
+- Armor armor
+- Weapon weapon
+}
+class com.dutianze.designpattern.builder.Hero.Builder {
+- Profession profession
+- String name
+- HairType hairType
+- HairColor hairColor
+- Armor armor
+- Weapon weapon
++ Builder withHairType(HairType)
++ Builder withHairColor(HairColor)
++ Builder withArmor(Armor)
++ Builder withWeapon(Weapon)
++ Hero build()
+}
+enum com.dutianze.designpattern.builder.HairColor {
++  WHITE
++  BLOND
++  RED
++  BROWN
++  BLACK
++ String toString()
+}
+enum com.dutianze.designpattern.builder.Weapon {
++  DAGGER
++  SWORD
++  AXE
++  WARHAMMER
++  BOW
++ String toString()
+}
+
+
+com.dutianze.designpattern.builder.Hero +.. com.dutianze.designpattern.builder.Hero.Builder
+@enduml

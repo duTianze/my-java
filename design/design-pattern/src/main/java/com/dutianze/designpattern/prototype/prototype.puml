@@ -1,0 +1,69 @@
+@startuml
+class com.dutianze.designpattern.prototype.hero.impl.ElfWarlord {
+- String helpType
++ ElfWarlord copy()
++ String toString()
+}
+abstract class com.dutianze.designpattern.prototype.hero.Warlord {
++ {abstract}Warlord copy()
+}
+interface com.dutianze.designpattern.prototype.factory.HeroFactory {
+~ Mage createMage()
+~ Warlord createWarlord()
+~ Beast createBeast()
+}
+class com.dutianze.designpattern.prototype.factory.HeroFactoryImpl {
+- Mage mage
+- Warlord warlord
+- Beast beast
++ Mage createMage()
++ Warlord createWarlord()
++ Beast createBeast()
+}
+class com.dutianze.designpattern.prototype.hero.impl.OrcMage {
+- String weapon
++ OrcMage copy()
++ String toString()
+}
+class com.dutianze.designpattern.prototype.hero.impl.ElfBeast {
+- String helpType
++ ElfBeast copy()
++ String toString()
+}
+class com.dutianze.designpattern.prototype.hero.impl.OrcWarlord {
+- String weapon
++ OrcWarlord copy()
++ String toString()
+}
+interface com.dutianze.designpattern.prototype.Prototype {
+~ Object copy()
+}
+abstract class com.dutianze.designpattern.prototype.hero.Mage {
++ {abstract}Mage copy()
+}
+class com.dutianze.designpattern.prototype.hero.impl.OrcBeast {
+- String weapon
++ OrcBeast copy()
++ String toString()
+}
+class com.dutianze.designpattern.prototype.hero.impl.ElfMage {
+- String helpType
++ ElfMage copy()
++ String toString()
+}
+abstract class com.dutianze.designpattern.prototype.hero.Beast {
++ {abstract}Beast copy()
+}
+
+
+com.dutianze.designpattern.prototype.hero.Warlord <|-- com.dutianze.designpattern.prototype.hero.impl.ElfWarlord
+com.dutianze.designpattern.prototype.Prototype <|.. com.dutianze.designpattern.prototype.hero.Warlord
+com.dutianze.designpattern.prototype.factory.HeroFactory <|.. com.dutianze.designpattern.prototype.factory.HeroFactoryImpl
+com.dutianze.designpattern.prototype.hero.Mage <|-- com.dutianze.designpattern.prototype.hero.impl.OrcMage
+com.dutianze.designpattern.prototype.hero.Beast <|-- com.dutianze.designpattern.prototype.hero.impl.ElfBeast
+com.dutianze.designpattern.prototype.hero.Warlord <|-- com.dutianze.designpattern.prototype.hero.impl.OrcWarlord
+com.dutianze.designpattern.prototype.Prototype <|.. com.dutianze.designpattern.prototype.hero.Mage
+com.dutianze.designpattern.prototype.hero.Beast <|-- com.dutianze.designpattern.prototype.hero.impl.OrcBeast
+com.dutianze.designpattern.prototype.hero.Mage <|-- com.dutianze.designpattern.prototype.hero.impl.ElfMage
+com.dutianze.designpattern.prototype.Prototype <|.. com.dutianze.designpattern.prototype.hero.Beast
+@enduml
