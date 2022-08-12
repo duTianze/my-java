@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.adapter;
+package com.dutianze.designpattern.behavioral.adapter;
 
 import com.dutianze.designpattern.behavioral.adapter.Captain;
 import com.dutianze.designpattern.behavioral.adapter.FishingBoatAdapter;

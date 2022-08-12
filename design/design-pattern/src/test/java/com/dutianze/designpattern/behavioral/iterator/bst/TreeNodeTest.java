@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.iterator.bst;
+package com.dutianze.designpattern.behavioral.iterator.bst;
 
 import com.dutianze.designpattern.behavioral.iterator.bst.TreeNode;
 import org.junit.jupiter.api.BeforeAll;

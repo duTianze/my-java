@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.prototype;
+package com.dutianze.designpattern.creational.prototype;
 
 import com.dutianze.designpattern.creational.prototype.Prototype;
 import com.dutianze.designpattern.creational.prototype.hero.impl.*;

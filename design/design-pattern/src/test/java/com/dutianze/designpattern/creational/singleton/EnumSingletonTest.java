@@ -1,6 +1,4 @@
-package com.dutianze.designpattern.singleton;
-
-import com.dutianze.designpattern.creational.singleton.EnumSingleton;
+package com.dutianze.designpattern.creational.singleton;
 
 /**
  * @author dutianze

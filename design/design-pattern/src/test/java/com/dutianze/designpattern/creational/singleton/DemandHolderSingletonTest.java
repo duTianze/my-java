@@ -1,6 +1,4 @@
-package com.dutianze.designpattern.singleton;
-
-import com.dutianze.designpattern.creational.singleton.DemandHolderSingleton;
+package com.dutianze.designpattern.creational.singleton;
 
 /**
  * @author dutianze

@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.singleton;
+package com.dutianze.designpattern.creational.singleton;
 
 import org.junit.jupiter.api.Test;
 

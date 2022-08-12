@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.abstractfactory;
+package com.dutianze.designpattern.creational.abstractfactory;
 
 import com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory;
 import com.dutianze.designpattern.creational.abstractfactory.kingdom.King;

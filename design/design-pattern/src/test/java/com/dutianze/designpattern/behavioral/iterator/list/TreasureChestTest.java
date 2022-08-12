@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.iterator.list;
+package com.dutianze.designpattern.behavioral.iterator.list;
 
 import com.dutianze.designpattern.behavioral.iterator.list.Item;
 import com.dutianze.designpattern.behavioral.iterator.list.ItemType;

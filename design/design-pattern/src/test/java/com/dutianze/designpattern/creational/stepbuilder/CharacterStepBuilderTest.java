@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.stepbuilder;
+package com.dutianze.designpattern.creational.stepbuilder;
 
 import com.dutianze.designpattern.creational.stepbuilder.Character;
 import com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder;
