@@ -1,5 +1,6 @@
 package com.dutianze.designpattern.iterator.bst;
 
+import com.dutianze.designpattern.behavioral.iterator.bst.TreeNode;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

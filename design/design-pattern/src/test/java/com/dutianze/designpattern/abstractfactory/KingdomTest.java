@@ -1,10 +1,10 @@
 package com.dutianze.designpattern.abstractfactory;
 
-import com.dutianze.designpattern.abstractfactory.fatory.KingdomFactory;
-import com.dutianze.designpattern.abstractfactory.kingdom.King;
-import com.dutianze.designpattern.abstractfactory.kingdom.Kingdom;
-import com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfKing;
-import com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcKing;
+import com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory;
+import com.dutianze.designpattern.creational.abstractfactory.kingdom.King;
+import com.dutianze.designpattern.creational.abstractfactory.kingdom.Kingdom;
+import com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfKing;
+import com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcKing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

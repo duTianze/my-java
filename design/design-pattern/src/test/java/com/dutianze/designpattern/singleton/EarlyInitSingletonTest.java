@@ -1,5 +1,7 @@
 package com.dutianze.designpattern.singleton;
 
+import com.dutianze.designpattern.creational.singleton.EarlyInitSingleton;
+
 /**
  * @author dutianze
  * @date 2022/8/6

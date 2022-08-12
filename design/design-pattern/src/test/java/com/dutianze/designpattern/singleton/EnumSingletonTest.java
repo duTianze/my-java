@@ -1,6 +1,6 @@
 package com.dutianze.designpattern.singleton;
 
-import java.util.function.Supplier;
+import com.dutianze.designpattern.creational.singleton.EnumSingleton;
 
 /**
  * @author dutianze

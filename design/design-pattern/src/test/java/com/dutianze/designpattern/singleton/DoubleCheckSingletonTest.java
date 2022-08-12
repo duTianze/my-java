@@ -1,5 +1,6 @@
 package com.dutianze.designpattern.singleton;
 
+import com.dutianze.designpattern.creational.singleton.DoubleCheckSingleton;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;

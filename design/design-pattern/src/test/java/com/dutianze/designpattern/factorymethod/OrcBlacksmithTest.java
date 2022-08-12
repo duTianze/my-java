@@ -1,11 +1,11 @@
 package com.dutianze.designpattern.factorymethod;
 
-import com.dutianze.designpattern.factorymethod.factory.impl.ElfBlacksmith;
-import com.dutianze.designpattern.factorymethod.factory.impl.OrcBlacksmith;
-import com.dutianze.designpattern.factorymethod.weapon.Weapon;
-import com.dutianze.designpattern.factorymethod.weapon.WeaponType;
-import com.dutianze.designpattern.factorymethod.weapon.impl.ElfWeapon;
-import com.dutianze.designpattern.factorymethod.weapon.impl.OrcWeapon;
+import com.dutianze.designpattern.creational.factorymethod.factory.impl.ElfBlacksmith;
+import com.dutianze.designpattern.creational.factorymethod.factory.impl.OrcBlacksmith;
+import com.dutianze.designpattern.creational.factorymethod.weapon.Weapon;
+import com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType;
+import com.dutianze.designpattern.creational.factorymethod.weapon.impl.ElfWeapon;
+import com.dutianze.designpattern.creational.factorymethod.weapon.impl.OrcWeapon;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
