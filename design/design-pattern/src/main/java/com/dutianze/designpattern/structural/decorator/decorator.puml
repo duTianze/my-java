@@ -1,0 +1,22 @@
+@startuml
+class com.dutianze.designpattern.structural.decorator.troll.SimpleTroll {
++ void attack()
++ int getAttackPower()
++ void fleeBattle()
+}
+class com.dutianze.designpattern.structural.decorator.troll.ClubbedTroll {
+- Troll decorated
++ void attack()
++ int getAttackPower()
++ void fleeBattle()
+}
+interface com.dutianze.designpattern.structural.decorator.Troll {
+~ void attack()
+~ int getAttackPower()
+~ void fleeBattle()
+}
+
+
+com.dutianze.designpattern.structural.decorator.Troll <|.. com.dutianze.designpattern.structural.decorator.troll.SimpleTroll
+com.dutianze.designpattern.structural.decorator.Troll <|.. com.dutianze.designpattern.structural.decorator.troll.ClubbedTroll
+@enduml
