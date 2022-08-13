@@ -25,7 +25,7 @@ class KingdomTest {
 
         KingdomFactory rocKingdomFactory = KingdomFactory.makeFactory(KingdomFactory.KingdomType.ORC);
         Kingdom orcKingdom = rocKingdomFactory.createKingdom();
-        final var orcKing = orcKingdom.getKing();
+        final King orcKing = orcKingdom.getKing();
         assertTrue(orcKing instanceof OrcKing);
     }
 }

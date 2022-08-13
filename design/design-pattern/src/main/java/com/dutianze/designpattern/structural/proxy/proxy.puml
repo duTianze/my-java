@@ -1,0 +1,21 @@
+@startuml
+class com.dutianze.designpattern.structural.proxy.tower.impl.IvoryTower {
++ void enter(Wizard)
+}
+class com.dutianze.designpattern.structural.proxy.Wizard {
+- String name
+}
+interface com.dutianze.designpattern.structural.proxy.tower.WizardTower {
+~ void enter(Wizard)
+}
+class com.dutianze.designpattern.structural.proxy.tower.impl.WizardTowerProxy {
+- {static} int NUM_WIZARDS_ALLOWED
+- int numWizards
+- WizardTower tower
++ void enter(Wizard)
+}
+
+
+com.dutianze.designpattern.structural.proxy.tower.WizardTower <|.. com.dutianze.designpattern.structural.proxy.tower.impl.IvoryTower
+com.dutianze.designpattern.structural.proxy.tower.WizardTower <|.. com.dutianze.designpattern.structural.proxy.tower.impl.WizardTowerProxy
+@enduml

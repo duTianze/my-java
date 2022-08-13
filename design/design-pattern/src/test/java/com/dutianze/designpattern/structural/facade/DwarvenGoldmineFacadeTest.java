@@ -1,16 +1,10 @@
 package com.dutianze.designpattern.structural.facade;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.AppenderBase;
 import com.dutianze.designpattern.structural.facade.impl.DwarvenGoldmineFacadeImpl;
+import com.dutianze.designpattern.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -77,30 +71,5 @@ class DwarvenGoldmineFacadeTest {
 
         // Every worker should be sleeping now, no other actions allowed
         assertEquals(15, appender.getLogSize());
-    }
-
-    private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-
-        private final List<ILoggingEvent> log = new LinkedList<>();
-
-        public InMemoryAppender() {
-            ((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-            start();
-        }
-
-        @Override
-        protected void append(ILoggingEvent eventObject) {
-            log.add(eventObject);
-        }
-
-        public int getLogSize() {
-            return log.size();
-        }
-
-        public boolean logContains(String message) {
-            return log.stream()
-                      .map(ILoggingEvent::getFormattedMessage)
-                      .anyMatch(message::equals);
-        }
     }
 }

@@ -1,9 +1,9 @@
 package com.dutianze.designpattern.structural.facade.impl;
 
 import com.dutianze.designpattern.structural.facade.DwarvenGoldmineFacade;
+import com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker;
 import com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenCartOperator;
 import com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenGoldDigger;
-import com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker;
 import com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenTunnelDigger;
 
 import java.util.Collection;
@@ -18,9 +18,10 @@ public class DwarvenGoldmineFacadeImpl implements DwarvenGoldmineFacade {
     private final List<DwarvenMineWorker> workers;
 
     public DwarvenGoldmineFacadeImpl() {
-        workers = List.of(new DwarvenGoldDigger(),
-                          new DwarvenCartOperator(),
-                          new DwarvenTunnelDigger());
+        workers = List.of(
+                new DwarvenGoldDigger(),
+                new DwarvenCartOperator(),
+                new DwarvenTunnelDigger());
     }
 
     public void startNewDay() {

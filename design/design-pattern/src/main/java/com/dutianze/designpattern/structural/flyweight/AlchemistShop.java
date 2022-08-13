@@ -43,9 +43,4 @@ public class AlchemistShop {
     public final List<Potion> getShelf() {
         return List.copyOf(this.shelf);
     }
-
-    public void drinkPotions() {
-        log.info("Drinking top shelf potions");
-        shelf.forEach(Potion::drink);
-    }
 }

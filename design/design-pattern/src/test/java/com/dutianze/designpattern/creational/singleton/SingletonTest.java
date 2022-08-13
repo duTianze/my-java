@@ -32,9 +32,9 @@ abstract class SingletonTest<S> {
     @Test
     void multipleCallsReturnTheSameObjectInSameThread() {
         // Create several instances in the same calling thread
-        var instance1 = this.singletonInstanceMethod.get();
-        var instance2 = this.singletonInstanceMethod.get();
-        var instance3 = this.singletonInstanceMethod.get();
+        S instance1 = this.singletonInstanceMethod.get();
+        S instance2 = this.singletonInstanceMethod.get();
+        S instance3 = this.singletonInstanceMethod.get();
         // now check they are equal
         assertSame(instance1, instance2);
         assertSame(instance1, instance3);

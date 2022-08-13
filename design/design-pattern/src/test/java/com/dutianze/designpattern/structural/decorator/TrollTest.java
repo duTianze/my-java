@@ -1,17 +1,11 @@
 package com.dutianze.designpattern.structural.decorator;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.AppenderBase;
 import com.dutianze.designpattern.structural.decorator.troll.ClubbedTroll;
 import com.dutianze.designpattern.structural.decorator.troll.SimpleTroll;
+import com.dutianze.designpattern.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -27,7 +21,7 @@ class TrollTest {
 
     @BeforeEach
     void setUp() {
-        appender = new InMemoryAppender(SimpleTroll.class);
+        appender = new InMemoryAppender();
     }
 
     @AfterEach
@@ -66,28 +60,5 @@ class TrollTest {
         clubbed.fleeBattle();
         verify(simpleTroll, times(1)).fleeBattle();
         verifyNoMoreInteractions(simpleTroll);
-    }
-
-    private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-
-        private final List<ILoggingEvent> log = new LinkedList<>();
-
-        InMemoryAppender(Class<?> clazz) {
-            ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
-            start();
-        }
-
-        @Override
-        protected void append(ILoggingEvent eventObject) {
-            log.add(eventObject);
-        }
-
-        String getLastMessage() {
-            return log.get(log.size() - 1).getMessage();
-        }
-
-        int getLogSize() {
-            return log.size();
-        }
     }
 }
