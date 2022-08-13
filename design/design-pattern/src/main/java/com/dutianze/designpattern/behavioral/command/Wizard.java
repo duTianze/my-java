@@ -38,7 +38,7 @@ public class Wizard {
 
     public void redoLastSpell() {
         if (!redoStack.isEmpty()) {
-            var previousSpell = redoStack.pollLast();
+            Runnable previousSpell = redoStack.pollLast();
             undoStack.offerLast(previousSpell);
             previousSpell.run();
         }

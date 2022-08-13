@@ -8,7 +8,8 @@ public class FishingBoatAdapter implements RowingBoat {
 
     private final FishingBoat boat = new FishingBoat();
 
-    public final void row() {
+    @Override
+    public void row() {
         boat.sail();
     }
 }

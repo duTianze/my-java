@@ -37,6 +37,6 @@ public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     }
 
     public String getLastMessage() {
-        return log.get(log.size() - 1).getMessage();
+        return log.get(log.size() - 1).getFormattedMessage();
     }
 }

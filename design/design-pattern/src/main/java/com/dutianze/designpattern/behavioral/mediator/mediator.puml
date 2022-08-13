@@ -1,0 +1,56 @@
+@startuml
+class Wizard {
++ String toString()
+}
+class PartyImpl {
+- List<PartyMember> members
++ void act(PartyMember,Action)
++ void addMember(PartyMember)
+}
+interface PartyMember {
+~ void joinedParty(Party)
+~ void partyAction(Action)
+~ void act(Action)
+}
+class Rogue {
++ String toString()
+}
+class Hunter {
++ String toString()
+}
+interface Party {
+~ void addMember(PartyMember)
+~ void act(PartyMember,Action)
+}
+enum Action {
++  HUNT
++  TALE
++  GOLD
++  ENEMY
++  NONE
+- String title
+- String description
++ String getDescription()
++ String toString()
+}
+class Hobbit {
++ String toString()
+}
+abstract class PartyMemberBase {
+# Party party
++ void joinedParty(Party)
++ void partyAction(Action)
++ void act(Action)
++ {abstract}String toString()
+}
+
+
+PartyImpl -->  "-members" PartyMember
+PartyMemberBase -->  "-party" Party
+Hobbit --|> PartyMemberBase
+Hunter --|> PartyMemberBase
+PartyImpl ..|> Party
+PartyMemberBase ..|> PartyMember
+Rogue --|> PartyMemberBase
+Wizard --|> PartyMemberBase
+@enduml
