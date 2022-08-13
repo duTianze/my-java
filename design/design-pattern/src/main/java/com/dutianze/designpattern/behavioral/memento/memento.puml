@@ -1,0 +1,39 @@
+@startuml
+enum StarType {
++  SUN
++  RED_GIANT
++  WHITE_DWARF
++  SUPERNOVA
++  DEAD
+- String title
++ String toString()
+}
+interface StarMemento {
+}
+class Star {
+- StarType type
+- int ageYears
+- int massTons
++ void timePasses()
+~ StarMemento getMemento()
+~ void setMemento(StarMemento)
++ String toString()
+}
+class StarMementoInternal {
+- StarType type
+- int ageYears
+- int massTons
++ StarType getType()
++ void setType(StarType)
++ int getAgeYears()
++ void setAgeYears(int)
++ int getMassTons()
++ void setMassTons(int)
+}
+
+
+StarMementoInternal -->  "-type" StarType
+Star -->  "-type" StarType
+StarMementoInternal ..+ Star
+StarMementoInternal ..|> StarMemento
+@enduml

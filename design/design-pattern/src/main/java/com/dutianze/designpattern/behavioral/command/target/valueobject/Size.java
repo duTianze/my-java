@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.command.target;
+package com.dutianze.designpattern.behavioral.command.target.valueobject;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,5 +1,8 @@
 package com.dutianze.designpattern.behavioral.command.target;
 
+import com.dutianze.designpattern.behavioral.command.target.valueobject.Size;
+import com.dutianze.designpattern.behavioral.command.target.valueobject.Visibility;
+
 /**
  * @author dutianze
  * @date 2022/8/13
