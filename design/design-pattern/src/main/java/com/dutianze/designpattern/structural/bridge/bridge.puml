@@ -1,0 +1,43 @@
+@startuml
+class com.dutianze.designpattern.structural.bridge.weapon.Hammer {
+- Enchantment enchantment
++ void wield()
++ void swing()
++ void unwield()
++ Enchantment getEnchantment()
+}
+class com.dutianze.designpattern.structural.bridge.weapon.Sword {
+- Enchantment enchantment
++ void wield()
++ void swing()
++ void unwield()
++ Enchantment getEnchantment()
+}
+class com.dutianze.designpattern.structural.bridge.enchantment.SoulEatingEnchantment {
++ void onActivate()
++ void apply()
++ void onDeactivate()
+}
+interface com.dutianze.designpattern.structural.bridge.weapon.Weapon {
+~ void wield()
+~ void swing()
+~ void unwield()
+~ Enchantment getEnchantment()
+}
+class com.dutianze.designpattern.structural.bridge.enchantment.FlyingEnchantment {
++ void onActivate()
++ void apply()
++ void onDeactivate()
+}
+interface com.dutianze.designpattern.structural.bridge.enchantment.Enchantment {
+~ void onActivate()
+~ void apply()
+~ void onDeactivate()
+}
+
+
+com.dutianze.designpattern.structural.bridge.weapon.Weapon <|.. com.dutianze.designpattern.structural.bridge.weapon.Hammer
+com.dutianze.designpattern.structural.bridge.weapon.Weapon <|.. com.dutianze.designpattern.structural.bridge.weapon.Sword
+com.dutianze.designpattern.structural.bridge.enchantment.Enchantment <|.. com.dutianze.designpattern.structural.bridge.enchantment.SoulEatingEnchantment
+com.dutianze.designpattern.structural.bridge.enchantment.Enchantment <|.. com.dutianze.designpattern.structural.bridge.enchantment.FlyingEnchantment
+@enduml

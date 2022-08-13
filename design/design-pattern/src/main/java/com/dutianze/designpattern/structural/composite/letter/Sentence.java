@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.behavioral.composite.letter;
+package com.dutianze.designpattern.structural.composite.letter;
 
-import com.dutianze.designpattern.behavioral.composite.LetterComposite;
+import com.dutianze.designpattern.structural.composite.LetterComposite;
 
 import java.util.List;
 

@@ -1,0 +1,25 @@
+@startuml
+abstract class com.dutianze.designpattern.structural.composite.LetterComposite {
+- List<LetterComposite> children
++ void add(LetterComposite)
++ int count()
+# void printThisBefore()
+# void printThisAfter()
++ void print()
+}
+class com.dutianze.designpattern.structural.composite.letter.Word {
+# void printThisBefore()
+}
+class com.dutianze.designpattern.structural.composite.letter.Letter {
+- char character
+# void printThisBefore()
+}
+class com.dutianze.designpattern.structural.composite.letter.Sentence {
+# void printThisAfter()
+}
+
+
+com.dutianze.designpattern.structural.composite.LetterComposite <|-- com.dutianze.designpattern.structural.composite.letter.Word
+com.dutianze.designpattern.structural.composite.LetterComposite <|-- com.dutianze.designpattern.structural.composite.letter.Letter
+com.dutianze.designpattern.structural.composite.LetterComposite <|-- com.dutianze.designpattern.structural.composite.letter.Sentence
+@enduml

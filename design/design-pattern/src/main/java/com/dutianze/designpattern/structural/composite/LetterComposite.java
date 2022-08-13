@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.composite;
+package com.dutianze.designpattern.structural.composite;
 
 import java.util.ArrayList;
 import java.util.List;

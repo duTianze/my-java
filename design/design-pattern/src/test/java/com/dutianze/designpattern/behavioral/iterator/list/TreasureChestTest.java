@@ -1,8 +1,5 @@
 package com.dutianze.designpattern.behavioral.iterator.list;
 
-import com.dutianze.designpattern.behavioral.iterator.list.Item;
-import com.dutianze.designpattern.behavioral.iterator.list.ItemType;
-import com.dutianze.designpattern.behavioral.iterator.list.TreasureChest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

@@ -1,0 +1,50 @@
+@startuml
+enum com.dutianze.designpattern.behavioral.iterator.list.ItemType {
++  ANY
++  WEAPON
++  RING
++  POTION
+}
+class com.dutianze.designpattern.behavioral.iterator.list.TreasureChest {
+- List<Item> items
+- ItemType type
++ Iterator<Item> iteratorByType(ItemType)
++ Iterator<Item> iterator()
+}
+class com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator {
+- int idx
++ boolean hasNext()
++ Item next()
+- int findNextIdx()
+}
+class com.dutianze.designpattern.behavioral.iterator.list.Item {
+- ItemType type
+- String name
+}
+class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode {
+- T val
+- TreeNode<T> left
+- TreeNode<T> right
++ void insert(T)
+- TreeNode<T> getParentNodeOfValueToBeInserted(T)
+- TreeNode<T> traverseOneLevelDown(T)
+- void insertNewChild(T)
+- boolean isGreaterThan(T)
+- boolean isLessThanOrEqualTo(T)
++ Iterator<TreeNode<T>> iterator()
+}
+class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator {
+- ArrayDeque<TreeNode<T>> pathStack
++ boolean hasNext()
++ TreeNode<T> next()
+- void pushPathToNextSmallest(TreeNode<T>)
+}
+
+
+com.dutianze.designpattern.behavioral.iterator.list.Iterable <|.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest
+com.dutianze.designpattern.behavioral.iterator.list.TreasureChest +.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator
+com.dutianze.designpattern.behavioral.iterator.list.Iterator <|.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator
+com.dutianze.designpattern.behavioral.iterator.bst.Iterable <|.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode
+com.dutianze.designpattern.behavioral.iterator.bst.TreeNode +.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator
+com.dutianze.designpattern.behavioral.iterator.bst.Iterator <|.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator
+@enduml

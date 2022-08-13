@@ -1,7 +1,7 @@
-package com.dutianze.designpattern.behavioral.composite;
+package com.dutianze.designpattern.structural.composite;
 
-import com.dutianze.designpattern.behavioral.composite.letter.Sentence;
-import com.dutianze.designpattern.behavioral.composite.letter.Word;
+import com.dutianze.designpattern.structural.composite.letter.Sentence;
+import com.dutianze.designpattern.structural.composite.letter.Word;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

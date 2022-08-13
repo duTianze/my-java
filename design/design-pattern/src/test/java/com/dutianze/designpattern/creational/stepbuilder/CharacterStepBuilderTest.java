@@ -1,7 +1,5 @@
 package com.dutianze.designpattern.creational.stepbuilder;
 
-import com.dutianze.designpattern.creational.stepbuilder.Character;
-import com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

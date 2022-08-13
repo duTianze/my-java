@@ -1,10 +1,10 @@
-package com.dutianze.designpattern.behavioral.bridge;
+package com.dutianze.designpattern.structural.bridge;
 
-import com.dutianze.designpattern.behavioral.bridge.enchantment.Enchantment;
-import com.dutianze.designpattern.behavioral.bridge.enchantment.FlyingEnchantment;
-import com.dutianze.designpattern.behavioral.bridge.weapon.Hammer;
-import com.dutianze.designpattern.behavioral.bridge.weapon.Sword;
-import com.dutianze.designpattern.behavioral.bridge.weapon.Weapon;
+import com.dutianze.designpattern.structural.bridge.enchantment.Enchantment;
+import com.dutianze.designpattern.structural.bridge.enchantment.FlyingEnchantment;
+import com.dutianze.designpattern.structural.bridge.weapon.Hammer;
+import com.dutianze.designpattern.structural.bridge.weapon.Sword;
+import com.dutianze.designpattern.structural.bridge.weapon.Weapon;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

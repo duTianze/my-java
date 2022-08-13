@@ -1,66 +1,65 @@
 @startuml
-class com.dutianze.designpattern.abstractfactory.kingdom.Kingdom {
-- King king
-- Castle castle
-- Army army
-}
-class com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcKing {
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcKing {
 + String getDescription()
 }
-interface com.dutianze.designpattern.abstractfactory.kingdom.Castle {
-~ String getDescription()
-}
-interface com.dutianze.designpattern.abstractfactory.fatory.KingdomFactory {
+interface com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory {
 ~ Castle createCastle()
 ~ King createKing()
 ~ Army createArmy()
 ~ Kingdom createKingdom()
 ~ {static} KingdomFactory makeFactory(KingdomType)
 }
-enum com.dutianze.designpattern.abstractfactory.fatory.KingdomType {
+enum com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomType {
 +  ELF
 +  ORC
 }
-interface com.dutianze.designpattern.abstractfactory.kingdom.Army {
-~ String getDescription()
-}
-class com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcArmy {
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfArmy {
 + String getDescription()
 }
-class com.dutianze.designpattern.abstractfactory.fatory.impl.ElfKingdomFactory {
+class com.dutianze.designpattern.creational.abstractfactory.fatory.impl.OrcKingdomFactory {
 + Castle createCastle()
 + King createKing()
 + Army createArmy()
 }
-class com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfKing {
+interface com.dutianze.designpattern.creational.abstractfactory.kingdom.King {
+~ String getDescription()
+}
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfCastle {
 + String getDescription()
 }
-class com.dutianze.designpattern.abstractfactory.fatory.impl.OrcKingdomFactory {
+interface com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle {
+~ String getDescription()
+}
+class com.dutianze.designpattern.creational.abstractfactory.fatory.impl.ElfKingdomFactory {
 + Castle createCastle()
 + King createKing()
 + Army createArmy()
 }
-class com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfArmy {
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.Kingdom {
+- King king
+- Castle castle
+- Army army
+}
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfKing {
 + String getDescription()
 }
-class com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfCastle {
-+ String getDescription()
-}
-interface com.dutianze.designpattern.abstractfactory.kingdom.King {
+interface com.dutianze.designpattern.creational.abstractfactory.kingdom.Army {
 ~ String getDescription()
 }
-class com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcCastle {
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcArmy {
++ String getDescription()
+}
+class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcCastle {
 + String getDescription()
 }
 
-com.dutianze.designpattern.abstractfactory.kingdom.King <|.. com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcKing
-com.dutianze.designpattern.abstractfactory.kingdom.Army <|.. com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcArmy
-com.dutianze.designpattern.abstractfactory.kingdom.Castle <|.. com.dutianze.designpattern.abstractfactory.kingdom.orc.OrcCastle
 
-com.dutianze.designpattern.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.abstractfactory.fatory.impl.ElfKingdomFactory
-
-com.dutianze.designpattern.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.abstractfactory.fatory.impl.OrcKingdomFactory
-com.dutianze.designpattern.abstractfactory.kingdom.Army <|.up. com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfArmy
-com.dutianze.designpattern.abstractfactory.kingdom.Castle <|.up. com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfCastle
-com.dutianze.designpattern.abstractfactory.kingdom.King <|.up. com.dutianze.designpattern.abstractfactory.kingdom.elf.ElfKing
+com.dutianze.designpattern.creational.abstractfactory.kingdom.King <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcKing
+com.dutianze.designpattern.creational.abstractfactory.kingdom.Army <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfArmy
+com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.creational.abstractfactory.fatory.impl.OrcKingdomFactory
+com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle <|.up. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfCastle
+com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.creational.abstractfactory.fatory.impl.ElfKingdomFactory
+com.dutianze.designpattern.creational.abstractfactory.kingdom.King <|.up. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfKing
+com.dutianze.designpattern.creational.abstractfactory.kingdom.Army <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcArmy
+com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcCastle
 @enduml

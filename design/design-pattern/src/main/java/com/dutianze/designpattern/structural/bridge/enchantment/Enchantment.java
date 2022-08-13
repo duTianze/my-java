@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.bridge.enchantment;
+package com.dutianze.designpattern.structural.bridge.enchantment;
 
 /**
  * @author dutianze

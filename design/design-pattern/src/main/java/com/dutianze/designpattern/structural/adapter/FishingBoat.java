@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.adapter;
+package com.dutianze.designpattern.structural.adapter;
 
 import lombok.extern.slf4j.Slf4j;
 

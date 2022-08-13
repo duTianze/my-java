@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.behavioral.bridge.weapon;
+package com.dutianze.designpattern.structural.bridge.weapon;
 
-import com.dutianze.designpattern.behavioral.bridge.enchantment.Enchantment;
+import com.dutianze.designpattern.structural.bridge.enchantment.Enchantment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

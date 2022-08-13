@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.adapter;
+package com.dutianze.designpattern.structural.adapter;
 
 /**
  * @author dutianze

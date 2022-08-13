@@ -1,0 +1,70 @@
+@startuml
+class com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder {
++ {static} NameStep newBuilder()
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.NameStep {
+~ ClassStep name(String)
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.ClassStep {
+~ WeaponStep fighterClass(String)
+~ SpellStep wizardClass(String)
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.WeaponStep {
+~ AbilityStep withWeapon(String)
+~ BuildStep noWeapon()
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.SpellStep {
+~ AbilityStep withSpell(String)
+~ BuildStep noSpell()
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.AbilityStep {
+~ AbilityStep withAbility(String)
+~ BuildStep noMoreAbilities()
+~ BuildStep noAbilities()
+}
+interface com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.BuildStep {
+~ Character build()
+}
+class com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps {
+- String name
+- String fighterClass
+- String wizardClass
+- String weapon
+- String spell
+- List<String> abilities
++ ClassStep name(String)
++ WeaponStep fighterClass(String)
++ SpellStep wizardClass(String)
++ AbilityStep withWeapon(String)
++ BuildStep noWeapon()
++ AbilityStep withSpell(String)
++ BuildStep noSpell()
++ AbilityStep withAbility(String)
++ BuildStep noMoreAbilities()
++ BuildStep noAbilities()
++ Character build()
+}
+class com.dutianze.designpattern.creational.stepbuilder.Character {
+- String name
+- String fighterClass
+- String wizardClass
+- String weapon
+- String spell
+- List<String> abilities
+}
+
+
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.NameStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.ClassStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.WeaponStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.SpellStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.AbilityStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.BuildStep
+com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder +.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.NameStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.ClassStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.WeaponStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.SpellStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.AbilityStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+com.dutianze.designpattern.creational.stepbuilder.BuildStep <|.. com.dutianze.designpattern.creational.stepbuilder.CharacterStepBuilder.CharacterSteps
+@enduml

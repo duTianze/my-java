@@ -1,8 +1,5 @@
-package com.dutianze.designpattern.behavioral.adapter;
+package com.dutianze.designpattern.structural.adapter;
 
-import com.dutianze.designpattern.behavioral.adapter.Captain;
-import com.dutianze.designpattern.behavioral.adapter.FishingBoatAdapter;
-import com.dutianze.designpattern.behavioral.adapter.RowingBoat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

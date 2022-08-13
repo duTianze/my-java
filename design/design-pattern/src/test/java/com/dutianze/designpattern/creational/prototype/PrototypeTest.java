@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.creational.prototype;
 
-import com.dutianze.designpattern.creational.prototype.Prototype;
 import com.dutianze.designpattern.creational.prototype.hero.impl.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
