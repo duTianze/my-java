@@ -1,0 +1,44 @@
+@startuml
+interface com.dutianze.designpattern.structural.flyweight.potion.Potion {
+~ void drink()
+}
+class com.dutianze.designpattern.structural.flyweight.PotionFactory {
+- Map<PotionType,Potion> potions
+~ Potion createPotion(PotionType)
+- Potion choosePotion(PotionType)
+}
+class com.dutianze.designpattern.structural.flyweight.AlchemistShop {
+- List<Potion> shelf
++ List<Potion> getShelf()
++ void drinkPotions()
+}
+class com.dutianze.designpattern.structural.flyweight.potion.impl.StrengthPotion {
++ void drink()
+}
+class com.dutianze.designpattern.structural.flyweight.potion.impl.InvisibilityPotion {
++ void drink()
+}
+enum com.dutianze.designpattern.structural.flyweight.potion.PotionType {
++  HEALING
++  INVISIBILITY
++  STRENGTH
++  HOLY_WATER
++  POISON
+}
+class com.dutianze.designpattern.structural.flyweight.potion.impl.HealingPotion {
++ void drink()
+}
+class com.dutianze.designpattern.structural.flyweight.potion.impl.PoisonPotion {
++ void drink()
+}
+class com.dutianze.designpattern.structural.flyweight.potion.impl.HolyWaterPotion {
++ void drink()
+}
+
+
+com.dutianze.designpattern.structural.flyweight.potion.Potion <|.. com.dutianze.designpattern.structural.flyweight.potion.impl.StrengthPotion
+com.dutianze.designpattern.structural.flyweight.potion.Potion <|.. com.dutianze.designpattern.structural.flyweight.potion.impl.InvisibilityPotion
+com.dutianze.designpattern.structural.flyweight.potion.Potion <|.. com.dutianze.designpattern.structural.flyweight.potion.impl.HealingPotion
+com.dutianze.designpattern.structural.flyweight.potion.Potion <|.. com.dutianze.designpattern.structural.flyweight.potion.impl.PoisonPotion
+com.dutianze.designpattern.structural.flyweight.potion.Potion <|.. com.dutianze.designpattern.structural.flyweight.potion.impl.HolyWaterPotion
+@enduml
