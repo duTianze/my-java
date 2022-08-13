@@ -1,0 +1,49 @@
+@startuml
+class com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenCartOperator {
++ void work()
++ String name()
+}
+class com.dutianze.designpattern.structural.facade.impl.DwarvenGoldmineFacadeImpl {
+- List<DwarvenMineWorker> workers
++ void startNewDay()
++ void digOutGold()
++ void endDay()
+- {static} void makeActions(Collection<DwarvenMineWorker>,DwarvenMineWorker.Action)
+}
+interface com.dutianze.designpattern.structural.facade.DwarvenGoldmineFacade {
+~ void startNewDay()
+~ void digOutGold()
+~ void endDay()
+}
+class com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenGoldDigger {
++ void work()
++ String name()
+}
+class com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenTunnelDigger {
++ void work()
++ String name()
+}
+abstract class com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker {
++ void goToSleep()
++ void wakeUp()
++ void goHome()
++ void goToMine()
++ {abstract}void work()
++ {abstract}String name()
++ void action(Action)
+- void action(Action)
+}
+enum com.dutianze.designpattern.structural.facade.dwarven.Action {
++  GO_TO_SLEEP
++  WAKE_UP
++  GO_HOME
++  GO_TO_MINE
++  WORK
+}
+
+
+com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker <|-- com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenCartOperator
+com.dutianze.designpattern.structural.facade.DwarvenGoldmineFacade <|.. com.dutianze.designpattern.structural.facade.impl.DwarvenGoldmineFacadeImpl
+com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker <|-- com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenGoldDigger
+com.dutianze.designpattern.structural.facade.dwarven.DwarvenMineWorker <|-- com.dutianze.designpattern.structural.facade.dwarven.impl.DwarvenTunnelDigger
+@enduml
