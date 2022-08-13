@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.creational.factorymethod.factory;
+package com.dutianze.designpattern.creational.factorymethod;
 
 import com.dutianze.designpattern.creational.factorymethod.weapon.Weapon;
 import com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType;

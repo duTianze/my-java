@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.structural.adapter;
+package com.dutianze.designpattern.structural.adapter.boat;
 
 /**
  * @author dutianze

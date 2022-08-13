@@ -1,5 +1,7 @@
 package com.dutianze.designpattern.structural.adapter;
 
+import com.dutianze.designpattern.structural.adapter.boat.FishingBoatAdapter;
+import com.dutianze.designpattern.structural.adapter.boat.RowingBoat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

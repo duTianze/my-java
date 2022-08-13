@@ -1,12 +1,12 @@
-package com.dutianze.designpattern.creational.builder;
+package com.dutianze.designpattern.creational.builder.valueobject;
 
 /**
  * @author dutianze
  * @date 2022/8/7
  */
-public enum Profession {
+public enum Weapon {
 
-    WARRIOR, THIEF, MAGE, PRIEST;
+    DAGGER, SWORD, AXE, WARHAMMER, BOW;
 
     @Override
     public String toString() {

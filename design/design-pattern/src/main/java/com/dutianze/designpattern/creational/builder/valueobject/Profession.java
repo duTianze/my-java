@@ -1,16 +1,12 @@
-package com.dutianze.designpattern.creational.builder;
+package com.dutianze.designpattern.creational.builder.valueobject;
 
 /**
  * @author dutianze
  * @date 2022/8/7
  */
-public enum HairColor {
+public enum Profession {
 
-    WHITE,
-    BLOND,
-    RED,
-    BROWN,
-    BLACK;
+    WARRIOR, THIEF, MAGE, PRIEST;
 
     @Override
     public String toString() {

@@ -1,43 +1,45 @@
 @startuml
-class com.dutianze.designpattern.structural.bridge.weapon.Hammer {
+class Hammer {
 - Enchantment enchantment
 + void wield()
 + void swing()
 + void unwield()
 + Enchantment getEnchantment()
 }
-class com.dutianze.designpattern.structural.bridge.weapon.Sword {
-- Enchantment enchantment
-+ void wield()
-+ void swing()
-+ void unwield()
-+ Enchantment getEnchantment()
-}
-class com.dutianze.designpattern.structural.bridge.enchantment.SoulEatingEnchantment {
-+ void onActivate()
-+ void apply()
-+ void onDeactivate()
-}
-interface com.dutianze.designpattern.structural.bridge.weapon.Weapon {
+interface Weapon {
 ~ void wield()
 ~ void swing()
 ~ void unwield()
 ~ Enchantment getEnchantment()
 }
-class com.dutianze.designpattern.structural.bridge.enchantment.FlyingEnchantment {
+class Sword {
+- Enchantment enchantment
++ void wield()
++ void swing()
++ void unwield()
++ Enchantment getEnchantment()
+}
+class SoulEatingEnchantment {
 + void onActivate()
 + void apply()
 + void onDeactivate()
 }
-interface com.dutianze.designpattern.structural.bridge.enchantment.Enchantment {
+class FlyingEnchantment {
++ void onActivate()
++ void apply()
++ void onDeactivate()
+}
+interface Enchantment {
 ~ void onActivate()
 ~ void apply()
 ~ void onDeactivate()
 }
 
 
-com.dutianze.designpattern.structural.bridge.weapon.Weapon <|.. com.dutianze.designpattern.structural.bridge.weapon.Hammer
-com.dutianze.designpattern.structural.bridge.weapon.Weapon <|.. com.dutianze.designpattern.structural.bridge.weapon.Sword
-com.dutianze.designpattern.structural.bridge.enchantment.Enchantment <|.. com.dutianze.designpattern.structural.bridge.enchantment.SoulEatingEnchantment
-com.dutianze.designpattern.structural.bridge.enchantment.Enchantment <|.. com.dutianze.designpattern.structural.bridge.enchantment.FlyingEnchantment
+Sword -->  "-enchantment" Enchantment
+Hammer -->  "-enchantment" Enchantment
+FlyingEnchantment ..|> Enchantment
+Hammer ..|> Weapon
+SoulEatingEnchantment ..|> Enchantment
+Sword ..|> Weapon
 @enduml

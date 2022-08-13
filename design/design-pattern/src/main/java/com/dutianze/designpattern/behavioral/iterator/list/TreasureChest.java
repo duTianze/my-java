@@ -5,6 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * <h2 id="known-uses">Known uses</h2>
+ * <ul>
+ * <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html">java.util.Iterator</a></li>
+ * <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html">java.util.Enumeration</a></li>
+ * </ul>
+ *
  * @author dutianze
  * @date 2022/8/10
  */

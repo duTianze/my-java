@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.creational.factorymethod.factory.impl;
+package com.dutianze.designpattern.creational.factorymethod.factory;
 
-import com.dutianze.designpattern.creational.factorymethod.factory.Blacksmith;
+import com.dutianze.designpattern.creational.factorymethod.Blacksmith;
 import com.dutianze.designpattern.creational.factorymethod.weapon.Weapon;
 import com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType;
 import com.dutianze.designpattern.creational.factorymethod.weapon.impl.OrcWeapon;

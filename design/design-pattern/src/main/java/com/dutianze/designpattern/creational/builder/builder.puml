@@ -1,19 +1,10 @@
 @startuml
-enum com.dutianze.designpattern.creational.builder.HairColor {
-+  WHITE
-+  BLOND
-+  RED
-+  BROWN
-+  BLACK
-+ String toString()
-}
-enum com.dutianze.designpattern.creational.builder.HairType {
-+  BALD
-+  SHORT
-+  CURLY
-+  LONG_STRAIGHT
-+  LONG_CURLY
-- String title
+enum com.dutianze.designpattern.creational.builder.Weapon {
++  DAGGER
++  SWORD
++  AXE
++  WARHAMMER
++  BOW
 + String toString()
 }
 class com.dutianze.designpattern.creational.builder.Hero {
@@ -44,6 +35,14 @@ enum com.dutianze.designpattern.creational.builder.Profession {
 +  PRIEST
 + String toString()
 }
+enum com.dutianze.designpattern.creational.builder.HairColor {
++  WHITE
++  BLOND
++  RED
++  BROWN
++  BLACK
++ String toString()
+}
 enum com.dutianze.designpattern.creational.builder.Armor {
 +  CLOTHES
 +  LEATHER
@@ -52,12 +51,13 @@ enum com.dutianze.designpattern.creational.builder.Armor {
 - String title
 + String toString()
 }
-enum com.dutianze.designpattern.creational.builder.Weapon {
-+  DAGGER
-+  SWORD
-+  AXE
-+  WARHAMMER
-+  BOW
+enum com.dutianze.designpattern.creational.builder.HairType {
++  BALD
++  SHORT
++  CURLY
++  LONG_STRAIGHT
++  LONG_CURLY
+- String title
 + String toString()
 }
 

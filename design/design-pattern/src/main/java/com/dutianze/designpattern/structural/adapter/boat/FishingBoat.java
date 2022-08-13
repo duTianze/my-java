@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.structural.adapter;
+package com.dutianze.designpattern.structural.adapter.boat;
 
 import lombok.extern.slf4j.Slf4j;
 

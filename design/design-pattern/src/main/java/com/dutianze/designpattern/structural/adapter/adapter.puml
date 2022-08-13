@@ -1,19 +1,21 @@
 @startuml
-class com.dutianze.designpattern.structural.adapter.Captain {
+class Captain {
 - RowingBoat rowingBoat
 ~ void row()
 }
-class com.dutianze.designpattern.structural.adapter.FishingBoatAdapter {
+class FishingBoat {
+~ void sail()
+}
+class FishingBoatAdapter {
 - FishingBoat boat
 + void row()
 }
-interface com.dutianze.designpattern.structural.adapter.RowingBoat {
+interface RowingBoat {
 ~ void row()
 }
-class com.dutianze.designpattern.structural.adapter.FishingBoat {
-~ void sail()
-}
 
 
-com.dutianze.designpattern.structural.adapter.RowingBoat <|.. com.dutianze.designpattern.structural.adapter.FishingBoatAdapter
+FishingBoatAdapter -->  "-boat" FishingBoat
+Captain -->  "-rowingBoat" RowingBoat
+FishingBoatAdapter ..|> RowingBoat
 @enduml

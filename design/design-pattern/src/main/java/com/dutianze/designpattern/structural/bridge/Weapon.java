@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.structural.bridge.weapon;
+package com.dutianze.designpattern.structural.bridge;
 
 import com.dutianze.designpattern.structural.bridge.enchantment.Enchantment;
 

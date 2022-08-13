@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.creational.builder;
+package com.dutianze.designpattern.creational.builder.valueobject;
 
 import lombok.RequiredArgsConstructor;
 
@@ -7,12 +7,13 @@ import lombok.RequiredArgsConstructor;
  * @date 2022/8/7
  */
 @RequiredArgsConstructor
-public enum Armor {
+public enum HairType {
 
-    CLOTHES("clothes"),
-    LEATHER("leather"),
-    CHAIN_MAIL("chain mail"),
-    PLATE_MAIL("plate mail");
+    BALD("bald"),
+    SHORT("short"),
+    CURLY("curly"),
+    LONG_STRAIGHT("long straight"),
+    LONG_CURLY("long curly");
 
     private final String title;
 

@@ -1,0 +1,35 @@
+@startuml
+abstract class com.dutianze.designpattern.behavioral.command.target.Target {
+- Size size
+- Visibility visibility
++ void printStatus()
++ void changeSize()
++ void changeVisibility()
+}
+enum com.dutianze.designpattern.behavioral.command.target.Size {
++  SMALL
++  NORMAL
+- String title
++ String toString()
+}
+class com.dutianze.designpattern.behavioral.command.target.Goblin {
++ String toString()
+}
+enum com.dutianze.designpattern.behavioral.command.target.Visibility {
++  VISIBLE
++  INVISIBLE
+- String title
++ String toString()
+}
+class com.dutianze.designpattern.behavioral.command.Wizard {
+- Deque<Runnable> undoStack
+- Deque<Runnable> redoStack
++ void castSpell(Runnable)
++ void undoLastSpell()
++ void redoLastSpell()
++ String toString()
+}
+
+
+com.dutianze.designpattern.behavioral.command.target.Target <|-- com.dutianze.designpattern.behavioral.command.target.Goblin
+@enduml

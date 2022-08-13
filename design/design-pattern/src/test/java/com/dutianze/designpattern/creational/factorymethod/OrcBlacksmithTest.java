@@ -1,7 +1,7 @@
 package com.dutianze.designpattern.creational.factorymethod;
 
-import com.dutianze.designpattern.creational.factorymethod.factory.impl.ElfBlacksmith;
-import com.dutianze.designpattern.creational.factorymethod.factory.impl.OrcBlacksmith;
+import com.dutianze.designpattern.creational.factorymethod.factory.ElfBlacksmith;
+import com.dutianze.designpattern.creational.factorymethod.factory.OrcBlacksmith;
 import com.dutianze.designpattern.creational.factorymethod.weapon.Weapon;
 import com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType;
 import com.dutianze.designpattern.creational.factorymethod.weapon.impl.ElfWeapon;
