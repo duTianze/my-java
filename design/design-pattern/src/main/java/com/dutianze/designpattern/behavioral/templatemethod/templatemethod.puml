@@ -1,0 +1,28 @@
+@startuml
+abstract class StealingMethod {
+# {abstract}String pickTarget()
+# {abstract}void confuseTarget(String)
+# {abstract}void stealTheItem(String)
++ void steal()
+}
+class SubtleMethod {
+# String pickTarget()
+# void confuseTarget(String)
+# void stealTheItem(String)
+}
+class HitAndRunMethod {
+# String pickTarget()
+# void confuseTarget(String)
+# void stealTheItem(String)
+}
+class HalflingThief {
+- StealingMethod method
++ void steal()
++ void changeMethod(StealingMethod)
+}
+
+
+HalflingThief -->  "-method" StealingMethod
+HitAndRunMethod --|> StealingMethod
+SubtleMethod --|> StealingMethod
+@enduml
