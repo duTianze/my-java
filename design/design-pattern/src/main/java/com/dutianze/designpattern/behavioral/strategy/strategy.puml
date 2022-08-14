@@ -1,0 +1,27 @@
+@startuml
+class DragonSlayer {
+}
+class ProjectileStrategy {
++ void execute()
+}
+class LambdaStrategy {
+}
+class MeleeStrategy {
++ void execute()
+}
+class SpellStrategy {
++ void execute()
+}
+interface DragonSlayingStrategy {
+~ void execute()
+}
+
+
+Strategy ..+ LambdaStrategy
+Strategy -->  "-dragonSlayingStrategy" DragonSlayingStrategy
+DragonSlayer -->  "-strategy" DragonSlayingStrategy
+Strategy ..|> DragonSlayingStrategy
+MeleeStrategy ..|> DragonSlayingStrategy
+ProjectileStrategy ..|> DragonSlayingStrategy
+SpellStrategy ..|> DragonSlayingStrategy
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class PeacefulState {
+- Mammoth mammoth
++ void observe()
++ void onEnterState()
+}
+interface State {
+~ void onEnterState()
+~ void observe()
+}
+class Mammoth {
+- State state
++ void timePasses()
+- void changeStateTo(State)
++ void observe()
++ String toString()
+}
+class AngryState {
+- Mammoth mammoth
++ void observe()
++ void onEnterState()
+}
+
+
+PeacefulState -->  "-mammoth" Mammoth
+AngryState -->  "-mammoth" Mammoth
+Mammoth -->  "-state" State
+AngryState ..|> State
+PeacefulState ..|> State
+@enduml

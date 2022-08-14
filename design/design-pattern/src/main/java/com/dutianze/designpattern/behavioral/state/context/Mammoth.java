@@ -29,12 +29,12 @@ public class Mammoth {
         this.state.onEnterState();
     }
 
+    public void observe() {
+        this.state.observe();
+    }
+
     @Override
     public String toString() {
         return "The mammoth";
-    }
-
-    public void observe() {
-        this.state.observe();
     }
 }
