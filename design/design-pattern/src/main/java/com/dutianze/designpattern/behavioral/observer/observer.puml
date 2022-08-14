@@ -1,0 +1,33 @@
+@startuml
+class Hobbits {
++ void update(WeatherType)
+}
+enum WeatherType {
++  SUNNY
++  RAINY
++  WINDY
++  COLD
+- String description
++ String toString()
+}
+interface WeatherObserver {
+~ void update(WeatherType)
+}
+class Weather {
+- WeatherType currentWeather
+- List<WeatherObserver> observers
++ void addObserver(WeatherObserver)
++ void removeObserver(WeatherObserver)
++ void timePasses()
+- void notifyObservers()
+}
+class Orcs {
++ void update(WeatherType)
+}
+
+
+WeatherObserver <|.. Hobbits
+WeatherObserver <|.. Orcs
+Weather -->  "-currentWeather" WeatherType
+Weather -->  "-observers" WeatherObserver
+@enduml

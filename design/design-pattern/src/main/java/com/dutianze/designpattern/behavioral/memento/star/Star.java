@@ -35,7 +35,7 @@ public class Star {
         }
     }
 
-    StarMemento getMemento() {
+    public StarMemento getMemento() {
         StarMementoInternal state = new StarMementoInternal();
         state.setAgeYears(ageYears);
         state.setMassTons(massTons);
@@ -43,7 +43,7 @@ public class Star {
         return state;
     }
 
-    void setMemento(StarMemento memento) {
+    public void setMemento(StarMemento memento) {
         StarMementoInternal state = (StarMementoInternal) memento;
         this.type = state.getType();
         this.ageYears = state.getAgeYears();
