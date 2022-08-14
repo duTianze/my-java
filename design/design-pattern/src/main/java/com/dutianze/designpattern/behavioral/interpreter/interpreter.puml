@@ -1,0 +1,38 @@
+@startuml
+class PlusExpression {
+- Expression leftExpression
+- Expression rightExpression
++ int interpret()
++ String toString()
+}
+class MinusExpression {
+- Expression leftExpression
+- Expression rightExpression
++ int interpret()
++ String toString()
+}
+class MultiplyExpression {
+- Expression leftExpression
+- Expression rightExpression
++ int interpret()
++ String toString()
+}
+class NumberExpression {
+- int number
++ int interpret()
++ String toString()
+}
+abstract class Expression {
++ {abstract}int interpret()
++ {abstract}String toString()
+~ {static} int interpret(String)
+- {static} Expression getOperatorInstance(String,Expression,Expression)
+- {static} boolean isOperator(String)
+}
+
+
+Expression <|-- PlusExpression
+Expression <|-- MinusExpression
+Expression <|-- MultiplyExpression
+Expression <|-- NumberExpression
+@enduml
