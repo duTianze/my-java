@@ -1,0 +1,46 @@
+@startuml
+class CommanderVisitor {
++ void visitSoldier(Soldier)
++ void visitSergeant(Sergeant)
++ void visitCommander(Commander)
+}
+interface UnitVisitor {
+~ void visitSoldier(Soldier)
+~ void visitSergeant(Sergeant)
+~ void visitCommander(Commander)
+}
+class Soldier {
++ void accept(UnitVisitor)
++ String toString()
+}
+class Commander {
++ void accept(UnitVisitor)
++ String toString()
+}
+class SoldierVisitor {
++ void visitSoldier(Soldier)
++ void visitSergeant(Sergeant)
++ void visitCommander(Commander)
+}
+class Sergeant {
++ void accept(UnitVisitor)
++ String toString()
+}
+abstract class Unit {
+- Unit[] children
++ void accept(UnitVisitor)
+}
+class SergeantVisitor {
++ void visitSoldier(Soldier)
++ void visitSergeant(Sergeant)
++ void visitCommander(Commander)
+}
+
+
+Commander --|> Unit
+CommanderVisitor ..|> UnitVisitor
+Sergeant --|> Unit
+SergeantVisitor ..|> UnitVisitor
+Soldier --|> Unit
+SoldierVisitor ..|> UnitVisitor
+@enduml
