@@ -1,11 +1,8 @@
-package com.dutianze.designpattern.behavioral.memento;
+package com.dutianze.designpattern.behavioral.memento.star;
+
+import com.dutianze.designpattern.behavioral.memento.StarMemento;
 
 /**
- * <h2 id="known-uses">Known uses</h2>
- * <ul>
- * <li><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Date.html">java.util.Date</a></li>
- * </ul>
- *
  * @author dutianze
  * @date 2022/8/14
  */

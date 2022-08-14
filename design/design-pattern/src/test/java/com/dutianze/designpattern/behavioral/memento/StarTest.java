@@ -1,5 +1,7 @@
 package com.dutianze.designpattern.behavioral.memento;
 
+import com.dutianze.designpattern.behavioral.memento.star.Star;
+import com.dutianze.designpattern.behavioral.memento.star.StarType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.behavioral.memento;
+package com.dutianze.designpattern.behavioral.memento.star;
 
 /**
  * @author dutianze
