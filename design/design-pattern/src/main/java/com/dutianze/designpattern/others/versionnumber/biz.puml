@@ -1,0 +1,76 @@
+@startuml Sample Diagram
+skinparam BackgroundColor dddddd
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 454645
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 454645
+skinparam SequenceGroupBorderColor 454645
+skinparam SequenceGroupBorderThickness 1
+skinparam participant {
+    BackgroundColor FF6F61
+    BorderColor FF6F61
+    FontColor White
+}
+skinparam database {
+    BackgroundColor 98DDDE
+    BorderColor 454645
+    FontColor 454645
+}
+skinparam entity {
+    BackgroundColor FFDA29
+    BorderColor 454645
+    FontColor 454645
+}
+skinparam note {
+    BackgroundColor LightGreen
+    BorderColor LightGreen
+    FontColor 454645
+}
+
+entity Client
+participant Backend
+participant Queue
+database RDB
+entity "External"
+
+Client -> Backend: Request
+
+note over Backend: 1. Parameter Request
+Backend->Backend: 1.1. Validate format. length and required
+alt Validate Error
+	Backend->Client: Response status code 400
+end
+
+note over Backend: 2. Main logic
+Backend<-> RDB: 2.0. Get version for optimistic locking \n [t_parent] <&lock-locked>
+Backend<-> RDB: 2.1. Select \n [t_parent] \n [t_child] \n [m_item]
+Backend->Backend: 2.2. Business Error Check
+alt Business Error
+    Backend->Client: Response status code 422
+end
+loop for each [2.1] order
+    alt if request.pattern = ${PATTERN.BY_CHILD}
+        loop for each request.child
+        Backend<->RDB: 2.3.1. Update \n [t_child]
+        end
+    end
+    alt if request.pattern = ${PATTERN.BY_PARENT}
+    Backend<->RDB: 2.3.2. Update \n [t_child]
+    end
+    Backend<->RDB: 2.4. Update \n [t_parent]
+    Backend->RDB: 2.5.0 Insert \n [t_status_history]
+    alt if [2.5.0].t_parent.status = ${STATUS.UNAVAILABLE}
+        Backend<->External: 2.5 Send notification \n Call external: [EXT00000]
+        alt if [2.5].status_code = 2XX
+            Backend->Queue: 2.6.1 Update cache \nCall internal: [INT00000]
+        else if [2.5].status_code != 2XX
+            Backend->Client: Response status code 422
+        end
+    end
+end
+note over Backend: 3. Process end <&lock-unlocked>
+Backend->Client: 3.1 Response status code 200
+@enduml

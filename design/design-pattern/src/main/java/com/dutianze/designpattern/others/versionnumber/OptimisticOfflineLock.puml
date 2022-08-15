@@ -1,0 +1,37 @@
+@startuml
+scale 1.2
+skinparam BackgroundColor dddddd
+skinparam shadowing false
+skinparam RoundCorner 7
+skinparam ArrowColor 454645
+skinparam FontColor 454645
+skinparam SequenceLifeLineBorderColor 454645
+skinparam SequenceGroupHeaderFontColor 454645
+skinparam SequenceGroupFontColor 454645
+skinparam SequenceGroupBorderColor 454645
+skinparam SequenceGroupBorderThickness 1
+skinparam database {
+    BackgroundColor 98DDDE
+    BorderColor 454645
+    FontColor 454645
+}
+skinparam participant {
+    BackgroundColor FF6F61
+    BorderColor FF6F61
+    FontColor White
+}
+participant Transaction1
+database Database
+participant Transaction2
+
+
+Transaction1 -> Database: get product
+Database -> Transaction1: Product(version=3)
+Transaction2 -> Database: get product
+Database -> Transaction2: Product(version=3)
+Transaction1 -> Database: commit Product(version=4)
+Database -[#green]> Transaction1: OK
+Transaction2 -> Database: commit Product(version=4)
+Database -[#red]>x Transaction2: Error! version is already 4
+
+@enduml

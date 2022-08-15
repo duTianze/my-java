@@ -4,9 +4,9 @@ package com.dutianze.designpattern.others.versionnumber.exception;
  * @author dutianze
  * @date 2022/8/15
  */
-public class BookDuplicateException extends Exception {
+public class VersionMismatchException extends Exception {
 
-    public BookDuplicateException(String message) {
+    public VersionMismatchException(String message) {
         super(message);
     }
 }
