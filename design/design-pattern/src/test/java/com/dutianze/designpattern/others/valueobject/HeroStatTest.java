@@ -2,9 +2,7 @@ package com.dutianze.designpattern.others.valueobject;
 
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
  * @author dutianze
@@ -13,13 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HeroStatTest {
 
     @Test
-    void testToString() {
+    void equalObjectHashCodeIsEqual() {
+        HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
+        HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
+        assertThat(heroStatA.hashCode()).isEqualTo(heroStatB.hashCode());
+    }
+
+    @Test
+    void sampleFieldsIsEqual() {
         HeroStat heroStatA = HeroStat.valueOf(3, 9, 2);
         HeroStat heroStatB = HeroStat.valueOf(3, 9, 2);
         HeroStat heroStatC = HeroStat.valueOf(3, 9, 8);
 
-        assertEquals(heroStatA.toString(), is(heroStatB.toString()));
-        assertEquals(heroStatA.toString(), is(not(heroStatC.toString())));
+        assertThat(heroStatA.toString()).isEqualTo(heroStatB.toString());
+        assertThat(heroStatA.toString()).isNotEqualTo(heroStatC.toString());
     }
-
 }
