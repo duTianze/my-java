@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.behavioral.templatemethod.stealing.impl;
+package com.dutianze.designpattern.behavioral.templatemethod.impl;
 
-import com.dutianze.designpattern.behavioral.templatemethod.stealing.StealingMethod;
+import com.dutianze.designpattern.behavioral.templatemethod.StealingMethod;
 import lombok.extern.slf4j.Slf4j;
 
 /**
