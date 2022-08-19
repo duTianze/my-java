@@ -1,0 +1,38 @@
+@startuml
+enum UnitActions {
++  INSERT
++  DELETE
++  MODIFY
+- String actionValue
+}
+interface IUnitOfWork {
+~ void registerNew(T)
+~ void registerModified(T)
+~ void registerDeleted(T)
+~ void commit()
+}
+class WeaponRepositoryImpl {
+- Map<String,List<Weapon>> context
+- WeaponMapper weaponRepository
++ void registerNew(Weapon)
++ void registerModified(Weapon)
++ void registerDeleted(Weapon)
+- void register(Weapon,String)
++ void commit()
+- void commitInsert()
+- void commitModify()
+- void commitDelete()
+}
+class Weapon {
+- Integer id
+- String name
+}
+class WeaponMapper {
++ void insert(Weapon)
++ void modify(Weapon)
++ void delete(Weapon)
+}
+
+WeaponRepositoryImpl -->  "-weaponMapper" WeaponMapper
+WeaponRepositoryImpl ..|> IUnitOfWork
+@enduml
