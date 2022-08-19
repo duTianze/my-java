@@ -1,0 +1,35 @@
+@startuml
+class World {
+# List<Entity> entities
+# boolean isRunning
+- void gameLoop()
+- void processInput()
+- void update()
+- void render()
++ void run()
++ void stop()
++ void addEntity(Entity)
+}
+class Skeleton {
+- {static} int PATROLLING_LEFT_BOUNDING
+- {static} int PATROLLING_RIGHT_BOUNDING
+# boolean patrollingLeft
++ void update()
+}
+class Statue {
+# int frames
+# int delay
++ void update()
+- void shootLightning()
+}
+abstract class Entity {
+# int id
+# int position
++ {abstract}void update()
+}
+
+
+World -->  "-entities" Entity
+Skeleton --|> Entity
+Statue --|> Entity
+@enduml
