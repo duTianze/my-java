@@ -1,0 +1,42 @@
+@startuml
+class RoomServiceImpl {
+- RoomDao hotelDao
++ void bookRoom(int)
++ void cancelRoomBooking(int)
+}
+interface RoomDao {
+~ Stream<Room> getAll()
+~ Optional<Room> getById(int)
+~ Boolean add(Room)
+~ Boolean update(Room)
+~ Boolean delete(Room)
+}
+class RoomDaoImpl {
+- DataSource dataSource
++ Stream<Room> getAll()
++ Optional<Room> getById(int)
++ Boolean add(Room)
++ Boolean update(Room)
++ Boolean delete(Room)
+- Room deserialize(ResultSet)
+- void mutedClose(Connection,PreparedStatement,ResultSet)
+}
+class Room {
+- int id
+- String roomType
+- int price
+- boolean booked
++ void book()
++ void cancelBook()
+}
+interface RoomService {
+~ void bookRoom(int)
+~ void cancelRoomBooking(int)
+}
+
+
+RoomService <|.. RoomServiceImpl
+RoomDao <|.. RoomDaoImpl
+
+RoomServiceImpl -right-> RoomDao
+@enduml
