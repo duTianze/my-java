@@ -1,0 +1,35 @@
+@startuml
+package parent {
+	abstract class GameItem {
+		+ void draw()
+		+ {abstract}void doDraw()
+		+ {abstract}void click()
+	}
+	interface Thread {
+	}
+}
+
+package twin <<Node>> {
+	class BallItem {
+		- boolean isSuspended
+		- BallThread twin
+		+ void doDraw()
+		+ void move()
+		+ void click()
+	}
+	class BallThread {
+		- BallItem twin
+		- boolean isSuspended
+		- boolean isRunning
+		+ void run()
+		+ void suspendMe()
+		+ void resumeMe()
+		+ void stopMe()
+	}
+}
+GameItem <|-down- BallItem
+Thread <|-down- BallThread
+
+BallThread -right-> BallItem
+BallItem -left-> BallThread
+@enduml
