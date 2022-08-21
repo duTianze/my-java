@@ -1,0 +1,30 @@
+@startuml
+interface Throttler {
+~ void start()
+}
+class Bartender {
+- CallsCount callsCount
++ int orderDrink(BarCustomer)
+- int getRandomCustomerId()
+}
+class BarCustomer {
+- String name
+- int allowedCallsPerSecond
+}
+class ThrottleTimerImpl {
+- int throttlePeriod
+- CallsCount callsCount
++ void start()
+}
+class CallsCount {
+- Map<String,AtomicLong> tenantCallsCount
++ void addTenant(String)
++ void incrementCount(String)
++ long getCount(String)
++ void reset()
+}
+
+
+Throttler <|.. ThrottleTimerImpl
+ThrottleTimerImpl -->  "-callsCount" CallsCount
+@enduml
