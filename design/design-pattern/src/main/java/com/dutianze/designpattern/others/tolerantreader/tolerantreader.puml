@@ -1,0 +1,26 @@
+@startuml
+class RainbowFish {
+- {static} long serialVersionUID
+- String name
+- int age
+- int lengthMeters
+- int weightTons
+}
+class RainbowFishSerializer {
++ {static} String LENGTH_METERS
++ {static} String WEIGHT_TONS
++ {static} void writeV1(RainbowFish,String)
++ {static} void writeV2(RainbowFishV2,String)
++ {static} RainbowFish readV1(String)
+}
+class RainbowFishV2 {
+- {static} long serialVersionUID
+- boolean sleeping
+- boolean hungry
+- boolean angry
+}
+
+
+Serializable <|.. RainbowFish
+RainbowFish <|-- RainbowFishV2
+@enduml
