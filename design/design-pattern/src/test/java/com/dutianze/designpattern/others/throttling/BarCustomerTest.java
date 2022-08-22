@@ -1,5 +1,7 @@
 package com.dutianze.designpattern.others.throttling;
 
+import com.dutianze.designpattern.others.throttling.model.BarCustomer;
+import com.dutianze.designpattern.others.throttling.timer.CallsCount;
 import com.dutianze.designpattern.others.throttling.timer.ThrottleTimerImpl;
 import com.dutianze.designpattern.others.throttling.timer.Throttler;
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +47,10 @@ class BarCustomerTest {
 
     private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
         Throttler timer = new ThrottleTimerImpl(1000, callsCount);
-        Bartender service = new Bartender(timer, callsCount);
+        BarCustomerService service = new BarCustomerService(timer, callsCount);
         IntStream.range(0, 50).forEach(i -> {
-            service.orderDrink(barCustomer);
+            int drink = service.orderDrink(barCustomer);
+            log.info("drink:{}", drink);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {

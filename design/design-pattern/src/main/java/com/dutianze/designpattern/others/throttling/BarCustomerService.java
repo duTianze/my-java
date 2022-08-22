@@ -1,5 +1,7 @@
 package com.dutianze.designpattern.others.throttling;
 
+import com.dutianze.designpattern.others.throttling.model.BarCustomer;
+import com.dutianze.designpattern.others.throttling.timer.CallsCount;
 import com.dutianze.designpattern.others.throttling.timer.Throttler;
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,11 +12,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * @date 2022/8/22
  */
 @Slf4j
-public class Bartender {
+public class BarCustomerService {
 
     private final CallsCount callsCount;
 
-    public Bartender(Throttler timer, CallsCount callsCount) {
+    public BarCustomerService(Throttler timer, CallsCount callsCount) {
         this.callsCount = callsCount;
         timer.start();
     }

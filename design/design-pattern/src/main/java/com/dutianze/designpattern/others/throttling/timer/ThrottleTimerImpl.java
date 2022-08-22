@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.others.throttling.timer;
 
-import com.dutianze.designpattern.others.throttling.CallsCount;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Timer;

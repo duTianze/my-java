@@ -1,0 +1,26 @@
+@startuml
+abstract class Task {
+- {static} AtomicInteger ID_GENERATOR
+- int id
+- int timeMs
++ String toString()
+}
+class Worker {
+- Task task
++ void run()
+}
+class PotatoPeelingTask {
+- {static} int TIME_PER_POTATO
++ String toString()
+}
+class CoffeeMakingTask {
+- {static} int TIME_PER_CUP
++ String toString()
+}
+
+
+Runnable <|.. Worker
+Task <|-- PotatoPeelingTask
+Task <|-- CoffeeMakingTask
+Worker -->  "-task" Task
+@enduml

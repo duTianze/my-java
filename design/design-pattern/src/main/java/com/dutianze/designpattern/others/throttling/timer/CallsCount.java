@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.others.throttling;
+package com.dutianze.designpattern.others.throttling.timer;
 
 import lombok.extern.slf4j.Slf4j;
 

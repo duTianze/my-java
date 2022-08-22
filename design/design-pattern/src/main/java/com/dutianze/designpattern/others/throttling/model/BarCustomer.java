@@ -1,5 +1,6 @@
-package com.dutianze.designpattern.others.throttling;
+package com.dutianze.designpattern.others.throttling.model;
 
+import com.dutianze.designpattern.others.throttling.timer.CallsCount;
 import lombok.Getter;
 
 import java.security.InvalidParameterException;
