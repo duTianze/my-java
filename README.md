@@ -21,7 +21,3 @@
 - [ ] HTML, CSS and JavaScript
 - [ ] AWS(EKS, etc.)
 - [ ] VPN(v2ray, shadowsocks, trojan)
-
-# Roadmap
-
-![](.README_images/9c13f02c.png)
