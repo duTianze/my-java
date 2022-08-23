@@ -1,0 +1,45 @@
+@startuml
+class NewArithmetic {
+- {static} String VERSION
+- NewSource source
++ int sum(int)
++ int mul(int)
++ boolean ifHasZero(int)
+}
+class HalfArithmetic {
+- {static} String VERSION
+- HalfSource newSource
+- OldSource oldSource
++ int sum(int)
++ int mul(int)
++ boolean ifHasZero(int)
+}
+class OldSource {
+- {static} String VERSION
++ int accumulateSum(int)
++ int accumulateMul(int)
+}
+class HalfSource {
+- {static} String VERSION
++ int accumulateSum(int)
++ boolean ifNonZero(int)
+}
+class NewSource {
+- {static} String VERSION
++ {static} String SOURCE_MODULE
++ int accumulateSum(int)
++ int accumulateMul(int)
++ boolean ifNonZero(int)
+}
+class OldArithmetic {
+- {static} String VERSION
+- OldSource source
++ int sum(int)
++ int mul(int)
+}
+
+OldArithmetic o--> OldSource
+HalfArithmetic o--> OldSource
+HalfArithmetic o--> HalfSource
+NewArithmetic o--> NewSource
+@enduml
