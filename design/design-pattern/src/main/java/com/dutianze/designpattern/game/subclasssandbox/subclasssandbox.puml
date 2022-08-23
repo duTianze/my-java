@@ -1,0 +1,18 @@
+@startuml
+class GroundDive {
+# void activate()
+}
+abstract class Superpower {
+# {abstract}void activate()
+# void move(double,double,double)
+# void playSound(String,int)
+# void spawnParticles(String,int)
+}
+class SkyLaunch {
+# void activate()
+}
+
+
+Superpower <|-- GroundDive
+Superpower <|-- SkyLaunch
+@enduml

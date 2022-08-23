@@ -47,7 +47,7 @@ public class World {
     }
 
     private void update() {
-        for (var entity : entities) {
+        for (Entity entity : entities) {
             entity.update();
         }
     }
@@ -59,7 +59,7 @@ public class World {
     public void run() {
         log.info("Start game.");
         isRunning = true;
-        var thread = new Thread(this::gameLoop);
+        Thread thread = new Thread(this::gameLoop);
         thread.start();
     }
 
