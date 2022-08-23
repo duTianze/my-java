@@ -1,7 +1,7 @@
-package com.dutianze.designpattern.others.transactionscript.dao.impl;
+package com.dutianze.designpattern.simple.transactionscript.dao.impl;
 
-import com.dutianze.designpattern.others.transactionscript.dao.RoomDao;
-import com.dutianze.designpattern.others.transactionscript.domain.Room;
+import com.dutianze.designpattern.simple.transactionscript.dao.RoomDao;
+import com.dutianze.designpattern.simple.transactionscript.domain.Room;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

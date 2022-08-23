@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.others.transactionscript;
+package com.dutianze.designpattern.simple.transactionscript;
 
-import com.dutianze.designpattern.others.transactionscript.domain.Room;
+import com.dutianze.designpattern.simple.transactionscript.domain.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

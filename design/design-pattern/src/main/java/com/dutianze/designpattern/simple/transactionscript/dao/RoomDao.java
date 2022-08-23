@@ -1,6 +1,6 @@
-package com.dutianze.designpattern.others.transactionscript.dao;
+package com.dutianze.designpattern.simple.transactionscript.dao;
 
-import com.dutianze.designpattern.others.transactionscript.domain.Room;
+import com.dutianze.designpattern.simple.transactionscript.domain.Room;
 
 import java.util.Optional;
 import java.util.stream.Stream;

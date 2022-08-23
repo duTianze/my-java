@@ -1,10 +1,10 @@
-package com.dutianze.designpattern.others.transactionscript;
+package com.dutianze.designpattern.simple.transactionscript;
 
-import com.dutianze.designpattern.others.transactionscript.dao.RoomDao;
-import com.dutianze.designpattern.others.transactionscript.dao.impl.RoomDaoImpl;
-import com.dutianze.designpattern.others.transactionscript.domain.Room;
-import com.dutianze.designpattern.others.transactionscript.service.RoomService;
-import com.dutianze.designpattern.others.transactionscript.service.impl.RoomServiceImpl;
+import com.dutianze.designpattern.simple.transactionscript.dao.RoomDao;
+import com.dutianze.designpattern.simple.transactionscript.dao.impl.RoomDaoImpl;
+import com.dutianze.designpattern.simple.transactionscript.domain.Room;
+import com.dutianze.designpattern.simple.transactionscript.service.RoomService;
+import com.dutianze.designpattern.simple.transactionscript.service.impl.RoomServiceImpl;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

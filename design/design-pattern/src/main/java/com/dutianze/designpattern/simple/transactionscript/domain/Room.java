@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.others.transactionscript.domain;
+package com.dutianze.designpattern.simple.transactionscript.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
