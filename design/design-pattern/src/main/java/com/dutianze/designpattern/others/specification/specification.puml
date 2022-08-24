@@ -1,0 +1,136 @@
+@startuml
+abstract class AbstractSelector {
++ AbstractSelector<T> and(AbstractSelector<T>)
++ AbstractSelector<T> or(AbstractSelector<T>)
++ AbstractSelector<T> not()
+}
+class MovementSelector {
+- Movement movement
++ boolean test(Creature)
+}
+class Octopus {
+}
+class ColorSelector {
+- Color color
++ boolean test(Creature)
+}
+enum Size {
++  SMALL
++  NORMAL
++  LARGE
+- String title
++ String toString()
+}
+class Mass {
+- double value
+- String title
++ boolean greaterThan(Mass)
++ boolean smallerThan(Mass)
++ boolean greaterThanOrEq(Mass)
++ boolean smallerThanOrEq(Mass)
++ String toString()
+}
+class Dragon {
+}
+class MassSmallerThanOrEqSelector {
+- Mass mass
++ boolean test(Creature)
+}
+enum Color {
++  DARK
++  LIGHT
++  GREEN
++  RED
+- String title
++ String toString()
+}
+class Shark {
+}
+class NegationSelector {
+- AbstractSelector<T> component
++ boolean test(T)
+}
+class SizeSelector {
+- Size size
++ boolean test(Creature)
+}
+enum Movement {
++  WALKING
++  SWIMMING
++  FLYING
+- String title
++ String toString()
+}
+class Troll {
+}
+abstract class AbstractCreature {
+- String name
+- Size size
+- Movement movement
+- Color color
+- Mass mass
++ String toString()
++ String getName()
++ Size getSize()
++ Movement getMovement()
++ Color getColor()
++ Mass getMass()
+}
+class MassEqualSelector {
+- Mass mass
++ boolean test(Creature)
+}
+class MassGreaterThanSelector {
+- Mass mass
++ boolean test(Creature)
+}
+interface Creature {
+~ String getName()
+~ Size getSize()
+~ Movement getMovement()
+~ Color getColor()
+~ Mass getMass()
+}
+class Goblin {
+}
+class KillerBee {
+}
+class ConjunctionSelector {
+- List<AbstractSelector<T>> leafComponents
++ boolean test(T)
+}
+class DisjunctionSelector {
+- List<AbstractSelector<T>> leafComponents
++ boolean test(T)
+}
+
+
+Predicate <|.. AbstractSelector
+SizeSelector -->  "-size" Size
+AbstractCreature -->  "-mass" Mass
+MassEqualSelector -->  "-mass" Mass
+AbstractCreature -->  "-color" Color
+MassGreaterThanSelector -->  "-mass" Mass
+MovementSelector -->  "-movement" Movement
+NegationSelector -->  "-component" AbstractSelector
+AbstractCreature -->  "-movement" Movement
+MassSmallerThanOrEqSelector -->  "-mass" Mass
+AbstractCreature -->  "-size" Size
+ColorSelector -->  "-color" Color
+AbstractCreature ..|> Creature
+Dragon --|> AbstractCreature
+Goblin --|> AbstractCreature
+KillerBee --|> AbstractCreature
+Octopus --|> AbstractCreature
+Shark --|> AbstractCreature
+Troll --|> AbstractCreature
+ColorSelector -up-|> AbstractSelector
+ConjunctionSelector -up-|> AbstractSelector
+DisjunctionSelector -up-|> AbstractSelector
+MassEqualSelector -up-|> AbstractSelector
+MassGreaterThanSelector -up-|> AbstractSelector
+MassSmallerThanOrEqSelector -up-|> AbstractSelector
+MovementSelector -up-|> AbstractSelector
+NegationSelector -up-|> AbstractSelector
+SizeSelector -up-|> AbstractSelector
+@enduml

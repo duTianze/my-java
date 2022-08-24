@@ -28,7 +28,7 @@ class StateTest {
     }
 
     @Test
-    void testTimePasses() {
+    void usage() {
         final Mammoth mammoth = new Mammoth();
 
         mammoth.observe();
