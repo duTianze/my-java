@@ -1,0 +1,96 @@
+@startuml
+left to right direction
+class ApplicationServicesImpl {
+- DomainServices domain
++ ReceiptViewModel loggedInUserPurchase(String,String)
+- boolean isDownForMaintenance()
+}
+class ReceiptDto {
+- Double price
++ Double getPrice()
++ void show()
+}
+interface ReceiptViewModel {
+~ void show()
+}
+class DomainServicesImpl {
++ ReceiptViewModel purchase(String,String)
+- ReceiptViewModel purchase(User,Account,String)
+}
+class MoneyTransaction {
+- Double amount
+- Double price
+}
+class DownForMaintenance {
++ void show()
+}
+class InvalidUser {
+- String userName
++ void show()
+}
+interface ApplicationServices {
+~ ReceiptViewModel loggedInUserPurchase(String,String)
+}
+class MaintenanceLock {
+- {static} MaintenanceLock instance
+- boolean lock
++ {static} MaintenanceLock getInstance()
++ boolean isLock()
++ void setLock(boolean)
+}
+class OutOfStock {
+- String userName
+- String itemName
++ void show()
+}
+interface DomainServices {
+~ ReceiptViewModel purchase(String,String)
+}
+class Db {
+- {static} Db instance
+- Map<String,User> userName2User
+- Map<User,Account> user2Account
+- Map<String,Product> itemName2Product
++ {static} Db getInstance()
++ void seedUser(String,Double)
++ void seedItem(String,Double)
++ User findUserByUserName(String)
++ Account findAccountByUser(User)
++ Product findProductByItemName(String)
+}
+class User {
+- String userName
++ String getUserName()
++ ReceiptDto purchase(Product)
+}
+class Account {
+- Double amount
++ MoneyTransaction withdraw(Double)
++ Double getAmount()
+}
+class Product {
+- Double price
++ Double getPrice()
+}
+class InsufficientFunds {
+- String userName
+- Double amount
+- String itemName
++ void show()
+}
+
+
+User --+ Db
+Product --+ Db
+MaintenanceLock -->  "-instance" MaintenanceLock
+Db -->  "-instance" Db
+ApplicationServicesImpl -->  "-domain" DomainServicesImpl
+Account --+ Db
+ApplicationServicesImpl ..|> ApplicationServices
+DomainServicesImpl ..|> DomainServices
+DownForMaintenance ..|> ReceiptViewModel
+InsufficientFunds ..|> ReceiptViewModel
+InvalidUser ..|> ReceiptViewModel
+OutOfStock ..|> ReceiptViewModel
+ReceiptDto ..|> ReceiptViewModel
+@enduml

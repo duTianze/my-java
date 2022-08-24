@@ -38,6 +38,6 @@ public class NegationSelector<T> extends AbstractSelector<T> {
 
     @Override
     public boolean test(T t) {
-        return !(component.test(t));
+        return !component.test(t);
     }
 }
