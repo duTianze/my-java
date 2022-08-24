@@ -1,0 +1,58 @@
+@startuml
+abstract class Point {
++ int coordinateX
++ int coordinateY
++ int id
+~ {abstract}void move()
+~ {abstract}boolean touches(T)
+~ {abstract}void handleCollision(Collection<? extends Point<T>>,Map<Integer,T>)
+}
+class Rect {
+~ double coordinateX
+~ double coordinateY
+~ double width
+~ double height
+~ boolean contains(Point<Bubble>)
+~ boolean intersects(Rect)
+}
+class QuadTree {
+~ Rect boundary
+~ int capacity
+~ boolean divided
+~ Hashtable<Integer,Point<Bubble>> points
+~ QuadTree northwest
+~ QuadTree northeast
+~ QuadTree southwest
+~ QuadTree southeast
+~ void insert(Point<Bubble>)
+~ void divide()
+~ Collection<Point<Bubble>> query(Rect,Collection<Point<Bubble>>)
+}
+class Bubble {
+- {static} SecureRandom RANDOM
+~ int radius
+~ void move()
+~ boolean touches(Bubble)
+~ void pop(Map<Integer,Bubble>)
+~ void handleCollision(Collection<? extends Point<Bubble>>,Map<Integer,Bubble>)
+}
+abstract class SpatialPartitionGeneric {
+~ Hashtable<Integer,T> playerPositions
+~ QuadTree quadTree
+~ {abstract}void handleCollisionsUsingQt(T)
+}
+class SpatialPartitionBubbles {
+- Map<Integer,Bubble> bubbles
+- QuadTree bubblesQuadTree
+~ void handleCollisionsUsingQt(Bubble)
+}
+
+
+SpatialPartitionBubbles -->  "-quadTree" QuadTree
+SpatialPartitionGeneric -->  "-quadTree" QuadTree
+QuadTree -->  "-boundary" Rect
+QuadTree -->  "-northwest" QuadTree
+QuadTree -->  "-southwest" QuadTree
+Bubble --|> Point
+SpatialPartitionBubbles --|> SpatialPartitionGeneric
+@enduml
