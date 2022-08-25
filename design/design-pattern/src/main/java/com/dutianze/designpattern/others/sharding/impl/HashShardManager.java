@@ -17,7 +17,7 @@ public class HashShardManager extends ShardManager {
         int shardId = allocateShard(data);
         Shard shard = shardMap.get(shardId);
         shard.storeData(data);
-        log.info(data.toString() + " is stored in Shard " + shardId);
+        log.info(data + " is stored in Shard " + shardId);
         return shardId;
     }
 
