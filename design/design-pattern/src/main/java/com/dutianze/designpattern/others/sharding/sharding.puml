@@ -1,0 +1,48 @@
+@startuml
+class Data {
+- int key
+- String value
+- DataType type
+}
+enum DataType {
++  TYPE_1
++  TYPE_2
++  TYPE_3
+}
+class HashShardManager {
++ int storeData(Data)
+# int allocateShard(Data)
+}
+class Shard {
+- int id
+- Map<Integer,Data> dataStore
++ void storeData(Data)
++ void clearData()
++ Data getDataById(int)
++ int getId()
+}
+class RangeShardManager {
++ int storeData(Data)
+# int allocateShard(Data)
+}
+class LookupShardManager {
+- Map<Integer,Integer> lookupMap
++ int storeData(Data)
+# int allocateShard(Data)
+}
+abstract class ShardManager {
+# Map<Integer,Shard> shardMap
++ boolean addNewShard(Shard)
++ boolean removeShardById(int)
++ Shard getShardById(int)
++ {abstract}int storeData(Data)
+# {abstract}int allocateShard(Data)
+}
+
+
+DataType ..+ Data
+Data -->  "-type" DataType
+HashShardManager --|> ShardManager
+LookupShardManager --|> ShardManager
+RangeShardManager --|> ShardManager
+@enduml
