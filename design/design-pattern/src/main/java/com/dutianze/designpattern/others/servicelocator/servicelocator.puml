@@ -1,0 +1,30 @@
+@startuml
+class ServiceLocator {
+- {static} ServiceCache serviceCache
++ {static} Service getService(String)
+}
+class ServiceImpl {
+- String serviceName
+- int id
++ String getName()
++ int getId()
++ void execute()
+}
+class ServiceCache {
+- Map<String,Service> serviceCache
++ Service getService(String)
++ void addService(Service)
+}
+interface Service {
+~ String getName()
+~ int getId()
+~ void execute()
+}
+class InitContext {
++ Object lookup(String)
+}
+
+
+ServiceLocator -->  "-serviceCache" ServiceCache
+ServiceImpl ..|> Service
+@enduml
