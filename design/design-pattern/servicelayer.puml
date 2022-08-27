@@ -1,0 +1,95 @@
+@startuml
+class ServiceLayerApplication {
++ {static} void main(String[])
+}
+interface MagicService {
+~ List<Wizard> findAllWizards()
+~ List<SpellBook> findAllSpellBooks()
+~ List<Spell> findAllSpells()
+~ List<Wizard> findWizardsWithSpellBook(String)
+~ List<Wizard> findWizardsWithSpell(String)
+}
+package spellbook{
+	interface SpellBookRepository {
+	~ SpellBook findByName(String)
+	~ List<SpellBook> findAll()
+	}
+	class SpellBook {
+	- Long id
+	- String name
+	- Set<Wizard> wizards
+	- Set<Spell> spells
+	+ Long getId()
+	+ void setId(Long)
+	+ String getName()
+	+ void setName(String)
+	+ Set<Wizard> getWizards()
+	+ void setWizards(Set<Wizard>)
+	+ Set<Spell> getSpells()
+	+ void setSpells(Set<Spell>)
+	+ void addSpell(Spell)
+	+ String toString()
+	}
+}
+package spell {
+	class Spell {
+	- Long id
+	- String name
+	- SpellBook spellBook
+	+ Long getId()
+	+ void setId(Long)
+	+ String getName()
+	+ void setName(String)
+	+ SpellBook getSpellBook()
+	+ void setSpellBook(SpellBook)
+	+ String toString()
+	}
+	interface SpellRepository {
+	~ Spell findByName(String)
+	~ List<Spell> findAll()
+	}
+}
+
+package wizard {
+	class Wizard {
+	- Long id
+	- String name
+	- Set<SpellBook> spellBooks
+	+ Long getId()
+	+ void setId(Long)
+	+ String getName()
+	+ void setName(String)
+	+ Set<SpellBook> getSpellBooks()
+	+ void setSpellBooks(Set<SpellBook>)
+	+ void addSpellBook(SpellBook)
+	+ String toString()
+	}
+	interface WizardRepository {
+    ~ List<Wizard> findAll()
+    ~ Wizard findByName(String)
+    }
+}
+class MagicServiceImpl {
+- WizardRepository wizardRepository
+- SpellBookRepository spellBookRepository
+- SpellRepository spellRepository
++ List<Wizard> findAllWizards()
++ List<SpellBook> findAllSpellBooks()
++ List<Spell> findAllSpells()
++ List<Wizard> findWizardsWithSpellBook(String)
++ List<Wizard> findWizardsWithSpell(String)
+}
+
+
+CrudRepository <|-up- WizardRepository
+CrudRepository <|-up- SpellRepository
+CrudRepository <|-up- SpellBookRepository
+MagicService <|.. MagicServiceImpl
+
+MagicServiceImpl -left->  "-spellRepository" SpellRepository
+MagicServiceImpl -down->  "-wizardRepository" WizardRepository
+MagicServiceImpl -right->  "-spellBookRepository" SpellBookRepository
+
+SpellBook -->  "-spells" Spell
+SpellBook -->  "-wizards" Wizard
+@enduml
