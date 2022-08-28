@@ -1,0 +1,12 @@
+@startuml
+class TreasureChest {
++ void close()
+}
+class SlidingDoor {
++ void close()
+}
+
+Closeable <|.. AutoCloseable
+Closeable <|.. TreasureChest
+AutoCloseable <|.. SlidingDoor
+@enduml
