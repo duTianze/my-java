@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.Closeable;
 
 /**
+ * Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.
+ *
  * @author dutianze
  * @date 2022/8/28
  */
