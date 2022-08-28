@@ -19,7 +19,7 @@ interface DragonSlayingStrategy {
 
 Strategy ..+ LambdaStrategy
 Strategy -->  "-dragonSlayingStrategy" DragonSlayingStrategy
-DragonSlayer -->  "-strategy" DragonSlayingStrategy
+DragonSlayer -up->  "-strategy" DragonSlayingStrategy
 Strategy ..|> DragonSlayingStrategy
 MeleeStrategy ..|> DragonSlayingStrategy
 ProjectileStrategy ..|> DragonSlayingStrategy
