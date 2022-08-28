@@ -18,7 +18,9 @@ public class ReaderWriterLock implements ReadWriteLock {
 
     private final Object readerMutex = new Object();
     private int currentReaderCount;
+
     private final Set<Object> globalMutex = new HashSet<>();
+
     private final ReadLock readerLock = new ReadLock();
     private final WriteLock writerLock = new WriteLock();
 
