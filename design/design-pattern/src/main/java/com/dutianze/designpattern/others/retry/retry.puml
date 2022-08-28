@@ -1,0 +1,50 @@
+@startuml
+class RetryExponentialBackoff {
+- {static} Random RANDOM
+- BusinessOperation<T> op
+- int maxAttempts
+- long maxDelay
+- AtomicInteger attempts
+- Predicate<Exception> ignoreTests
+- List<Exception> errors
++ List<Exception> errors()
++ int attempts()
++ T perform()
+}
+class CustomerNotFoundException {
+- {static} long serialVersionUID
+}
+class Retry {
+- BusinessOperation<T> op
+- int maxAttempts
+- long delay
+- AtomicInteger attempts
+- Predicate<Exception> test
+- List<Exception> errors
++ List<Exception> errors()
++ int attempts()
++ T perform()
+}
+interface BusinessOperation {
+~ T perform()
+}
+class DatabaseNotAvailableException {
+- {static} long serialVersionUID
+}
+class BusinessException {
+- {static} long serialVersionUID
+}
+class FindCustomer {
+- String customerId
+- Deque<BusinessException> errors
++ String perform()
+}
+
+
+BusinessOperation <|.. RetryExponentialBackoff
+BusinessException <|-- CustomerNotFoundException
+BusinessOperation <|.. Retry
+BusinessException <|-- DatabaseNotAvailableException
+Exception <|-- BusinessException
+BusinessOperation <|.. FindCustomer
+@enduml
