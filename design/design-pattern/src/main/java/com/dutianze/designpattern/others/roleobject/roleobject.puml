@@ -1,0 +1,48 @@
+@startuml
+abstract class Customer {
++ {abstract}boolean addRole(Role)
++ {abstract}boolean hasRole(Role)
++ {abstract}boolean remRole(Role)
++ {abstract}Optional<T> getRole(Role,Class<T>)
++ {static} Customer newCustomer()
++ {static} Customer newCustomer(Role)
+}
+class BorrowerRole {
+- String name
++ String getName()
++ void setName(String)
++ String borrow()
+}
+class CustomerCore {
+- Map<Role,CustomerRole> roles
++ boolean addRole(Role)
++ boolean hasRole(Role)
++ boolean remRole(Role)
++ Optional<T> getRole(Role,Class<T>)
++ String toString()
+}
+class InvestorRole {
+- String name
+- long amountToInvest
++ String getName()
++ void setName(String)
++ long getAmountToInvest()
++ void setAmountToInvest(long)
++ String invest()
+}
+abstract class CustomerRole {
+}
+enum Role {
++  Borrower
++  Investor
+- Class<? extends CustomerRole> typeCst
++ Optional<T> instance()
+}
+
+
+CustomerRole <|-- BorrowerRole
+Customer <|-- CustomerCore
+CustomerRole <|-- InvestorRole
+CustomerCore <|-left- CustomerRole
+CustomerCore -right-> CustomerRole
+@enduml
