@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.others.repository;
+package com.dutianze.designpattern.others.repository.person;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;

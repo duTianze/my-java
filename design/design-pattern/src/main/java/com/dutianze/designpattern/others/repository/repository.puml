@@ -1,0 +1,33 @@
+@startuml
+class Person {
+- Long id
+- String name
+- String surname
+- int age
+}
+interface PersonRepository {
+~ Person findByName(String)
+}
+class PersonRepositoryApplication {
++ {static} void main(String[])
+}
+class PersonSpecifications {
+}
+class PersonSpecifications.AgeBetweenSpec {
+- int from
+- int to
++ Predicate toPredicate(Root<Person>,CriteriaQuery<?>,CriteriaBuilder)
+}
+class PersonSpecifications.NameEqualSpec {
++ String name
++ Predicate toPredicate(Root<Person>,CriteriaQuery<?>,CriteriaBuilder)
+}
+
+
+CrudRepository <|-- PersonRepository
+JpaSpecificationExecutor <|-- PersonRepository
+PersonSpecifications +.. PersonSpecifications.AgeBetweenSpec
+Specification <|.. PersonSpecifications.AgeBetweenSpec
+PersonSpecifications +.. PersonSpecifications.NameEqualSpec
+Specification <|.. PersonSpecifications.NameEqualSpec
+@enduml

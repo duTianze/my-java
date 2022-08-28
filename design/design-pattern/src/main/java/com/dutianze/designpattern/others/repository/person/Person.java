@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.others.repository;
+package com.dutianze.designpattern.others.repository.person;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,0 +1,15 @@
+@startuml
+class CustomerRegistry {
+- {static} CustomerRegistry instance
+- Map<String,Customer> customerMap
++ {static} CustomerRegistry getInstance()
++ Customer addCustomer(Customer)
++ Customer getCustomer(String)
+}
+class Customer {
+- String id
+- String name
+}
+
+Customer --> "-addCustomer" CustomerRegistry
+@enduml
