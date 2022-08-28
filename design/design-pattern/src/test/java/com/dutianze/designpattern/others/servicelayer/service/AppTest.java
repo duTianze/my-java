@@ -145,12 +145,12 @@ class AppTest {
         wizard1.addSpellBook(spellBookRepository.findByName("Book of Orgymon"));
         wizard1.addSpellBook(spellBookRepository.findByName("Book of Aras"));
         wizardRepository.save(wizard1);
-        var wizard2 = new Wizard("Anaxis Bajraktari");
+        Wizard wizard2 = new Wizard("Anaxis Bajraktari");
         wizardRepository.save(wizard2);
         wizard2.addSpellBook(spellBookRepository.findByName("Book of Kritior"));
         wizard2.addSpellBook(spellBookRepository.findByName("Book of Tamaex"));
         wizardRepository.save(wizard2);
-        var wizard3 = new Wizard("Xuban Munoa");
+        Wizard wizard3 = new Wizard("Xuban Munoa");
         wizardRepository.save(wizard3);
         wizard3.addSpellBook(spellBookRepository.findByName(BOOK_OF_IDORES));
         wizard3.addSpellBook(spellBookRepository.findByName("Book of Opaen"));

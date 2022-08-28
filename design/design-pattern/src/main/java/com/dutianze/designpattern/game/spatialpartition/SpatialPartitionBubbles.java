@@ -26,8 +26,8 @@ public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
     void handleCollisionsUsingQt(Bubble b) {
         // finding points within area of a square drawn with centre same as
         // centre of bubble and length = radius of bubble
-        var rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
-        var quadTreeQueryResult = new ArrayList<Point<Bubble>>();
+        Rect rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
+        ArrayList<Point<Bubble>> quadTreeQueryResult = new ArrayList<Point<Bubble>>();
         this.bubblesQuadTree.query(rect, quadTreeQueryResult);
         //handling these collisions
         b.handleCollision(quadTreeQueryResult, this.bubbles);

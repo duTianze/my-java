@@ -43,7 +43,7 @@ class FindCustomerTest {
                     new FindCustomer("123", new CustomerNotFoundException("not found")),
                     3, 300, e -> CustomerNotFoundException.class.isAssignableFrom(e.getClass())
             );
-            final var customerId = retry.perform();
+            final String customerId = retry.perform();
             log.info(String.format(
                     "However, retrying the operation while ignoring a recoverable error will eventually yield "
                     + "the result %s after a number of attempts %s", customerId, retry.attempts()

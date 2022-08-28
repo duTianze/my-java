@@ -12,7 +12,7 @@ class ExpressionTest {
 
     @Test
     void testExpress() {
-        final var tokenString = "4 3 2 - 1 + *";
+        final String tokenString = "4 3 2 - 1 + *";
 
         int result = Expression.interpret(tokenString);
 
