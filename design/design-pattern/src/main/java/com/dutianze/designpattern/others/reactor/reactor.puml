@@ -1,0 +1,138 @@
+@startuml
+class NioReactor {
+- Selector selector
+- Dispatcher dispatcher
+- Queue<Runnable> pendingCommands
+- ExecutorService reactorMain
++ void start()
++ void stop()
++ NioReactor registerChannel(AbstractNioChannel)
+- void eventLoop()
+- void processPendingCommands()
+- void processKey(SelectionKey)
+- {static} void onChannelWritable(SelectionKey)
+- void onChannelReadable(SelectionKey)
+- void dispatchReadEvent(SelectionKey,Object)
+- void onChannelAcceptable(SelectionKey)
++ void changeOps(SelectionKey,int)
+}
+class NioReactor.ChangeKeyOpsCommand {
+- SelectionKey key
+- int interestedOps
++ void run()
++ String toString()
+}
+class LoggingHandler {
+- {static} byte[] ACK
++ void handleChannelRead(AbstractNioChannel,Object,SelectionKey)
+- {static} void sendReply(AbstractNioChannel,NioDatagramChannel.DatagramPacket,SelectionKey)
+- {static} void sendReply(AbstractNioChannel,SelectionKey)
+- {static} void doLogging(ByteBuffer)
+}
+abstract class AbstractNioChannel {
+- SelectableChannel channel
+- ChannelHandler handler
+- Map<SelectableChannel,Queue<Object>> channelToPendingWrites
+- NioReactor reactor
+~ void setReactor(NioReactor)
++ SelectableChannel getJavaChannel()
++ {abstract}int getInterestedOps()
++ {abstract}void bind()
++ {abstract}Object read(SelectionKey)
++ ChannelHandler getHandler()
+~ void flush(SelectionKey)
+# {abstract}void doWrite(Object,SelectionKey)
++ void write(Object,SelectionKey)
+}
+class SameThreadDispatcher {
++ void onChannelReadEvent(AbstractNioChannel,Object,SelectionKey)
++ void stop()
+}
+interface Dispatcher {
+~ void onChannelReadEvent(AbstractNioChannel,Object,SelectionKey)
+~ void stop()
+}
+interface ChannelHandler {
+~ void handleChannelRead(AbstractNioChannel,Object,SelectionKey)
+}
+class Client {
+- ExecutorService service
++ void start()
++ void stop()
+- {static} void artificialDelayOf(long)
+}
+class TcpLoggingClient {
+- int serverPort
+- String clientName
++ void run()
+- void sendLogRequests(PrintWriter,InputStream)
+}
+class UdpLoggingClient {
+- String clientName
+- InetSocketAddress remoteAddress
++ void run()
+}
+class NioDatagramChannel {
+- int port
++ int getInterestedOps()
++ DatagramPacket read(SelectionKey)
++ DatagramChannel getJavaChannel()
++ void bind()
+# void doWrite(Object,SelectionKey)
++ void write(Object,SelectionKey)
+}
+class DatagramPacket {
+- SocketAddress sender
+- ByteBuffer data
+- SocketAddress receiver
++ SocketAddress getSender()
++ void setSender(SocketAddress)
++ SocketAddress getReceiver()
++ void setReceiver(SocketAddress)
++ ByteBuffer getData()
+}
+class NioServerSocketChannel {
+- int port
++ int getInterestedOps()
++ ServerSocketChannel getJavaChannel()
++ ByteBuffer read(SelectionKey)
++ void bind()
+# void doWrite(Object,SelectionKey)
+}
+class ThreadPoolDispatcher {
+- ExecutorService executorService
++ void onChannelReadEvent(AbstractNioChannel,Object,SelectionKey)
++ void stop()
+}
+class Server {
+- NioReactor reactor
+- List<AbstractNioChannel> channels
+- Dispatcher dispatcher
++ void start()
++ void stop()
+- AbstractNioChannel tcpChannel(int,ChannelHandler)
+- AbstractNioChannel udpChannel(int,ChannelHandler)
+}
+
+Runnable <|.. Client.UdpLoggingClient
+Runnable <|.. Client.TcpLoggingClient
+Runnable <|.. NioReactor.ChangeKeyOpsCommand
+NioReactor +.. NioReactor.ChangeKeyOpsCommand
+ChannelHandler <|.. LoggingHandler
+Dispatcher <|.. SameThreadDispatcher
+AbstractNioChannel -->  "-handler" ChannelHandler
+UdpLoggingClient ..+ Client
+TcpLoggingClient ..+ Client
+AbstractNioChannel -->  "-reactor" NioReactor
+NioReactor -->  "-dispatcher" Dispatcher
+Server -->  "-reactor" NioReactor
+Server -->  "-channels" AbstractNioChannel
+DatagramPacket ..+ NioDatagramChannel
+Server -->  "-dispatcher" Dispatcher
+ChangeKeyOpsCommand --+ NioReactor
+LoggingHandler ..|> ChannelHandler
+NioDatagramChannel --|> AbstractNioChannel
+NioServerSocketChannel --|> AbstractNioChannel
+SameThreadDispatcher ..|> Dispatcher
+ThreadPoolDispatcher ..|> Dispatcher
+@enduml
