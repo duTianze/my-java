@@ -60,7 +60,7 @@ public class ReaderWriterLock implements ReadWriteLock {
                     try {
                         globalMutex.wait();
                     } catch (InterruptedException e) {
-                        var message = "InterruptedException while waiting for globalMutex in acquireForReaders";
+                        String message = "InterruptedException while waiting for globalMutex in acquireForReaders";
                         log.info(message, e);
                         Thread.currentThread().interrupt();
                     }
