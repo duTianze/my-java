@@ -1,0 +1,59 @@
+@startuml
+class Reader {
+- Lock readLock
+- String name
+- long readingTime
++ void run()
++ void read()
+}
+class ReaderWriterLock {
+- Object readerMutex
+- int currentReaderCount
+- Set<Object> globalMutex
+- ReadLock readerLock
+- WriteLock writerLock
++ Lock readLock()
++ Lock writeLock()
+- boolean doesWriterOwnThisLock()
+- boolean isLockFree()
+}
+class ReadLock {
++ void lock()
+- void acquireForReaders()
++ void unlock()
++ void lockInterruptibly()
++ boolean tryLock()
++ boolean tryLock(long,TimeUnit)
++ Condition newCondition()
+}
+class WriteLock {
++ void lock()
++ void unlock()
++ void lockInterruptibly()
++ boolean tryLock()
++ boolean tryLock(long,TimeUnit)
++ Condition newCondition()
+}
+class Writer {
+- Lock writeLock
+- String name
+- long writingTime
++ void run()
++ void write()
+}
+
+
+Runnable <|.. Reader
+Runnable <|.. Writer
+
+Lock <|.up. ReadLock
+Lock <|.up. WriteLock
+
+ReadWriteLock <|.. ReaderWriterLock
+
+ReaderWriterLock +.. ReadLock
+ReaderWriterLock -->  "-readerLock" ReadLock
+
+ReaderWriterLock +.. WriteLock
+ReaderWriterLock -->  "-writerLock" WriteLock
+@enduml

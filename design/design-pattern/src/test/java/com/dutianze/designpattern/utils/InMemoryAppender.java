@@ -33,7 +33,7 @@ public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     public boolean logContains(String message) {
         return log.stream()
                   .map(ILoggingEvent::getFormattedMessage)
-                  .anyMatch(message::equals);
+                  .anyMatch(e -> e.contains(message));
     }
 
     public String getLastMessage() {
