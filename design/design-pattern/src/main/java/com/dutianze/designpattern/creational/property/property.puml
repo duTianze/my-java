@@ -1,0 +1,41 @@
+@startuml
+class Character {
+- String name
+- Type type
+- Prototype prototype
+- Map<Stats,Integer> properties
++ String name()
++ Type type()
++ Integer get(Stats)
++ boolean has(Stats)
++ void set(Stats,Integer)
++ void remove(Stats)
++ String toString()
+}
+interface Prototype {
+~ Integer get(Stats)
+~ boolean has(Stats)
+~ void set(Stats,Integer)
+~ void remove(Stats)
+}
+enum Type {
++  WARRIOR
++  MAGE
++  ROGUE
+}
+enum Stats {
++  AGILITY
++  STRENGTH
++  ATTACK_POWER
++  ARMOR
++  INTELLECT
++  SPIRIT
++  ENERGY
++  RAGE
+}
+
+Character -->  "-prototype" Prototype
+Type ..+ Character
+Character -->  "-type" Type
+Character ..|> Prototype
+@enduml
