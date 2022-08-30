@@ -1,0 +1,32 @@
+@startuml
+class Message {
+- String msg
++ String toString()
+}
+class MessageQueue {
+- BlockingQueue<Message> blkQueue
++ void submitMsg(Message)
++ Message retrieveMsg()
+}
+class ServiceExecutor {
+- MessageQueue msgQueue
++ void run()
+}
+class TaskGenerator {
+- MessageQueue msgQueue
+- int msgCount
++ void submit(Message)
++ void run()
+}
+interface Task {
+~ void submit(Message)
+}
+
+
+Runnable <|.. ServiceExecutor
+Runnable <|.. TaskGenerator
+MessageQueue -->  "-blkQueue" Message
+ServiceExecutor -->  "-msgQueue" MessageQueue
+TaskGenerator -->  "-msgQueue" MessageQueue
+TaskGenerator ..|> Task
+@enduml
