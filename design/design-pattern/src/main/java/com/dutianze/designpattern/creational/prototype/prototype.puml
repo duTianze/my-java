@@ -1,41 +1,41 @@
 @startuml
-abstract class com.dutianze.designpattern.creational.prototype.hero.Mage {
+abstract class Mage {
 + {abstract}Mage copy()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.ElfMage {
+class ElfMage {
 - String helpType
 + ElfMage copy()
 + String toString()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.ElfBeast {
+class ElfBeast {
 - String helpType
 + ElfBeast copy()
 + String toString()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.ElfWarlord {
+class ElfWarlord {
 - String helpType
 + ElfWarlord copy()
 + String toString()
 }
-interface com.dutianze.designpattern.creational.prototype.factory.HeroFactory {
+interface HeroFactory {
 ~ Mage createMage()
 ~ Warlord createWarlord()
 ~ Beast createBeast()
 }
-interface com.dutianze.designpattern.creational.prototype.Prototype {
+interface Prototype {
 ~ Object copy()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.OrcBeast {
+class OrcBeast {
 - String weapon
 + OrcBeast copy()
 + String toString()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.OrcWarlord {
+class OrcWarlord {
 - String weapon
 + OrcWarlord copy()
 + String toString()
 }
-class com.dutianze.designpattern.creational.prototype.factory.HeroFactoryImpl {
+class HeroFactoryImpl {
 - Mage mage
 - Warlord warlord
 - Beast beast
@@ -43,27 +43,29 @@ class com.dutianze.designpattern.creational.prototype.factory.HeroFactoryImpl {
 + Warlord createWarlord()
 + Beast createBeast()
 }
-class com.dutianze.designpattern.creational.prototype.hero.impl.OrcMage {
+class OrcMage {
 - String weapon
 + OrcMage copy()
 + String toString()
 }
-abstract class com.dutianze.designpattern.creational.prototype.hero.Beast {
+abstract class Beast {
 + {abstract}Beast copy()
 }
-abstract class com.dutianze.designpattern.creational.prototype.hero.Warlord {
+abstract class Warlord {
 + {abstract}Warlord copy()
 }
 
-
-com.dutianze.designpattern.creational.prototype.Prototype <|.. com.dutianze.designpattern.creational.prototype.hero.Mage
-com.dutianze.designpattern.creational.prototype.hero.Mage <|-- com.dutianze.designpattern.creational.prototype.hero.impl.ElfMage
-com.dutianze.designpattern.creational.prototype.hero.Beast <|-- com.dutianze.designpattern.creational.prototype.hero.impl.ElfBeast
-com.dutianze.designpattern.creational.prototype.hero.Warlord <|-- com.dutianze.designpattern.creational.prototype.hero.impl.ElfWarlord
-com.dutianze.designpattern.creational.prototype.hero.Beast <|-- com.dutianze.designpattern.creational.prototype.hero.impl.OrcBeast
-com.dutianze.designpattern.creational.prototype.hero.Warlord <|-- com.dutianze.designpattern.creational.prototype.hero.impl.OrcWarlord
-com.dutianze.designpattern.creational.prototype.factory.HeroFactory <|.. com.dutianze.designpattern.creational.prototype.factory.HeroFactoryImpl
-com.dutianze.designpattern.creational.prototype.hero.Mage <|-- com.dutianze.designpattern.creational.prototype.hero.impl.OrcMage
-com.dutianze.designpattern.creational.prototype.Prototype <|.. com.dutianze.designpattern.creational.prototype.hero.Beast
-com.dutianze.designpattern.creational.prototype.Prototype <|.. com.dutianze.designpattern.creational.prototype.hero.Warlord
+HeroFactoryImpl -up->  "-beast" Beast
+HeroFactoryImpl -up->  "-warlord" Warlord
+HeroFactoryImpl -up->  "-mage" Mage
+Beast .up.|> Prototype
+ElfBeast -left-|> Beast
+ElfMage --|> Mage
+ElfWarlord -up-|> Warlord
+HeroFactoryImpl ..|> HeroFactory
+Mage .up.|> Prototype
+OrcBeast -right-|> Beast
+OrcMage -up-|> Mage
+OrcWarlord --|> Warlord
+Warlord .up.|> Prototype
 @enduml

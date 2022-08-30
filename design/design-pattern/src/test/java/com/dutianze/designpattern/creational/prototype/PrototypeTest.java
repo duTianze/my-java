@@ -1,6 +1,12 @@
 package com.dutianze.designpattern.creational.prototype;
 
+import com.dutianze.designpattern.creational.prototype.factory.HeroFactoryImpl;
+import com.dutianze.designpattern.creational.prototype.hero.Beast;
+import com.dutianze.designpattern.creational.prototype.hero.Mage;
+import com.dutianze.designpattern.creational.prototype.hero.Warlord;
 import com.dutianze.designpattern.creational.prototype.hero.impl.*;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -13,7 +19,37 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author dutianze
  * @date 2022/8/9
  */
+@Slf4j
 public class PrototypeTest<P extends Prototype> {
+
+    @Test
+    void usage() {
+        assertDoesNotThrow(() -> {
+            HeroFactoryImpl factory = new HeroFactoryImpl(
+                    new ElfMage("cooking"),
+                    new ElfWarlord("cleaning"),
+                    new ElfBeast("protecting")
+            );
+            Mage mage = factory.createMage();
+            Warlord warlord = factory.createWarlord();
+            Beast beast = factory.createBeast();
+            log.info(mage.toString());
+            log.info(warlord.toString());
+            log.info(beast.toString());
+
+            factory = new HeroFactoryImpl(
+                    new OrcMage("axe"),
+                    new OrcWarlord("sword"),
+                    new OrcBeast("laser")
+            );
+            mage = factory.createMage();
+            warlord = factory.createWarlord();
+            beast = factory.createBeast();
+            log.info(mage.toString());
+            log.info(warlord.toString());
+            log.info(beast.toString());
+        });
+    }
 
     @ParameterizedTest
     @MethodSource("dataProvider")
