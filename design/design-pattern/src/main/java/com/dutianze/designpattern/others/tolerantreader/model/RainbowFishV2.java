@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.others.tolerantreader.model;
 
-import com.dutianze.designpattern.others.tolerantreader.model.RainbowFish;
 import lombok.Getter;
 
 import java.io.Serial;

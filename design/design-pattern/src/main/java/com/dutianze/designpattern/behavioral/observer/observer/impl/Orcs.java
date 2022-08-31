@@ -1,7 +1,7 @@
 package com.dutianze.designpattern.behavioral.observer.observer.impl;
 
-import com.dutianze.designpattern.behavioral.observer.types.WeatherType;
 import com.dutianze.designpattern.behavioral.observer.observer.WeatherObserver;
+import com.dutianze.designpattern.behavioral.observer.types.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
 /**

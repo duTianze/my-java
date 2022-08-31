@@ -20,7 +20,8 @@ import java.util.Optional;
  */
 public class JsonParser {
 
-    private final TypeToken<Map<String, Breed>> BREED_JSON_TYPE = new TypeToken<>() {};
+    private final TypeToken<Map<String, Breed>> BREED_JSON_TYPE = new TypeToken<>() {
+    };
     private final Gson GSON = new Gson();
 
     public Collection<Breed> loadBreed() throws FileNotFoundException {

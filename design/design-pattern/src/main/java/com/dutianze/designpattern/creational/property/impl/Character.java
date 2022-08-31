@@ -17,7 +17,8 @@ public class Character implements Prototype {
     private final Map<Stats, Integer> properties = new HashMap<>();
 
     public Character() {
-        this.prototype = new Prototype() {};
+        this.prototype = new Prototype() {
+        };
     }
 
     public Character(Type type, Prototype prototype) {
