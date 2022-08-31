@@ -4,7 +4,6 @@ import com.dutianze.designpattern.others.strangler.neww.NewArithmetic;
 import com.dutianze.designpattern.others.strangler.neww.NewSource;
 import com.dutianze.designpattern.others.strangler.old.OldArithmetic;
 import com.dutianze.designpattern.others.strangler.old.OldSource;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

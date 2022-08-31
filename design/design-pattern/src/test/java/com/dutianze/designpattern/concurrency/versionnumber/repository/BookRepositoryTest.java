@@ -4,7 +4,6 @@ import com.dutianze.designpattern.concurrency.versionnumber.entity.Book;
 import com.dutianze.designpattern.concurrency.versionnumber.exception.BookDuplicateException;
 import com.dutianze.designpattern.concurrency.versionnumber.exception.BookNotFoundException;
 import com.dutianze.designpattern.concurrency.versionnumber.exception.VersionMismatchException;
-import com.dutianze.designpattern.concurrency.versionnumber.repository.BookRepository;
 import com.dutianze.designpattern.concurrency.versionnumber.repository.impl.BookRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

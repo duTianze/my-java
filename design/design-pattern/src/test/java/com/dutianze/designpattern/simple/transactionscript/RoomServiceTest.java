@@ -25,13 +25,13 @@ public class RoomServiceTest {
     private static final String H2_DB_URL = "jdbc:h2:~/test";
     public static final String CREATE_SCHEMA_SQL =
             """
-                CREATE TABLE PUBLIC.ROOMS (
-                ID INTEGER,
-                ROOM_TYPE VARCHAR_IGNORECASE(128),
-                PRICE INTEGER,
-                BOOKED VARCHAR_IGNORECASE(128)
-                );
-            """;
+                        CREATE TABLE PUBLIC.ROOMS (
+                        ID INTEGER,
+                        ROOM_TYPE VARCHAR_IGNORECASE(128),
+                        PRICE INTEGER,
+                        BOOKED VARCHAR_IGNORECASE(128)
+                        );
+                    """;
     public static final String DELETE_SCHEMA_SQL = "DROP TABLE ROOMS IF EXISTS";
 
     private RoomService service;

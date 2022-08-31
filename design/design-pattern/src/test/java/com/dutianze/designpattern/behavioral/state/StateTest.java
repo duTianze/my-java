@@ -3,7 +3,6 @@ package com.dutianze.designpattern.behavioral.state;
 import com.dutianze.designpattern.behavioral.state.context.Mammoth;
 import com.dutianze.designpattern.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

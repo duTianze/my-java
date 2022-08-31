@@ -1,7 +1,5 @@
 package com.dutianze.designpattern.concurrency.producerconsumer;
 
-import com.dutianze.designpattern.concurrency.producerconsumer.Consumer;
-import com.dutianze.designpattern.concurrency.producerconsumer.Producer;
 import com.dutianze.designpattern.concurrency.producerconsumer.channel.Item;
 import com.dutianze.designpattern.concurrency.producerconsumer.channel.ItemQueue;
 import lombok.extern.slf4j.Slf4j;

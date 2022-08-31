@@ -26,7 +26,7 @@ class RoomDaoTest {
 
     private static final String DB_URL = "jdbc:h2:~/test";
     public static final String CREATE_SCHEMA_SQL =
-                    """
+            """
                         CREATE TABLE PUBLIC.ROOMS (
                         ID INTEGER,
                         ROOM_TYPE VARCHAR_IGNORECASE(128),

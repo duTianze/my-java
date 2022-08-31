@@ -6,7 +6,6 @@ import com.dutianze.designpattern.others.servicelayer.aggregate.spellbook.SpellB
 import com.dutianze.designpattern.others.servicelayer.aggregate.spellbook.SpellBookRepository;
 import com.dutianze.designpattern.others.servicelayer.aggregate.wizard.Wizard;
 import com.dutianze.designpattern.others.servicelayer.aggregate.wizard.WizardRepository;
-import com.dutianze.designpattern.others.servicelayer.service.impl.MagicServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * @author dutianze

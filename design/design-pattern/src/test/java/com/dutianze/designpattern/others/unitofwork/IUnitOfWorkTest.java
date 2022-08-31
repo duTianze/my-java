@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.others.unitofwork;
 
-import com.dutianze.designpattern.others.unitofwork.IUnitOfWork;
 import com.dutianze.designpattern.others.unitofwork.entity.Weapon;
 import com.dutianze.designpattern.others.unitofwork.impl.UnitActions;
 import com.dutianze.designpattern.others.unitofwork.impl.WeaponRepositoryImpl;

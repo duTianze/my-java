@@ -1,7 +1,5 @@
 package com.dutianze.designpattern.concurrency.queueload;
 
-import com.dutianze.designpattern.concurrency.queueload.Message;
-import com.dutianze.designpattern.concurrency.queueload.MessageQueue;
 import com.dutianze.designpattern.concurrency.queueload.comsumer.ServiceExecutor;
 import com.dutianze.designpattern.concurrency.queueload.reducer.TaskGenerator;
 import lombok.extern.slf4j.Slf4j;

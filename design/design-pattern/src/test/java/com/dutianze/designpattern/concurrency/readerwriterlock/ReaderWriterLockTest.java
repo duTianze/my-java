@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.concurrency.readerwriterlock;
 
-import com.dutianze.designpattern.concurrency.readerwriterlock.ReaderWriterLock;
 import com.dutianze.designpattern.concurrency.readerwriterlock.task.Reader;
 import com.dutianze.designpattern.concurrency.readerwriterlock.task.Writer;
 import com.dutianze.designpattern.utils.InMemoryAppender;

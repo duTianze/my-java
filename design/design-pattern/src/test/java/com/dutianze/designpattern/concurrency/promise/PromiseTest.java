@@ -1,6 +1,5 @@
 package com.dutianze.designpattern.concurrency.promise;
 
-import com.dutianze.designpattern.concurrency.promise.Promise;
 import com.dutianze.designpattern.concurrency.promise.support.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
