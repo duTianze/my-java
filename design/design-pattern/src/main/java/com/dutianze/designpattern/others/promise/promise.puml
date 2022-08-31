@@ -1,0 +1,56 @@
+@startuml
+class Promise {
+- Runnable fulfillmentAction
+- Consumer<? super Throwable> exceptionHandler
++ void fulfill(T)
++ void fulfillExceptionally(Exception)
+- void handleException(Exception)
+- void postFulfillment()
++ Promise<T> fulfillInAsync(Callable<T>,Executor)
++ Promise<Void> thenAccept(Consumer<? super T>)
++ Promise<T> onError(Consumer<? super Throwable>)
++ Promise<V> thenApply(Function<? super T,V>)
+}
+class ConsumeAction {
+- Promise<T> src
+- Promise<Void> dest
+- Consumer<? super T> action
++ void run()
+}
+class TransformAction {
+- Promise<T> src
+- Promise<V> dest
+- Function<? super T,V> func
++ void run()
+}
+class PromiseSupport {
+- {static} Logger LOGGER
+- {static} int RUNNING
+- {static} int FAILED
+- {static} int COMPLETED
+- Object lock
+- int state
+- T value
+- Exception exception
+~ void fulfill(T)
+~ void fulfillExceptionally(Exception)
++ boolean cancel(boolean)
++ boolean isCancelled()
++ boolean isDone()
++ T get()
++ T get(long,TimeUnit)
+}
+class Utility {
++ {static} Map<Character,Long> characterFrequency(String)
++ {static} Character lowestFrequencyChar(Map<Character,Long>)
++ {static} Integer countLines(String)
++ {static} String downloadFile(String)
+}
+
+
+TransformAction --+ Promise
+TransformAction -->  "-src" Promise
+ConsumeAction --+ Promise
+ConsumeAction -->  "-src" Promise
+Promise --|> PromiseSupport
+@enduml
