@@ -58,15 +58,6 @@ class PromiseTest {
     }
 
     @Test
-    void promiseIsFulfilledWithTheResultantValueOfExecutingTheTask() throws InterruptedException, ExecutionException {
-        promise.fulfillInAsync(new NumberCrunchingTask(), executor);
-
-        assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, promise.get());
-        assertTrue(promise.isDone());
-        assertFalse(promise.isCancelled());
-    }
-
-    @Test
     void dependentPromiseIsFulfilledAfterTheConsumerConsumesTheResultOfThisPromise()
             throws InterruptedException, ExecutionException {
         Promise<Void> dependentPromise = promise
