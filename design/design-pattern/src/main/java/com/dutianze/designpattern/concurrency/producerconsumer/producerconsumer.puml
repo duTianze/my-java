@@ -1,0 +1,27 @@
+@startuml
+class Item {
+- String producer
+- int id
+}
+class Producer {
+- ItemQueue queue
+- {static} SecureRandom RANDOM
+- String name
+- int itemId
++ void produce()
+}
+class Consumer {
+- ItemQueue queue
+- String name
++ void consume()
+}
+class ItemQueue {
+- BlockingQueue<Item> queue
++ void put(Item)
++ Item take()
+}
+
+Consumer -->  "-queue" ItemQueue
+Producer -->  "-queue" ItemQueue
+ItemQueue -->  "-queue" Item
+@enduml
