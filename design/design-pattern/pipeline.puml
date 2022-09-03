@@ -1,0 +1,26 @@
+@startuml
+class Pipeline {
+- Handler<I,O> currentHandler
+~ Pipeline<I,K> addHandler(Handler<O,K>)
+~ O execute(I)
+}
+class RemoveDigitsHandler {
+- {static} Logger LOGGER
++ String process(String)
+}
+interface Handler {
+~ O process(I)
+}
+class ConvertToCharArrayHandler {
++ char[] process(String)
+}
+class RemoveAlphabetsHandler {
++ String process(String)
+}
+
+
+Pipeline -up->  "-currentHandler" Handler
+ConvertToCharArrayHandler ..|> Handler
+RemoveAlphabetsHandler ..|> Handler
+RemoveDigitsHandler ..|> Handler
+@enduml
