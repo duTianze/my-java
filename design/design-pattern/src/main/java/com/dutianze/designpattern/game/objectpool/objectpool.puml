@@ -1,0 +1,20 @@
+@startuml
+class OliphauntPool {
+# Oliphaunt create()
+}
+class Oliphaunt {
+- {static} AtomicInteger counter
+- int id
+}
+abstract class ObjectPool {
+- Set<T> available
+- Set<T> inUse
+# {abstract}T create()
++ T checkOut()
++ void checkIn(T)
++ String toString()
+}
+
+
+ObjectPool <|-- OliphauntPool
+@enduml
