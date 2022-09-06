@@ -18,6 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -37,6 +38,31 @@ class PartyTest {
     @AfterEach
     public void tearDown() {
         appender.stop();
+    }
+
+    @Test
+    void usage() {
+        assertDoesNotThrow(() -> {
+            // create party and members
+            Party party = new PartyImpl();
+            PartyMember hobbit = new Hobbit();
+            PartyMember wizard = new Wizard();
+            PartyMember rogue = new Rogue();
+            PartyMember hunter = new Hunter();
+
+            // add party members
+            party.addMember(hobbit);
+            party.addMember(wizard);
+            party.addMember(rogue);
+            party.addMember(hunter);
+
+            // perform actions -> the other party members
+            // are notified by the party
+            hobbit.act(Action.ENEMY);
+            wizard.act(Action.TALE);
+            rogue.act(Action.GOLD);
+            hunter.act(Action.HUNT);
+        });
     }
 
     @ParameterizedTest

@@ -4,6 +4,8 @@ import com.dutianze.designpattern.behavioral.mediator.iml.Action;
 import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMember;
 
 /**
+ * 飞行器驾驶员之间不会通过相互沟通来决定下一架降落的飞机。 所有沟通都通过控制塔台进行。
+ *
  * <h2 id="known-uses">Known uses</h2>
  * <ul>
  * <li>All scheduleXXX() methods of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html">java.util.Timer</a></li>

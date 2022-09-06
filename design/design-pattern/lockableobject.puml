@@ -1,0 +1,73 @@
+@startuml
+class Elf {
+}
+class Human {
+}
+enum CreatureType {
++  ORC
++  HUMAN
++  ELF
+}
+class Feind {
+- Creature creature
+- Lockable target
+- SecureRandom random
++ void run()
+- void fightForTheSword(Creature,Creature,Lockable)
+}
+enum CreatureStats {
++  ELF_HEALTH
++  ELF_DAMAGE
++  ORC_HEALTH
++  ORC_DAMAGE
++  HUMAN_HEALTH
++  HUMAN_DAMAGE
+~ int value
++ int getValue()
+}
+class SwordOfAragorn {
+- Creature locker
+- Object synchronizer
+- {static} String NAME
++ boolean isLocked()
++ boolean lock(Creature)
++ void unlock(Creature)
++ Creature getLocker()
++ String getName()
+}
+abstract class Creature {
+- String name
+- CreatureType type
+- int health
+- int damage
+~ Set<Lockable> instruments
++ boolean acquire(Lockable)
++ void kill()
++ void attack(Creature)
++ void hit(int)
++ boolean isAlive()
+}
+interface Lockable {
+~ boolean isLocked()
+~ boolean lock(Creature)
+~ void unlock(Creature)
+~ Creature getLocker()
+~ String getName()
+}
+class LockingException {
+- {static} long serialVersionUID
+}
+class Orc {
+}
+
+
+Creature -->  "-type" CreatureType
+Creature -->  "-instruments" Lockable
+Feind -->  "-feind" Creature
+Feind -->  "-target" Lockable
+SwordOfAragorn -->  "-locker" Creature
+SwordOfAragorn ..|> Lockable
+Elf --|> Creature
+Human --|> Creature
+Orc --|> Creature
+@enduml
