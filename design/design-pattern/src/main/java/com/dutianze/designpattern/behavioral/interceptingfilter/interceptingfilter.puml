@@ -1,0 +1,41 @@
+@startuml
+class DepositFilter {
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+class FilterChain {
+~ List<Filter> filters
+~ int index
++ FilterChain add(Filter)
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+class Order {
+- String name
+- String contactNumber
+- String address
+- String depositNumber
+- String orderItem
+}
+class NameFilter {
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+interface Filter {
+~ void doFilter(Order,StringBuilder,FilterChain)
+}
+class AddressFilter {
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+class ContactFilter {
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+class OrderFilter {
++ void doFilter(Order,StringBuilder,FilterChain)
+}
+
+
+Filter <|.. DepositFilter
+Filter <|.up. FilterChain
+Filter <|.. NameFilter
+Filter <|.. AddressFilter
+Filter <|.. ContactFilter
+Filter <|.. OrderFilter
+@enduml
