@@ -1,27 +1,27 @@
 @startuml
-enum com.dutianze.designpattern.behavioral.iterator.list.ItemType {
+enum ItemType {
 +  ANY
 +  WEAPON
 +  RING
 +  POTION
 }
-class com.dutianze.designpattern.behavioral.iterator.list.TreasureChest {
+class TreasureChest {
 - List<Item> items
 - ItemType type
 + Iterator<Item> iteratorByType(ItemType)
 + Iterator<Item> iterator()
 }
-class com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator {
+class TreasureChest.TreasureChestItemIterator {
 - int idx
 + boolean hasNext()
 + Item next()
 - int findNextIdx()
 }
-class com.dutianze.designpattern.behavioral.iterator.list.Item {
+class Item {
 - ItemType type
 - String name
 }
-class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode {
+class TreeNode {
 - T val
 - TreeNode<T> left
 - TreeNode<T> right
@@ -33,7 +33,7 @@ class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode {
 - boolean isLessThanOrEqualTo(T)
 + Iterator<TreeNode<T>> iterator()
 }
-class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator {
+class TreeNode.BstIterator {
 - ArrayDeque<TreeNode<T>> pathStack
 + boolean hasNext()
 + TreeNode<T> next()
@@ -41,10 +41,10 @@ class com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator {
 }
 
 
-com.dutianze.designpattern.behavioral.iterator.list.Iterable <|.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest
-com.dutianze.designpattern.behavioral.iterator.list.TreasureChest +.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator
-com.dutianze.designpattern.behavioral.iterator.list.Iterator <|.. com.dutianze.designpattern.behavioral.iterator.list.TreasureChest.TreasureChestItemIterator
-com.dutianze.designpattern.behavioral.iterator.bst.Iterable <|.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode
-com.dutianze.designpattern.behavioral.iterator.bst.TreeNode +.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator
-com.dutianze.designpattern.behavioral.iterator.bst.Iterator <|.. com.dutianze.designpattern.behavioral.iterator.bst.TreeNode.BstIterator
+Iterable <|.. TreasureChest
+TreasureChest +.. TreasureChest.TreasureChestItemIterator
+Iterator <|.. TreasureChest.TreasureChestItemIterator
+Iterable <|.. TreeNode
+TreeNode +.. TreeNode.BstIterator
+Iterator <|.. TreeNode.BstIterator
 @enduml
