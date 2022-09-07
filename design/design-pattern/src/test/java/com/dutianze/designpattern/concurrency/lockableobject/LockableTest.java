@@ -24,10 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @Slf4j
 class LockableTest {
 
-    private static final int WAIT_TIME = 3;
-    private static final int WORKERS = 2;
-    private static final int MULTIPLICATION_FACTOR = 3;
-
     @Test
     void usage() {
         assertDoesNotThrow(() -> {
@@ -35,22 +31,23 @@ class LockableTest {
             SwordOfAragorn sword = new SwordOfAragorn();
             // Creation of creatures.
             List<Creature> creatures = new ArrayList<>();
-            for (int i = 0; i < WORKERS; i++) {
-                creatures.add(new Elf(String.format("Elf %s", i)));
-                creatures.add(new Orc(String.format("Orc %s", i)));
-                creatures.add(new Human(String.format("Human %s", i)));
-            }
-            int totalFiends = WORKERS * MULTIPLICATION_FACTOR;
-            ExecutorService service = Executors.newFixedThreadPool(totalFiends);
+
+            creatures.add(new Elf(String.format("Elf %s", 0)));
+            creatures.add(new Orc(String.format("Orc %s", 0)));
+            creatures.add(new Human(String.format("Human %s", 0)));
+            creatures.add(new Elf(String.format("Elf %s", 1)));
+            creatures.add(new Orc(String.format("Orc %s", 1)));
+            creatures.add(new Human(String.format("Human %s", 1)));
+
+            ExecutorService service = Executors.newFixedThreadPool(6);
             // Attach every creature and the sword is a Fiend to fight for the sword.
-            for (int i = 0; i < totalFiends; i = i + MULTIPLICATION_FACTOR) {
-                service.submit(new Feind(creatures.get(i), sword));
-                service.submit(new Feind(creatures.get(i + 1), sword));
-                service.submit(new Feind(creatures.get(i + 2), sword));
+            for (Creature creature : creatures) {
+                service.submit(new Feind(creature, sword));
             }
+
             // Wait for program to terminate.
             try {
-                if (!service.awaitTermination(WAIT_TIME, TimeUnit.SECONDS)) {
+                if (!service.awaitTermination(3, TimeUnit.SECONDS)) {
                     log.info("The master of the sword is now {}.", sword.getLocker().getName());
                 }
             } catch (InterruptedException e) {
@@ -61,5 +58,4 @@ class LockableTest {
             }
         });
     }
-
 }
