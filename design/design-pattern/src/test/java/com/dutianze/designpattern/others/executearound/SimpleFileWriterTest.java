@@ -9,7 +9,6 @@ import java.io.File;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author dutianze
@@ -18,20 +17,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Slf4j
 class SimpleFileWriterTest {
 
+    public static final String TEST_FILE_PATH = "testFile.txt";
+
     @BeforeEach
     @AfterEach
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void cleanup() {
-        File file = new File("testFile.txt");
-        boolean deleted = file.delete();
-        assertTrue(deleted);
+        File file = new File(TEST_FILE_PATH);
+        file.delete();
     }
 
     @Test
     void usage() {
         assertDoesNotThrow(() -> {
-            FileWriterAction writeHello = writer -> {
-                writer.write("Gandalf was here");
-            };
+            FileWriterAction writeHello = writer -> writer.write("Gandalf was here");
             new SimpleFileWriter("testFile.txt", writeHello);
 
             // print the file contents

@@ -1,0 +1,64 @@
+@startuml
+abstract class DomainEvent {
+# {static} String MSG
+- long sequenceId
+- long createdTime
+- String eventClassName
+- boolean realTime
++ {abstract}void process(AccountRepository)
+}
+class JsonFileJournal {
+- File file
+- List<String> events
+- int index
++ {static} String JSON_FILE_PATH
++ void write(DomainEvent)
++ DomainEvent readNext()
++ void reset()
+}
+class AccountRepository {
+- {static} Map<Integer,Account> accounts
++ void save(Account)
++ Account findAccount(int)
++ void clear()
+}
+class MoneyTransferEvent {
+- BigDecimal money
+- int accountNoFrom
+- int accountNoTo
++ void process(AccountRepository)
+}
+class MoneyDepositEvent {
+- BigDecimal money
+- int accountNo
++ void process(AccountRepository)
+}
+class AccountCreateEvent {
+- int accountNo
+- String owner
++ void process(AccountRepository)
+}
+class Account {
+- int accountNo
+- String owner
+- BigDecimal available
++ Account copy()
++ void deposit(BigDecimal)
++ void withdraw(BigDecimal)
+}
+class DomainEventProcessor {
+- JsonFileJournal processorJournal
+- AccountRepository accountRepository
++ void process(DomainEvent)
++ void reset()
++ void recover()
+}
+
+
+Serializable <|.. DomainEvent
+DomainEvent <|-- MoneyTransferEvent
+DomainEvent <|-- MoneyDepositEvent
+DomainEvent <|-- AccountCreateEvent
+
+DomainEventProcessor -->  "-processorJournal" JsonFileJournal
+@enduml
