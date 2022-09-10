@@ -6,8 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author dutianze
@@ -25,6 +24,16 @@ class DwarvenGoldmineFacadeTest {
     @AfterEach
     void tearDown() {
         appender.stop();
+    }
+
+    @Test
+    void usage() {
+        assertDoesNotThrow(() -> {
+            DwarvenGoldmineFacade facade = new DwarvenGoldmineFacadeImpl();
+            facade.startNewDay();
+            facade.digOutGold();
+            facade.endDay();
+        });
     }
 
     @Test
