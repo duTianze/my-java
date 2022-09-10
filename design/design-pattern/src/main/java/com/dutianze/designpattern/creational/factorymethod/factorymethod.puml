@@ -1,39 +1,42 @@
 @startuml
-class com.dutianze.designpattern.creational.factorymethod.factory.impl.OrcBlacksmith {
+class ElfWeapon {
+- WeaponType weaponType
++ String toString()
+}
+class OrcBlacksmith {
 - {static} Map<WeaponType,OrcWeapon> ORCARSENAL
 + Weapon manufactureWeapon(WeaponType)
 + String toString()
 }
-class com.dutianze.designpattern.creational.factorymethod.weapon.impl.ElfWeapon {
-- WeaponType weaponType
-+ String toString()
-}
-enum com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType {
+enum WeaponType {
 +  SHORT_SWORD
 +  SPEAR
 +  AXE
 +  UNDEFINED
 - String title
 }
-interface com.dutianze.designpattern.creational.factorymethod.weapon.Weapon {
+interface Weapon {
 ~ WeaponType getWeaponType()
 }
-class com.dutianze.designpattern.creational.factorymethod.weapon.impl.OrcWeapon {
+class OrcWeapon {
 - WeaponType weaponType
 + String toString()
 }
-class com.dutianze.designpattern.creational.factorymethod.factory.impl.ElfBlacksmith {
+class ElfBlacksmith {
 - {static} Map<WeaponType,ElfWeapon> ELFARSENAL
 + Weapon manufactureWeapon(WeaponType)
 + String toString()
 }
-interface com.dutianze.designpattern.creational.factorymethod.factory.Blacksmith {
+interface Blacksmith {
 ~ Weapon manufactureWeapon(WeaponType)
 }
 
 
-com.dutianze.designpattern.creational.factorymethod.factory.Blacksmith <|.. com.dutianze.designpattern.creational.factorymethod.factory.impl.OrcBlacksmith
-com.dutianze.designpattern.creational.factorymethod.weapon.Weapon <|.. com.dutianze.designpattern.creational.factorymethod.weapon.impl.ElfWeapon
-com.dutianze.designpattern.creational.factorymethod.weapon.Weapon <|.. com.dutianze.designpattern.creational.factorymethod.weapon.impl.OrcWeapon
-com.dutianze.designpattern.creational.factorymethod.factory.Blacksmith <|.. com.dutianze.designpattern.creational.factorymethod.factory.impl.ElfBlacksmith
+ElfWeapon -->  "-weaponType" WeaponType
+OrcWeapon -->  "-weaponType" WeaponType
+App -->  "-blacksmith" Blacksmith
+ElfBlacksmith ..|> Blacksmith
+ElfWeapon ..|> Weapon
+OrcBlacksmith ..|> Blacksmith
+OrcWeapon ..|> Weapon
 @enduml

@@ -1,0 +1,25 @@
+@startuml
+interface Coin {
+~ String getDescription()
+}
+enum CoinType {
++  COPPER
++  GOLD
+- Supplier<Coin> constructor
+}
+class CopperCoin {
+~ {static} String DESCRIPTION
++ String getDescription()
+}
+class CoinFactory {
++ {static} Coin getCoin(CoinType)
+}
+class GoldCoin {
+~ {static} String DESCRIPTION
++ String getDescription()
+}
+
+
+Coin <|.. CopperCoin
+Coin <|.. GoldCoin
+@enduml

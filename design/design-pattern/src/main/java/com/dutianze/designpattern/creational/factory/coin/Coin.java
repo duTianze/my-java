@@ -1,8 +1,10 @@
-package com.dutianze.designpattern.creational.factory;
+package com.dutianze.designpattern.creational.factory.coin;
 
 /**
  * @author dutianze
  * @date 2022/9/8
  */
-public class Coin {
+public interface Coin {
+
+    String getDescription();
 }
