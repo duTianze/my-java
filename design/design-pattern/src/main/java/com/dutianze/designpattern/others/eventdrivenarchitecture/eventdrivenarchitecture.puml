@@ -1,0 +1,35 @@
+@startuml
+interface Event {
+~ Class<? extends Event> getType()
+}
+class UserUpdatedEvent {
+- User user
+}
+class UserCreatedEvent {
+- User user
+}
+class EventDispatcher {
+- Map<Class<? extends Event>,Handler<? extends Event>> handlers
++ void registerHandler(Class<E>,Handler<E>)
++ void dispatch(E)
+}
+class UserCreatedEventHandler {
++ void onEvent(UserCreatedEvent)
+}
+class UserUpdatedEventHandler {
++ void onEvent(UserUpdatedEvent)
+}
+interface Handler {
+~ void onEvent(E)
+}
+abstract class AbstractEvent {
++ Class<? extends Event> getType()
+}
+
+
+AbstractEvent <|-- UserUpdatedEvent
+AbstractEvent <|-- UserCreatedEvent
+Handler <|.. UserCreatedEventHandler
+Handler <|.. UserUpdatedEventHandler
+Event <|.. AbstractEvent
+@enduml
