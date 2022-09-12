@@ -1,0 +1,56 @@
+@startuml
+class Scout {
++ void timePasses(Weekday)
+}
+class LordBaelish {
++ void timePasses(Weekday)
+}
+class King {
++ void onEvent(Event)
+}
+enum Weekday {
++  MONDAY
++  TUESDAY
++  WEDNESDAY
++  THURSDAY
++  FRIDAY
++  SATURDAY
++  SUNDAY
+- String description
++ String toString()
+}
+class LordVarys {
++ void timePasses(Weekday)
++ void onEvent(Event)
+}
+abstract class EventEmitter {
+- Map<Event,List<EventObserver>> observerLists
++ void registerObserver(EventObserver,Event)
+# void notifyObservers(Event)
++ {abstract}void timePasses(Weekday)
+}
+enum Event {
++  WHITE_WALKERS_SIGHTED
++  STARK_SIGHTED
++  WARSHIPS_APPROACHING
++  TRAITOR_DETECTED
+- String description
++ String toString()
+}
+class KingsHand {
++ void onEvent(Event)
++ void timePasses(Weekday)
+}
+interface EventObserver {
+~ void onEvent(Event)
+}
+
+
+EventEmitter <|-- Scout
+EventEmitter <|-- LordBaelish
+EventObserver <|.. King
+EventObserver <|.. LordVarys
+EventEmitter <|-- LordVarys
+EventObserver <|.. KingsHand
+EventEmitter <|-- KingsHand
+@enduml
