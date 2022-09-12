@@ -1,0 +1,69 @@
+@startuml
+interface IEvent {
+~ void start()
+~ void stop()
+~ void status()
+}
+class EventManager {
++ {static} int MAX_RUNNING_EVENTS
++ {static} int MIN_ID
++ {static} int MAX_ID
++ {static} int MAX_EVENT_TIME
+- int currentlyRunningSyncEvent
+- SecureRandom rand
+- Map<Integer,Event> eventPool
+- {static} String DOES_NOT_EXIST
++ int create(int)
++ int createAsync(int)
+- int createEvent(int,boolean)
++ void start(int)
++ void cancel(int)
++ void status(int)
++ void statusOfAllEvents()
++ void shutdown()
+- int generateId()
++ void completedEventHandler(int)
++ Map<Integer,Event> getEventPool()
++ int numOfCurrentlyRunningSyncEvent()
+}
+class InvalidOperationException {
+- {static} long serialVersionUID
+}
+class LongRunningEventException {
+- {static} long serialVersionUID
+}
+class Event {
+- int eventId
+- int eventTime
+- boolean synchronous
+- Thread thread
+- boolean isComplete
+- ThreadCompleteListener eventListener
++ void start()
++ void stop()
++ void status()
++ void run()
++ void addListener(ThreadCompleteListener)
++ void removeListener(ThreadCompleteListener)
+- void completed()
+}
+class MaxNumOfEventsAllowedException {
+- {static} long serialVersionUID
+}
+class EventDoesNotExistException {
+- {static} long serialVersionUID
+}
+interface ThreadCompleteListener {
+~ void completedEventHandler(int)
+}
+
+
+ThreadCompleteListener <|.. EventManager
+Exception <|-- InvalidOperationException
+Exception <|-- LongRunningEventException
+IEvent <|.. Event
+Runnable <|.. Event
+Exception <|-- MaxNumOfEventsAllowedException
+Exception <|-- EventDoesNotExistException
+Event -->  "-eventListener" ThreadCompleteListener
+@enduml
