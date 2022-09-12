@@ -20,5 +20,5 @@ import com.dutianze.designpattern.creational.factorymethod.weapon.WeaponType;
  */
 public interface Blacksmith {
 
-    Weapon manufactureWeapon(WeaponType weaponType);
+  Weapon manufactureWeapon(WeaponType weaponType);
 }

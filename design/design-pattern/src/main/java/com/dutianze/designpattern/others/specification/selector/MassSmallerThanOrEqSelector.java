@@ -32,14 +32,14 @@ import com.dutianze.designpattern.others.specification.property.Mass;
  */
 public class MassSmallerThanOrEqSelector extends AbstractSelector<Creature> {
 
-    private final Mass mass;
+  private final Mass mass;
 
-    public MassSmallerThanOrEqSelector(double mass) {
-        this.mass = new Mass(mass);
-    }
+  public MassSmallerThanOrEqSelector(double mass) {
+    this.mass = new Mass(mass);
+  }
 
-    @Override
-    public boolean test(Creature t) {
-        return t.getMass().smallerThanOrEq(mass);
-    }
+  @Override
+  public boolean test(Creature t) {
+    return t.getMass().smallerThanOrEq(mass);
+  }
 }

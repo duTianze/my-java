@@ -1,9 +1,8 @@
 package com.dutianze.designpattern.behavioral.command;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Deque;
 import java.util.LinkedList;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <h2 id="known-uses">Known uses</h2>
@@ -20,32 +19,32 @@ import java.util.LinkedList;
 @Slf4j
 public class Wizard {
 
-    private final Deque<Runnable> undoStack = new LinkedList<>();
-    private final Deque<Runnable> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
-    public void castSpell(Runnable runnable) {
-        runnable.run();
-        undoStack.offerLast(runnable);
-    }
+  public void castSpell(Runnable runnable) {
+    runnable.run();
+    undoStack.offerLast(runnable);
+  }
 
-    public void undoLastSpell() {
-        if (!undoStack.isEmpty()) {
-            Runnable previousSpell = undoStack.pollLast();
-            redoStack.offerLast(previousSpell);
-            previousSpell.run();
-        }
+  public void undoLastSpell() {
+    if (!undoStack.isEmpty()) {
+      Runnable previousSpell = undoStack.pollLast();
+      redoStack.offerLast(previousSpell);
+      previousSpell.run();
     }
+  }
 
-    public void redoLastSpell() {
-        if (!redoStack.isEmpty()) {
-            Runnable previousSpell = redoStack.pollLast();
-            undoStack.offerLast(previousSpell);
-            previousSpell.run();
-        }
+  public void redoLastSpell() {
+    if (!redoStack.isEmpty()) {
+      Runnable previousSpell = redoStack.pollLast();
+      undoStack.offerLast(previousSpell);
+      previousSpell.run();
     }
+  }
 
-    @Override
-    public String toString() {
-        return "Wizard";
-    }
+  @Override
+  public String toString() {
+    return "Wizard";
+  }
 }

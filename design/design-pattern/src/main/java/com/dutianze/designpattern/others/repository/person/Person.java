@@ -1,11 +1,10 @@
 package com.dutianze.designpattern.others.repository.person;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author dutianze
@@ -16,16 +15,16 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Person {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String name;
-    private String surname;
-    private int age;
+  @Id
+  @GeneratedValue
+  private Long id;
+  private String name;
+  private String surname;
+  private int age;
 
-    public Person(String name, String surname, int age) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-    }
+  public Person(String name, String surname, int age) {
+    this.name = name;
+    this.surname = surname;
+    this.age = age;
+  }
 }

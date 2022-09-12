@@ -8,8 +8,8 @@ import com.dutianze.designpattern.creational.abstractfactory.kingdom.Army;
  */
 public class OrcArmy implements Army {
 
-    @Override
-    public String getDescription() {
-        return "This is the orc army!";
-    }
+  @Override
+  public String getDescription() {
+    return "This is the orc army!";
+  }
 }

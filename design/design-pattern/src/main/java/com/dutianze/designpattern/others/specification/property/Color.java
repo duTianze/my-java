@@ -29,16 +29,16 @@ package com.dutianze.designpattern.others.specification.property;
  */
 public enum Color {
 
-    DARK("dark"), LIGHT("light"), GREEN("green"), RED("red");
+  DARK("dark"), LIGHT("light"), GREEN("green"), RED("red");
 
-    private final String title;
+  private final String title;
 
-    Color(String title) {
-        this.title = title;
-    }
+  Color(String title) {
+    this.title = title;
+  }
 
-    @Override
-    public String toString() {
-        return title;
-    }
+  @Override
+  public String toString() {
+    return title;
+  }
 }

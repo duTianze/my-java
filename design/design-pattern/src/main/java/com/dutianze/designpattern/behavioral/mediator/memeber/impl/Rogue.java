@@ -8,8 +8,8 @@ import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMemberBase;
  */
 public class Rogue extends PartyMemberBase {
 
-    @Override
-    public String toString() {
-        return "Rogue";
-    }
+  @Override
+  public String toString() {
+    return "Rogue";
+  }
 }

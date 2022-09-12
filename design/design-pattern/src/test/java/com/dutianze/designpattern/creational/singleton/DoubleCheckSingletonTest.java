@@ -1,11 +1,10 @@
 package com.dutianze.designpattern.creational.singleton;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author dutianze
@@ -13,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class DoubleCheckSingletonTest extends SingletonTest<DoubleCheckSingleton> {
 
-    protected DoubleCheckSingletonTest() {
-        super(DoubleCheckSingleton::getInstance);
-    }
+  protected DoubleCheckSingletonTest() {
+    super(DoubleCheckSingleton::getInstance);
+  }
 
-    @Test
-    void creatingNewInstanceByRefection() throws Exception {
-        DoubleCheckSingleton.getInstance();
-        Constructor<DoubleCheckSingleton> constructor = DoubleCheckSingleton.class.getDeclaredConstructor();
-        constructor.setAccessible(true);
-        assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
-    }
+  @Test
+  void creatingNewInstanceByRefection() throws Exception {
+    DoubleCheckSingleton.getInstance();
+    Constructor<DoubleCheckSingleton> constructor = DoubleCheckSingleton.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
+  }
 }

@@ -22,9 +22,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Captain {
 
-    private RowingBoat rowingBoat;
+  private RowingBoat rowingBoat;
 
-    void row() {
-        rowingBoat.row();
-    }
+  void row() {
+    rowingBoat.row();
+  }
 }

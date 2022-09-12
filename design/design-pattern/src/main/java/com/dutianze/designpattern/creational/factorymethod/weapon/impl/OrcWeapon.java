@@ -13,10 +13,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class OrcWeapon implements Weapon {
 
-    private final WeaponType weaponType;
+  private final WeaponType weaponType;
 
-    @Override
-    public String toString() {
-        return "an orcish " + weaponType;
-    }
+  @Override
+  public String toString() {
+    return "an orcish " + weaponType;
+  }
 }

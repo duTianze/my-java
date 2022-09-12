@@ -20,7 +20,7 @@ import com.dutianze.designpattern.creational.factory.coin.CoinType;
  */
 public class CoinFactory {
 
-    public static Coin getCoin(CoinType type) {
-        return type.getConstructor().get();
-    }
+  public static Coin getCoin(CoinType type) {
+    return type.getConstructor().get();
+  }
 }

@@ -9,18 +9,18 @@ import com.dutianze.designpattern.behavioral.visitor.unit.Unit;
  */
 public class Commander extends Unit {
 
-    public Commander(Unit... children) {
-        super(children);
-    }
+  public Commander(Unit... children) {
+    super(children);
+  }
 
-    @Override
-    public void accept(UnitVisitor visitor) {
-        visitor.visitCommander(this);
-        super.accept(visitor);
-    }
+  @Override
+  public void accept(UnitVisitor visitor) {
+    visitor.visitCommander(this);
+    super.accept(visitor);
+  }
 
-    @Override
-    public String toString() {
-        return "commander";
-    }
+  @Override
+  public String toString() {
+    return "commander";
+  }
 }

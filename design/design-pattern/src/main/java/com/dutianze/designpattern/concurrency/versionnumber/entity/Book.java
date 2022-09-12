@@ -11,16 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book {
 
-    private long id;
-    private String title = "";
-    private String author = "";
+  private long id;
+  private String title = "";
+  private String author = "";
 
-    private long version = 0;
+  private long version = 0;
 
-    public Book(Book book) {
-        this.id = book.id;
-        this.title = book.title;
-        this.author = book.author;
-        this.version = book.version;
-    }
+  public Book(Book book) {
+    this.id = book.id;
+    this.title = book.title;
+    this.author = book.author;
+    this.version = book.version;
+  }
 }

@@ -1,7 +1,7 @@
 package com.dutianze.designpattern.behavioral.interceptingfilter.filter.impl;
 
-import com.dutianze.designpattern.behavioral.interceptingfilter.data.Order;
 import com.dutianze.designpattern.behavioral.interceptingfilter.Filter;
+import com.dutianze.designpattern.behavioral.interceptingfilter.data.Order;
 import com.dutianze.designpattern.behavioral.interceptingfilter.filter.FilterChain;
 
 /**
@@ -10,11 +10,11 @@ import com.dutianze.designpattern.behavioral.interceptingfilter.filter.FilterCha
  */
 public class AddressFilter implements Filter {
 
-    @Override
-    public void doFilter(Order order, StringBuilder result, FilterChain chain) {
-        if (order.getAddress() == null || order.getAddress().isEmpty()) {
-            result.append("Invalid address! ");
-        }
-        chain.doFilter(order, result, chain);
+  @Override
+  public void doFilter(Order order, StringBuilder result, FilterChain chain) {
+    if (order.getAddress() == null || order.getAddress().isEmpty()) {
+      result.append("Invalid address! ");
     }
+    chain.doFilter(order, result, chain);
+  }
 }

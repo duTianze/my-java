@@ -10,14 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InvalidUser implements ReceiptViewModel {
 
-    private final String userName;
+  private final String userName;
 
-    public InvalidUser(String userName) {
-        this.userName = userName;
-    }
+  public InvalidUser(String userName) {
+    this.userName = userName;
+  }
 
-    @Override
-    public void show() {
-        log.warn("Invalid user: {}", userName);
-    }
+  @Override
+  public void show() {
+    log.warn("Invalid user: {}", userName);
+  }
 }

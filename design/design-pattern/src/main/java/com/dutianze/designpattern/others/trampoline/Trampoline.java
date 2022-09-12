@@ -21,35 +21,35 @@ package com.dutianze.designpattern.others.trampoline;
  */
 public interface Trampoline<T> {
 
-    T get();
+  T get();
 
-    default Trampoline<T> next() {
+  default Trampoline<T> next() {
+    return null;
+  }
+
+  default T compute() {
+    Trampoline<T> trampoline = this;
+    while (trampoline.next() != null) {
+      trampoline = trampoline.next();
+    }
+    return trampoline.get();
+  }
+
+  static <T> Trampoline<T> done(final T result) {
+    return () -> result;
+  }
+
+  static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
+    return new Trampoline<>() {
+
+      @Override
+      public T get() {
         return null;
-    }
+      }
 
-    default T compute() {
-        Trampoline<T> trampoline = this;
-        while (trampoline.next() != null) {
-            trampoline = trampoline.next();
-        }
+      public Trampoline<T> next() {
         return trampoline.get();
-    }
-
-    static <T> Trampoline<T> done(final T result) {
-        return () -> result;
-    }
-
-    static <T> Trampoline<T> more(final Trampoline<Trampoline<T>> trampoline) {
-        return new Trampoline<>() {
-
-            @Override
-            public T get() {
-                return null;
-            }
-
-            public Trampoline<T> next() {
-                return trampoline.get();
-            }
-        };
-    }
+      }
+    };
+  }
 }

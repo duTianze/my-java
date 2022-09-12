@@ -1,8 +1,7 @@
 package com.dutianze.designpattern.others.servicelayer.aggregate.spellbook;
 
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author dutianze
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface SpellBookRepository extends CrudRepository<SpellBook, Long> {
 
-    SpellBook findByName(String name);
+  SpellBook findByName(String name);
 
-    List<SpellBook> findAll();
+  List<SpellBook> findAll();
 }

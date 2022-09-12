@@ -6,5 +6,5 @@ package com.dutianze.designpattern.others.specialcase.dto;
  */
 public interface ReceiptViewModel {
 
-    void show();
+  void show();
 }

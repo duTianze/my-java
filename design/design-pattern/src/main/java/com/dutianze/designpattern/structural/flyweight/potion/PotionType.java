@@ -6,5 +6,5 @@ package com.dutianze.designpattern.structural.flyweight.potion;
  */
 public enum PotionType {
 
-    HEALING, INVISIBILITY, STRENGTH, HOLY_WATER, POISON
+  HEALING, INVISIBILITY, STRENGTH, HOLY_WATER, POISON
 }

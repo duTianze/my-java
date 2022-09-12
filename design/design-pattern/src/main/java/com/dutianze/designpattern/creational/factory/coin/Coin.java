@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.factory.coin;
  */
 public interface Coin {
 
-    String getDescription();
+  String getDescription();
 }

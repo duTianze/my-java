@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.property.impl;
  */
 public enum Stats {
 
-    AGILITY, STRENGTH, ATTACK_POWER, ARMOR, INTELLECT, SPIRIT, ENERGY, RAGE
+  AGILITY, STRENGTH, ATTACK_POWER, ARMOR, INTELLECT, SPIRIT, ENERGY, RAGE
 }

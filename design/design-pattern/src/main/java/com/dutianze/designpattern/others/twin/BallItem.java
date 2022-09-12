@@ -16,27 +16,27 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BallItem extends GameItem {
 
-    private boolean isSuspended;
+  private boolean isSuspended;
 
-    @Setter
-    private BallThread twin;
+  @Setter
+  private BallThread twin;
 
-    @Override
-    public void doDraw() {
-        log.info("doDraw");
+  @Override
+  public void doDraw() {
+    log.info("doDraw");
+  }
+
+  public void move() {
+    log.info("move");
+  }
+
+  @Override
+  public void click() {
+    isSuspended = !isSuspended;
+    if (isSuspended) {
+      twin.suspendMe();
+    } else {
+      twin.resumeMe();
     }
-
-    public void move() {
-        log.info("move");
-    }
-
-    @Override
-    public void click() {
-        isSuspended = !isSuspended;
-        if (isSuspended) {
-            twin.suspendMe();
-        } else {
-            twin.resumeMe();
-        }
-    }
+  }
 }

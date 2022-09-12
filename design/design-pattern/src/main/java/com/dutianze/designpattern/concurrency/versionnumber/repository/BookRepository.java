@@ -18,9 +18,9 @@ import com.dutianze.designpattern.concurrency.versionnumber.exception.VersionMis
  */
 public interface BookRepository {
 
-    void add(Book book) throws BookDuplicateException;
+  void add(Book book) throws BookDuplicateException;
 
-    void update(Book book) throws BookNotFoundException, VersionMismatchException;
+  void update(Book book) throws BookNotFoundException, VersionMismatchException;
 
-    Book get(long bookId) throws BookNotFoundException;
+  Book get(long bookId) throws BookNotFoundException;
 }

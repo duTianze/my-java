@@ -13,4 +13,5 @@ package com.dutianze.designpattern.behavioral.memento;
  * @see java.io.Serializable
  */
 public interface StarMemento {
+
 }

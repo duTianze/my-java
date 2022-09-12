@@ -11,21 +11,21 @@ import lombok.Data;
 @Data
 public class Breed {
 
-    private String name;
-    private int health;
-    private String attack;
+  private String name;
+  private int health;
+  private String attack;
 
-    @JsonAdapter(JsonParser.ParentAdapterFactory.class)
-    private Breed parent;
+  @JsonAdapter(JsonParser.ParentAdapterFactory.class)
+  private Breed parent;
 
-    public Breed(Breed parent, String name, int health, String attack) {
-        this.parent = parent;
-        this.name = name;
-        this.health = health;
-        this.attack = attack;
-    }
+  public Breed(Breed parent, String name, int health, String attack) {
+    this.parent = parent;
+    this.name = name;
+    this.health = health;
+    this.attack = attack;
+  }
 
-    public Monster newMonster() {
-        return new Monster(this);
-    }
+  public Monster newMonster() {
+    return new Monster(this);
+  }
 }

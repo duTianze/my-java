@@ -1,8 +1,7 @@
 package com.dutianze.designpattern.game.objectpool.oliphaunt;
 
-import lombok.Data;
-
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.Data;
 
 /**
  * @author dutianze
@@ -11,16 +10,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Data
 public class Oliphaunt {
 
-    private static final AtomicInteger counter = new AtomicInteger(0);
+  private static final AtomicInteger counter = new AtomicInteger(0);
 
-    private final int id;
+  private final int id;
 
-    public Oliphaunt() {
-        id = counter.incrementAndGet();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+  public Oliphaunt() {
+    id = counter.incrementAndGet();
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
+  }
 }

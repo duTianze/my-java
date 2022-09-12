@@ -20,7 +20,8 @@ Domain Event Publishing Adapter：将事件发布到消息代理的出站适配�
 ## 1　使用事务脚本模式设计业务逻辑
 
 虽然我一直积极地倡导使用面向对象的方式，但在某些情况下使用面向对象的设计方法会有一种“杀鸡用牛刀”的感觉，例如在开发简单的业务逻辑时。
-在这种情况下，更好的方法是编写面向过程的代码，并使用Martin Fowler在《Patterns of EnterpriseApplication Architecture》一书中提到的事务脚本模式。
+在这种情况下，更好的方法是编写面向过程的代码，并使用Martin Fowler在《Patterns of EnterpriseApplication
+Architecture》一书中提到的事务脚本模式。
 你可以编写一个称为事务脚本的方法来处理来自表示层的每个请求，而不是进行任何面向对象的设计。
 如图2所示，这种方法的一个重要特征是实现行为的类与存储状态的类是分开的。
 
@@ -53,13 +54,15 @@ Domain Event Publishing Adapter：将事件发布到消息代理的出站适配�
 使用面向对象设计有许多好处。首先，这样的设计易于理解和维护。它不是由一个完成所有事情的大类组成，而是由许多小类组成，每个小类都有少量职责。
 此外，诸如Account、BankingTransaction和OverdraftPolicy这些类都密切地反映了现实世界，这使得它们在设计中的角色更容易理解。
 其次，我们的面向对象设计更容易测试：每个类都可以并且应该能够被独立测试。
-最后，面向对象的设计更容易扩展，因为它可以使用众所周知的设计模式，例如策略模式（Strategy pattern）和模板方法模式（Template methodpattern），这些设计模式定义了在不修改代码的情况下扩展组件的方法。
+最后，面向对象的设计更容易扩展，因为它可以使用众所周知的设计模式，例如策略模式（Strategy pattern）和模板方法模式（Template
+methodpattern），这些设计模式定义了在不修改代码的情况下扩展组件的方法。
 
 领域建模模式看似完美，但这种方法同样也存在许多问题，尤其是在微服务架构中。要解决这些问题，你需要使用称为领域驱动设计的思路来优化面向对象设计。
 
 ## 3　关于领域驱动设计
 
-领域驱动设计（Domain-Driven Design，DDD）的概念产生于Eric Evans写的《Domain Driven Design》一书，DDD是对面向对象设计的改进，是开发复杂业务逻辑的一种方法。
+领域驱动设计（Domain-Driven Design，DDD）的概念产生于Eric Evans写的《Domain Driven
+Design》一书，DDD是对面向对象设计的改进，是开发复杂业务逻辑的一种方法。
 我在第2章介绍过DDD，领域驱动设计的子域概念有助于把应用程序分解为服务。使用DDD时，每个服务都有自己的领域模型，这就避免了在单个应用程序全局范围内的领域模型问题。
 子域和相关联的限界上下文的相关概念是两种战略性DDD模式。
 

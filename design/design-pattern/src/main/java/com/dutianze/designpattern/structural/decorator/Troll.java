@@ -15,9 +15,9 @@ package com.dutianze.designpattern.structural.decorator;
  */
 public interface Troll {
 
-    void attack();
+  void attack();
 
-    int getAttackPower();
+  int getAttackPower();
 
-    void fleeBattle();
+  void fleeBattle();
 }

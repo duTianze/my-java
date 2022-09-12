@@ -2,7 +2,6 @@ package com.dutianze.designpattern.behavioral.mediator.iml;
 
 import com.dutianze.designpattern.behavioral.mediator.Party;
 import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMember;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +11,22 @@ import java.util.List;
  */
 public class PartyImpl implements Party {
 
-    private final List<PartyMember> members;
+  private final List<PartyMember> members;
 
-    public PartyImpl() {
-        members = new ArrayList<>();
-    }
+  public PartyImpl() {
+    members = new ArrayList<>();
+  }
 
-    @Override
-    public void act(PartyMember actor, Action action) {
-        members.stream()
-               .filter(member -> !member.equals(actor))
-               .forEach(member -> member.partyAction(action));
-    }
+  @Override
+  public void act(PartyMember actor, Action action) {
+    members.stream()
+        .filter(member -> !member.equals(actor))
+        .forEach(member -> member.partyAction(action));
+  }
 
-    @Override
-    public void addMember(PartyMember member) {
-        members.add(member);
-        member.joinedParty(this);
-    }
+  @Override
+  public void addMember(PartyMember member) {
+    members.add(member);
+    member.joinedParty(this);
+  }
 }

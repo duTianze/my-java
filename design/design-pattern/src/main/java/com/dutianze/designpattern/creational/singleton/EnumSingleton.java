@@ -6,19 +6,19 @@ package com.dutianze.designpattern.creational.singleton;
  */
 public enum EnumSingleton {
 
-    INSTANCE("Initial class info");
+  INSTANCE("Initial class info");
 
-    private final String info;
+  private final String info;
 
-    EnumSingleton(String info) {
-        this.info = info;
-    }
+  EnumSingleton(String info) {
+    this.info = info;
+  }
 
-    public String getInfo() {
-        return info;
-    }
+  public String getInfo() {
+    return info;
+  }
 
-    public static EnumSingleton getInstance() {
-        return INSTANCE;
-    }
+  public static EnumSingleton getInstance() {
+    return INSTANCE;
+  }
 }

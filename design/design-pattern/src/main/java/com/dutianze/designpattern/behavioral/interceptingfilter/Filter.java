@@ -16,5 +16,5 @@ import com.dutianze.designpattern.behavioral.interceptingfilter.filter.FilterCha
  */
 public interface Filter {
 
-    void doFilter(Order order, StringBuilder result, FilterChain chain);
+  void doFilter(Order order, StringBuilder result, FilterChain chain);
 }

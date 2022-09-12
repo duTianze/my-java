@@ -32,14 +32,14 @@ import com.dutianze.designpattern.others.specification.property.Size;
  */
 public class SizeSelector extends AbstractSelector<Creature> {
 
-    private final Size size;
+  private final Size size;
 
-    public SizeSelector(Size s) {
-        this.size = s;
-    }
+  public SizeSelector(Size s) {
+    this.size = s;
+  }
 
-    @Override
-    public boolean test(Creature t) {
-        return t.getSize().equals(size);
-    }
+  @Override
+  public boolean test(Creature t) {
+    return t.getSize().equals(size);
+  }
 }

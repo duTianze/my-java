@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public abstract class Mage implements Prototype {
 
-    public Mage(Mage source) {
-    }
+  public Mage(Mage source) {
+  }
 
-    @Override
-    public abstract Mage copy();
+  @Override
+  public abstract Mage copy();
 
 }

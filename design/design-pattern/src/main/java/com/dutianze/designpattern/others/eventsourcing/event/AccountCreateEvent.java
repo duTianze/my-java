@@ -13,25 +13,25 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class AccountCreateEvent extends DomainEvent {
 
-    private final int accountNo;
-    private final String owner;
+  private final int accountNo;
+  private final String owner;
 
-    public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
-        super(sequenceId, createdTime, "AccountCreateEvent");
-        this.accountNo = accountNo;
-        this.owner = owner;
-    }
+  public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
+    super(sequenceId, createdTime, "AccountCreateEvent");
+    this.accountNo = accountNo;
+    this.owner = owner;
+  }
 
-    @Override
-    public void process(AccountRepository accountRepository) {
-        Account account = accountRepository.findAccount(accountNo);
-        if (account != null) {
-            throw new RuntimeException("Account already exists");
-        }
-        account = new Account(accountNo, owner);
-        accountRepository.save(account);
-        if (this.isRealTime()) {
-            log.info(MSG);
-        }
+  @Override
+  public void process(AccountRepository accountRepository) {
+    Account account = accountRepository.findAccount(accountNo);
+    if (account != null) {
+      throw new RuntimeException("Account already exists");
     }
+    account = new Account(accountNo, owner);
+    accountRepository.save(account);
+    if (this.isRealTime()) {
+      log.info(MSG);
+    }
+  }
 }

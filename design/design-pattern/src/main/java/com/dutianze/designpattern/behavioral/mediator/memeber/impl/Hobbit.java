@@ -8,8 +8,8 @@ import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMemberBase;
  */
 public class Hobbit extends PartyMemberBase {
 
-    @Override
-    public String toString() {
-        return "Hobbit";
-    }
+  @Override
+  public String toString() {
+    return "Hobbit";
+  }
 }

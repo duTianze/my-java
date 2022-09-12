@@ -1,15 +1,14 @@
 package com.dutianze.designpattern.structural.adapter;
 
-import com.dutianze.designpattern.structural.adapter.boat.FishingBoatAdapter;
-import com.dutianze.designpattern.structural.adapter.boat.RowingBoat;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+
+import com.dutianze.designpattern.structural.adapter.boat.FishingBoatAdapter;
+import com.dutianze.designpattern.structural.adapter.boat.RowingBoat;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author dutianze
@@ -17,34 +16,34 @@ import static org.mockito.Mockito.verify;
  */
 class CaptainTest {
 
-    private Map<String, Object> beans;
+  private Map<String, Object> beans;
 
-    private static final String FISHING_BEAN = "fisher";
+  private static final String FISHING_BEAN = "fisher";
 
-    private static final String ROWING_BEAN = "captain";
+  private static final String ROWING_BEAN = "captain";
 
-    @BeforeEach
-    public void setup() {
-        beans = new HashMap<>();
+  @BeforeEach
+  public void setup() {
+    beans = new HashMap<>();
 
-        FishingBoatAdapter fishingBoatAdapter = spy(new FishingBoatAdapter());
-        beans.put(FISHING_BEAN, fishingBoatAdapter);
+    FishingBoatAdapter fishingBoatAdapter = spy(new FishingBoatAdapter());
+    beans.put(FISHING_BEAN, fishingBoatAdapter);
 
-        Captain captain = new Captain();
-        captain.setRowingBoat((FishingBoatAdapter) beans.get(FISHING_BEAN));
-        beans.put(ROWING_BEAN, captain);
-    }
+    Captain captain = new Captain();
+    captain.setRowingBoat((FishingBoatAdapter) beans.get(FISHING_BEAN));
+    beans.put(ROWING_BEAN, captain);
+  }
 
-    @Test
-    void testAdapter() {
-        Captain captain = (Captain) beans.get(ROWING_BEAN);
+  @Test
+  void testAdapter() {
+    Captain captain = (Captain) beans.get(ROWING_BEAN);
 
-        // when captain moves
-        captain.row();
+    // when captain moves
+    captain.row();
 
-        // the captain internally calls the battleship object to move
-        RowingBoat adapter = (RowingBoat) beans.get(FISHING_BEAN);
-        verify(adapter).row();
-    }
+    // the captain internally calls the battleship object to move
+    RowingBoat adapter = (RowingBoat) beans.get(FISHING_BEAN);
+    verify(adapter).row();
+  }
 
 }

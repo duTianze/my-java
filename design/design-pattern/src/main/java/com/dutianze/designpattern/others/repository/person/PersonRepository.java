@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
  * @date 2022/8/28
  */
 @Repository
-public interface PersonRepository extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
+public interface PersonRepository extends CrudRepository<Person, Long>,
+    JpaSpecificationExecutor<Person> {
 
-    Person findByName(String name);
+  Person findByName(String name);
 }

@@ -6,7 +6,7 @@ package com.dutianze.designpattern.concurrency.versionnumber.exception;
  */
 public class BookDuplicateException extends Exception {
 
-    public BookDuplicateException(String message) {
-        super(message);
-    }
+  public BookDuplicateException(String message) {
+    super(message);
+  }
 }

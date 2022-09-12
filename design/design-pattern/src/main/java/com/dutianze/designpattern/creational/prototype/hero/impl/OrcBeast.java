@@ -12,21 +12,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrcBeast extends Beast {
 
-    private final String weapon;
+  private final String weapon;
 
-    public OrcBeast(OrcBeast orcBeast) {
-        super(orcBeast);
-        this.weapon = orcBeast.weapon;
-    }
+  public OrcBeast(OrcBeast orcBeast) {
+    super(orcBeast);
+    this.weapon = orcBeast.weapon;
+  }
 
-    @Override
-    public OrcBeast copy() {
-        return new OrcBeast(this);
-    }
+  @Override
+  public OrcBeast copy() {
+    return new OrcBeast(this);
+  }
 
-    @Override
-    public String toString() {
-        return "Orcish wolf attacks with " + weapon;
-    }
+  @Override
+  public String toString() {
+    return "Orcish wolf attacks with " + weapon;
+  }
 
 }

@@ -20,7 +20,7 @@ import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMember;
  */
 public interface Party {
 
-    void addMember(PartyMember member);
+  void addMember(PartyMember member);
 
-    void act(PartyMember actor, Action action);
+  void act(PartyMember actor, Action action);
 }

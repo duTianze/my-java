@@ -8,10 +8,10 @@ import com.dutianze.designpattern.game.subclasssandbox.Superpower;
  */
 public class GroundDive extends Superpower {
 
-    @Override
-    protected void activate() {
-        move(0, 0, -20);
-        playSound("GROUNDDIVE_SOUND", 5);
-        spawnParticles("GROUNDDIVE_PARTICLE", 20);
-    }
+  @Override
+  protected void activate() {
+    move(0, 0, -20);
+    playSound("GROUNDDIVE_SOUND", 5);
+    spawnParticles("GROUNDDIVE_PARTICLE", 20);
+  }
 }

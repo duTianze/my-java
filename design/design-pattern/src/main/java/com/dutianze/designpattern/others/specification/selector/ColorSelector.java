@@ -32,14 +32,14 @@ import com.dutianze.designpattern.others.specification.property.Color;
  */
 public class ColorSelector extends AbstractSelector<Creature> {
 
-    private final Color color;
+  private final Color color;
 
-    public ColorSelector(Color c) {
-        this.color = c;
-    }
+  public ColorSelector(Color c) {
+    this.color = c;
+  }
 
-    @Override
-    public boolean test(Creature t) {
-        return t.getColor().equals(color);
-    }
+  @Override
+  public boolean test(Creature t) {
+    return t.getColor().equals(color);
+  }
 }

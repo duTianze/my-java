@@ -8,8 +8,8 @@ import com.dutianze.designpattern.behavioral.mediator.memeber.PartyMemberBase;
  */
 public class Wizard extends PartyMemberBase {
 
-    @Override
-    public String toString() {
-        return "Wizard";
-    }
+  @Override
+  public String toString() {
+    return "Wizard";
+  }
 }

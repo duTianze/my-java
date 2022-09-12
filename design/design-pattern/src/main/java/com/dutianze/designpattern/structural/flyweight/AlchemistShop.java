@@ -2,9 +2,8 @@ package com.dutianze.designpattern.structural.flyweight;
 
 import com.dutianze.designpattern.structural.flyweight.potion.Potion;
 import com.dutianze.designpattern.structural.flyweight.potion.PotionType;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <h2 id="known-uses">Known uses</h2>
@@ -19,28 +18,28 @@ import java.util.List;
 @Slf4j
 public class AlchemistShop {
 
-    private final List<Potion> shelf;
+  private final List<Potion> shelf;
 
-    public AlchemistShop() {
-        PotionFactory factory = new PotionFactory();
-        shelf = List.of(
-                factory.createPotion(PotionType.INVISIBILITY),
-                factory.createPotion(PotionType.INVISIBILITY),
-                factory.createPotion(PotionType.STRENGTH),
-                factory.createPotion(PotionType.HEALING),
-                factory.createPotion(PotionType.INVISIBILITY),
-                factory.createPotion(PotionType.STRENGTH),
-                factory.createPotion(PotionType.HEALING),
-                factory.createPotion(PotionType.HEALING),
-                factory.createPotion(PotionType.POISON),
-                factory.createPotion(PotionType.POISON),
-                factory.createPotion(PotionType.POISON),
-                factory.createPotion(PotionType.HOLY_WATER),
-                factory.createPotion(PotionType.HOLY_WATER)
-        );
-    }
+  public AlchemistShop() {
+    PotionFactory factory = new PotionFactory();
+    shelf = List.of(
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.INVISIBILITY),
+        factory.createPotion(PotionType.STRENGTH),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.HEALING),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.POISON),
+        factory.createPotion(PotionType.HOLY_WATER),
+        factory.createPotion(PotionType.HOLY_WATER)
+    );
+  }
 
-    public final List<Potion> getShelf() {
-        return List.copyOf(this.shelf);
-    }
+  public final List<Potion> getShelf() {
+    return List.copyOf(this.shelf);
+  }
 }

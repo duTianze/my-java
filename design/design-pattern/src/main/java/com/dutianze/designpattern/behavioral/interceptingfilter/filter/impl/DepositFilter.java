@@ -10,12 +10,12 @@ import com.dutianze.designpattern.behavioral.interceptingfilter.filter.FilterCha
  */
 public class DepositFilter implements Filter {
 
-    @Override
-    public void doFilter(Order order, StringBuilder result, FilterChain chain) {
-        String depositNumber = order.getDepositNumber();
-        if (depositNumber == null || depositNumber.isEmpty()) {
-            result.append("Invalid deposit number! ");
-        }
-        chain.doFilter(order, result, chain);
+  @Override
+  public void doFilter(Order order, StringBuilder result, FilterChain chain) {
+    String depositNumber = order.getDepositNumber();
+    if (depositNumber == null || depositNumber.isEmpty()) {
+      result.append("Invalid deposit number! ");
     }
+    chain.doFilter(order, result, chain);
+  }
 }

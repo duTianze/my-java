@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 public class Kingdom {
 
-    private King king;
-    private Castle castle;
-    private Army army;
+  private King king;
+  private Castle castle;
+  private Army army;
 
-    public Kingdom(KingdomFactory kingdomFactory) {
-        king = kingdomFactory.createKing();
-        castle = kingdomFactory.createCastle();
-        army = kingdomFactory.createArmy();
-    }
+  public Kingdom(KingdomFactory kingdomFactory) {
+    king = kingdomFactory.createKing();
+    castle = kingdomFactory.createCastle();
+    army = kingdomFactory.createArmy();
+  }
 }

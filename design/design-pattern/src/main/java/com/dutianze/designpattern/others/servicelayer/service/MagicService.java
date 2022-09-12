@@ -3,7 +3,6 @@ package com.dutianze.designpattern.others.servicelayer.service;
 import com.dutianze.designpattern.others.servicelayer.aggregate.spell.Spell;
 import com.dutianze.designpattern.others.servicelayer.aggregate.spellbook.SpellBook;
 import com.dutianze.designpattern.others.servicelayer.aggregate.wizard.Wizard;
-
 import java.util.List;
 
 /**
@@ -12,13 +11,13 @@ import java.util.List;
  */
 public interface MagicService {
 
-    List<Wizard> findAllWizards();
+  List<Wizard> findAllWizards();
 
-    List<SpellBook> findAllSpellBooks();
+  List<SpellBook> findAllSpellBooks();
 
-    List<Spell> findAllSpells();
+  List<Spell> findAllSpells();
 
-    List<Wizard> findWizardsWithSpellBook(String name);
+  List<Wizard> findWizardsWithSpellBook(String name);
 
-    List<Wizard> findWizardsWithSpell(String name);
+  List<Wizard> findWizardsWithSpell(String name);
 }

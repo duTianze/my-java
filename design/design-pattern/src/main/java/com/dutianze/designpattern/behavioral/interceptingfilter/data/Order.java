@@ -11,9 +11,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Order {
 
-    private String name;
-    private String contactNumber;
-    private String address;
-    private String depositNumber;
-    private String orderItem;
+  private String name;
+  private String contactNumber;
+  private String address;
+  private String depositNumber;
+  private String orderItem;
 }

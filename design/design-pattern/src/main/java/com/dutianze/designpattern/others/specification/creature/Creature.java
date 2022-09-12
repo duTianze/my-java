@@ -11,13 +11,13 @@ import com.dutianze.designpattern.others.specification.property.Size;
  */
 public interface Creature {
 
-    String getName();
+  String getName();
 
-    Size getSize();
+  Size getSize();
 
-    Movement getMovement();
+  Movement getMovement();
 
-    Color getColor();
+  Color getColor();
 
-    Mass getMass();
+  Mass getMass();
 }

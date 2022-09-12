@@ -6,9 +6,9 @@ package com.dutianze.designpattern.others.servicelocator.service;
  */
 public interface Service {
 
-    String getName();
+  String getName();
 
-    int getId();
+  int getId();
 
-    void execute();
+  void execute();
 }

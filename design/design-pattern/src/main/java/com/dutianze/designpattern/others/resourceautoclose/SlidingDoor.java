@@ -9,12 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SlidingDoor implements AutoCloseable {
 
-    public SlidingDoor() {
-        log.info("Sliding door opens.");
-    }
+  public SlidingDoor() {
+    log.info("Sliding door opens.");
+  }
 
-    @Override
-    public void close() {
-        log.info("Sliding door closes.");
-    }
+  @Override
+  public void close() {
+    log.info("Sliding door closes.");
+  }
 }

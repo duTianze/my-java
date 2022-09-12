@@ -20,24 +20,24 @@ import com.dutianze.designpattern.creational.abstractfactory.kingdom.Kingdom;
  */
 public interface KingdomFactory {
 
-    Castle createCastle();
+  Castle createCastle();
 
-    King createKing();
+  King createKing();
 
-    Army createArmy();
+  Army createArmy();
 
-    default Kingdom createKingdom() {
-        return new Kingdom(this);
-    }
+  default Kingdom createKingdom() {
+    return new Kingdom(this);
+  }
 
-    enum KingdomType {
-        ELF, ORC
-    }
+  enum KingdomType {
+    ELF, ORC
+  }
 
-    static KingdomFactory makeFactory(KingdomType type) {
-        return switch (type) {
-            case ELF -> new ElfKingdomFactory();
-            case ORC -> new OrcKingdomFactory();
-        };
-    }
+  static KingdomFactory makeFactory(KingdomType type) {
+    return switch (type) {
+      case ELF -> new ElfKingdomFactory();
+      case ORC -> new OrcKingdomFactory();
+    };
+  }
 }

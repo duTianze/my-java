@@ -11,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum UnitActions {
 
-    INSERT("INSERT"),
-    DELETE("DELETE"),
-    MODIFY("MODIFY");
+  INSERT("INSERT"),
+  DELETE("DELETE"),
+  MODIFY("MODIFY");
 
-    private final String actionValue;
+  private final String actionValue;
 }

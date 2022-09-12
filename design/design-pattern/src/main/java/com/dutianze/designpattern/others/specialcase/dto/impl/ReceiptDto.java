@@ -10,19 +10,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ReceiptDto implements ReceiptViewModel {
 
-    private final Double price;
+  private final Double price;
 
-    public ReceiptDto(Double price) {
-        this.price = price;
-    }
+  public ReceiptDto(Double price) {
+    this.price = price;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    @Override
-    public void show() {
-        log.info("Receipt: {} paid", price);
-    }
+  @Override
+  public void show() {
+    log.info("Receipt: {} paid", price);
+  }
 }
 

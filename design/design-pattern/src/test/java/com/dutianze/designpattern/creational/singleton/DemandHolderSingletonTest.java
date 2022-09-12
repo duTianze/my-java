@@ -6,7 +6,7 @@ package com.dutianze.designpattern.creational.singleton;
  */
 class DemandHolderSingletonTest extends SingletonTest<DemandHolderSingleton> {
 
-    protected DemandHolderSingletonTest() {
-        super(DemandHolderSingleton::getInstance);
-    }
+  protected DemandHolderSingletonTest() {
+    super(DemandHolderSingleton::getInstance);
+  }
 }

@@ -22,17 +22,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class Superpower {
 
-    protected abstract void activate();
+  protected abstract void activate();
 
-    protected void move(double x, double y, double z) {
-        log.info("Move to ( " + x + ", " + y + ", " + z + " )");
-    }
+  protected void move(double x, double y, double z) {
+    log.info("Move to ( " + x + ", " + y + ", " + z + " )");
+  }
 
-    protected void playSound(String soundName, int volumn) {
-        log.info("Play " + soundName + " with volumn " + volumn);
-    }
+  protected void playSound(String soundName, int volumn) {
+    log.info("Play " + soundName + " with volumn " + volumn);
+  }
 
-    protected void spawnParticles(String particleType, int count) {
-        log.info("Spawn " + count + " particle with type " + particleType);
-    }
+  protected void spawnParticles(String particleType, int count) {
+    log.info("Spawn " + count + " particle with type " + particleType);
+  }
 }

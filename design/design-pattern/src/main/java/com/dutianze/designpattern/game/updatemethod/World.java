@@ -1,11 +1,10 @@
 package com.dutianze.designpattern.game.updatemethod;
 
 import com.dutianze.designpattern.game.updatemethod.entity.Entity;
-import lombok.extern.slf4j.Slf4j;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <h2 id="credits">Credits</h2>
@@ -19,57 +18,57 @@ import java.util.List;
 @Slf4j
 public class World {
 
-    protected List<Entity> entities;
+  protected List<Entity> entities;
 
-    protected volatile boolean isRunning;
+  protected volatile boolean isRunning;
 
-    public World() {
-        entities = new ArrayList<>();
-        isRunning = false;
+  public World() {
+    entities = new ArrayList<>();
+    isRunning = false;
+  }
+
+  private void gameLoop() {
+    while (isRunning) {
+      processInput();
+      update();
+      render();
     }
+  }
 
-    private void gameLoop() {
-        while (isRunning) {
-            processInput();
-            update();
-            render();
-        }
+  private void processInput() {
+    try {
+      int lag = new SecureRandom().nextInt(200) + 50;
+      Thread.sleep(lag);
+    } catch (InterruptedException e) {
+      log.error(e.getMessage());
+      Thread.currentThread().interrupt();
     }
+  }
 
-    private void processInput() {
-        try {
-            int lag = new SecureRandom().nextInt(200) + 50;
-            Thread.sleep(lag);
-        } catch (InterruptedException e) {
-            log.error(e.getMessage());
-            Thread.currentThread().interrupt();
-        }
+  private void update() {
+    for (Entity entity : entities) {
+      entity.update();
     }
+  }
 
-    private void update() {
-        for (Entity entity : entities) {
-            entity.update();
-        }
-    }
+  private void render() {
+    // Does Nothing
+  }
 
-    private void render() {
-        // Does Nothing
-    }
+  public void run() {
+    log.info("Start game.");
+    isRunning = true;
+    Thread thread = new Thread(this::gameLoop);
+    thread.start();
+  }
 
-    public void run() {
-        log.info("Start game.");
-        isRunning = true;
-        Thread thread = new Thread(this::gameLoop);
-        thread.start();
-    }
+  public void stop() {
+    log.info("Stop game.");
+    isRunning = false;
+  }
 
-    public void stop() {
-        log.info("Stop game.");
-        isRunning = false;
-    }
-
-    public void addEntity(Entity entity) {
-        entities.add(entity);
-    }
+  public void addEntity(Entity entity) {
+    entities.add(entity);
+  }
 
 }

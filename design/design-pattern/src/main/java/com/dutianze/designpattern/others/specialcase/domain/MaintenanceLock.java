@@ -9,22 +9,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MaintenanceLock {
 
-    private static MaintenanceLock instance;
-    private boolean lock = true;
+  private static MaintenanceLock instance;
+  private boolean lock = true;
 
-    public static synchronized MaintenanceLock getInstance() {
-        if (instance == null) {
-            instance = new MaintenanceLock();
-        }
-        return instance;
+  public static synchronized MaintenanceLock getInstance() {
+    if (instance == null) {
+      instance = new MaintenanceLock();
     }
+    return instance;
+  }
 
-    public boolean isLock() {
-        return lock;
-    }
+  public boolean isLock() {
+    return lock;
+  }
 
-    public void setLock(boolean lock) {
-        this.lock = lock;
-        log.info("Maintenance lock is set to:{}", lock);
-    }
+  public void setLock(boolean lock) {
+    this.lock = lock;
+    log.info("Maintenance lock is set to:{}", lock);
+  }
 }

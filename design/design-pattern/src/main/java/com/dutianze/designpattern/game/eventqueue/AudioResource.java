@@ -1,10 +1,9 @@
 package com.dutianze.designpattern.game.eventqueue;
 
+import java.net.URL;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.net.URL;
 
 /**
  * @author dutianze
@@ -14,8 +13,8 @@ import java.net.URL;
 @AllArgsConstructor
 public class AudioResource {
 
-    private final URL resource;
+  private final URL resource;
 
-    @Setter
-    private float volume;
+  @Setter
+  private float volume;
 }

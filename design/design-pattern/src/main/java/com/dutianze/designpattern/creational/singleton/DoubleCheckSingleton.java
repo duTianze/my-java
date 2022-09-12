@@ -6,24 +6,24 @@ package com.dutianze.designpattern.creational.singleton;
  */
 public class DoubleCheckSingleton {
 
-    private static volatile DoubleCheckSingleton instance;
+  private static volatile DoubleCheckSingleton instance;
 
-    private DoubleCheckSingleton() {
-        if (instance != null) {
-            throw new IllegalStateException("Already initialized.");
-        }
+  private DoubleCheckSingleton() {
+    if (instance != null) {
+      throw new IllegalStateException("Already initialized.");
     }
+  }
 
-    public static DoubleCheckSingleton getInstance() {
-        DoubleCheckSingleton result = instance;
+  public static DoubleCheckSingleton getInstance() {
+    DoubleCheckSingleton result = instance;
+    if (result == null) {
+      synchronized (DoubleCheckSingleton.class) {
+        result = instance;
         if (result == null) {
-            synchronized (DoubleCheckSingleton.class) {
-                result = instance;
-                if (result == null) {
-                    instance = result = new DoubleCheckSingleton();
-                }
-            }
+          instance = result = new DoubleCheckSingleton();
         }
-        return result;
+      }
     }
+    return result;
+  }
 }

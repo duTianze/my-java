@@ -6,5 +6,5 @@ package com.dutianze.designpattern.others.pipeline.handler;
  */
 public interface Handler<I, O> {
 
-    O process(I input);
+  O process(I input);
 }

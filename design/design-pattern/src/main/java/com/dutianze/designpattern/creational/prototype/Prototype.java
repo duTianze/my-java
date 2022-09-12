@@ -11,5 +11,5 @@ package com.dutianze.designpattern.creational.prototype;
  */
 public interface Prototype {
 
-    Object copy();
+  Object copy();
 }

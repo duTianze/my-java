@@ -12,17 +12,17 @@ import com.dutianze.designpattern.others.specialcase.dto.impl.DownForMaintenance
  */
 public class ApplicationServicesImpl implements ApplicationServices {
 
-    private final DomainServices domain = new DomainServicesImpl();
+  private final DomainServices domain = new DomainServicesImpl();
 
-    @Override
-    public ReceiptViewModel loggedInUserPurchase(String userName, String itemName) {
-        if (isDownForMaintenance()) {
-            return new DownForMaintenance();
-        }
-        return domain.purchase(userName, itemName);
+  @Override
+  public ReceiptViewModel loggedInUserPurchase(String userName, String itemName) {
+    if (isDownForMaintenance()) {
+      return new DownForMaintenance();
     }
+    return domain.purchase(userName, itemName);
+  }
 
-    private boolean isDownForMaintenance() {
-        return MaintenanceLock.getInstance().isLock();
-    }
+  private boolean isDownForMaintenance() {
+    return MaintenanceLock.getInstance().isLock();
+  }
 }

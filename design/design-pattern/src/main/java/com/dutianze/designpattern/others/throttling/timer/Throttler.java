@@ -6,5 +6,5 @@ package com.dutianze.designpattern.others.throttling.timer;
  */
 public interface Throttler {
 
-    void start();
+  void start();
 }

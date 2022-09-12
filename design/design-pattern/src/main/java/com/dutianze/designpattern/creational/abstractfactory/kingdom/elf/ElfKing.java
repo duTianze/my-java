@@ -8,8 +8,8 @@ import com.dutianze.designpattern.creational.abstractfactory.kingdom.King;
  */
 public class ElfKing implements King {
 
-    @Override
-    public String getDescription() {
-        return "This is the elven king!";
-    }
+  @Override
+  public String getDescription() {
+    return "This is the elven king!";
+  }
 }

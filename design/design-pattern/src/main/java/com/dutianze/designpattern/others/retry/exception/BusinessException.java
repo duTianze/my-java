@@ -8,10 +8,10 @@ import java.io.Serial;
  */
 public class BusinessException extends Exception {
 
-    @Serial
-    private static final long serialVersionUID = -5080582747884096475L;
+  @Serial
+  private static final long serialVersionUID = -5080582747884096475L;
 
-    public BusinessException(String message) {
-        super(message);
-    }
+  public BusinessException(String message) {
+    super(message);
+  }
 }

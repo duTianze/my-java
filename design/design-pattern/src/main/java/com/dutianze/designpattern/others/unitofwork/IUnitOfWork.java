@@ -11,11 +11,11 @@ package com.dutianze.designpattern.others.unitofwork;
  */
 public interface IUnitOfWork<T> {
 
-    void registerNew(T entity);
+  void registerNew(T entity);
 
-    void registerModified(T entity);
+  void registerModified(T entity);
 
-    void registerDeleted(T entity);
+  void registerDeleted(T entity);
 
-    void commit();
+  void commit();
 }

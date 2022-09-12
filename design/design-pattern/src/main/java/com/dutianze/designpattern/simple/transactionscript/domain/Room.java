@@ -11,16 +11,16 @@ import lombok.Data;
 @AllArgsConstructor
 public class Room {
 
-    private int id;
-    private String roomType;
-    private int price;
-    private boolean booked;
+  private int id;
+  private String roomType;
+  private int price;
+  private boolean booked;
 
-    public void book() {
-        this.booked = true;
-    }
+  public void book() {
+    this.booked = true;
+  }
 
-    public void cancelBook() {
-        this.booked = false;
-    }
+  public void cancelBook() {
+    this.booked = false;
+  }
 }

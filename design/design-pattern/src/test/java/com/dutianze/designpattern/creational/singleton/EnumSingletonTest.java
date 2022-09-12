@@ -6,7 +6,7 @@ package com.dutianze.designpattern.creational.singleton;
  */
 class EnumSingletonTest extends SingletonTest<EnumSingleton> {
 
-    protected EnumSingletonTest() {
-        super(EnumSingleton::getInstance);
-    }
+  protected EnumSingletonTest() {
+    super(EnumSingleton::getInstance);
+  }
 }

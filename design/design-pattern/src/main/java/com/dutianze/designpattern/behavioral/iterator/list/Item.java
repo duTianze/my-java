@@ -11,6 +11,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class Item {
 
-    private ItemType type;
-    private final String name;
+  private ItemType type;
+  private final String name;
 }

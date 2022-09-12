@@ -10,10 +10,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class Message {
-    private final String msg;
 
-    @Override
-    public String toString() {
-        return msg;
-    }
+  private final String msg;
+
+  @Override
+  public String toString() {
+    return msg;
+  }
 }

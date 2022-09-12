@@ -6,5 +6,5 @@ package com.dutianze.designpattern.structural.flyweight.potion;
  */
 public interface Potion {
 
-    void drink();
+  void drink();
 }

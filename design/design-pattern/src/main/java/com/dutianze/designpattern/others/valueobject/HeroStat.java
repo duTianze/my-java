@@ -16,7 +16,7 @@ import lombok.Value;
 @Value(staticConstructor = "valueOf")
 public class HeroStat {
 
-    int strength;
-    int intelligence;
-    int luck;
+  int strength;
+  int intelligence;
+  int luck;
 }

@@ -10,21 +10,21 @@ import com.dutianze.designpattern.others.servicelocator.service.Service;
  */
 public final class ServiceLocator {
 
-    private static final ServiceCache serviceCache = new ServiceCache();
+  private static final ServiceCache serviceCache = new ServiceCache();
 
-    private ServiceLocator() {
-    }
+  private ServiceLocator() {
+  }
 
-    public static Service getService(String serviceJndiName) {
-        Service serviceObj = serviceCache.getService(serviceJndiName);
-        if (serviceObj != null) {
-            return serviceObj;
-        }
-        InitContext ctx = new InitContext();
-        serviceObj = (Service) ctx.lookup(serviceJndiName);
-        if (serviceObj != null) {
-            serviceCache.addService(serviceObj);
-        }
-        return serviceObj;
+  public static Service getService(String serviceJndiName) {
+    Service serviceObj = serviceCache.getService(serviceJndiName);
+    if (serviceObj != null) {
+      return serviceObj;
     }
+    InitContext ctx = new InitContext();
+    serviceObj = (Service) ctx.lookup(serviceJndiName);
+    if (serviceObj != null) {
+      serviceCache.addService(serviceObj);
+    }
+    return serviceObj;
+  }
 }

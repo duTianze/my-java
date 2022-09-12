@@ -15,23 +15,23 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public abstract class Target {
 
-    private Size size;
+  private Size size;
 
-    private Visibility visibility;
+  private Visibility visibility;
 
-    public void printStatus() {
-        log.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
-    }
+  public void printStatus() {
+    log.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
+  }
 
-    public void changeSize() {
-        Size oldSize = this.size == Size.NORMAL
-                       ? Size.SMALL : Size.NORMAL;
-        setSize(oldSize);
-    }
+  public void changeSize() {
+    Size oldSize = this.size == Size.NORMAL
+        ? Size.SMALL : Size.NORMAL;
+    setSize(oldSize);
+  }
 
-    public void changeVisibility() {
-        Visibility visible = this.visibility == Visibility.INVISIBLE
-                             ? Visibility.VISIBLE : Visibility.INVISIBLE;
-        setVisibility(visible);
-    }
+  public void changeVisibility() {
+    Visibility visible = this.visibility == Visibility.INVISIBLE
+        ? Visibility.VISIBLE : Visibility.INVISIBLE;
+    setVisibility(visible);
+  }
 }

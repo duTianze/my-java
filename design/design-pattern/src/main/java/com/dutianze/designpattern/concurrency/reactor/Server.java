@@ -1,7 +1,11 @@
 package com.dutianze.designpattern.concurrency.reactor;
 
-import com.dutianze.designpattern.concurrency.reactor.framework.*;
-
+import com.dutianze.designpattern.concurrency.reactor.framework.AbstractNioChannel;
+import com.dutianze.designpattern.concurrency.reactor.framework.ChannelHandler;
+import com.dutianze.designpattern.concurrency.reactor.framework.Dispatcher;
+import com.dutianze.designpattern.concurrency.reactor.framework.NioDatagramChannel;
+import com.dutianze.designpattern.concurrency.reactor.framework.NioReactor;
+import com.dutianze.designpattern.concurrency.reactor.framework.NioServerSocketChannel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,67 +67,67 @@ import java.util.List;
  */
 public class Server {
 
-    private NioReactor reactor;
-    private final List<AbstractNioChannel> channels = new ArrayList<>();
-    private final Dispatcher dispatcher;
+  private NioReactor reactor;
+  private final List<AbstractNioChannel> channels = new ArrayList<>();
+  private final Dispatcher dispatcher;
 
-    public Server(Dispatcher dispatcher) {
-        this.dispatcher = dispatcher;
-    }
+  public Server(Dispatcher dispatcher) {
+    this.dispatcher = dispatcher;
+  }
 
-    /**
-     * Starts the NIO reactor.
-     *
-     * @throws IOException if any channel fails to bind.
+  /**
+   * Starts the NIO reactor.
+   *
+   * @throws IOException if any channel fails to bind.
+   */
+  public void start() throws IOException {
+    /*
+     * The application can customize its event dispatching mechanism.
      */
-    public void start() throws IOException {
-        /*
-         * The application can customize its event dispatching mechanism.
-         */
-        reactor = new NioReactor(dispatcher);
+    reactor = new NioReactor(dispatcher);
 
-        /*
-         * This represents application specific business logic that dispatcher will call on appropriate
-         * events. These events are read events in our example.
-         */
-        LoggingHandler loggingHandler = new LoggingHandler();
-
-        /*
-         * Our application binds to multiple channels and uses same logging handler to handle incoming
-         * log requests.
-         */
-        reactor.registerChannel(tcpChannel(16666, loggingHandler))
-               .registerChannel(tcpChannel(16667, loggingHandler))
-               .registerChannel(udpChannel(16668, loggingHandler))
-               .registerChannel(udpChannel(16669, loggingHandler))
-               .start();
-    }
-
-    /**
-     * Stops the NIO reactor. This is a blocking call.
-     *
-     * @throws InterruptedException if interrupted while stopping the reactor.
-     * @throws IOException          if any I/O error occurs
+    /*
+     * This represents application specific business logic that dispatcher will call on appropriate
+     * events. These events are read events in our example.
      */
-    public void stop() throws InterruptedException, IOException {
-        reactor.stop();
-        dispatcher.stop();
-        for (AbstractNioChannel channel : channels) {
-            channel.getJavaChannel().close();
-        }
-    }
+    LoggingHandler loggingHandler = new LoggingHandler();
 
-    private AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
-        NioServerSocketChannel channel = new NioServerSocketChannel(port, handler);
-        channel.bind();
-        channels.add(channel);
-        return channel;
-    }
+    /*
+     * Our application binds to multiple channels and uses same logging handler to handle incoming
+     * log requests.
+     */
+    reactor.registerChannel(tcpChannel(16666, loggingHandler))
+        .registerChannel(tcpChannel(16667, loggingHandler))
+        .registerChannel(udpChannel(16668, loggingHandler))
+        .registerChannel(udpChannel(16669, loggingHandler))
+        .start();
+  }
 
-    private AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
-        NioDatagramChannel channel = new NioDatagramChannel(port, handler);
-        channel.bind();
-        channels.add(channel);
-        return channel;
+  /**
+   * Stops the NIO reactor. This is a blocking call.
+   *
+   * @throws InterruptedException if interrupted while stopping the reactor.
+   * @throws IOException          if any I/O error occurs
+   */
+  public void stop() throws InterruptedException, IOException {
+    reactor.stop();
+    dispatcher.stop();
+    for (AbstractNioChannel channel : channels) {
+      channel.getJavaChannel().close();
     }
+  }
+
+  private AbstractNioChannel tcpChannel(int port, ChannelHandler handler) throws IOException {
+    NioServerSocketChannel channel = new NioServerSocketChannel(port, handler);
+    channel.bind();
+    channels.add(channel);
+    return channel;
+  }
+
+  private AbstractNioChannel udpChannel(int port, ChannelHandler handler) throws IOException {
+    NioDatagramChannel channel = new NioDatagramChannel(port, handler);
+    channel.bind();
+    channels.add(channel);
+    return channel;
+  }
 }

@@ -8,5 +8,5 @@ import com.dutianze.designpattern.concurrency.queueload.Message;
  */
 public interface Task {
 
-    void submit(Message msg);
+  void submit(Message msg);
 }

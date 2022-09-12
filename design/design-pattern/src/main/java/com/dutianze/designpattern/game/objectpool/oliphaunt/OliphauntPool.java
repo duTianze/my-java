@@ -8,8 +8,8 @@ import com.dutianze.designpattern.game.objectpool.ObjectPool;
  */
 public class OliphauntPool extends ObjectPool<Oliphaunt> {
 
-    @Override
-    protected Oliphaunt create() {
-        return new Oliphaunt();
-    }
+  @Override
+  protected Oliphaunt create() {
+    return new Oliphaunt();
+  }
 }

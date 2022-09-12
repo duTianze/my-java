@@ -2,10 +2,17 @@ package com.dutianze.designpattern.others.servicelayer.aggregate.spellbook;
 
 import com.dutianze.designpattern.others.servicelayer.aggregate.spell.Spell;
 import com.dutianze.designpattern.others.servicelayer.aggregate.wizard.Wizard;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * @author dutianze
@@ -15,69 +22,69 @@ import java.util.Set;
 @Table(name = "SPELLBOOK")
 public class SpellBook {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "SPELLBOOK_ID")
-    private Long id;
+  @Id
+  @GeneratedValue
+  @Column(name = "SPELLBOOK_ID")
+  private Long id;
 
-    private String name;
+  private String name;
 
-    @ManyToMany(mappedBy = "spellBooks", fetch = FetchType.EAGER)
-    private Set<Wizard> wizards;
+  @ManyToMany(mappedBy = "spellBooks", fetch = FetchType.EAGER)
+  private Set<Wizard> wizards;
 
-    @OneToMany(mappedBy = "spellBook", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<Spell> spells;
+  @OneToMany(mappedBy = "spellBook", orphanRemoval = true, cascade = CascadeType.ALL)
+  private Set<Spell> spells;
 
-    public SpellBook() {
-        spells = new HashSet<>();
-        wizards = new HashSet<>();
-    }
+  public SpellBook() {
+    spells = new HashSet<>();
+    wizards = new HashSet<>();
+  }
 
-    public SpellBook(String name) {
-        this();
-        this.name = name;
-    }
+  public SpellBook(String name) {
+    this();
+    this.name = name;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Set<Wizard> getWizards() {
-        return wizards;
-    }
+  public Set<Wizard> getWizards() {
+    return wizards;
+  }
 
-    public void setWizards(Set<Wizard> wizards) {
-        this.wizards = wizards;
-    }
+  public void setWizards(Set<Wizard> wizards) {
+    this.wizards = wizards;
+  }
 
-    public Set<Spell> getSpells() {
-        return spells;
-    }
+  public Set<Spell> getSpells() {
+    return spells;
+  }
 
-    public void setSpells(Set<Spell> spells) {
-        this.spells = spells;
-    }
+  public void setSpells(Set<Spell> spells) {
+    this.spells = spells;
+  }
 
-    public void addSpell(Spell spell) {
-        spell.setSpellBook(this);
-        spells.add(spell);
-    }
+  public void addSpell(Spell spell) {
+    spell.setSpellBook(this);
+    spells.add(spell);
+  }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+  @Override
+  public String toString() {
+    return name;
+  }
 }
 

@@ -6,14 +6,15 @@ package com.dutianze.designpattern.creational.singleton;
  */
 public class DemandHolderSingleton {
 
-    private DemandHolderSingleton() {
-    }
+  private DemandHolderSingleton() {
+  }
 
-    private static class HelperHolder {
-        private static final DemandHolderSingleton INSTANCE = new DemandHolderSingleton();
-    }
+  private static class HelperHolder {
 
-    public static DemandHolderSingleton getInstance() {
-        return HelperHolder.INSTANCE;
-    }
+    private static final DemandHolderSingleton INSTANCE = new DemandHolderSingleton();
+  }
+
+  public static DemandHolderSingleton getInstance() {
+    return HelperHolder.INSTANCE;
+  }
 }

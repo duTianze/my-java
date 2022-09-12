@@ -15,13 +15,13 @@ import lombok.Data;
 @Data
 public class Monster {
 
-    private int health;
-    private String attack;
-    private Breed breed;
+  private int health;
+  private String attack;
+  private Breed breed;
 
-    public Monster(Breed breed) {
-        this.breed = breed;
-        health = breed.getHealth();
-        attack = breed.getAttack();
-    }
+  public Monster(Breed breed) {
+    this.breed = breed;
+    health = breed.getHealth();
+    attack = breed.getAttack();
+  }
 }

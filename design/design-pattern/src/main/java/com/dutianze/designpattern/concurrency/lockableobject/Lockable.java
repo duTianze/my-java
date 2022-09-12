@@ -8,13 +8,13 @@ import com.dutianze.designpattern.concurrency.lockableobject.domain.creature.Cre
  */
 public interface Lockable {
 
-    boolean isLocked();
+  boolean isLocked();
 
-    boolean lock(Creature creature);
+  boolean lock(Creature creature);
 
-    void unlock(Creature creature);
+  void unlock(Creature creature);
 
-    Creature getLocker();
+  Creature getLocker();
 
-    String getName();
+  String getName();
 }

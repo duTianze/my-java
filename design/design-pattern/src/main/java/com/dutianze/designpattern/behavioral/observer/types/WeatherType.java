@@ -11,18 +11,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum WeatherType {
 
-    SUNNY("Sunny"),
+  SUNNY("Sunny"),
 
-    RAINY("Rainy"),
+  RAINY("Rainy"),
 
-    WINDY("Windy"),
+  WINDY("Windy"),
 
-    COLD("Cold");
+  COLD("Cold");
 
-    private final String description;
+  private final String description;
 
-    @Override
-    public String toString() {
-        return this.name().toLowerCase();
-    }
+  @Override
+  public String toString() {
+    return this.name().toLowerCase();
+  }
 }

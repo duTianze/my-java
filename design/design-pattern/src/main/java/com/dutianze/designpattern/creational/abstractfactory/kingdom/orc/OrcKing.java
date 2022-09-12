@@ -8,8 +8,8 @@ import com.dutianze.designpattern.creational.abstractfactory.kingdom.King;
  */
 public class OrcKing implements King {
 
-    @Override
-    public String getDescription() {
-        return "This is the orc king!";
-    }
+  @Override
+  public String getDescription() {
+    return "This is the orc king!";
+  }
 }

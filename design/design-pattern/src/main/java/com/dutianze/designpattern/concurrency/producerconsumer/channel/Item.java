@@ -11,6 +11,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Item {
 
-    private final String producer;
-    private final int id;
+  private final String producer;
+  private final int id;
 }

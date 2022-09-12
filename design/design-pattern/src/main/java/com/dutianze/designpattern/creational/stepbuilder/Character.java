@@ -1,8 +1,7 @@
 package com.dutianze.designpattern.creational.stepbuilder;
 
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
 
 /**
  * @author dutianze
@@ -11,14 +10,14 @@ import java.util.List;
 @Data
 public class Character {
 
-    private String name;
-    private String fighterClass;
-    private String wizardClass;
-    private String weapon;
-    private String spell;
-    private List<String> abilities;
+  private String name;
+  private String fighterClass;
+  private String wizardClass;
+  private String weapon;
+  private String spell;
+  private List<String> abilities;
 
-    public Character(String name) {
-        this.name = name;
-    }
+  public Character(String name) {
+    this.name = name;
+  }
 }

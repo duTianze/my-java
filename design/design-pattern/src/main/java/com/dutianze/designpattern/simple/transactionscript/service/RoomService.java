@@ -6,7 +6,7 @@ package com.dutianze.designpattern.simple.transactionscript.service;
  */
 public interface RoomService {
 
-    void bookRoom(int roomNumber) throws Exception;
+  void bookRoom(int roomNumber) throws Exception;
 
-    void cancelRoomBooking(int roomNumber) throws Exception;
+  void cancelRoomBooking(int roomNumber) throws Exception;
 }

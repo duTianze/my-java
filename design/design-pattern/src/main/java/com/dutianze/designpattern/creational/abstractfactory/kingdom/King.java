@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.abstractfactory.kingdom;
  */
 public interface King {
 
-    String getDescription();
+  String getDescription();
 }

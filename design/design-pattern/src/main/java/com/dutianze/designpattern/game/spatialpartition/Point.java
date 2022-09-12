@@ -9,19 +9,19 @@ import java.util.Map;
  */
 public abstract class Point<T> {
 
-    public int coordinateX;
-    public int coordinateY;
-    public final int id;
+  public int coordinateX;
+  public int coordinateY;
+  public final int id;
 
-    Point(int x, int y, int id) {
-        this.coordinateX = x;
-        this.coordinateY = y;
-        this.id = id;
-    }
+  Point(int x, int y, int id) {
+    this.coordinateX = x;
+    this.coordinateY = y;
+    this.id = id;
+  }
 
-    abstract void move();
+  abstract void move();
 
-    abstract boolean touches(T obj);
+  abstract boolean touches(T obj);
 
-    abstract void handleCollision(Collection<? extends Point<T>> toCheck, Map<Integer, T> all);
+  abstract void handleCollision(Collection<? extends Point<T>> toCheck, Map<Integer, T> all);
 }

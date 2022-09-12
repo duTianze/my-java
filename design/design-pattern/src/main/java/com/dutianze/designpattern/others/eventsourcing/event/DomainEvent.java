@@ -1,11 +1,10 @@
 package com.dutianze.designpattern.others.eventsourcing.event;
 
 import com.dutianze.designpattern.others.eventsourcing.domain.AccountRepository;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 /**
  * @author dutianze
@@ -16,12 +15,12 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 public abstract class DomainEvent implements Serializable {
 
-    protected static final String MSG = "Some external api for only realtime execution could be called here.";
+  protected static final String MSG = "Some external api for only realtime execution could be called here.";
 
-    private final long sequenceId;
-    private final long createdTime;
-    private final String eventClassName;
-    private boolean realTime = true;
+  private final long sequenceId;
+  private final long createdTime;
+  private final String eventClassName;
+  private boolean realTime = true;
 
-    public abstract void process(AccountRepository accountRepository);
+  public abstract void process(AccountRepository accountRepository);
 }

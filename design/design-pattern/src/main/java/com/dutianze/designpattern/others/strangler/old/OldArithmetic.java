@@ -9,21 +9,21 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OldArithmetic {
 
-    private static final String VERSION = "1.0";
+  private static final String VERSION = "1.0";
 
-    private final OldSource source;
+  private final OldSource source;
 
-    public OldArithmetic(OldSource source) {
-        this.source = source;
-    }
+  public OldArithmetic(OldSource source) {
+    this.source = source;
+  }
 
-    public int sum(int... nums) {
-        log.info("Arithmetic sum {}", VERSION);
-        return source.accumulateSum(nums);
-    }
+  public int sum(int... nums) {
+    log.info("Arithmetic sum {}", VERSION);
+    return source.accumulateSum(nums);
+  }
 
-    public int mul(int... nums) {
-        log.info("Arithmetic mul {}", VERSION);
-        return source.accumulateMul(nums);
-    }
+  public int mul(int... nums) {
+    log.info("Arithmetic mul {}", VERSION);
+    return source.accumulateMul(nums);
+  }
 }

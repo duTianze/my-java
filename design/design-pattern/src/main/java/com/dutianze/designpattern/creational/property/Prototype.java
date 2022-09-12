@@ -13,15 +13,17 @@ import com.dutianze.designpattern.creational.property.impl.Stats;
  */
 public interface Prototype {
 
-    default Integer get(Stats stat) {
-        return null;
-    }
+  default Integer get(Stats stat) {
+    return null;
+  }
 
-    default boolean has(Stats stat) {
-        return false;
-    }
+  default boolean has(Stats stat) {
+    return false;
+  }
 
-    default void set(Stats stat, Integer val) {}
+  default void set(Stats stat, Integer val) {
+  }
 
-    default void remove(Stats stat) {}
+  default void remove(Stats stat) {
+  }
 }

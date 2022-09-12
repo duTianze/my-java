@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.abstractfactory.kingdom;
  */
 public interface Castle {
 
-    String getDescription();
+  String getDescription();
 }

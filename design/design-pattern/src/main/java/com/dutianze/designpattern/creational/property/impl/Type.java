@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.property.impl;
  */
 public enum Type {
 
-    WARRIOR, MAGE, ROGUE
+  WARRIOR, MAGE, ROGUE
 }

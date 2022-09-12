@@ -8,5 +8,5 @@ import com.dutianze.designpattern.structural.proxy.Wizard;
  */
 public interface WizardTower {
 
-    void enter(Wizard wizard);
+  void enter(Wizard wizard);
 }

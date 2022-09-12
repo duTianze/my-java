@@ -1,17 +1,25 @@
 package com.dutianze.designpattern.others.twin;
 
+import static java.lang.Thread.sleep;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+
 import com.dutianze.designpattern.utils.InMemoryAppender;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
-
-import java.util.stream.IntStream;
-
-import static java.lang.Thread.sleep;
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 /**
  * @author dutianze
@@ -19,151 +27,152 @@ import static org.mockito.Mockito.*;
  */
 class BallItemTest {
 
-    private InMemoryAppender appender;
+  private InMemoryAppender appender;
 
-    @BeforeEach
-    public void setUp() {
-        appender = new InMemoryAppender();
-    }
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
 
-    @AfterEach
-    public void tearDown() {
-        appender.stop();
-    }
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
 
-    @Test
-    void usage() {
-        assertDoesNotThrow(() -> {
-            BallItem ballItem = new BallItem();
-            BallThread ballThread = new BallThread();
+  @Test
+  void usage() {
+    assertDoesNotThrow(() -> {
+      BallItem ballItem = new BallItem();
+      BallThread ballThread = new BallThread();
 
-            ballItem.setTwin(ballThread);
-            ballThread.setTwin(ballItem);
+      ballItem.setTwin(ballThread);
+      ballThread.setTwin(ballItem);
 
-            ballThread.start();
+      ballThread.start();
 
-            Thread.sleep(750);
-            ballItem.click();
+      Thread.sleep(750);
+      ballItem.click();
 
-            Thread.sleep(750);
-            ballItem.click();
+      Thread.sleep(750);
+      ballItem.click();
 
-            Thread.sleep(750);
-            ballThread.stopMe();
-        });
-    }
+      Thread.sleep(750);
+      ballThread.stopMe();
+    });
+  }
 
-    @Test
-    void clickSwitchIsSuspend() {
-        final BallItem ballItem = new BallItem();
+  @Test
+  void clickSwitchIsSuspend() {
+    final BallItem ballItem = new BallItem();
 
-        final BallThread ballThread = mock(BallThread.class);
-        ballItem.setTwin(ballThread);
+    final BallThread ballThread = mock(BallThread.class);
+    ballItem.setTwin(ballThread);
 
-        final InOrder inOrder = inOrder(ballThread);
+    final InOrder inOrder = inOrder(ballThread);
 
-        IntStream.range(0, 10).forEach(i -> {
-            ballItem.click();
-            inOrder.verify(ballThread).suspendMe();
-            ballItem.click();
-            inOrder.verify(ballThread).resumeMe();
-        });
+    IntStream.range(0, 10).forEach(i -> {
+      ballItem.click();
+      inOrder.verify(ballThread).suspendMe();
+      ballItem.click();
+      inOrder.verify(ballThread).resumeMe();
+    });
 
-        inOrder.verifyNoMoreInteractions();
-    }
+    inOrder.verifyNoMoreInteractions();
+  }
 
-    @Test
-    void drawInvokeDoDraw() {
-        final BallItem ballItem = new BallItem();
+  @Test
+  void drawInvokeDoDraw() {
+    final BallItem ballItem = new BallItem();
 
-        final BallThread ballThread = mock(BallThread.class);
-        ballItem.setTwin(ballThread);
+    final BallThread ballThread = mock(BallThread.class);
+    ballItem.setTwin(ballThread);
 
-        ballItem.draw();
-        assertTrue(appender.logContains("draw"));
-        assertTrue(appender.logContains("doDraw"));
+    ballItem.draw();
+    assertTrue(appender.logContains("draw"));
+    assertTrue(appender.logContains("doDraw"));
 
-        verifyNoMoreInteractions(ballThread);
-        assertEquals(2, appender.getLogSize());
-    }
+    verifyNoMoreInteractions(ballThread);
+    assertEquals(2, appender.getLogSize());
+  }
 
-    @Test
-    void move() {
-        final BallItem ballItem = new BallItem();
+  @Test
+  void move() {
+    final BallItem ballItem = new BallItem();
 
-        final BallThread ballThread = mock(BallThread.class);
-        ballItem.setTwin(ballThread);
+    final BallThread ballThread = mock(BallThread.class);
+    ballItem.setTwin(ballThread);
 
-        ballItem.move();
-        assertTrue(appender.logContains("move"));
+    ballItem.move();
+    assertTrue(appender.logContains("move"));
 
-        verifyNoMoreInteractions(ballThread);
-        assertEquals(1, appender.getLogSize());
-    }
+    verifyNoMoreInteractions(ballThread);
+    assertEquals(1, appender.getLogSize());
+  }
 
-    @Test
-    void suspend() {
-        assertTimeout(ofMillis(5000), () -> {
-            final BallThread ballThread = new BallThread();
+  @Test
+  void suspend() {
+    assertTimeout(ofMillis(5000), () -> {
+      final BallThread ballThread = new BallThread();
 
-            final BallItem ballItem = mock(BallItem.class);
-            ballThread.setTwin(ballItem);
+      final BallItem ballItem = mock(BallItem.class);
+      ballThread.setTwin(ballItem);
 
-            ballThread.start();
-            sleep(200);
-            verify(ballItem, atLeastOnce()).draw();
-            verify(ballItem, atLeastOnce()).move();
-            ballThread.suspendMe();
+      ballThread.start();
+      sleep(200);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
+      ballThread.suspendMe();
 
-            sleep(1000);
+      sleep(1000);
 
-            ballThread.stopMe();
-            ballThread.join();
+      ballThread.stopMe();
+      ballThread.join();
 
-            verifyNoMoreInteractions(ballItem);
-        });
-    }
+      verifyNoMoreInteractions(ballItem);
+    });
+  }
 
-    @Test
-    void resume() {
-        assertTimeout(ofMillis(5000), () -> {
-            final BallThread ballThread = new BallThread();
+  @Test
+  void resume() {
+    assertTimeout(ofMillis(5000), () -> {
+      final BallThread ballThread = new BallThread();
 
-            final BallItem ballItem = mock(BallItem.class);
-            ballThread.setTwin(ballItem);
+      final BallItem ballItem = mock(BallItem.class);
+      ballThread.setTwin(ballItem);
 
-            ballThread.suspendMe();
-            ballThread.start();
+      ballThread.suspendMe();
+      ballThread.start();
 
-            sleep(1000);
+      sleep(1000);
 
-            verifyNoMoreInteractions(ballItem);
+      verifyNoMoreInteractions(ballItem);
 
-            ballThread.resumeMe();
-            sleep(300);
-            verify(ballItem, atLeastOnce()).draw();
-            verify(ballItem, atLeastOnce()).move();
+      ballThread.resumeMe();
+      sleep(300);
+      verify(ballItem, atLeastOnce()).draw();
+      verify(ballItem, atLeastOnce()).move();
 
-            ballThread.stopMe();
-            ballThread.join();
+      ballThread.stopMe();
+      ballThread.join();
 
-            verifyNoMoreInteractions(ballItem);
-        });
-    }
+      verifyNoMoreInteractions(ballItem);
+    });
+  }
 
-    @Test
-    void interrupt() {
-        assertTimeout(ofMillis(5000), () -> {
-            final BallThread ballThread = new BallThread();
-            final Thread.UncaughtExceptionHandler exceptionHandler = mock(Thread.UncaughtExceptionHandler.class);
-            ballThread.setUncaughtExceptionHandler(exceptionHandler);
-            ballThread.setTwin(mock(BallItem.class));
-            ballThread.start();
-            ballThread.interrupt();
-            ballThread.join();
+  @Test
+  void interrupt() {
+    assertTimeout(ofMillis(5000), () -> {
+      final BallThread ballThread = new BallThread();
+      final Thread.UncaughtExceptionHandler exceptionHandler = mock(
+          Thread.UncaughtExceptionHandler.class);
+      ballThread.setUncaughtExceptionHandler(exceptionHandler);
+      ballThread.setTwin(mock(BallItem.class));
+      ballThread.start();
+      ballThread.interrupt();
+      ballThread.join();
 
-            verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
-            verifyNoMoreInteractions(exceptionHandler);
-        });
-    }
+      verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
+      verifyNoMoreInteractions(exceptionHandler);
+    });
+  }
 }

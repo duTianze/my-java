@@ -6,5 +6,5 @@ package com.dutianze.designpattern.structural.adapter.boat;
  */
 public interface RowingBoat {
 
-    void row();
+  void row();
 }

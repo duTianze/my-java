@@ -1,12 +1,11 @@
 package com.dutianze.designpattern.structural.flyweight;
 
-import com.dutianze.designpattern.structural.flyweight.potion.Potion;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.dutianze.designpattern.structural.flyweight.potion.Potion;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author dutianze
@@ -14,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 class PotionTest {
 
-    @Test
-    void testShop() {
-        final AlchemistShop shop = new AlchemistShop();
+  @Test
+  void testShop() {
+    final AlchemistShop shop = new AlchemistShop();
 
-        final List<Potion> shelf = shop.getShelf();
-        assertNotNull(shelf);
-        assertEquals(13, shelf.size());
-        assertEquals(5, shelf.stream().map(System::identityHashCode).distinct().count());
-    }
+    final List<Potion> shelf = shop.getShelf();
+    assertNotNull(shelf);
+    assertEquals(13, shelf.size());
+    assertEquals(5, shelf.stream().map(System::identityHashCode).distinct().count());
+  }
 }

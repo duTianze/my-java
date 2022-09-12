@@ -1,8 +1,7 @@
 package com.dutianze.designpattern.behavioral.chain.request;
 
-import lombok.Getter;
-
 import java.util.Objects;
+import lombok.Getter;
 
 /**
  * @author dutianze
@@ -10,30 +9,30 @@ import java.util.Objects;
  */
 public class Request {
 
-    @Getter
-    private final RequestType requestType;
+  @Getter
+  private final RequestType requestType;
 
-    @Getter
-    private final String requestDescription;
+  @Getter
+  private final String requestDescription;
 
-    private boolean handled;
+  private boolean handled;
 
-    public Request(final RequestType requestType, final String requestDescription) {
-        this.requestType = Objects.requireNonNull(requestType);
-        this.requestDescription = Objects.requireNonNull(requestDescription);
-    }
+  public Request(final RequestType requestType, final String requestDescription) {
+    this.requestType = Objects.requireNonNull(requestType);
+    this.requestDescription = Objects.requireNonNull(requestDescription);
+  }
 
-    public void markHandled() {
-        this.handled = true;
-    }
+  public void markHandled() {
+    this.handled = true;
+  }
 
-    public boolean isHandled() {
-        return this.handled;
-    }
+  public boolean isHandled() {
+    return this.handled;
+  }
 
-    @Override
-    public String toString() {
-        return getRequestDescription();
-    }
+  @Override
+  public String toString() {
+    return getRequestDescription();
+  }
 
 }

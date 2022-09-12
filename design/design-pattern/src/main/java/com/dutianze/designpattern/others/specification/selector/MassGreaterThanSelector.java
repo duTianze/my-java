@@ -32,14 +32,14 @@ import com.dutianze.designpattern.others.specification.property.Mass;
  */
 public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 
-    private final Mass mass;
+  private final Mass mass;
 
-    public MassGreaterThanSelector(double mass) {
-        this.mass = new Mass(mass);
-    }
+  public MassGreaterThanSelector(double mass) {
+    this.mass = new Mass(mass);
+  }
 
-    @Override
-    public boolean test(Creature t) {
-        return t.getMass().greaterThan(mass);
-    }
+  @Override
+  public boolean test(Creature t) {
+    return t.getMass().greaterThan(mass);
+  }
 }

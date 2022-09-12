@@ -6,7 +6,7 @@ package com.dutianze.designpattern.behavioral.chain.request;
  */
 public enum RequestType {
 
-    DEFEND_CASTLE,
-    TORTURE_PRISONER,
-    COLLECT_TAX
+  DEFEND_CASTLE,
+  TORTURE_PRISONER,
+  COLLECT_TAX
 }

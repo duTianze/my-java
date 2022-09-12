@@ -9,10 +9,10 @@ import com.dutianze.designpattern.concurrency.lockableobject.domain.types.Creatu
  */
 public class Human extends Creature {
 
-    public Human(String name) {
-        super(name);
-        setType(CreatureType.HUMAN);
-        setDamage(CreatureStats.HUMAN_DAMAGE.getValue());
-        setHealth(CreatureStats.HUMAN_HEALTH.getValue());
-    }
+  public Human(String name) {
+    super(name);
+    setType(CreatureType.HUMAN);
+    setDamage(CreatureStats.HUMAN_DAMAGE.getValue());
+    setHealth(CreatureStats.HUMAN_HEALTH.getValue());
+  }
 }

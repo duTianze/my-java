@@ -8,5 +8,5 @@ import com.dutianze.designpattern.behavioral.observer.types.WeatherType;
  */
 public interface WeatherObserver {
 
-    void update(WeatherType currentWeather);
+  void update(WeatherType currentWeather);
 }

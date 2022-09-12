@@ -9,16 +9,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HairType {
 
-    BALD("bald"),
-    SHORT("short"),
-    CURLY("curly"),
-    LONG_STRAIGHT("long straight"),
-    LONG_CURLY("long curly");
+  BALD("bald"),
+  SHORT("short"),
+  CURLY("curly"),
+  LONG_STRAIGHT("long straight"),
+  LONG_CURLY("long curly");
 
-    private final String title;
+  private final String title;
 
-    @Override
-    public String toString() {
-        return title;
-    }
+  @Override
+  public String toString() {
+    return title;
+  }
 }

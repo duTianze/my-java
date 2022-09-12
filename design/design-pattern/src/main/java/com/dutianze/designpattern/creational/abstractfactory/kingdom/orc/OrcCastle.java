@@ -8,8 +8,8 @@ import com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle;
  */
 public class OrcCastle implements Castle {
 
-    @Override
-    public String getDescription() {
-        return "This is the orc castle!";
-    }
+  @Override
+  public String getDescription() {
+    return "This is the orc castle!";
+  }
 }

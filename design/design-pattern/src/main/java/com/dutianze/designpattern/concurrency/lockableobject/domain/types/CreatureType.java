@@ -6,7 +6,7 @@ package com.dutianze.designpattern.concurrency.lockableobject.domain.types;
  */
 public enum CreatureType {
 
-    ORC,
-    HUMAN,
-    ELF
+  ORC,
+  HUMAN,
+  ELF
 }

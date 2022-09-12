@@ -6,5 +6,5 @@ package com.dutianze.designpattern.creational.factorymethod.weapon;
  */
 public interface Weapon {
 
-    WeaponType getWeaponType();
+  WeaponType getWeaponType();
 }

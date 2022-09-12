@@ -34,11 +34,11 @@ import com.dutianze.designpattern.others.specification.property.Size;
  */
 public class Dragon extends AbstractCreature {
 
-    public Dragon() {
-        this(new Mass(39300.0));
-    }
+  public Dragon() {
+    this(new Mass(39300.0));
+  }
 
-    public Dragon(Mass mass) {
-        super("Dragon", Size.LARGE, Movement.FLYING, Color.RED, mass);
-    }
+  public Dragon(Mass mass) {
+    super("Dragon", Size.LARGE, Movement.FLYING, Color.RED, mass);
+  }
 }

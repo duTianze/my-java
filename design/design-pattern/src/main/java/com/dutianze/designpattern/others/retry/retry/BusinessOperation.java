@@ -9,5 +9,5 @@ import com.dutianze.designpattern.others.retry.exception.BusinessException;
 @FunctionalInterface
 public interface BusinessOperation<T> {
 
-    T perform() throws BusinessException;
+  T perform() throws BusinessException;
 }

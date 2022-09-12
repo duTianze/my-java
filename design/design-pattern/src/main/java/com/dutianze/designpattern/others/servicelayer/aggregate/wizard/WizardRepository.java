@@ -1,8 +1,7 @@
 package com.dutianze.designpattern.others.servicelayer.aggregate.wizard;
 
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author dutianze
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface WizardRepository extends CrudRepository<Wizard, Long> {
 
-    List<Wizard> findAll();
+  List<Wizard> findAll();
 
-    Wizard findByName(String name);
+  Wizard findByName(String name);
 }

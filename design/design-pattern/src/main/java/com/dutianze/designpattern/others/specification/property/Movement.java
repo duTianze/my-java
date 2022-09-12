@@ -29,16 +29,16 @@ package com.dutianze.designpattern.others.specification.property;
  */
 public enum Movement {
 
-    WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
+  WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
 
-    private final String title;
+  private final String title;
 
-    Movement(String title) {
-        this.title = title;
-    }
+  Movement(String title) {
+    this.title = title;
+  }
 
-    @Override
-    public String toString() {
-        return title;
-    }
+  @Override
+  public String toString() {
+    return title;
+  }
 }

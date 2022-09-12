@@ -8,9 +8,9 @@ package com.dutianze.designpattern.structural.facade;
  */
 public interface DwarvenGoldmineFacade {
 
-    void startNewDay();
+  void startNewDay();
 
-    void digOutGold();
+  void digOutGold();
 
-    void endDay();
+  void endDay();
 }

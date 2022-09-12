@@ -11,33 +11,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Statue extends Entity {
 
-    @Setter
-    @Getter
-    protected int frames;
+  @Setter
+  @Getter
+  protected int frames;
 
-    protected int delay;
+  protected int delay;
 
-    public Statue(int id) {
-        super(id);
-        this.frames = 0;
-        this.delay = 0;
+  public Statue(int id) {
+    super(id);
+    this.frames = 0;
+    this.delay = 0;
+  }
+
+  public Statue(int id, int delay) {
+    super(id);
+    this.frames = 0;
+    this.delay = delay;
+  }
+
+  @Override
+  public void update() {
+    if (++frames == delay) {
+      shootLightning();
+      frames = 0;
     }
+  }
 
-    public Statue(int id, int delay) {
-        super(id);
-        this.frames = 0;
-        this.delay = delay;
-    }
-
-    @Override
-    public void update() {
-        if (++frames == delay) {
-            shootLightning();
-            frames = 0;
-        }
-    }
-
-    private void shootLightning() {
-        log.info("Statue " + id + " shoots lightning!");
-    }
+  private void shootLightning() {
+    log.info("Statue " + id + " shoots lightning!");
+  }
 }

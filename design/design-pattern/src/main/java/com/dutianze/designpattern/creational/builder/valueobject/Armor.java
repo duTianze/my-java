@@ -9,15 +9,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Armor {
 
-    CLOTHES("clothes"),
-    LEATHER("leather"),
-    CHAIN_MAIL("chain mail"),
-    PLATE_MAIL("plate mail");
+  CLOTHES("clothes"),
+  LEATHER("leather"),
+  CHAIN_MAIL("chain mail"),
+  PLATE_MAIL("plate mail");
 
-    private final String title;
+  private final String title;
 
-    @Override
-    public String toString() {
-        return title;
-    }
+  @Override
+  public String toString() {
+    return title;
+  }
 }

@@ -6,11 +6,11 @@ package com.dutianze.designpattern.others.specialcase.dto;
  */
 public class MoneyTransaction {
 
-    private final Double amount;
-    private final Double price;
+  private final Double amount;
+  private final Double price;
 
-    public MoneyTransaction(Double amount, Double price) {
-        this.amount = amount;
-        this.price = price;
-    }
+  public MoneyTransaction(Double amount, Double price) {
+    this.amount = amount;
+    this.price = price;
+  }
 }

@@ -12,7 +12,7 @@ package com.dutianze.designpattern.behavioral.state;
  */
 public interface State {
 
-    void onEnterState();
+  void onEnterState();
 
-    void observe();
+  void observe();
 }

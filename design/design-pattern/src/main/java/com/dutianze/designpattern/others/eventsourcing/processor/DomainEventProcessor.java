@@ -9,22 +9,22 @@ import com.dutianze.designpattern.others.eventsourcing.event.DomainEvent;
  */
 public class DomainEventProcessor {
 
-    private final JsonFileJournal processorJournal = new JsonFileJournal();
-    private final AccountRepository accountRepository = new AccountRepository();
+  private final JsonFileJournal processorJournal = new JsonFileJournal();
+  private final AccountRepository accountRepository = new AccountRepository();
 
-    public void process(DomainEvent domainEvent) {
-        domainEvent.process(accountRepository);
-        processorJournal.write(domainEvent);
-    }
+  public void process(DomainEvent domainEvent) {
+    domainEvent.process(accountRepository);
+    processorJournal.write(domainEvent);
+  }
 
-    public void reset() {
-        processorJournal.reset();
-    }
+  public void reset() {
+    processorJournal.reset();
+  }
 
-    public void recover() {
-        DomainEvent domainEvent;
-        while ((domainEvent = processorJournal.readNext()) != null) {
-            domainEvent.process(accountRepository);
-        }
+  public void recover() {
+    DomainEvent domainEvent;
+    while ((domainEvent = processorJournal.readNext()) != null) {
+      domainEvent.process(accountRepository);
     }
+  }
 }

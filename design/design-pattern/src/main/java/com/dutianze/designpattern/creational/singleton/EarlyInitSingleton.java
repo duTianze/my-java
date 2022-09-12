@@ -6,12 +6,12 @@ package com.dutianze.designpattern.creational.singleton;
  */
 public class EarlyInitSingleton {
 
-    private EarlyInitSingleton() {
-    }
+  private EarlyInitSingleton() {
+  }
 
-    private static final EarlyInitSingleton INSTANCE = new EarlyInitSingleton();
+  private static final EarlyInitSingleton INSTANCE = new EarlyInitSingleton();
 
-    public static EarlyInitSingleton getInstance() {
-        return INSTANCE;
-    }
+  public static EarlyInitSingleton getInstance() {
+    return INSTANCE;
+  }
 }

@@ -11,11 +11,11 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public enum WeaponType {
 
-    SHORT_SWORD("short sword"),
-    SPEAR("spear"),
-    AXE("axe"),
-    UNDEFINED("");
+  SHORT_SWORD("short sword"),
+  SPEAR("spear"),
+  AXE("axe"),
+  UNDEFINED("");
 
-    private final String title;
+  private final String title;
 
 }

@@ -10,10 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SkyLaunch extends Superpower {
 
-    @Override
-    protected void activate() {
-        move(1, 1, 20);
-        playSound("SKYLAUNCH_SOUND", 1);
-        spawnParticles("SKYLAUNCH_PARTICLE", 100);
-    }
+  @Override
+  protected void activate() {
+    move(1, 1, 20);
+    playSound("SKYLAUNCH_SOUND", 1);
+    spawnParticles("SKYLAUNCH_PARTICLE", 100);
+  }
 }

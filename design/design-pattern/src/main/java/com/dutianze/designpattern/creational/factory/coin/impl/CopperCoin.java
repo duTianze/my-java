@@ -8,10 +8,10 @@ import com.dutianze.designpattern.creational.factory.coin.Coin;
  */
 public class CopperCoin implements Coin {
 
-    static final String DESCRIPTION = "This is a copper coin.";
+  static final String DESCRIPTION = "This is a copper coin.";
 
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
-    }
+  @Override
+  public String getDescription() {
+    return DESCRIPTION;
+  }
 }

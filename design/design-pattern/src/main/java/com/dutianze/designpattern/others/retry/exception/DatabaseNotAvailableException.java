@@ -8,10 +8,10 @@ import java.io.Serial;
  */
 public class DatabaseNotAvailableException extends BusinessException {
 
-    @Serial
-    private static final long serialVersionUID = -1411520395295319526L;
+  @Serial
+  private static final long serialVersionUID = -1411520395295319526L;
 
-    public DatabaseNotAvailableException(String message) {
-        super(message);
-    }
+  public DatabaseNotAvailableException(String message) {
+    super(message);
+  }
 }

@@ -8,10 +8,10 @@ import java.io.Serial;
  */
 public class CustomerNotFoundException extends BusinessException {
 
-    @Serial
-    private static final long serialVersionUID = 2469500863700182147L;
+  @Serial
+  private static final long serialVersionUID = 2469500863700182147L;
 
-    public CustomerNotFoundException(String message) {
-        super(message);
-    }
+  public CustomerNotFoundException(String message) {
+    super(message);
+  }
 }

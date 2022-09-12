@@ -1,10 +1,11 @@
 package com.dutianze.designpattern.creational.stepbuilder;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author dutianze
@@ -12,28 +13,28 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class CharacterStepBuilderTest {
 
-    @Test
-    void testBuildWizard() {
-        final Character character = CharacterStepBuilder.newBuilder()
-                                                        .name("Merlin")
-                                                        .wizardClass("alchemist")
-                                                        .withSpell("poison")
-                                                        .withAbility("invisibility")
-                                                        .withAbility("wisdom")
-                                                        .noMoreAbilities()
-                                                        .build();
+  @Test
+  void testBuildWizard() {
+    final Character character = CharacterStepBuilder.newBuilder()
+        .name("Merlin")
+        .wizardClass("alchemist")
+        .withSpell("poison")
+        .withAbility("invisibility")
+        .withAbility("wisdom")
+        .noMoreAbilities()
+        .build();
 
-        assertEquals("Merlin", character.getName());
-        assertEquals("alchemist", character.getWizardClass());
-        assertEquals("poison", character.getSpell());
-        assertNotNull(character.toString());
+    assertEquals("Merlin", character.getName());
+    assertEquals("alchemist", character.getWizardClass());
+    assertEquals("poison", character.getSpell());
+    assertNotNull(character.toString());
 
-        final List<String> abilities = character.getAbilities();
-        assertNotNull(abilities);
-        assertEquals(2, abilities.size());
-        assertTrue(abilities.contains("invisibility"));
-        assertTrue(abilities.contains("wisdom"));
+    final List<String> abilities = character.getAbilities();
+    assertNotNull(abilities);
+    assertEquals(2, abilities.size());
+    assertTrue(abilities.contains("invisibility"));
+    assertTrue(abilities.contains("wisdom"));
 
-    }
+  }
 
 }

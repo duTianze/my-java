@@ -8,11 +8,11 @@ import com.dutianze.designpattern.structural.bridge.enchantment.Enchantment;
  */
 public interface Weapon {
 
-    void wield();
+  void wield();
 
-    void swing();
+  void swing();
 
-    void unwield();
+  void unwield();
 
-    Enchantment getEnchantment();
+  Enchantment getEnchantment();
 }

@@ -2,7 +2,6 @@ package com.dutianze.designpattern.others.roleobject;
 
 import com.dutianze.designpattern.others.roleobject.core.CustomerCore;
 import com.dutianze.designpattern.others.roleobject.role.Role;
-
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -19,21 +18,21 @@ import java.util.Optional;
  */
 public abstract class Customer {
 
-    public abstract boolean addRole(Role role);
+  public abstract boolean addRole(Role role);
 
-    public abstract boolean hasRole(Role role);
+  public abstract boolean hasRole(Role role);
 
-    public abstract boolean remRole(Role role);
+  public abstract boolean remRole(Role role);
 
-    public abstract <T extends Customer> Optional<T> getRole(Role role, Class<T> expectedRole);
+  public abstract <T extends Customer> Optional<T> getRole(Role role, Class<T> expectedRole);
 
-    public static Customer newCustomer() {
-        return new CustomerCore();
-    }
+  public static Customer newCustomer() {
+    return new CustomerCore();
+  }
 
-    public static Customer newCustomer(Role... role) {
-        Customer customer = newCustomer();
-        Arrays.stream(role).forEach(customer::addRole);
-        return customer;
-    }
+  public static Customer newCustomer(Role... role) {
+    Customer customer = newCustomer();
+    Arrays.stream(role).forEach(customer::addRole);
+    return customer;
+  }
 }

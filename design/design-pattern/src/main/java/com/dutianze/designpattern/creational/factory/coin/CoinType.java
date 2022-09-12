@@ -2,10 +2,9 @@ package com.dutianze.designpattern.creational.factory.coin;
 
 import com.dutianze.designpattern.creational.factory.coin.impl.CopperCoin;
 import com.dutianze.designpattern.creational.factory.coin.impl.GoldCoin;
+import java.util.function.Supplier;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.function.Supplier;
 
 /**
  * @author dutianze
@@ -15,8 +14,8 @@ import java.util.function.Supplier;
 @Getter
 public enum CoinType {
 
-    COPPER(CopperCoin::new),
-    GOLD(GoldCoin::new);
+  COPPER(CopperCoin::new),
+  GOLD(GoldCoin::new);
 
-    private final Supplier<Coin> constructor;
+  private final Supplier<Coin> constructor;
 }

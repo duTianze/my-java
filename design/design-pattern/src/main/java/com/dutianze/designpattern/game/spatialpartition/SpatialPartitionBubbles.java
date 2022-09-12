@@ -15,21 +15,21 @@ import java.util.Map;
  */
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-    private final Map<Integer, Bubble> bubbles;
-    private final QuadTree bubblesQuadTree;
+  private final Map<Integer, Bubble> bubbles;
+  private final QuadTree bubblesQuadTree;
 
-    SpatialPartitionBubbles(Map<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
-        this.bubbles = bubbles;
-        this.bubblesQuadTree = bubblesQuadTree;
-    }
+  SpatialPartitionBubbles(Map<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
+    this.bubbles = bubbles;
+    this.bubblesQuadTree = bubblesQuadTree;
+  }
 
-    void handleCollisionsUsingQt(Bubble b) {
-        // finding points within area of a square drawn with centre same as
-        // centre of bubble and length = radius of bubble
-        Rect rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
-        ArrayList<Point<Bubble>> quadTreeQueryResult = new ArrayList<Point<Bubble>>();
-        this.bubblesQuadTree.query(rect, quadTreeQueryResult);
-        //handling these collisions
-        b.handleCollision(quadTreeQueryResult, this.bubbles);
-    }
+  void handleCollisionsUsingQt(Bubble b) {
+    // finding points within area of a square drawn with centre same as
+    // centre of bubble and length = radius of bubble
+    Rect rect = new Rect(b.coordinateX, b.coordinateY, 2D * b.radius, 2D * b.radius);
+    ArrayList<Point<Bubble>> quadTreeQueryResult = new ArrayList<Point<Bubble>>();
+    this.bubblesQuadTree.query(rect, quadTreeQueryResult);
+    //handling these collisions
+    b.handleCollision(quadTreeQueryResult, this.bubbles);
+  }
 }

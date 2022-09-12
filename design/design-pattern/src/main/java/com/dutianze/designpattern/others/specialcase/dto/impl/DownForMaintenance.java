@@ -10,8 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DownForMaintenance implements ReceiptViewModel {
 
-    @Override
-    public void show() {
-        log.warn("Down for maintenance");
-    }
+  @Override
+  public void show() {
+    log.warn("Down for maintenance");
+  }
 }

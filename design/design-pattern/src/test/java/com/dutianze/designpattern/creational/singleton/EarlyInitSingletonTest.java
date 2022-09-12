@@ -6,7 +6,7 @@ package com.dutianze.designpattern.creational.singleton;
  */
 class EarlyInitSingletonTest extends SingletonTest<EarlyInitSingleton> {
 
-    protected EarlyInitSingletonTest() {
-        super(EarlyInitSingleton::getInstance);
-    }
+  protected EarlyInitSingletonTest() {
+    super(EarlyInitSingleton::getInstance);
+  }
 }

@@ -6,10 +6,10 @@ package com.dutianze.designpattern.structural.adapter.boat;
  */
 public class FishingBoatAdapter implements RowingBoat {
 
-    private final FishingBoat boat = new FishingBoat();
+  private final FishingBoat boat = new FishingBoat();
 
-    @Override
-    public void row() {
-        boat.sail();
-    }
+  @Override
+  public void row() {
+    boat.sail();
+  }
 }

@@ -8,5 +8,5 @@ import com.dutianze.designpattern.others.specialcase.dto.ReceiptViewModel;
  */
 public interface ApplicationServices {
 
-    ReceiptViewModel loggedInUserPurchase(String userName, String itemName);
+  ReceiptViewModel loggedInUserPurchase(String userName, String itemName);
 }

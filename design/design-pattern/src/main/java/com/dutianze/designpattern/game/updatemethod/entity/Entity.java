@@ -11,17 +11,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class Entity {
 
-    protected int id;
+  protected int id;
 
-    @Getter
-    @Setter
-    protected int position;
+  @Getter
+  @Setter
+  protected int position;
 
-    public Entity(int id) {
-        this.id = id;
-        this.position = 0;
-    }
+  public Entity(int id) {
+    this.id = id;
+    this.position = 0;
+  }
 
-    public abstract void update();
+  public abstract void update();
 
 }

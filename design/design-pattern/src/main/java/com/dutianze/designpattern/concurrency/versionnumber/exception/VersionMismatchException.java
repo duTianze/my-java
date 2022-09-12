@@ -6,7 +6,7 @@ package com.dutianze.designpattern.concurrency.versionnumber.exception;
  */
 public class VersionMismatchException extends Exception {
 
-    public VersionMismatchException(String message) {
-        super(message);
-    }
+  public VersionMismatchException(String message) {
+    super(message);
+  }
 }

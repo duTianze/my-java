@@ -8,8 +8,8 @@ import java.util.Hashtable;
  */
 public abstract class SpatialPartitionGeneric<T> {
 
-    Hashtable<Integer, T> playerPositions;
-    QuadTree quadTree;
+  Hashtable<Integer, T> playerPositions;
+  QuadTree quadTree;
 
-    abstract void handleCollisionsUsingQt(T obj);
+  abstract void handleCollisionsUsingQt(T obj);
 }

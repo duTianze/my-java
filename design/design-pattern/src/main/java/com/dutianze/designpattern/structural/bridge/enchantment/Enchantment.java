@@ -6,9 +6,9 @@ package com.dutianze.designpattern.structural.bridge.enchantment;
  */
 public interface Enchantment {
 
-    void onActivate();
+  void onActivate();
 
-    void apply();
+  void apply();
 
-    void onDeactivate();
+  void onDeactivate();
 }

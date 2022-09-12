@@ -5,5 +5,5 @@ package com.dutianze.designpattern.behavioral.iterator.list;
  * @date 2022/8/10
  */
 public enum ItemType {
-    ANY, WEAPON, RING, POTION
+  ANY, WEAPON, RING, POTION
 }
