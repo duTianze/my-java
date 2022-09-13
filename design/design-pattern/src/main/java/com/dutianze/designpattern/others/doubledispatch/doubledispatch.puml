@@ -1,0 +1,52 @@
+@startuml
+class Monster {
++ void collision(Entity)
++ void collisionResolve(Player)
++ void collisionResolve(Fighter)
++ void collisionResolve(Monster)
++ void collisionResolve(GreenSlime)
+}
+class GreenSlime {
++ void collision(Entity)
+}
+class Player {
++ void collision(Entity)
++ void collisionResolve(Player)
++ void collisionResolve(Fighter)
++ void collisionResolve(Monster)
++ void collisionResolve(GreenSlime)
+}
+class Fighter {
++ void collision(Entity)
+}
+abstract class Entity {
++ {static} String HITS
+- boolean damaged
+- boolean onFire
++ String toString()
++ boolean isOnFire()
++ void setOnFire(boolean)
++ boolean isDamaged()
++ void setDamaged(boolean)
++ {abstract}void collision(Entity)
++ {abstract}void collisionResolve(Player)
++ {abstract}void collisionResolve(Fighter)
++ {abstract}void collisionResolve(Monster)
++ {abstract}void collisionResolve(GreenSlime)
+}
+class Rectangle {
+- int left
+- int top
+- int right
+- int bottom
++ boolean intersectsWith(Rectangle)
++ String toString()
+}
+
+
+Entity <|-- Monster
+Monster <|-- GreenSlime
+Entity <|-- Player
+Player <|-- Fighter
+Rectangle <|-- Entity
+@enduml
