@@ -1,10 +1,17 @@
 package com.dutianze.designpattern.game.doublebuffer;
 
+import com.dutianze.designpattern.game.doublebuffer.buffer.Buffer;
+import com.dutianze.designpattern.game.doublebuffer.buffer.FrameBuffer;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
+ * <h2 id="credits">Credits</h2>
+ * <ul>
+ * <li><a href="http://gameprogrammingpatterns.com/double-buffer.html">Game Programming Patterns - Double Buffer</a></li>
+ * </ul>
+ *
  * @author dutianze
  * @date 2022/9/14
  */
@@ -17,9 +24,6 @@ public class Scene {
 
   private int next;
 
-  /**
-   * Constructor of Scene.
-   */
   public Scene() {
     frameBuffers = new FrameBuffer[2];
     frameBuffers[0] = new FrameBuffer();

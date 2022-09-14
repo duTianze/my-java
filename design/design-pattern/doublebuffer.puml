@@ -1,0 +1,33 @@
+@startuml
+enum Pixel {
++  WHITE
++  BLACK
+}
+class FrameBuffer {
++ {static} int WIDTH
++ {static} int HEIGHT
+- Pixel[] pixels
++ void clear(int,int)
++ void draw(int,int)
++ void clearAll()
++ Pixel[] getPixels()
+- int getIndex(int,int)
+}
+class Scene {
+- Buffer[] frameBuffers
+- int current
+- int next
++ void draw(List<? extends Pair<Integer,Integer>>)
++ Buffer getBuffer()
+- void swap()
+}
+interface Buffer {
+~ void clear(int,int)
+~ void draw(int,int)
+~ void clearAll()
+~ Pixel[] getPixels()
+}
+
+
+Buffer <|.. FrameBuffer
+@enduml

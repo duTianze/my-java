@@ -1,4 +1,4 @@
-package com.dutianze.designpattern.game.doublebuffer;
+package com.dutianze.designpattern.game.doublebuffer.buffer;
 
 /**
  * @author dutianze
