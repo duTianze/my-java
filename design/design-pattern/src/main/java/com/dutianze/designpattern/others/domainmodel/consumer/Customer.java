@@ -117,7 +117,7 @@ public class Customer {
    * Print customer's money balance.
    */
   public void showBalance() {
-    LOGGER.info(name + " balance: " + money);
+    log.info(name + " balance: " + money);
   }
 
   private void withdraw(Money amount) throws IllegalArgumentException {
