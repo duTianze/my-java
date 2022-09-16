@@ -1,0 +1,59 @@
+@startuml
+interface CustomerRepository {
+~ Optional<Customer> findByName(String)
+~ void update(Customer)
+~ void save(Customer)
+~ void addProduct(Product,Customer)
+~ void deleteProduct(Product,Customer)
+}
+class Product {
+- {static} int DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE
+- {static} double DISCOUNT_RATE
+- ProductRepository productDao
+- String name
+- Money price
+- LocalDate expirationDate
++ void save()
++ Money getSalePrice()
+- Money calculateDiscount()
+}
+class Customer {
+- CustomerRepository customerDao
+- List<Product> purchases
+- String name
+- Money money
++ void save()
++ void buyProduct(Product)
++ void returnProduct(Product)
++ void showPurchases()
++ void showBalance()
+- void withdraw(Money)
+- void receiveMoney(Money)
+}
+interface ProductRepository {
+~ Optional<Product> findByName(String)
+~ void save(Product)
+~ void update(Product)
+}
+class ProductRepositoryImpl {
+- DataSource dataSource
++ Optional<Product> findByName(String)
++ void save(Product)
++ void update(Product)
+}
+class CustomerRepositoryImpl {
+- DataSource dataSource
++ Optional<Customer> findByName(String)
++ void update(Customer)
++ void save(Customer)
++ void addProduct(Product,Customer)
++ void deleteProduct(Product,Customer)
+}
+
+
+ProductRepository <|.. ProductRepositoryImpl
+CustomerRepository <|.. CustomerRepositoryImpl
+Product -->  ProductRepository
+Customer -->  CustomerRepository
+Customer -->  Product
+@enduml
