@@ -1,27 +1,21 @@
 @startuml
-abstract class com.dutianze.designpattern.behavioral.command.target.Target {
+abstract class Target {
 - Size size
 - Visibility visibility
 + void printStatus()
 + void changeSize()
 + void changeVisibility()
 }
-enum com.dutianze.designpattern.behavioral.command.target.Size {
-+  SMALL
-+  NORMAL
-- String title
-+ String toString()
-}
-class com.dutianze.designpattern.behavioral.command.target.Goblin {
-+ String toString()
-}
-enum com.dutianze.designpattern.behavioral.command.target.Visibility {
+enum Visibility {
 +  VISIBLE
 +  INVISIBLE
 - String title
 + String toString()
 }
-class com.dutianze.designpattern.behavioral.command.Wizard {
+class Goblin {
++ String toString()
+}
+class Wizard {
 - Deque<Runnable> undoStack
 - Deque<Runnable> redoStack
 + void castSpell(Runnable)
@@ -29,7 +23,18 @@ class com.dutianze.designpattern.behavioral.command.Wizard {
 + void redoLastSpell()
 + String toString()
 }
+enum Size {
++  SMALL
++  NORMAL
+- String title
++ String toString()
+}
 
 
-com.dutianze.designpattern.behavioral.command.target.Target <|-- com.dutianze.designpattern.behavioral.command.target.Goblin
+Target -->  "-size" Size
+Wizard -->  "-changeSize" Goblin
+Wizard -->  "-changeVisibility" Goblin
+Target -->  "-visibility" Visibility
+Goblin --|> Target
+App --> "castSpell" Wizard
 @enduml

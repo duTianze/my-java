@@ -1,5 +1,5 @@
 @startuml
-enum com.dutianze.designpattern.creational.builder.Weapon {
+enum Weapon {
 +  DAGGER
 +  SWORD
 +  AXE
@@ -7,7 +7,7 @@ enum com.dutianze.designpattern.creational.builder.Weapon {
 +  BOW
 + String toString()
 }
-class com.dutianze.designpattern.creational.builder.Hero {
+class Hero {
 - Profession profession
 - String name
 - HairType hairType
@@ -15,7 +15,7 @@ class com.dutianze.designpattern.creational.builder.Hero {
 - Armor armor
 - Weapon weapon
 }
-class com.dutianze.designpattern.creational.builder.Hero.Builder {
+class Hero.Builder {
 - Profession profession
 - String name
 - HairType hairType
@@ -28,14 +28,14 @@ class com.dutianze.designpattern.creational.builder.Hero.Builder {
 + Builder withWeapon(Weapon)
 + Hero build()
 }
-enum com.dutianze.designpattern.creational.builder.Profession {
+enum Profession {
 +  WARRIOR
 +  THIEF
 +  MAGE
 +  PRIEST
 + String toString()
 }
-enum com.dutianze.designpattern.creational.builder.HairColor {
+enum HairColor {
 +  WHITE
 +  BLOND
 +  RED
@@ -43,7 +43,7 @@ enum com.dutianze.designpattern.creational.builder.HairColor {
 +  BLACK
 + String toString()
 }
-enum com.dutianze.designpattern.creational.builder.Armor {
+enum Armor {
 +  CLOTHES
 +  LEATHER
 +  CHAIN_MAIL
@@ -51,7 +51,7 @@ enum com.dutianze.designpattern.creational.builder.Armor {
 - String title
 + String toString()
 }
-enum com.dutianze.designpattern.creational.builder.HairType {
+enum HairType {
 +  BALD
 +  SHORT
 +  CURLY
@@ -62,5 +62,15 @@ enum com.dutianze.designpattern.creational.builder.HairType {
 }
 
 
-com.dutianze.designpattern.creational.builder.Hero +.. com.dutianze.designpattern.creational.builder.Hero.Builder
+Hero -->  "-profession" Profession
+Builder ..+ Hero
+Hero -->  "-armor" Armor
+Builder -->  "-hairColor" HairColor
+Builder -->  "-weapon" Weapon
+Builder -->  "-hairType" HairType
+Hero -->  "-hairColor" HairColor
+Builder -->  "-profession" Profession
+Hero -->  "-weapon" Weapon
+Hero -->  "-hairType" HairType
+Builder -->  "-armor" Armor
 @enduml

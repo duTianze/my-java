@@ -3,8 +3,8 @@ package com.dutianze.designpattern.behavioral.command;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.dutianze.designpattern.behavioral.command.target.Goblin;
-import com.dutianze.designpattern.behavioral.command.target.valueobject.Size;
-import com.dutianze.designpattern.behavioral.command.target.valueobject.Visibility;
+import com.dutianze.designpattern.behavioral.command.types.Size;
+import com.dutianze.designpattern.behavioral.command.types.Visibility;
 import org.junit.jupiter.api.Test;
 
 /**

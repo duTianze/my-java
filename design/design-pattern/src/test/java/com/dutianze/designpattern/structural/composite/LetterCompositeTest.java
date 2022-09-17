@@ -34,20 +34,16 @@ class LetterCompositeTest {
 
   @Test
   void testMessageFromOrcs() {
-    testMessage(messageFromOrcs(), "Where there is a whip there is a way.");
-  }
+    LetterComposite composedMessage = messageFromOrcs();
+    String message = "Where there is a whip there is a way.";
 
-  private void testMessage(final LetterComposite composedMessage, final String message) {
-    // Test is the composed message has the correct number of words
     final String[] words = message.split(" ");
     assertNotNull(composedMessage);
     assertEquals(words.length, composedMessage.count());
 
-    // Print the message to the mocked stdOut ...
     composedMessage.print();
 
-    // ... and verify if the message matches with the expected one
-    assertEquals(message, new String(this.stdOutBuffer.toByteArray()).trim());
+    assertEquals(message, this.stdOutBuffer.toString().trim());
   }
 
   LetterComposite messageFromOrcs() {

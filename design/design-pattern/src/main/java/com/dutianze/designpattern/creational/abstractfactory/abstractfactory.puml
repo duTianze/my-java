@@ -1,65 +1,70 @@
 @startuml
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcKing {
+class OrcKing {
 + String getDescription()
 }
-interface com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory {
+interface KingdomFactory {
 ~ Castle createCastle()
 ~ King createKing()
 ~ Army createArmy()
 ~ Kingdom createKingdom()
 ~ {static} KingdomFactory makeFactory(KingdomType)
 }
-enum com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomType {
+enum KingdomType {
 +  ELF
 +  ORC
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfArmy {
+class ElfArmy {
 + String getDescription()
 }
-class com.dutianze.designpattern.creational.abstractfactory.fatory.impl.OrcKingdomFactory {
+class OrcKingdomFactory {
 + Castle createCastle()
 + King createKing()
 + Army createArmy()
 }
-interface com.dutianze.designpattern.creational.abstractfactory.kingdom.King {
+interface King {
 ~ String getDescription()
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfCastle {
+class ElfCastle {
 + String getDescription()
 }
-interface com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle {
+interface Castle {
 ~ String getDescription()
 }
-class com.dutianze.designpattern.creational.abstractfactory.fatory.impl.ElfKingdomFactory {
+class ElfKingdomFactory {
 + Castle createCastle()
 + King createKing()
 + Army createArmy()
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.Kingdom {
+class Kingdom {
 - King king
 - Castle castle
 - Army army
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfKing {
+class ElfKing {
 + String getDescription()
 }
-interface com.dutianze.designpattern.creational.abstractfactory.kingdom.Army {
+interface Army {
 ~ String getDescription()
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcArmy {
+class OrcArmy {
 + String getDescription()
 }
-class com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcCastle {
+class OrcCastle {
 + String getDescription()
 }
 
 
-com.dutianze.designpattern.creational.abstractfactory.kingdom.King <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcKing
-com.dutianze.designpattern.creational.abstractfactory.kingdom.Army <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfArmy
-com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.creational.abstractfactory.fatory.impl.OrcKingdomFactory
-com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle <|.up. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfCastle
-com.dutianze.designpattern.creational.abstractfactory.fatory.KingdomFactory <|.. com.dutianze.designpattern.creational.abstractfactory.fatory.impl.ElfKingdomFactory
-com.dutianze.designpattern.creational.abstractfactory.kingdom.King <|.up. com.dutianze.designpattern.creational.abstractfactory.kingdom.elf.ElfKing
-com.dutianze.designpattern.creational.abstractfactory.kingdom.Army <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcArmy
-com.dutianze.designpattern.creational.abstractfactory.kingdom.Castle <|.. com.dutianze.designpattern.creational.abstractfactory.kingdom.orc.OrcCastle
+KingdomType ..+ FactoryMaker
+App -->  "-castle" Castle
+FactoryMaker ..+ App
+App -->  "-king" King
+App -->  "-army" Army
+ElfArmy ..|> Army
+ElfCastle ..|> Castle
+ElfKing ..|> King
+ElfKingdomFactory ..|> KingdomFactory
+OrcArmy ..|> Army
+OrcCastle ..|> Castle
+OrcKing ..|> King
+OrcKingdomFactory ..|> KingdomFactory
 @enduml
