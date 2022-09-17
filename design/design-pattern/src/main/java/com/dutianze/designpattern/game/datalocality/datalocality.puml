@@ -1,0 +1,59 @@
+@startuml
+class RenderComponent {
++ void update()
++ void render()
+}
+class AiComponent {
++ void update()
++ void render()
+}
+class RenderComponentManager {
+- {static} int MAX_ENTITIES
+- int numEntities
+- Component[] renderComponents
++ void start()
++ void render()
+}
+class PhysicsComponent {
++ void update()
++ void render()
+}
+interface ComponentManager {
+~ void start()
+~ void update()
+~ void render()
+}
+class GameEntity {
+- AiComponentComponentManager aiComponentManager
+- PhysicsComponentManager physicsComponentManager
+- RenderComponentManager renderComponentManager
++ void start()
++ void update()
+}
+interface Component {
+~ void update()
+~ void render()
+}
+class AiComponentComponentManager {
+- {static} int MAX_ENTITIES
+- int numEntities
+- Component[] aiComponents
++ void start()
++ void update()
+}
+class PhysicsComponentManager {
+- {static} int MAX_ENTITIES
+- int numEntities
+- Component[] physicsComponents
++ void start()
++ void update()
+}
+
+
+GameEntity -->  "-physicsComponentManager" PhysicsComponentManager
+GameEntity -->  "-aiComponentManager" AiComponentManager
+GameEntity -->  "-renderComponentManager" RenderComponentManager
+AiComponent ..|> Component
+PhysicsComponent ..|> Component
+RenderComponent ..|> Component
+@enduml

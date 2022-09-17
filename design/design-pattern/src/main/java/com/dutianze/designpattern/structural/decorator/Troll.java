@@ -1,6 +1,13 @@
 package com.dutianze.designpattern.structural.decorator;
 
 /**
+ * 穿衣服是使用装饰的一个例子。 觉得冷时， 你可以穿一件毛衣。 如果穿毛衣还觉得冷， 你可以再套上一件夹克。
+ * <p>
+ * 如果遇到下雨， 你还可以再穿一件雨衣。 所有这些衣物都 “扩展”了你的基本行为，但它们并不是你的一部分，
+ * <p>
+ * 如果你不再需要某件衣物， 可以方便地随时脱掉。
+ * <p>
+ *
  * <h2 id="known-uses">Known uses</h2>
  * <ul>
  * <li><a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html">java.io.InputStream</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html">java.io.OutputStream</a>,
