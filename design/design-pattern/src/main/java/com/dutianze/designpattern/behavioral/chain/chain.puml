@@ -1,33 +1,33 @@
 @startuml
-class com.dutianze.designpattern.behavioral.chain.OrcKing {
+class OrcKing {
 - RequestHandler chain
 - void buildChain()
 + void makeRequest(Request)
 }
-abstract class com.dutianze.designpattern.behavioral.chain.handler.RequestHandler {
+abstract class RequestHandler {
 - RequestHandler next
 + void handleRequest(Request)
 # void printHandling(Request)
 + {abstract}String toString()
 }
-class com.dutianze.designpattern.behavioral.chain.handler.impl.OrcOfficer {
+class OrcOfficer {
 + void handleRequest(Request)
 + String toString()
 }
-class com.dutianze.designpattern.behavioral.chain.handler.impl.OrcSoldier {
+class OrcSoldier {
 + void handleRequest(Request)
 + String toString()
 }
-class com.dutianze.designpattern.behavioral.chain.handler.impl.OrcCommander {
+class OrcCommander {
 + void handleRequest(Request)
 + String toString()
 }
-enum com.dutianze.designpattern.behavioral.chain.request.RequestType {
+enum RequestType {
 +  DEFEND_CASTLE
 +  TORTURE_PRISONER
 +  COLLECT_TAX
 }
-class com.dutianze.designpattern.behavioral.chain.request.Request {
+class Request {
 - RequestType requestType
 - String requestDescription
 - boolean handled
@@ -37,7 +37,10 @@ class com.dutianze.designpattern.behavioral.chain.request.Request {
 }
 
 
-com.dutianze.designpattern.behavioral.chain.handler.RequestHandler <|-- com.dutianze.designpattern.behavioral.chain.handler.impl.OrcOfficer
-com.dutianze.designpattern.behavioral.chain.handler.RequestHandler <|-- com.dutianze.designpattern.behavioral.chain.handler.impl.OrcSoldier
-com.dutianze.designpattern.behavioral.chain.handler.RequestHandler <|-- com.dutianze.designpattern.behavioral.chain.handler.impl.OrcCommander
+OrcKing -->  "-chain" RequestHandler
+RequestHandler -->  "-next" RequestHandler
+Request -->  "-requestType" RequestType
+OrcCommander --|> RequestHandler
+OrcOfficer --|> RequestHandler
+OrcSoldier --|> RequestHandler
 @enduml
