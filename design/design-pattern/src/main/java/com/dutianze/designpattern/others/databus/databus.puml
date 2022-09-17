@@ -1,0 +1,58 @@
+@startuml
+class MessageCollectorMember {
+- String name
+- List<String> messages
++ void accept(DataType)
+- void handleEvent(MessageData)
++ List<String> getMessages()
+}
+interface DataType {
+~ DataBus getDataBus()
+~ void setDataBus(DataBus)
+}
+class MessageData {
+- String message
++ {static} DataType of(String)
+}
+class StartingData {
+- LocalDateTime when
++ {static} DataType of(LocalDateTime)
+}
+class AbstractDataType {
+- DataBus dataBus
+}
+class StatusMember {
+- int id
+- LocalDateTime started
+- LocalDateTime stopped
++ void accept(DataType)
+- void handleEvent(StartingData)
+- void handleEvent(StoppingData)
+}
+interface Member {
+~ void accept(DataType)
+}
+class DataBus {
+- {static} DataBus INSTANCE
+- Set<Member> listeners
++ {static} DataBus getInstance()
++ void subscribe(Member)
++ void unsubscribe(Member)
++ void publish(DataType)
+}
+class StoppingData {
+- LocalDateTime when
++ {static} DataType of(LocalDateTime)
+}
+
+
+AbstractDataType -->  "-dataBus" DataBus
+DataBus -->  "-INSTANCE" DataBus
+DataBus -->  "-listeners" Member
+AbstractDataType ..|> DataType
+MessageData --|> AbstractDataType
+StartingData --|> AbstractDataType
+StoppingData --|> AbstractDataType
+MessageCollectorMember ..|> Member
+StatusMember ..|> Member
+@enduml
