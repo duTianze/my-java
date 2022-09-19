@@ -27,7 +27,8 @@
 		<module>base-web</module>
 		<module>base-start</module>
 		<module>base-netty</module>
-	</modules>
+    <module>base-io</module>
+  </modules>
 
 	<!-- 属性说明 -->
 	<properties>
