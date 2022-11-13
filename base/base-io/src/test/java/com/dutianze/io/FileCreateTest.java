@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
  * @date 2022/11/12
  */
 @Slf4j
-class FileCrudTest {
+class FileCreateTest {
 
   private final String FILE_DIR = "src/test/resources/fileToCreate.txt";
-  private final String CONTENT = "content";
+  private final String CONTENT = "create";
 
   @BeforeEach
   public void cleanUpFiles() {
