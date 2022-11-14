@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class FileCreateTest {
 
-  private final String FILE_DIR = "src/test/resources/fileToCreate.txt";
+  private final String FILE_DIR = "src/test/resources/fileCreate.txt";
   private final String CONTENT = "create";
 
   @BeforeEach
