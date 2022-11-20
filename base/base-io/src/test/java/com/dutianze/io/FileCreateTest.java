@@ -29,6 +29,13 @@ class FileCreateTest {
     Path.of(FILE_DIR).toFile().delete();
   }
 
+  public static void main(String[] args) {
+    String userDirectory = Paths.get("")
+        .toAbsolutePath()
+        .toString();
+    System.out.println(userDirectory);
+  }
+
   @Test
   void createFileByFile() {
     // java 1.2
