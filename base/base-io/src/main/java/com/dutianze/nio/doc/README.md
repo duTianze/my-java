@@ -1,4 +1,4 @@
-### Java NIO 系列教程
+# Java NIO 系列教程
 
 [原文地址](http://tutorials.jenkov.com/java-nio/index.html) **作者**:Jakob Jenkov **译者**:郭蕾 **校对**:方腾飞
 
@@ -18,7 +18,7 @@ Java NIO可以让你非阻塞的使用IO，例如：当线程从通道读取数�
 
 Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道
 
-### Java NIO系列教程（一） Java NIO 概述
+## Java NIO系列教程（一） Java NIO 概述
 
 Java NIO 由以下几个核心部分组成：
 
@@ -61,7 +61,7 @@ Channel和Buffer有好几种类型。下面是JAVA NIO中的一些主要Channel�
 
 Java NIO 还有个 MappedByteBuffer，用于表示内存映射文件， 我也不打算在概述中说明。
 
-## Selector
+### Selector
 
 Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。
 例如，在一个聊天服务器中。
@@ -72,3 +72,51 @@ Selector允许单线程处理多个 Channel。如果你的应用打开了多个�
 
 要使用Selector，得向`Selector`注册`Channel`，然后调用它的`select()`方法。
 这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。
+
+## Java NIO系列教程（二） Channel
+
+Java NIO的通道类似流，但又有些不同：
+
+- 既可以从通道中读取数据，又可以写数据到通道。但流的读写通常是单向的。
+- 通道可以异步地读写。
+- 通道中的数据总是要先读到一个Buffer，或者总是要从一个Buffer中写入。
+
+正如上面所说，从通道读取数据到缓冲区，从缓冲区写入数据到通道。如下图所示：
+
+![](.README/dd4bd446.png)
+
+### Channel的实现
+
+这些是Java NIO中最重要的通道的实现：
+
+- FileChannel 从文件中读写数据。
+- DatagramChannel 能通过UDP读写网络中的数据。
+- SocketChannel 能通过TCP读写网络中的数据。
+- ServerSocketChannel 可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个SocketChannel。
+
+### 基本的 Channel 示例
+
+下面是一个使用FileChannel读取数据到Buffer中的示例：
+
+```java
+RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");  
+FileChannel inChannel = aFile.getChannel();
+
+ByteBuffer buf = ByteBuffer.allocate(48);
+
+int bytesRead = inChannel.read(buf);  
+while (bytesRead != -1) {
+    System.out.println("Read " + bytesRead);  
+    buf.flip();
+
+    while(buf.hasRemaining()){  
+      System.out.print((char) buf.get());  
+    }
+
+    buf.clear();  
+    bytesRead = inChannel.read(buf);  
+}  
+aFile.close();  
+```
+
+注意 buf.flip() 的调用，首先读取数据到Buffer，然后反转Buffer,接着再从Buffer中读取数据。下一节会深入讲解Buffer的更多细节。
