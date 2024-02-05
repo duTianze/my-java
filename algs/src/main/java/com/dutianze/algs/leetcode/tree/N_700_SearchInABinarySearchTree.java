@@ -36,7 +36,7 @@ public class N_700_SearchInABinarySearchTree {
         if (root == null) {
             return null;
         }
-        if (root.val == val){
+        if (root.val == val) {
             return root;
         }
         if (val < root.val) {

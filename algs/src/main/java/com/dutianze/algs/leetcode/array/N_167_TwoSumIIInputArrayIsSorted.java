@@ -52,9 +52,9 @@ public class N_167_TwoSumIIInputArrayIsSorted {
         while (lo < hi) {
             int res = numbers[lo] + numbers[hi];
             if (res < target) {
-                lo ++;
+                lo++;
             } else if (res > target) {
-                hi --;
+                hi--;
             } else {
                 return new int[]{lo + 1, hi + 1};
             }
