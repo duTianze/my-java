@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">167. Two Sum II - Input Array Is Sorted</a>
- * <h2>Medium</h2>
  * <pre>
  * Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order,
  * find two numbers such that they add up to a specific target number.

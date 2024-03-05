@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/first-missing-positive/description/">41. First Missing Positive</a>
- * <h2>Hard</h2>
  * <pre>
  * Given an unsorted integer array nums, return the smallest missing positive integer.
  *
