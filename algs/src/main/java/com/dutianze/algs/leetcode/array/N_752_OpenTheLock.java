@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * <a href="https://leetcode.com/problems/open-the-lock/">752. Open the Lock</a>
- * <h2>Medium</h2>
  * <pre>
  * You have a lock in front of you with 4 circular wheels.
  * Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'.

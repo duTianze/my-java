@@ -5,7 +5,6 @@ import java.util.Map;
 
 /**
  * <a href="https://leetcode.com/problems/number-of-good-pairs/">1512. Number of Good Pairs</a>
- * <h2>Easy</h2>
  * <pre>
  * Given an array of integers nums, return the number of good pairs.
  *

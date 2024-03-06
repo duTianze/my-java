@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/final-value-of-variable-after-performing-operations/">2011. Final Value of Variable After Performing Operations</a>
- * <h2>Easy</h2>
  * <pre>
  *     There is a programming language with only four operations and one variable X:
  *

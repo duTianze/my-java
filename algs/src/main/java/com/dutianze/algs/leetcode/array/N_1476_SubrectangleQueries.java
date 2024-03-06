@@ -8,7 +8,6 @@ import java.util.Deque;
 
 /**
  * <a href="https://leetcode.com/problems/subrectangle-queries/">1476. Subrectangle Queries</a>
- * <h2>Medium</h2>
  * <pre>
  * Implement the class SubrectangleQueries which receives a rows x cols rectangle as a matrix of integers in the constructor and supports two methods:
  *

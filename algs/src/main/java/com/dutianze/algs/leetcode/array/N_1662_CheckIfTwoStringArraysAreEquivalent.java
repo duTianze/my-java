@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/">1662. Check If Two String Arrays are Equivalent</a>
- * <h2>Easy</h2>
  * <pre>
  * Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
  *

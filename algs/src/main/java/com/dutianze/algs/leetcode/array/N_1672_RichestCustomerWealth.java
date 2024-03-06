@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/richest-customer-wealth/">1672. Richest Customer Wealth</a>
- * <h2>Easy</h2>
  * <pre>
  * You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the 1th customer has in the jth bank. Return the wealth that the richest customer has.
  *

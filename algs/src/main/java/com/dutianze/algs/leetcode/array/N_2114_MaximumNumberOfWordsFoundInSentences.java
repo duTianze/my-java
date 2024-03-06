@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/">2114. Maximum Number of Words Found in Sentences</a>
- * <h2>Easy</h2>
  * <pre>
  * A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
  *

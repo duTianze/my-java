@@ -2,7 +2,6 @@ package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/">1828. Queries on Number of Points Inside a Circle</a>
- * <h2>Medium</h2>
  * <pre>
  * You are given an array points where points[i] = [xi, yi] is the coordinates of the ith point on a 2D plane. Multiple points can have the same coordinates.
  *
