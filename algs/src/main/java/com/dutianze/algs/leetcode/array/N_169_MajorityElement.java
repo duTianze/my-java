@@ -38,7 +38,10 @@ public class N_169_MajorityElement {
         for (int num : nums) {
             if (count == 0) {
                 candidate = num;
+                count = 1;
+                continue;
             }
+
             if (num == candidate) {
                 count++;
             } else {
