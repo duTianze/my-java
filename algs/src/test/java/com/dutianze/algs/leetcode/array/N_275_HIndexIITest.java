@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
  * @author dutianze
  * @date 2024/3/18
  */
-class H_275_HIndexIITest {
+class N_275_HIndexIITest {
 
-    private final H_275_HIndexII solution = new H_275_HIndexII();
+    private final N_275_HIndexII solution = new N_275_HIndexII();
 
     @Test
     void hIndex() {

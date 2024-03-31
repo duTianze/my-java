@@ -32,7 +32,7 @@ package com.dutianze.algs.leetcode.array;
  * @author dutianze
  * @date 2024/3/18
  */
-public class H_275_HIndexII {
+public class N_275_HIndexII {
 
     public int hIndex(int[] citations) {
         int n = citations.length;

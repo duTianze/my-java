@@ -1,10 +1,7 @@
-package com.dutianze.algs.leetcode.dp;
-
-import java.util.stream.IntStream;
+package com.dutianze.algs.leetcode.array;
 
 /**
  * <a href="https://leetcode.com/problems/jump-game-ii/">45. Jump Game II</a>
- * <h2>Medium</h2>
  * <pre>
  * Given an array of non-negative integers nums, you are initially positioned at the first index of the array.
  *
@@ -47,35 +44,5 @@ public class N_45_JumpGameII {
             }
         }
         return jumps;
-    }
-
-    int[] memo;
-
-    /**
-     * 暴力动态规划
-     */
-    public int jump2(int[] nums) {
-        int n = nums.length;
-        memo = new int[n];
-        IntStream.range(0, n).forEach(i -> memo[i] = n);
-
-        // 从索引p跳到最后一格 至少需要dp(nums, p)步
-        return dp(nums, 0);
-    }
-
-    int dp(int[] nums, int p) {
-        int n = nums.length;
-        if (p >= n - 1) {
-            return 0;
-        }
-        if (memo[p] != n) {
-            return memo[p];
-        }
-        int steps = nums[p];
-        for (int i = 1; i <= steps; i++) {
-            int subProblem = dp(nums, p + i);
-            memo[p] = Math.min(memo[p], subProblem + 1);
-        }
-        return memo[p];
     }
 }
